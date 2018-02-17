@@ -7,6 +7,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
 
+    [Header("Script References")]
+    public CharacterOneGunController coopCharacterControllerOne;
+
     //Private variables
     private Rigidbody myRB;
     private Camera mainCamera;
@@ -32,7 +35,16 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         if (playerDirection.sqrMagnitude > 0.0f) {
             transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
         }
-	}
+
+        //Shooting the bullet
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+            coopCharacterControllerOne.isFiring = true;
+        }
+        //Not shootings the bullet
+        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+            coopCharacterControllerOne.isFiring = false;
+        }
+    }
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;

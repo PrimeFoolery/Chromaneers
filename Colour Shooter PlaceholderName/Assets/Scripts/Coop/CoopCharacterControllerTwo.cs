@@ -7,20 +7,25 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
 
+    [Header("Script References")]
+    public CharacterTwoGunController coopCharacterControllerTwo;
+
     //Private variables
     private Rigidbody myRB;
     private Camera mainCamera;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
 
-    void Start() {
+    void Start()
+    {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
     }
 
-    void Update() {
+    void Update()
+    {
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
         //Multiply the moveInput by the moveVelocity to give it speed
@@ -32,9 +37,19 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         if (playerDirection.sqrMagnitude > 0.0f) {
             transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
         }
+
+        //Shooting the bullet
+        if (Input.GetKeyDown(KeyCode.Joystick2Button7)) {
+            coopCharacterControllerTwo.isFiring = true;
+        }
+        //Not shootings the bullet
+        if (Input.GetKeyUp(KeyCode.Joystick2Button7)) {
+            coopCharacterControllerTwo.isFiring = false;
+        }
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
 

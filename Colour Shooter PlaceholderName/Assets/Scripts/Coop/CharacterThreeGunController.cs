@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterOneGunController : MonoBehaviour {
+public class CharacterThreeGunController : MonoBehaviour {
 
     [Header("Gun Variables")]
     public bool isFiring;
@@ -48,7 +48,7 @@ public class CharacterOneGunController : MonoBehaviour {
     void CurrentBulletFiring()
     {
         //When you left click, the gun fires
-        if (Input.GetKey(KeyCode.Joystick1Button7)) {
+        if (Input.GetKey(KeyCode.Joystick3Button7)) {
             if (colourSelectManager.GetBulletToShoot() == null) {
                 print("anything");
                 return;

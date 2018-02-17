@@ -7,6 +7,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
 
+    [Header("Script References")]
+    public CharacterThreeGunController coopCharacterControllerThree;
+
     //Private variables
     private Rigidbody myRB;
     private Camera mainCamera;
@@ -33,6 +36,15 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         //Checking if the vector3 has got a value inputed
         if (playerDirection.sqrMagnitude > 0.0f) {
             transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+        }
+
+        //Shooting the bullet
+        if (Input.GetKeyDown(KeyCode.Joystick3Button7)) {
+            coopCharacterControllerThree.isFiring = true;
+        }
+        //Not shootings the bullet
+        if (Input.GetKeyUp(KeyCode.Joystick3Button7)) {
+            coopCharacterControllerThree.isFiring = false;
         }
     }
 
