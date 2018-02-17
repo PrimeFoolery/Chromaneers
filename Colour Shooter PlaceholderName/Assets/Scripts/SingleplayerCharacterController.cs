@@ -7,11 +7,16 @@ public class SingleplayerCharacterController : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
 
+    public GameObject paintBullet;//THIS IS THE BULLET PREFAB
+    public GameObject bulletEmitter;//THIS IS WHERE THE BULLETS COME FROM
+
     //Private variables
     private Rigidbody myRB;
     private Camera mainCamera;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
+
+
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
@@ -42,6 +47,10 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
             //Make the player to look towards the mouse
             transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
+        }
+        if (Input.GetMouseButton(0))
+        {
+            Instantiate(paintBullet,bulletEmitter.transform.position, bulletEmitter.transform.rotation);
         }
 	}
 
