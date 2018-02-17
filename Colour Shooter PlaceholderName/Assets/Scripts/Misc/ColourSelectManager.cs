@@ -17,8 +17,10 @@ public class ColourSelectManager : MonoBehaviour {
 
     [Header("Bullet Prefabs")]
     public GameObject blueBulletPrefab;
+    public GameObject redBulletPrefab;
+    public GameObject yellowBulletPrefab;
 
-	void Start () {
+    void Start () {
         //The game will start with the blue bullet
         bulletToShoot = blueBulletPrefab;
 	}
