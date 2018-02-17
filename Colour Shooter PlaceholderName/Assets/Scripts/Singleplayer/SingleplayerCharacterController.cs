@@ -10,6 +10,9 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public GameObject paintBullet;//THIS IS THE BULLET PREFAB
     public GameObject bulletEmitter;//THIS IS WHERE THE BULLETS COME FROM
 
+    [Header("Script References")]
+    public GunController gunController;
+
     //Private variables
     private Rigidbody myRB;
     private Camera mainCamera;
@@ -48,9 +51,14 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Make the player to look towards the mouse
             transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
         }
-        if (Input.GetMouseButton(0))
-        {
-            Instantiate(paintBullet,bulletEmitter.transform.position, bulletEmitter.transform.rotation);
+
+        //Shooting the bullet
+        if (Input.GetMouseButtonDown (0)) {
+            gunController.isFiring = true;
+        }
+        //Not shootings the bullet
+        if (Input.GetMouseButtonUp (0)) {
+            gunController.isFiring = false;
         }
 	}
 
