@@ -45,6 +45,17 @@ public class PaintBullet : MonoBehaviour {
         }
        
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")//WHEN THE PLAYER HITS THE WALL
+        {
+            CalculatePositionOffset(other.gameObject.transform.position.x, other.gameObject.transform.position.y, other.gameObject.transform.position.z);
+            RandomisePaintTexture();//CHOOSES A RANDOM TEXTURE
+            tempPaintSplatForOffsetting = Instantiate(chosenPaintSplat, new Vector3(other.gameObject.transform.position.x + XOffset, other.gameObject.transform.position.y + YOffset, other.gameObject.transform.position.z + ZOffset), other.transform.rotation, other.gameObject.transform);//SPAWNS THE PAINT BLOB
+            Destroy(this.gameObject);//DESTROYS THE BULLET
+
+        }
+    }
     private void RandomisePaintTexture()//RANDOMISES WHICH TEXTURE IS USED FOR THE PAINT
     {
         randomisedPaintValue = 1;
