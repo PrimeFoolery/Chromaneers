@@ -16,13 +16,23 @@ public class ColourSelectManager : MonoBehaviour {
     }
 
     [Header("Bullet Prefabs")]
-    public bool ces;
+    public GameObject blueBulletPrefab;
 
 	void Start () {
-		//The game will start with the blue bullet
+        //The game will start with the blue bullet
+        bulletToShoot = blueBulletPrefab;
 	}
-	
-	void Update () {
-		
-	}
+
+    //Variable to set current bullet to shoot
+    private GameObject bulletToShoot;
+
+    //GameObject function to return which bullet to shoot
+    public GameObject GetBulletToShoot () {
+        return bulletToShoot;
+    }
+
+    //Setting the private gameObject to a certain bullet
+    public void SetBulletToShoot (GameObject bullet) {
+        bulletToShoot = bullet;
+    }
 }
