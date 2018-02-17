@@ -13,8 +13,18 @@ public class PaintBullet : MonoBehaviour {
     public int randomisedPaintValue;//THIS IS THE VALUE THAT IS RANDOMISED TO CHOOSE WHICH PAINT TEXTURE TO USE
     public GameObject chosenPaintSplat;//THIS IS THE PAINT TEXTURE THAT WILL BE INSTANTIATED
 
-    
-	void Start () {
+    //VARIABLES FOR OFFSETTING THE PAINT SPRITE
+    private float XDifferenceBetweenWallAndBullet;
+    private float YDifferenceBetweenWallAndBullet;
+    private float ZDifferenceBetweenWallAndBullet;
+    private float XOffset;
+    private float YOffset;
+    private float ZOffset;
+
+    private GameObject tempPaintSplatForOffsetting;
+
+
+    void Start () {
 		
 	}
 	
@@ -27,8 +37,9 @@ public class PaintBullet : MonoBehaviour {
         
         if (collision.gameObject.tag == "Wall")//WHEN THE PLAYER HITS THE WALL
         {
+            CalculatePositionOffset(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
             RandomisePaintTexture();//CHOOSES A RANDOM TEXTURE
-            Instantiate(chosenPaintSplat, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), collision.transform.rotation, collision.gameObject.transform);//SPAWNS THE PAINT BLOB
+            tempPaintSplatForOffsetting = Instantiate(chosenPaintSplat, new Vector3(collision.gameObject.transform.position.x+XOffset, collision.gameObject.transform.position.y+YOffset, collision.gameObject.transform.position.z+ZOffset), collision.transform.rotation, collision.gameObject.transform);//SPAWNS THE PAINT BLOB
             Destroy(this.gameObject);//DESTROYS THE BULLET
             
         }
@@ -41,5 +52,14 @@ public class PaintBullet : MonoBehaviour {
         {
             chosenPaintSplat = paintSplat1;
         }
+    }
+    private void CalculatePositionOffset(float wallX, float wallY, float wallZ)
+    {
+        XDifferenceBetweenWallAndBullet = transform.position.x - wallX;
+        YDifferenceBetweenWallAndBullet = transform.position.y - wallY;
+        ZDifferenceBetweenWallAndBullet = transform.position.z - wallZ;
+        XOffset = XDifferenceBetweenWallAndBullet ;
+        YOffset = YDifferenceBetweenWallAndBullet ;
+        ZOffset = ZDifferenceBetweenWallAndBullet ;
     }
 }
