@@ -49,14 +49,14 @@ public class CharacterOneGunController : MonoBehaviour {
     {
         //When you left click, the gun fires
         if (Input.GetKey(KeyCode.Joystick1Button7)) {
-            if (colourSelectManager.GetBulletToShoot() == null) {
+            if (colourSelectManager.GetBulletBlueToShoot() == null) {
                 print("anything");
                 return;
             }
-            print("Working");
+            print("Blue bullet firing");
             //Instantiate the bullet and set it as a gameObject
             //additionally, give it a fireFrom position and rotation [Which is an empty object]
-            GameObject bulletToShoot = colourSelectManager.GetBulletToShoot();
+            GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
             bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
         }
     }
