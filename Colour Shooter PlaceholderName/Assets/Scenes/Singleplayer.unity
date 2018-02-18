@@ -322,10 +322,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
         type: 2}
-      propertyPath: blueBulletPrefab
-      value: 
-      objectReference: {fileID: 1141967671576600, guid: 0873527bbbe12494e9f16f71beb9d1a3,
-        type: 2}
+      propertyPath: isItSingleplayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
   m_IsPrefabParent: 0

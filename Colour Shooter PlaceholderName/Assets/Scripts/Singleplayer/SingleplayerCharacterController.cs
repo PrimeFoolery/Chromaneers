@@ -52,8 +52,18 @@ public class SingleplayerCharacterController : MonoBehaviour {
             transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
         }
 
+        /*
         //Shooting the bullet
         if (Input.GetMouseButtonDown (0)) {
+            //gunController.isFiring = true;
+            gunController.Shoot();
+        } else if (Input.GetMouseButton (0)) {
+            gunController.ShootContinious();
+        }
+        */
+
+        //Shooting the bullet
+        if (Input.GetMouseButtonDown(0)) {
             gunController.isFiring = true;
         }
         //Not shootings the bullet
