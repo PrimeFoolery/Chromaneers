@@ -7,9 +7,6 @@ public class SingleplayerCharacterController : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
 
-    public GameObject paintBullet;//THIS IS THE BULLET PREFAB
-    public GameObject bulletEmitter;//THIS IS WHERE THE BULLETS COME FROM
-
     [Header("Script References")]
     public GunController gunController;
 
