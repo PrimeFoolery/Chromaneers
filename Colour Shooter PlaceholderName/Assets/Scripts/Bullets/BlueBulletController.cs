@@ -86,7 +86,6 @@ public class BlueBulletController : MonoBehaviour {
 			}
 
 			Debug.DrawLine (transform.position, previousBulletPosition);
-
 		}
     }
 }
