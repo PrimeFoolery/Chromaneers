@@ -47,16 +47,21 @@ public class GunController : MonoBehaviour {
         //When you left click, the gun fires
         if (Input.GetMouseButton (0) || Input.GetKey (KeyCode.Q)) {
             if (colourSelectManager.GetBulletToShoot() == null) {
-                print("anything");
+				//Making a LogError incase something is null
+				Debug.Log ("Its null captain! Please fix it");
+				//Returning
                 return;
             }
-            print("Working");
+			//Print to check if something is working
+			Debug.Log("It is instantiating, all is good");
             //Instantiate the bullet and set it as a gameObject
             //additionally, give it a fireFrom position and rotation [Which is an empty object]
             GameObject bulletToShoot = colourSelectManager.GetBulletToShoot();
             bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
         }
     }
+
+
 
     /*
      * TESTING RAYCASTING
