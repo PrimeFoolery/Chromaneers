@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowBulletController : MonoBehaviour {
+public class OrangeBulletController : MonoBehaviour {
 
     [Header("Bullet variables")]
     public float speed;
@@ -45,9 +45,9 @@ public class YellowBulletController : MonoBehaviour {
 
     void OnCollisionEnter (Collision theCol) {
         //Check if its the Enemy
-        if (theCol.gameObject.tag == "YellowEnemy") {
+        if (theCol.gameObject.tag == "OrangeEnemy") {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<YellowEnemyHealth>().EnemyDamaged(bulletDamage);
+            theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
             //and destroy the bullet
             Destroy(gameObject);
         }
