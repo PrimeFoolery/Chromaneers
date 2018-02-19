@@ -45,7 +45,7 @@ public class GunController : MonoBehaviour {
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
         //When you left click, the gun fires
-        if (Input.GetMouseButton (0) || Input.GetKey (KeyCode.Q)) {
+        if (Input.GetMouseButton (0) || Input.GetKey(KeyCode.Joystick1Button7)) {
             if (colourSelectManager.GetBulletToShoot() == null) {
 				//Making a LogError incase something is null
 				Debug.Log ("Its null captain! Please fix it");
@@ -60,38 +60,4 @@ public class GunController : MonoBehaviour {
             bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
         }
     }
-
-
-
-    /*
-     * TESTING RAYCASTING
-    */
-
-    //Where is the bullet coming from
-    public Transform shootFrom;
-    public enum GunType { Semi, Burst, Auto };
-    public GunType gunType;
-
-    public void Shoot () {
-        //Create a new ray
-        Ray ray = new Ray(shootFrom.position, shootFrom.forward);
-        //What we hit
-        RaycastHit hit;
-        //Distance of raycast
-        float shootDistance = 20;
-        //Implement the raycast
-        if (Physics.Raycast(ray, out hit, shootDistance)) {
-            shootDistance = hit.distance;
-        }
-        //Draw ray to see it with gizmos
-        Debug.DrawRay(ray.origin, ray.direction * shootDistance, Color.blue, 1f);
-    }
-
-    public void ShootContinious () {
-        if (gunType == GunType.Auto) {
-            Shoot();
-        }
-
-    }
-    
 }

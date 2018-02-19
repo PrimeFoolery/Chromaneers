@@ -17,13 +17,13 @@ public class BlueBulletController : MonoBehaviour {
 	Vector3 previousBulletPosition;
 
 	void Start () {
+        //Tells the previous bullet position to be set to the current transform position
 		previousBulletPosition = transform.position;
 	}
 	
 	void Update () {
-
+        //Setting previous button position to the new updated position
 		previousBulletPosition = transform.position;
-
 
         //Moving the bullet
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -41,23 +41,6 @@ public class BlueBulletController : MonoBehaviour {
 		if (bulletLifeTime <= 0) {
 			//Destroy (paint);
 		}
-		/*
-		//Testing Raycast hitting
-		RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward), (transform.position - previousBulletPosition).magnitude);
-			
-		for (int i = 0; i < hit.Length; i++) {
-			//Print to check what object has collided
-			Debug.Log (hit [i].collider.gameObject.name);
-
-			//If it touches the wall, destroy
-			//Destroy(gameObject);
-
-			//Insantiating the paint when the bullet is destroyed
-			Instantiate(paint, hit [i].point, hit [i].collider.gameObject.transform.rotation);
-		}
-
-		Debug.DrawLine (transform.position, previousBulletPosition);
-		*/
 	}
 
     void OnCollisionEnter (Collision theCol) {
