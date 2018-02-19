@@ -45,7 +45,7 @@ public class GunController : MonoBehaviour {
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
         //When you left click, the gun fires
-        if (Input.GetMouseButton (0) || Input.GetKey (KeyCode.Q)) {
+        if (Input.GetMouseButton (0) || Input.GetKey(KeyCode.Joystick1Button7)) {
             if (colourSelectManager.GetBulletToShoot() == null) {
 				//Making a LogError incase something is null
 				Debug.Log ("Its null captain! Please fix it");
