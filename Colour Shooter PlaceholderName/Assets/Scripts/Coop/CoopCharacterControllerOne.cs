@@ -25,7 +25,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
-		print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
+		//print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
 			
 	    if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs

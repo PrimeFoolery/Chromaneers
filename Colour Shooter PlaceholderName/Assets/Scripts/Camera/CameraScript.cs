@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     public enum GameState {SinglePlayer, Multiplayer };
-	GameState currentGameState = GameState.SinglePlayer; 
+	public GameState currentGameState = GameState.SinglePlayer; 
 
     private float cameraMoveSpeed = 0.3f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
