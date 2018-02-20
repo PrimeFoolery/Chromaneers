@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     public enum GameState {SinglePlayer, Multiplayer };
-    GameState currentGameState = GameState.Multiplayer; 
+	GameState currentGameState = GameState.SinglePlayer; 
 
     private float cameraMoveSpeed = 0.3f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
@@ -81,4 +81,16 @@ public class CameraScript : MonoBehaviour {
         sizeNeeded = Mathf.Max(sizeNeeded, minimumSize);//FINDS THE MAXIMUM SIZE NEEDED BETWEEN ALL CHOICES
         sizeNeeded += screenEdgeBuffer;//ADDS THE BUFFER TO SIDE OF SCREEN
     }
+	public void SwapBetweenCoOpAndSingle(){//CALL THIS FUNCTION TO SWAP BETWEEN CO OP AND SINGLEPLAYER, IT NEED TO BE CALLED ONLY ONCE AND PLAYER PREFABS NEED TO BE INSTANTIATED BEFORE THE CALL
+		
+		if(currentGameState==GameState.SinglePlayer){
+			CoopRedPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
+			CoopBluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
+			CoopYellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
+			currentGameState = GameState.Multiplayer;
+		}else if(currentGameState==GameState.Multiplayer){
+			SPPlayer = GameObject.FindGameObjectWithTag("Player");
+			currentGameState = GameState.SinglePlayer;
+		}
+	}
 }
