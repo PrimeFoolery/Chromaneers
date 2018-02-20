@@ -115,7 +115,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -131,7 +130,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -149,7 +147,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -165,7 +162,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -227,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  usingXboxController: 1
   coopCharacterControllerTwo: {fileID: 114684548014191590}
 --- !u!114 &114684548014191590
 MonoBehaviour:
@@ -247,6 +244,7 @@ MonoBehaviour:
   - {fileID: 1010368853763702, guid: 3e90de84b54cb48428b552db1da67cef, type: 2}
   colourSelectManager: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
     type: 2}
+  coopCharacterControllerTwo: {fileID: 114488731105616336}
 --- !u!136 &136126592081602496
 CapsuleCollider:
   m_ObjectHideFlags: 1
