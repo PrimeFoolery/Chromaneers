@@ -18,6 +18,7 @@ public class RedEnemyHealth : MonoBehaviour {
 	void Update () {
 		//If the enemy reaches 0 HP, destroy the enemy
 		if (currentHealth <= 0) {
+			gameObject.GetComponent<ParticleSystem> ().Play();
 			Destroy(gameObject);
 		}
 	}
@@ -25,6 +26,8 @@ public class RedEnemyHealth : MonoBehaviour {
 	//Used to call this void in the bullet scripts
 	//since currentHealth is a private variable
 	public void EnemyDamaged (int damage) {
+		gameObject.GetComponent<ParticleSystem> ().Play();
 		currentHealth -= damage;
+
 	}
 }
