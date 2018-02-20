@@ -45,23 +45,22 @@ public class BlueBulletController : MonoBehaviour {
 
     void OnCollisionEnter (Collision theCol) {
         //Check if its the Enemy
-        if (theCol.gameObject.tag == "BlueEnemy") {
+        if (theCol.gameObject.CompareTag("BlueEnemy")) {
             //When it collides with the enemy, apply the damage
             theCol.gameObject.GetComponent<BlueEnemyHealth>().EnemyDamaged(bulletDamage);
             //and destroy the bullet
             Destroy(gameObject);
         }
-        if (theCol.gameObject.tag == "RedEnemy")
-        {
-            //When it collides with the enemy, apply the damage
-            //theCol.gameObject.GetComponent<BlueEnemyHealth>().EnemyDamaged(bulletDamage);
-            //and destroy the bullet
-            Destroy(gameObject);
+        if (theCol.gameObject.CompareTag("RedEnemy")) {
+            //Pushes the enemy back a slight amount [WiP]
+	        theCol.gameObject.transform.position -= new Vector3(0.05f, 0, 0.05f);
+	        //Destroy bullet
+	        Destroy(gameObject);
         }
 
 
         //Check if its the Wall
-        if (theCol.gameObject.tag == "Wall") {
+        if (theCol.gameObject.CompareTag("Wall")) {
 			//Testing Raycast hitting
 			RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward), (transform.position - previousBulletPosition).magnitude);
 

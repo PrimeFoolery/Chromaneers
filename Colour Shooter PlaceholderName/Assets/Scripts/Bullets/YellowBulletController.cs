@@ -45,7 +45,7 @@ public class YellowBulletController : MonoBehaviour {
 
     void OnCollisionEnter (Collision theCol) {
         //Check if its the Enemy
-        if (theCol.gameObject.tag == "YellowEnemy") {
+        if (theCol.gameObject.CompareTag("YellowEnemy")) {
             //When it collides with the enemy, apply the damage
             theCol.gameObject.GetComponent<YellowEnemyHealth>().EnemyDamaged(bulletDamage);
             //and destroy the bullet
@@ -53,7 +53,7 @@ public class YellowBulletController : MonoBehaviour {
         }
 
         //Check if its the Wall
-        if (theCol.gameObject.tag == "Wall") {
+        if (theCol.gameObject.CompareTag("Wall")) {
             //Testing Raycast hitting
             RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward), (transform.position - previousBulletPosition).magnitude);
 
