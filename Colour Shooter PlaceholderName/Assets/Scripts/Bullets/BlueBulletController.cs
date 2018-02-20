@@ -12,6 +12,7 @@ public class BlueBulletController : MonoBehaviour {
 	[Header("Misc")]
 	public GameObject paint;
 	public float paintLifeTime;
+    public float pushBack;
 
 	//Private variables
 	Vector3 previousBulletPosition;
@@ -54,7 +55,9 @@ public class BlueBulletController : MonoBehaviour {
 	    //Check if it collides with the red enemy
         if (theCol.gameObject.CompareTag("RedEnemy")) {
             //Pushes the enemy back a slight amount [WiP]
-	        theCol.gameObject.transform.position -= new Vector3(0.05f, 0, 0.05f);
+            Vector3 dir = theCol.contacts[0].point - transform.position;
+            dir = -dir.normalized;
+            theCol.gameObject.GetComponent<Rigidbody>().AddForce(dir * pushBack);
 	        //Destroy bullet
 	        Destroy(gameObject);
         }

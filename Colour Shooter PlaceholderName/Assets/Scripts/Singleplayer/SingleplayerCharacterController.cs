@@ -6,7 +6,9 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public float shootingSpeed;
     public bool usingController;
+    public bool isShooting;
 
     [Header("Script References")]
     public GunController gunController;
@@ -29,8 +31,13 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	void Update () {
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        //Multiply the moveInput by the moveVelocity to give it speed
-        moveVelocity = moveInput * moveSpeed;
+	    if (!isShooting) {
+	        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+	        moveVelocity = moveInput * moveSpeed;
+        } else if (isShooting) {
+	        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+	        moveVelocity = moveInput * shootingSpeed;
+        }
 
         if (!usingController) {
             //Creating a line from the Camera to the Mouse
@@ -54,10 +61,12 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Shooting the bullet
             if (Input.GetMouseButtonDown(0)) {
                 gunController.isFiring = true;
+                isShooting = true;
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
                 gunController.isFiring = false;
+                isShooting = false;
             }
         }
         
@@ -72,10 +81,12 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Shooting the bullet
             if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
                 gunController.isFiring = true;
+                isShooting = true;
             }
             //Not shootings the bullet
             if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
                 gunController.isFiring = false;
+                isShooting = false;
             }
         }
 	}
