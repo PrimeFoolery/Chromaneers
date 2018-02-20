@@ -6,9 +6,10 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public bool usingXboxController;
 
     [Header("Script References")]
-    public CharacterTwoGunController coopCharacterControllerTwo;
+    public CharacterOneGunController coopCharacterControllerOne;
 
     //Private variables
     private Rigidbody myRB;
@@ -16,40 +17,62 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private Vector3 moveInput;
     private Vector3 moveVelocity;
 
-    void Start()
-    {
+	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
+	}
+	
+	void Update () {
+	    if (!usingXboxController) {
+	        //Making a vector3 to store the characters inputs
+	        moveInput = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
+	        //Multiply the moveInput by the moveVelocity to give it speed
+	        moveVelocity = moveInput * moveSpeed;
+
+	        //Making a new vector3 to do rotations with joystick
+	        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick2RVertical");
+	        //Checking if the vector3 has got a value inputed
+	        if (playerDirection.sqrMagnitude > 0.0f) {
+	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+	        }
+
+	        //Shooting the bullet
+	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+	            coopCharacterControllerOne.isFiring = true;
+	        }
+	        //Not shootings the bullet
+	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+	            coopCharacterControllerOne.isFiring = false;
+	        }
+	    }
+
+		if (usingXboxController) {
+			//Making a vector3 to store the characters inputs
+			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick2LVertical"));
+			//Multiply the moveInput by the moveVelocity to give it speed
+			moveVelocity = moveInput * moveSpeed;
+
+			//Making a new vector3 to do rotations with joystick
+			Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick2RVertical");
+			//Checking if the vector3 has got a value inputed
+			if (playerDirection.sqrMagnitude > 0.0f) {
+				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+			}
+
+			//Shooting the bullet
+			if (Input.GetKeyDown(KeyCode.Joystick1Button9)) {
+				coopCharacterControllerOne.isFiring = true;
+			}
+			//Not shootings the bullet
+			if (Input.GetKeyUp(KeyCode.Joystick1Button10)) {
+				coopCharacterControllerOne.isFiring = false;
+			}
+		}
     }
 
-    void Update()
-    {
-        //Making a vector3 to store the characters inputs
-        moveInput = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
-        //Multiply the moveInput by the moveVelocity to give it speed
-        moveVelocity = moveInput * moveSpeed;
-
-        //Making a new vector3 to do rotations with joystick
-        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick2RVertical");
-        //Checking if the vector3 has got a value inputed
-        if (playerDirection.sqrMagnitude > 0.0f) {
-            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-        }
-
-        //Shooting the bullet
-        if (Input.GetKeyDown(KeyCode.Joystick2Button7)) {
-            coopCharacterControllerTwo.isFiring = true;
-        }
-        //Not shootings the bullet
-        if (Input.GetKeyUp(KeyCode.Joystick2Button7)) {
-            coopCharacterControllerTwo.isFiring = false;
-        }
-    }
-
-    void FixedUpdate()
-    {
+    void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
 
