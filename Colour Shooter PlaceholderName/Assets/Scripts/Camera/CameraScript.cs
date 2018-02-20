@@ -43,6 +43,7 @@ public class CameraScript : MonoBehaviour {
         }
         cameraComponent = gameObject.GetComponent<Camera>();
         aspectRatio = cameraComponent.aspect;
+		Debug.Log (aspectRatio);
 	}
 	
 	// Update is called once per frame
@@ -74,9 +75,9 @@ public class CameraScript : MonoBehaviour {
         Vector3 distanceBetweenBluePlayerAndAverage = averagePos - CoopBluePlayer.transform.position;
         Vector3 distanceBetweenYellowPlayerAndAverage = averagePos - CoopYellowPlayer.transform.position;
 
-        sizeNeeded = Mathf.Max(sizeNeeded,Mathf.Abs(distanceBetweenBluePlayerAndAverage.y), (Mathf.Abs(distanceBetweenBluePlayerAndAverage.x)/aspectRatio));
-        sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenRedPlayerAndAverage.y), (Mathf.Abs(distanceBetweenRedPlayerAndAverage.x) / aspectRatio));
-        sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenYellowPlayerAndAverage.y), (Mathf.Abs(distanceBetweenYellowPlayerAndAverage.x) / aspectRatio));
+		sizeNeeded = Mathf.Max(sizeNeeded,Mathf.Abs(distanceBetweenBluePlayerAndAverage.z), (Mathf.Abs(distanceBetweenBluePlayerAndAverage.x)/aspectRatio));
+		sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenRedPlayerAndAverage.z), (Mathf.Abs(distanceBetweenRedPlayerAndAverage.x) / aspectRatio));
+		sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenYellowPlayerAndAverage.z), (Mathf.Abs(distanceBetweenYellowPlayerAndAverage.x) / aspectRatio));
         sizeNeeded = Mathf.Max(sizeNeeded, minimumSize);//FINDS THE MAXIMUM SIZE NEEDED BETWEEN ALL CHOICES
         sizeNeeded += screenEdgeBuffer;//ADDS THE BUFFER TO SIDE OF SCREEN
     }
