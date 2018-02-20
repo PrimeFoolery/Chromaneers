@@ -10,11 +10,12 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        agent = GetComponent<NavMeshAgent>();
+		Player = GameObject.FindGameObjectWithTag ("Player");
+        agent = gameObject.GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        agent.SetDestination(Player.transform.position);
+		agent.SetDestination(Player.transform.position);
 	}
 }
