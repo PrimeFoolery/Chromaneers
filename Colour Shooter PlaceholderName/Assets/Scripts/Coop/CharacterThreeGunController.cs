@@ -15,20 +15,19 @@ public class CharacterThreeGunController : MonoBehaviour {
 
     [Header("Script References")]
     public ColourSelectManager colourSelectManager;
+    public CoopCharacterControllerThree coopCharacterControllerThree;
 
     //Private variables
     private float shotCounter;
     //private ColourSelectmanager colourSelectManager;
     private GameObject bullet;
 
-    void Start()
-    {
+    void Start () {
         //Calling the ColourSelectManager
         colourSelectManager = ColourSelectManager.instance;
     }
 
-    void Update()
-    {
+    void Update () {
         //Checking whether or not the player is firing
         if (isFiring) {
             //We calculate when he shot
@@ -45,19 +44,34 @@ public class CharacterThreeGunController : MonoBehaviour {
     }
 
     //Function that handles the bullets and which ones to instantiate
-    void CurrentBulletFiring()
-    {
-        //When you left click, the gun fires
-        if (Input.GetKey(KeyCode.Joystick3Button7)) {
-            if (colourSelectManager.GetBulletYellowToShoot() == null) {
-                print("anything");
-                return;
+    void CurrentBulletFiring () {
+        if (!coopCharacterControllerThree.usingXboxController) {
+            //When you left click, the gun fires
+            if (Input.GetKey(KeyCode.Joystick1Button7)) {
+                if (colourSelectManager.GetBulletBlueToShoot() == null) {
+                    print("anything");
+                    return;
+                }
+                print("Blue bullet firing");
+                //Instantiate the bullet and set it as a gameObject
+                //additionally, give it a fireFrom position and rotation [Which is an empty object]
+                GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
+                bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
             }
-            print("Yellow bullet firing");
-            //Instantiate the bullet and set it as a gameObject
-            //additionally, give it a fireFrom position and rotation [Which is an empty object]
-            GameObject bulletToShoot = colourSelectManager.GetBulletYellowToShoot();
-            bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
-        }
+        } 
+        if (coopCharacterControllerThree.usingXboxController) {
+            //When you left click, the gun fires
+            if (Input.GetKey(KeyCode.Joystick1Button10)) {
+                if (colourSelectManager.GetBulletBlueToShoot() == null) {
+                    print("anything");
+                    return;
+                }
+                print("Blue bullet firing");
+                //Instantiate the bullet and set it as a gameObject
+                //additionally, give it a fireFrom position and rotation [Which is an empty object]
+                GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
+                bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
+            }
+        } 
     }
 }
