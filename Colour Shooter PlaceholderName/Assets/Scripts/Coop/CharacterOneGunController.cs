@@ -8,6 +8,7 @@ public class CharacterOneGunController : MonoBehaviour {
     public bool isFiring;
     public float bulletSpeed;
     public float timeBetweenShots;
+	public bool usingXboxController;
 
     [Header("GameObjects")]
     public Transform fireFrom;
@@ -45,7 +46,7 @@ public class CharacterOneGunController : MonoBehaviour {
 
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
-        if (!coopCharacterControllerOne.usingXboxController) {
+		if (!coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick1Button7)) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
@@ -59,9 +60,11 @@ public class CharacterOneGunController : MonoBehaviour {
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
             }
         } 
-        if (coopCharacterControllerOne.usingXboxController) {
+		if (coopCharacterControllerOne.usingXboxController) {
+			print ("OHMY");
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick1Button10)) {
+			if (Input.GetButton("Fire1")) {
+				print ("HELLO");
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
                     print("anything");
                     return;

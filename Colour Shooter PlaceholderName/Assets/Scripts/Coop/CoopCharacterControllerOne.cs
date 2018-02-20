@@ -25,6 +25,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
+		print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
+			
 	    if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
@@ -62,11 +64,12 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 			}
 
 			//Shooting the bullet
-			if (Input.GetKeyDown(KeyCode.Joystick1Button9)) {
+			if (Input.GetButtonDown("Fire1")) {
+				print ("WOWOWOWOWOWOW");
 				coopCharacterControllerOne.isFiring = true;
 			}
 			//Not shootings the bullet
-			if (Input.GetKeyUp(KeyCode.Joystick1Button10)) {
+			if (Input.GetButtonUp("Fire1")) {
 				coopCharacterControllerOne.isFiring = false;
 			}
 		}

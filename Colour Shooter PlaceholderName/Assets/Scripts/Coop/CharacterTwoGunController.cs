@@ -61,7 +61,7 @@ public class CharacterTwoGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick1Button10)) {
+			if (Input.GetButton("Fire2")) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
                     print("anything");
                     return;
@@ -69,7 +69,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                 print("Blue bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
-                GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
+                GameObject bulletToShoot = colourSelectManager.GetBulletRedToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
             }
         } 

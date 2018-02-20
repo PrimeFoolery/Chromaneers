@@ -9,7 +9,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     public bool usingXboxController;
 
     [Header("Script References")]
-    public CharacterOneGunController coopCharacterControllerOne;
+    public CharacterTwoGunController coopCharacterControllerTwo;
 
     //Private variables
     private Rigidbody myRB;
@@ -40,11 +40,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 
 	        //Shooting the bullet
 	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
-	            coopCharacterControllerOne.isFiring = true;
+	            coopCharacterControllerTwo.isFiring = true;
 	        }
 	        //Not shootings the bullet
 	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
-	            coopCharacterControllerOne.isFiring = false;
+	            coopCharacterControllerTwo.isFiring = false;
 	        }
 	    }
 
@@ -62,12 +62,12 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			}
 
 			//Shooting the bullet
-			if (Input.GetKeyDown(KeyCode.Joystick1Button9)) {
-				coopCharacterControllerOne.isFiring = true;
+			if (Input.GetButtonDown("Fire2")) {
+				coopCharacterControllerTwo.isFiring = true;
 			}
 			//Not shootings the bullet
-			if (Input.GetKeyUp(KeyCode.Joystick1Button10)) {
-				coopCharacterControllerOne.isFiring = false;
+			if (Input.GetButtonUp("Fire2")) {
+				coopCharacterControllerTwo.isFiring = false;
 			}
 		}
     }
