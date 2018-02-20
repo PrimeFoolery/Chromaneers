@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     public enum GameState {SinglePlayer, Multiplayer };
-	public GameState currentGameState = GameState.SinglePlayer; 
+	public GameState currentGameState = GameState.Multiplayer;
+    private ColourSelectManager gameManager;
 
     private float cameraMoveSpeed = 0.3f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
@@ -31,6 +32,15 @@ public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
+        if (gameManager.isItSingleplayer == true)
+        {
+            currentGameState = GameState.SinglePlayer;
+        }
+        if (gameManager.isItSingleplayer == false)
+        {
+            currentGameState = GameState.Multiplayer;
+        }
         if (currentGameState==GameState.SinglePlayer)//IF THE GAME IS IN SINGLEPLAYER
         {
             SPPlayer = GameObject.FindGameObjectWithTag("Player"); //FINDS AND ASSIGNS THE SINGLE PLAYER TO THE CAMERA
@@ -48,6 +58,14 @@ public class CameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (gameManager.isItSingleplayer == true)
+        {
+            currentGameState = GameState.SinglePlayer;
+        }
+        if (gameManager.isItSingleplayer == false)
+        {
+            currentGameState = GameState.Multiplayer;
+        }
         if (currentGameState==GameState.SinglePlayer)//IF THE GAME IS IN SINGLEPLAYER
         {
             targetCameraPosition = new Vector3(SPPlayer.transform.position.x, SPPlayer.transform.position.y+15f, SPPlayer.transform.position.z-7.5f);//The target Position above player is calculated

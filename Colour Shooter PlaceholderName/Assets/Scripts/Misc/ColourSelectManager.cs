@@ -30,6 +30,7 @@ public class ColourSelectManager : MonoBehaviour {
         //If the game is played singleplayer
         if (isItSingleplayer == true) {
             //The game will start with the blue bullet
+
             bulletToShoot = blueBulletPrefab;
         }
         //If the game is player coop
