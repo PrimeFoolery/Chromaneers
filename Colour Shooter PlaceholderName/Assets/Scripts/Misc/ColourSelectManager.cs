@@ -22,6 +22,9 @@ public class ColourSelectManager : MonoBehaviour {
     public GameObject blueBulletPrefab;
     public GameObject redBulletPrefab;
     public GameObject yellowBulletPrefab;
+    public GameObject purpleBulletPrefab;
+    public GameObject greenBulletPrefab;
+    public GameObject orangeBulletPrefab;
 
     void Start () {
         //If the game is played singleplayer
