@@ -501,7 +501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1117249399534128, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
@@ -592,7 +592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1117249399534128, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
@@ -810,7 +810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1117249399534128, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
@@ -1190,7 +1190,7 @@ Prefab:
     - target: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
         type: 2}
       propertyPath: isItSingleplayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
@@ -1447,9 +1447,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1504817830
@@ -1663,6 +1663,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1691,7 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55048823a528fd24f9c1420e8f1aa8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGameState: 0
+  currentGameState: 1
 --- !u!54 &1859950406
 Rigidbody:
   m_ObjectHideFlags: 0
