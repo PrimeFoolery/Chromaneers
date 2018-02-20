@@ -6,6 +6,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public bool usingXboxController;
 
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
@@ -24,26 +25,51 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
-        //Making a vector3 to store the characters inputs
-        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
-        //Multiply the moveInput by the moveVelocity to give it speed
-        moveVelocity = moveInput * moveSpeed;
+	    if (!usingXboxController) {
+	        //Making a vector3 to store the characters inputs
+	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
+	        //Multiply the moveInput by the moveVelocity to give it speed
+	        moveVelocity = moveInput * moveSpeed;
 
-        //Making a new vector3 to do rotations with joystick
-        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
-        //Checking if the vector3 has got a value inputed
-        if (playerDirection.sqrMagnitude > 0.0f) {
-            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-        }
+	        //Making a new vector3 to do rotations with joystick
+	        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
+	        //Checking if the vector3 has got a value inputed
+	        if (playerDirection.sqrMagnitude > 0.0f) {
+	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+	        }
 
-        //Shooting the bullet
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
-            coopCharacterControllerOne.isFiring = true;
-        }
-        //Not shootings the bullet
-        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
-            coopCharacterControllerOne.isFiring = false;
-        }
+	        //Shooting the bullet
+	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+	            coopCharacterControllerOne.isFiring = true;
+	        }
+	        //Not shootings the bullet
+	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+	            coopCharacterControllerOne.isFiring = false;
+	        }
+	    }
+
+		if (usingXboxController) {
+			//Making a vector3 to store the characters inputs
+			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+			//Multiply the moveInput by the moveVelocity to give it speed
+			moveVelocity = moveInput * moveSpeed;
+
+			//Making a new vector3 to do rotations with joystick
+			Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick1RVertical");
+			//Checking if the vector3 has got a value inputed
+			if (playerDirection.sqrMagnitude > 0.0f) {
+				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+			}
+
+			//Shooting the bullet
+			if (Input.GetKeyDown(KeyCode.Joystick1Button9)) {
+				coopCharacterControllerOne.isFiring = true;
+			}
+			//Not shootings the bullet
+			if (Input.GetKeyUp(KeyCode.Joystick1Button10)) {
+				coopCharacterControllerOne.isFiring = false;
+			}
+		}
     }
 
     void FixedUpdate () {
