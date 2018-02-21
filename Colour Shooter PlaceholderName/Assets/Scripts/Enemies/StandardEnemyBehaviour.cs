@@ -15,6 +15,8 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     private GameObject RedPlayer;
     private GameObject BluePlayer;
     private GameObject YellowPlayer;
+    private float retargetingDelay = 5f;
+    private bool readyToRetarget = true;
 
     // Use this for initialization
     void Start () {
@@ -57,12 +59,25 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 			
 		}
 		if (isItCoop) {
-            FindClosestPlayer();
+            if (retargetingDelay==5f)
+            {
+                FindClosestPlayer();
+            }
 			agent.SetDestination (targetPlayer.transform.position);
 
 		}
+        if (readyToRetarget==false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
+        {
+            retargetingDelay -= Time.deltaTime;
+        }
+        if (retargetingDelay<=0f)
+        {
+            readyToRetarget = true;
+            retargetingDelay = 5f;
+        }
 	}
-    void FindClosestPlayer() {   
+    void FindClosestPlayer() {
+        readyToRetarget = false;
         //THIS CALCULATES THE DISTANCE BETWEEN THE ENEMY AND ALL OF THE PLAYERS AND THEN FINDS THE LOWEST AND SETS THE TARGETED PLAYER TO THAT
         float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
         float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
