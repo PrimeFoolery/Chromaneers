@@ -28,9 +28,11 @@ public class SingleplayerCharacterController : MonoBehaviour {
         mainCamera = FindObjectOfType<Camera>();
 	}
 	
-	void Update () {
+	void Update ()
+	{
+	    print("moveInput =" + moveVelocity);
         //Making a vector3 to store the characters inputs
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 	    if (!isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 	        moveVelocity = moveInput * moveSpeed;
