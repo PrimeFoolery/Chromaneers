@@ -22,9 +22,10 @@ public class CameraScript : MonoBehaviour {
     private GameObject CoopBluePlayer;
     private GameObject CoopYellowPlayer;
 
-    private Vector3 averagePos;
+    public Vector3 averagePos;
     private float sizeNeeded;
     private float minimumSize = 7f;
+    private float maximumSize = 11f;
     private float screenEdgeBuffer = 4f;
     private float aspectRatio;
     private float zoomSpeed = 4f;
@@ -58,6 +59,7 @@ public class CameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(sizeNeeded);
         if (gameManager.isItSingleplayer == true)
         {
             currentGameState = GameState.SinglePlayer;
@@ -97,6 +99,7 @@ public class CameraScript : MonoBehaviour {
 		sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenRedPlayerAndAverage.z), (Mathf.Abs(distanceBetweenRedPlayerAndAverage.x) / aspectRatio));
 		sizeNeeded = Mathf.Max(sizeNeeded, Mathf.Abs(distanceBetweenYellowPlayerAndAverage.z), (Mathf.Abs(distanceBetweenYellowPlayerAndAverage.x) / aspectRatio));
         sizeNeeded = Mathf.Max(sizeNeeded, minimumSize);//FINDS THE MAXIMUM SIZE NEEDED BETWEEN ALL CHOICES
+        sizeNeeded = Mathf.Min(sizeNeeded, maximumSize);//MAKES SURE THE CAMERA SIZE ISNT ABOVE THE MAXIMUM SIZE
         sizeNeeded += screenEdgeBuffer;//ADDS THE BUFFER TO SIDE OF SCREEN
     }
 	public void SwapBetweenCoOpAndSingle(){//CALL THIS FUNCTION TO SWAP BETWEEN CO OP AND SINGLEPLAYER, IT NEED TO BE CALLED ONLY ONCE AND PLAYER PREFABS NEED TO BE INSTANTIATED BEFORE THE CALL

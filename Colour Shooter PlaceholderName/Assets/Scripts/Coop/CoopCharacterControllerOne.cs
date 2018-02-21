@@ -13,21 +13,35 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     //Private variables
     private Rigidbody myRB;
-    private Camera mainCamera;
+    private GameObject mainCamera;
+    private CameraScript mainCameraScript;
+    private float cameraBorderPushbackSpeed = 0.3f;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
+    private float XDistBetweenPlayerAndAveragePlayerPos;
+    private float ZDistBetweenPlayerAndAveragePlayerPos;
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
-        mainCamera = FindObjectOfType<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCameraScript = mainCamera.GetComponent<CameraScript>();
 	}
 	
 	void Update () {
-		//print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
-			
-	    if (!usingXboxController) {
+        //print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
+        XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
+        ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
+        if (XDistBetweenPlayerAndAveragePlayerPos>=19.75f)
+        {
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3 (mainCameraScript.averagePos.x, transform.position.y, transform.position.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
+        }
+        if (ZDistBetweenPlayerAndAveragePlayerPos >= 11.15f)
+        {
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y, mainCameraScript.averagePos.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
+        }
+        if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
 	        //Multiply the moveInput by the moveVelocity to give it speed

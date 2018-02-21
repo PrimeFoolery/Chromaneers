@@ -1118,7 +1118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1150920864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,6 +1693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 1
+  averagePos: {x: 0, y: 0, z: 0}
 --- !u!54 &1859950406
 Rigidbody:
   m_ObjectHideFlags: 0
