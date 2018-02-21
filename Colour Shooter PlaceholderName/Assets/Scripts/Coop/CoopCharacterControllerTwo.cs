@@ -15,7 +15,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private Rigidbody myRB;
     private GameObject mainCamera;
     private CameraScript mainCameraScript;
-    private float cameraBorderPushbackSpeed = 0.3f;
+    private float cameraBorderPushbackSpeed = 0f;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
     private float XDistBetweenPlayerAndAveragePlayerPos;
@@ -34,11 +34,17 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         if (XDistBetweenPlayerAndAveragePlayerPos >= 19.75f)
         {
+            cameraBorderPushbackSpeed += 0.01f;
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(mainCameraScript.averagePos.x, transform.position.y, transform.position.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
         }
         if (ZDistBetweenPlayerAndAveragePlayerPos >= 11.15f)
         {
+            cameraBorderPushbackSpeed += 0.01f;
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y, mainCameraScript.averagePos.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
+        }
+        if (XDistBetweenPlayerAndAveragePlayerPos < 19.75f && ZDistBetweenPlayerAndAveragePlayerPos < 11.15f)
+        {
+            cameraBorderPushbackSpeed = 0f;
         }
         if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
