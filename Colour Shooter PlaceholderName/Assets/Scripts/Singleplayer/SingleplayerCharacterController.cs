@@ -6,6 +6,9 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public float maxSpeed;
+    public float acceleration;
+    [Space(10)]
     public float shootingSpeed;
     public bool usingController;
     public bool isShooting;
@@ -19,17 +22,14 @@ public class SingleplayerCharacterController : MonoBehaviour {
     private Vector3 moveInput;
     private Vector3 moveVelocity;
 
-
-
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
 	}
-	
-	void Update ()
-	{
+
+	void Update () {
 	    print("moveInput =" + moveVelocity);
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));

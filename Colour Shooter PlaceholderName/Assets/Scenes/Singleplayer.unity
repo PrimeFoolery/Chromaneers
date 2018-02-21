@@ -891,6 +891,21 @@ Prefab:
       propertyPath: colourSelectManager
       value: 
       objectReference: {fileID: 1553929482}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: timeZeroToMax
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
