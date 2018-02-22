@@ -72,10 +72,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        //Shooting the bullet
 	        if (Input.GetKeyDown(KeyCode.Joystick3Button7)) {
                 mainCameraScript.SmallScreenShake();
-<<<<<<< HEAD
 	            isShooting = true;
-=======
->>>>>>> 0b4d8583c75625a3237959e8aec42185bca9d8af
                 coopCharacterControllerThree.isFiring = true;
 	        }
 	        //Not shootings the bullet
