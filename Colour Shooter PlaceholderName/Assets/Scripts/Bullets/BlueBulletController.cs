@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BlueBulletController : MonoBehaviour {
 
@@ -12,6 +13,13 @@ public class BlueBulletController : MonoBehaviour {
 	[Header("Misc")]
 	public GameObject paint;
 	public float paintLifeTime;
+    [Space(10)]
+    public float enemySlowSpeed;
+    public float enemyNormalSpeed;
+    public float slowTimer;
+    public GameObject redEnemy;
+    public enum EnemySlowed { notSlowed, canBeSlowed, slowed};
+    public EnemySlowed enemySlowed;
 
 	//Private variables
 	Vector3 previousBulletPosition;
@@ -41,6 +49,15 @@ public class BlueBulletController : MonoBehaviour {
 		if (bulletLifeTime <= 0) {
 			//Destroy (paint);
 		}
+        
+	    if (redEnemy.GetComponent<NavMeshAgent>().speed == enemySlowSpeed) {
+            print("I am slowed");
+	        slowTimer -= Time.deltaTime;
+	        if (slowTimer <= 0) {
+                print("I am normal again");
+	            redEnemy.GetComponent<NavMeshAgent>().speed = enemyNormalSpeed;
+            }
+        }
 	}
 
     void OnCollisionEnter (Collision theCol) {
@@ -53,8 +70,8 @@ public class BlueBulletController : MonoBehaviour {
         }
 	    //Check if it collides with the red enemy
         if (theCol.gameObject.CompareTag("RedEnemy")) {
-	        //Stunning Enemy from moving[WiP]
-	        
+            //Stunning Enemy from moving[WiP]
+            theCol.gameObject.GetComponent<NavMeshAgent>().speed = enemySlowSpeed;
 	        //Destroy bullet
 	        Destroy(gameObject);
         }

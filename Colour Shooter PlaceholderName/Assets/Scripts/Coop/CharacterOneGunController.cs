@@ -6,6 +6,7 @@ public class CharacterOneGunController : MonoBehaviour {
 
     [Header("Gun Variables")]
     public float bulletSpeed;
+    public float bulletSpread;
     public float timeBetweenShots;
     [Space(10)]
     public bool isFiring;
@@ -21,8 +22,8 @@ public class CharacterOneGunController : MonoBehaviour {
 
     //Private variables
     private float shotCounter;
-    //private ColourSelectmanager colourSelectManager;
     private GameObject bullet;
+    private float bulletSpreadWidth;
 
     void Start () {
         //Calling the ColourSelectManager
@@ -43,6 +44,8 @@ public class CharacterOneGunController : MonoBehaviour {
         } else {
             shotCounter = 0;
         }
+        //Giving the bullets a bit of spread
+        bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
     }
 
     //Function that handles the bullets and which ones to instantiate
@@ -51,30 +54,32 @@ public class CharacterOneGunController : MonoBehaviour {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick1Button7)) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
-                    print("anything");
+                    print("I am null! Check ColourSelectManager");
                     return;
                 }
                 print("Blue bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
+                //Finally gives a rotation to the bullet to give a bulletSpread affect
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
+                bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
             }
         } 
 		if (coopCharacterControllerOne.usingXboxController) {
-			print ("OHMY");
             //When you left click, the gun fires
 			if (Input.GetButton("Fire1")) {
-				print ("HELLO");
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
-                    print("anything");
+                    print("I am null! Check ColourSelectManager");
                     return;
                 }
                 print("Blue bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
+			    //Finally gives a rotation to the bullet to give a bulletSpread affect
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
+			    bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
             }
         } 
     }

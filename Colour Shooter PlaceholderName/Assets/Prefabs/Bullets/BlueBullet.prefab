@@ -126,3 +126,8 @@ MonoBehaviour:
   bulletDamage: 1
   paint: {fileID: 1481389650309580, guid: a25c8d30977c5f44db758e9b0c6aa3ba, type: 2}
   paintLifeTime: 1
+  enemySlowSpeed: 1
+  enemyNormalSpeed: 2
+  slowTimer: 0.5
+  enemy: {fileID: 1611837554126876, guid: b718b0c313a5c4646937b37536959baf, type: 2}
+  enemySlowed: 0

@@ -7,6 +7,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
     public float shootingSpeed;
+    public float timeToShoot;
+    public float shootCooldown;
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
@@ -70,9 +72,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
 
+            
 	        //Shooting the bullet
 	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
-	            coopCharacterControllerOne.isFiring = true;
+                coopCharacterControllerOne.isFiring = true;
 	            isShooting = true;
                 mainCameraScript.SmallScreenShake();
 	        }
