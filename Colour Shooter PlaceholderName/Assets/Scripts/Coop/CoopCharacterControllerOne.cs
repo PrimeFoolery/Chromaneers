@@ -73,10 +73,12 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        //Shooting the bullet
 	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
 	            coopCharacterControllerOne.isFiring = true;
+	            isShooting = true;
 	        }
 	        //Not shootings the bullet
 	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
 	            coopCharacterControllerOne.isFiring = false;
+	            isShooting = false;
 	        }
 	    }
 

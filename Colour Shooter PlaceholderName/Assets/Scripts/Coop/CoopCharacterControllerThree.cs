@@ -71,11 +71,14 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
 	        //Shooting the bullet
 	        if (Input.GetKeyDown(KeyCode.Joystick3Button7)) {
-	            coopCharacterControllerThree.isFiring = true;
+                mainCameraScript.SmallScreenShake();
+	            isShooting = true;
+                coopCharacterControllerThree.isFiring = true;
 	        }
 	        //Not shootings the bullet
 	        if (Input.GetKeyUp(KeyCode.Joystick3Button7)) {
-	            coopCharacterControllerThree.isFiring = false;
+	            isShooting = false;
+                coopCharacterControllerThree.isFiring = false;
 	        }
 	    }
 
@@ -99,7 +102,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
 			//Shooting the bullet
 			if (Input.GetButtonDown("Fire3")) {
-				coopCharacterControllerThree.isFiring = true;
+                mainCameraScript.SmallScreenShake();
+                coopCharacterControllerThree.isFiring = true;
 			}
 			//Not shootings the bullet
 			if (Input.GetButtonUp("Fire3")) {
