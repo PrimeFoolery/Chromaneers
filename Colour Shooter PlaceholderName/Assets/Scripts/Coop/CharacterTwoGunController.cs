@@ -5,9 +5,11 @@ using UnityEngine;
 public class CharacterTwoGunController : MonoBehaviour {
 
     [Header("Gun Variables")]
-    public bool isFiring;
     public float bulletSpeed;
     public float timeBetweenShots;
+    [Space(10)]
+    public bool isFiring;
+    public bool usingXboxController;
 
     [Header("GameObjects")]
     public Transform fireFrom;
@@ -47,22 +49,22 @@ public class CharacterTwoGunController : MonoBehaviour {
     void CurrentBulletFiring () {
         if (!coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick1Button7)) {
-                if (colourSelectManager.GetBulletBlueToShoot() == null) {
+            if (Input.GetKey(KeyCode.Joystick2Button7)) {
+                if (colourSelectManager.GetBulletRedToShoot() == null) {
                     print("anything");
                     return;
                 }
-                print("Blue bullet firing");
+                print("Red bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
-                GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
+                GameObject bulletToShoot = colourSelectManager.GetBulletRedToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
             }
         } 
         if (coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
 			if (Input.GetButton("Fire2")) {
-                if (colourSelectManager.GetBulletBlueToShoot() == null) {
+                if (colourSelectManager.GetBulletRedToShoot() == null) {
                     print("anything");
                     return;
                 }

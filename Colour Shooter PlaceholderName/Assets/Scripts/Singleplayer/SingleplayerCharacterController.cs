@@ -6,10 +6,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
-    public float maxSpeed;
-    public float acceleration;
-    [Space(10)]
     public float shootingSpeed;
+    [Space (10)]
     public bool usingController;
     public bool isShooting;
 
@@ -30,7 +28,6 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	}
 
 	void Update () {
-	    print("moveInput =" + moveVelocity);
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 	    if (!isShooting) {

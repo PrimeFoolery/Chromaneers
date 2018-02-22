@@ -6,7 +6,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public float shootingSpeed;
+    [Space(10)]
     public bool usingXboxController;
+    public bool isShooting;
 
     [Header("Script References")]
     public CharacterThreeGunController coopCharacterControllerThree;
@@ -46,25 +49,32 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         {
             cameraBorderPushbackSpeed = 0f;
         }
+
+	    //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
-	        //Multiply the moveInput by the moveVelocity to give it speed
-	        moveVelocity = moveInput * moveSpeed;
+            if (!isShooting) {
+                //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+                moveVelocity = moveInput * moveSpeed;
+            } else if (isShooting) {
+                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+                moveVelocity = moveInput * shootingSpeed;
+            }
 
-	        //Making a new vector3 to do rotations with joystick
-	        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3RVertical");
+            //Making a new vector3 to do rotations with joystick
+            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3RVertical");
 	        //Checking if the vector3 has got a value inputed
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
 
 	        //Shooting the bullet
-	        if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+	        if (Input.GetKeyDown(KeyCode.Joystick3Button7)) {
 	            coopCharacterControllerThree.isFiring = true;
 	        }
 	        //Not shootings the bullet
-	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+	        if (Input.GetKeyUp(KeyCode.Joystick3Button7)) {
 	            coopCharacterControllerThree.isFiring = false;
 	        }
 	    }
@@ -72,11 +82,16 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		if (usingXboxController) {
 			//Making a vector3 to store the characters inputs
 			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
-			//Multiply the moveInput by the moveVelocity to give it speed
-			moveVelocity = moveInput * moveSpeed;
+		    if (!isShooting) {
+		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+		        moveVelocity = moveInput * moveSpeed;
+		    } else if (isShooting) {
+		        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+		        moveVelocity = moveInput * shootingSpeed;
+		    }
 
-			//Making a new vector3 to do rotations with joystick
-			Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3RVertical");
+            //Making a new vector3 to do rotations with joystick
+            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3RVertical");
 			//Checking if the vector3 has got a value inputed
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);

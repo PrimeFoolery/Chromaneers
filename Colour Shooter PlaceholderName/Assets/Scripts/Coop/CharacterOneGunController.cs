@@ -5,10 +5,11 @@ using UnityEngine;
 public class CharacterOneGunController : MonoBehaviour {
 
     [Header("Gun Variables")]
-    public bool isFiring;
     public float bulletSpeed;
     public float timeBetweenShots;
-	public bool usingXboxController;
+    [Space(10)]
+    public bool isFiring;
+    public bool usingXboxController;
 
     [Header("GameObjects")]
     public Transform fireFrom;

@@ -6,7 +6,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public float shootingSpeed;
+    [Space(10)]
     public bool usingXboxController;
+    public bool isShooting;
 
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
@@ -31,7 +34,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	
 	void Update () {
         //print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
-        XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
+	    XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         if (XDistBetweenPlayerAndAveragePlayerPos>=19.75f)
         {
@@ -47,14 +50,21 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         {
             cameraBorderPushbackSpeed = 0f;
         }
+
+        //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
-	        //Multiply the moveInput by the moveVelocity to give it speed
-	        moveVelocity = moveInput * moveSpeed;
+            if (!isShooting) {
+                //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+                moveVelocity = moveInput * moveSpeed;
+            } else if (isShooting) {
+                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+                moveVelocity = moveInput * shootingSpeed;
+            }
 
-	        //Making a new vector3 to do rotations with joystick
-	        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
+            //Making a new vector3 to do rotations with joystick
+            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
 	        //Checking if the vector3 has got a value inputed
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
@@ -73,11 +83,16 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		if (usingXboxController) {
 			//Making a vector3 to store the characters inputs
 			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
-			//Multiply the moveInput by the moveVelocity to give it speed
-			moveVelocity = moveInput * moveSpeed;
+		    if (!isShooting) {
+		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+		        moveVelocity = moveInput * moveSpeed;
+		    } else if (isShooting) {
+		        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+		        moveVelocity = moveInput * shootingSpeed;
+		    }
 
-			//Making a new vector3 to do rotations with joystick
-			Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick1RVertical");
+            //Making a new vector3 to do rotations with joystick
+            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick1RVertical");
 			//Checking if the vector3 has got a value inputed
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
@@ -85,7 +100,6 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
 			//Shooting the bullet
 			if (Input.GetButtonDown("Fire1")) {
-				print ("WOWOWOWOWOWOW");
 				coopCharacterControllerOne.isFiring = true;
 			}
 			//Not shootings the bullet

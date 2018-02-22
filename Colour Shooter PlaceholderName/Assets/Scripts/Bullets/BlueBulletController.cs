@@ -61,7 +61,7 @@ public class BlueBulletController : MonoBehaviour {
 	    //Check if it collides with the yellow enemy
 	    if (theCol.gameObject.CompareTag("YellowEnemy")) {
 		    //Pushes the enemy back a slight amount [WiP]
-		    theCol.gameObject.transform.position -= new Vector3(0.05f, 0, 0.05f);
+
 		    //Destroy bullet
 		    Destroy(gameObject);
 	    }
