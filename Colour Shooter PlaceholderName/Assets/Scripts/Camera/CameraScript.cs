@@ -9,13 +9,14 @@ public class CameraScript : MonoBehaviour
     public GameState currentGameState = GameState.Multiplayer;
     private ColourSelectManager gameManager;
 
-    private float cameraMoveSpeed = 0.3f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed = 1f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Camera cameraComponent;
 
     //SINGLEPLAYER VARIABLES
     private GameObject SPPlayer; //PLAYER IN SINGLEPLAYER
-
+    private Vector3 rawMousePos;
+    private Vector3 normMousePos;
 
 
     //MULTIPLAYER VARIABLES
@@ -67,7 +68,8 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(sizeNeeded);
+
+        //Debug.Log(sizeNeeded);
         if (gameManager.isItSingleplayer == true)
         {
             currentGameState = GameState.SinglePlayer;
@@ -78,9 +80,15 @@ public class CameraScript : MonoBehaviour
         }
         if (currentGameState == GameState.SinglePlayer)//IF THE GAME IS IN SINGLEPLAYER
         {
-            targetCameraPosition = new Vector3(SPPlayer.transform.position.x, SPPlayer.transform.position.y + 15f, SPPlayer.transform.position.z - 7.5f);//The target Position above player is calculated
+            Debug.Log(targetCameraPosition);
+            rawMousePos = Input.mousePosition;
+            rawMousePos.z = 0f;
+            normMousePos = Camera.main.ScreenToWorldPoint(rawMousePos);
+            CalculateAveragePosInSinglePlayer();
+            targetCameraPosition = new Vector3(averagePos.x, averagePos.y + 15f, averagePos.z - 7.5f);//The target Position above player is calculated
             transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//The Camera always moves smoothly towards
-            transform.LookAt(SPPlayer.transform); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
+            transform.LookAt(averagePos); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
+            cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, 11, ref zoomSpeed, dampTime);
         }
         if (currentGameState == GameState.Multiplayer)//IF THE GAME IS IN MULTIPLAYER
         {
@@ -116,7 +124,9 @@ public class CameraScript : MonoBehaviour
     }
     private void CalculateAveragePosInSinglePlayer()
     {
-
+       // Debug.Log(normMousePos);
+        //averagePos = SPPlayer.transform.position;
+        averagePos = (new Vector3((SPPlayer.transform.position.x + (normMousePos.x/5)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (normMousePos.z/5))));
     }
     private void CalculateSizeNeeded()
     {

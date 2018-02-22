@@ -11,6 +11,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingController;
     public bool isShooting;
 
+    public Vector3 pointToLook;
+
     [Header("Script References")]
     public GunController gunController;
 
@@ -49,7 +51,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Creating a raycast
             if (groundPlane.Raycast(cameraRay, out rayLength)) {
                 //Set a point for the camera to look at
-                Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                pointToLook = cameraRay.GetPoint(rayLength);
                 //Debug drawLine
                 Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
 
