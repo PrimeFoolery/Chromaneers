@@ -59,6 +59,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
             //Shooting the bullet
             if (Input.GetMouseButtonDown(0)) {
+                mainCamera.GetComponent<CameraScript>().SmallScreenShake();
                 gunController.isFiring = true;
                 isShooting = true;
             }
@@ -79,6 +80,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
             //Shooting the bullet
             if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+                mainCamera.GetComponent<CameraScript>().SmallScreenShake();
                 gunController.isFiring = true;
                 isShooting = true;
             }

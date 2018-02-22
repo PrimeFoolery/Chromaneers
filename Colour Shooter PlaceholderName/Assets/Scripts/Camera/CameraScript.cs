@@ -103,11 +103,11 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            SmallScreenShake();
+            //SmallScreenShake();
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            BigScreenShake();
+            //BigScreenShake();
         }
     }
     private void CalculateAveragePosInCoOp()
