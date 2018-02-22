@@ -31,7 +31,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 	void Update () {
         //Making a vector3 to store the characters inputs
-        moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 	    if (!isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 	        moveVelocity = moveInput * moveSpeed;
@@ -61,7 +61,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
             //Shooting the bullet
             if (Input.GetMouseButtonDown(0)) {
-                mainCamera.GetComponent<CameraScript>().SmallScreenShake();
+                //mainCamera.GetComponent<CameraScript>().SmallScreenShake();
                 gunController.isFiring = true;
                 isShooting = true;
             }
