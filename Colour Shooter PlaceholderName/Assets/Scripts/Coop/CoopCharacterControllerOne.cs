@@ -8,7 +8,6 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     public float moveSpeed;
     public float shootingSpeed;
     public float timeToShoot;
-    public float shootCooldown;
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
@@ -73,13 +72,13 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
 
+            //Stops people from spam clicking to shoot faster
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
                 if (Input.GetKey(KeyCode.Joystick1Button7)) {
                     coopCharacterControllerOne.isFiring = true;
                     isShooting = true;
-                    mainCameraScript.SmallScreenShake();
                     timeToShoot = 0.5f;
                 }
             }
@@ -109,14 +108,20 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 			}
 
-			//Shooting the bullet
-			if (Input.GetButtonDown("Fire1")) {
-                mainCameraScript.SmallScreenShake();
-				coopCharacterControllerOne.isFiring = true;
-			}
-			//Not shootings the bullet
+            //Stops people from spam clicking to shoot faster
+		    timeToShoot -= Time.deltaTime;
+		    if (timeToShoot <= 0) {
+		        //Shooting the bullet
+		        if (Input.GetButtonDown("Fire1")) {
+		            coopCharacterControllerOne.isFiring = true;
+		            isShooting = true;
+		            timeToShoot = 0.5f;
+                }
+		    }
+		    //Not shootings the bullet
 			if (Input.GetButtonUp("Fire1")) {
 				coopCharacterControllerOne.isFiring = false;
+			    isShooting = false;
 			}
 		}
     }

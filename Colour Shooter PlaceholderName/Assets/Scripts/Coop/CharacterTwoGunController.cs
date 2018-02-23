@@ -24,10 +24,15 @@ public class CharacterTwoGunController : MonoBehaviour {
     private float shotCounter;
     private GameObject bullet;
     private float bulletSpreadWidth;
+    private GameObject mainCamera;
+    private CameraScript mainCameraScript;
 
     void Start () {
         //Calling the ColourSelectManager
         colourSelectManager = ColourSelectManager.instance;
+        //Getting the mainCamera from the current scene
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCameraScript = mainCamera.GetComponent<CameraScript>();
     }
 
     void Update () {
@@ -60,9 +65,11 @@ public class CharacterTwoGunController : MonoBehaviour {
                 print("Red bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
+                //adds camera shake when the bullet spawn
                 //Finally gives a rotation to the bullet to give a bulletSpread affect
                 GameObject bulletToShoot = colourSelectManager.GetBulletRedToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
+                mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
             }
         } 
@@ -74,12 +81,14 @@ public class CharacterTwoGunController : MonoBehaviour {
                     return;
                 }
                 print("Red bullet firing");
-			    //Instantiate the bullet and set it as a gameObject
-			    //additionally, give it a fireFrom position and rotation [Which is an empty object]
-			    //Finally gives a rotation to the bullet to give a bulletSpread affect
-			    GameObject bulletToShoot = colourSelectManager.GetBulletRedToShoot();
+                //Instantiate the bullet and set it as a gameObject
+                //additionally, give it a fireFrom position and rotation [Which is an empty object]
+			    //adds camera shake when the bullet spawn
+                //Finally gives a rotation to the bullet to give a bulletSpread affect
+                GameObject bulletToShoot = colourSelectManager.GetBulletRedToShoot();
 			    bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
-			    bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
+			    mainCameraScript.SmallScreenShake();
+                bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
             }
         } 
     }

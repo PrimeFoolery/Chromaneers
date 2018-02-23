@@ -7,6 +7,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
     public float shootingSpeed;
+    public float timeToShoot;
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
@@ -68,14 +69,16 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
-
-	        //Shooting the bullet
-	        if (Input.GetKeyDown(KeyCode.Joystick2Button7)) {
-	            coopCharacterControllerTwo.isFiring = true;
-	            isShooting = true;
-                mainCameraScript.SmallScreenShake();
-                coopCharacterControllerTwo.isFiring = true;
-	        }
+            //Stops people from spam clicking to shoot faster
+            timeToShoot -= Time.deltaTime;
+            if (timeToShoot <= 0) {
+                //Shooting the bullet
+                if (Input.GetKeyDown(KeyCode.Joystick2Button7)) {
+                    coopCharacterControllerTwo.isFiring = true;
+                    isShooting = true;
+                    timeToShoot = 0.5f;
+                }
+            }
 	        //Not shootings the bullet
 	        if (Input.GetKeyUp(KeyCode.Joystick2Button7)) {
 	            coopCharacterControllerTwo.isFiring = false;
@@ -100,15 +103,21 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 			}
-
-			//Shooting the bullet
-			if (Input.GetButtonDown("Fire2")) {
-                mainCameraScript.SmallScreenShake();
-                coopCharacterControllerTwo.isFiring = true;
-			}
+            
+            //Stops people from spam clicking to shoot faster
+		    timeToShoot -= Time.deltaTime;
+		    if (timeToShoot <= 0) {
+		        //Shooting the bullet
+		        if (Input.GetButtonDown("Fire2")) {
+		            coopCharacterControllerTwo.isFiring = true;
+		            isShooting = true;
+		            timeToShoot = 0.5f;
+                }
+            }
 			//Not shootings the bullet
 			if (Input.GetButtonUp("Fire2")) {
 				coopCharacterControllerTwo.isFiring = false;
+			    isShooting = false;
 			}
 		}
     }
