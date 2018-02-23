@@ -35,7 +35,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
-        //print (Input.GetAxisRaw("XboxRightTriggerPlayerOne"));
+	    print("Time to shoot" + timeToShoot);
+
 	    XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         if (XDistBetweenPlayerAndAveragePlayerPos>=19.75f)
@@ -72,13 +73,17 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
 
-            
-	        //Shooting the bullet
-	        if (Input.GetKey(KeyCode.Joystick1Button7)) {
-                coopCharacterControllerOne.isFiring = true;
-	            isShooting = true;
-                mainCameraScript.SmallScreenShake();
-	        }
+            timeToShoot -= Time.deltaTime;
+            if (timeToShoot <= 0) {
+                //Shooting the bullet
+                if (Input.GetKey(KeyCode.Joystick1Button7)) {
+                    coopCharacterControllerOne.isFiring = true;
+                    isShooting = true;
+                    mainCameraScript.SmallScreenShake();
+                    timeToShoot = 0.5f;
+                }
+            }
+	        
 	        //Not shootings the bullet
 	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
 	            coopCharacterControllerOne.isFiring = false;
