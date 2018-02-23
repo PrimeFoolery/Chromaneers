@@ -35,7 +35,7 @@ public class CameraScript : MonoBehaviour
 
     //CAMERA SHAKE VARIABLES
     public float shakeDuration = 0f;
-    private float shakeAmount = 0.7f;
+    private float shakeAmount = 0.05f;
     private float decreaseFactor = 1f;
 
     // Use this for initialization
@@ -161,7 +161,7 @@ public class CameraScript : MonoBehaviour
     public void SmallScreenShake()
     {
         shakeDuration = 0.03f;
-        shakeAmount = 0.2f;
+        shakeAmount = 0.05f;
     }
     public void BigScreenShake()
     {
