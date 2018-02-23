@@ -6915,11 +6915,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114488731105616336, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: shootingSpeed
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -7788,11 +7783,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114889375755103684, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: shootingSpeed
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -8058,6 +8048,21 @@ Prefab:
       propertyPath: moveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: timeToShoot
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971858408766426, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: bulletSpread
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971858408766426, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: timeBetweenShots
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
@@ -8181,11 +8186,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: shootingSpeed
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
