@@ -7,8 +7,10 @@ public class SingleplayerCharacterController : MonoBehaviour {
     [Header("Player Variables")]
     public float moveSpeed;
     public float shootingSpeed;
+    public float timeToShoot;
     [Space (10)]
     public bool usingController;
+    public bool usingXboxController;
     public bool isShooting;
 
     public Vector3 pointToLook;
@@ -40,6 +42,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        moveVelocity = moveInput * shootingSpeed;
         }
 
+        //Checking if it is using the mouse
         if (!usingController) {
             //Creating a line from the Camera to the Mouse
             Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -59,11 +62,15 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
             }
 
-            //Shooting the bullet
-            if (Input.GetMouseButtonDown(0)) {
-                //mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-                gunController.isFiring = true;
-                isShooting = true;
+            //Stops people from spam clicking to shoot faster
+            timeToShoot -= Time.deltaTime;
+            if (timeToShoot <= 0) {
+                //Shooting the bullet
+                if (Input.GetMouseButtonDown(0)) {
+                    gunController.isFiring = true;
+                    isShooting = true;
+                    timeToShoot = 0.5f;
+                }
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
@@ -72,24 +79,56 @@ public class SingleplayerCharacterController : MonoBehaviour {
             }
         }
         
+        //Checking if it is using a controller, and which controller, whether its Playstation or Xbox
         if (usingController) {
-            //Making a new vector3 to do rotations with joystick
-            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
-            //Checking if the vector3 has got a value inputed
-            if (playerDirection.sqrMagnitude > 0.0f) {
-                transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+            if (!usingXboxController) {
+                //Making a new vector3 to do rotations with joystick
+                Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
+                //Checking if the vector3 has got a value inputed
+                if (playerDirection.sqrMagnitude > 0.0f) {
+                    transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+                }
+
+                //Stops people from spam clicking to shoot faster
+                timeToShoot -= Time.deltaTime;
+                if (timeToShoot <= 0) {
+                    //Shooting the bullet
+                    if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
+                        gunController.isFiring = true;
+                        isShooting = true;
+                        timeToShoot = 0.5f;
+                    }
+                }
+                //Not shootings the bullet
+                if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+                    gunController.isFiring = false;
+                    isShooting = false;
+                }
             }
 
-            //Shooting the bullet
-            if (Input.GetKeyDown(KeyCode.Joystick1Button7)) {
-                mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-                gunController.isFiring = true;
-                isShooting = true;
-            }
-            //Not shootings the bullet
-            if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
-                gunController.isFiring = false;
-                isShooting = false;
+            if (usingXboxController) {
+                //Making a new vector3 to do rotations with joystick
+                Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick1RVertical");
+                //Checking if the vector3 has got a value inputed
+                if (playerDirection.sqrMagnitude > 0.0f) {
+                    transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+                }
+
+                //Stops people from spam clicking to shoot faster
+                timeToShoot -= Time.deltaTime;
+                if (timeToShoot <= 0) {
+                    //Shooting the bullet
+                    if (Input.GetButtonDown("Fire1")) {
+                        gunController.isFiring = true;
+                        isShooting = true;
+                        timeToShoot = 0.5f;
+                    }
+                }
+                //Not shootings the bullet
+                if (Input.GetButtonUp("Fire1")) {
+                    gunController.isFiring = false;
+                    isShooting = false;
+                }
             }
         }
 	}

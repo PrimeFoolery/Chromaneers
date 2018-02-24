@@ -5,9 +5,12 @@ using UnityEngine;
 public class GunController : MonoBehaviour {
 
     [Header("Gun Variables")]
-    public bool isFiring;
     public float bulletSpeed;
+    public float bulletSpread;
     public float timeBetweenShots;
+    [Space(10)]
+    public bool isFiring;
+    public bool usingXboxController;
 
     [Header("GameObjects")]
     public Transform fireFrom;
@@ -18,13 +21,18 @@ public class GunController : MonoBehaviour {
 
     //Private variables
     private float shotCounter;
-    //private ColourSelectmanager colourSelectManager;
     private GameObject bullet;
+    private float bulletSpreadWidth;
+    private GameObject mainCamera;
+    private CameraScript mainCameraScript;
 
     void Start () {
         //Calling the ColourSelectManager
         colourSelectManager = ColourSelectManager.instance;
-	}
+        //Getting the mainCamera from the current scene
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCameraScript = mainCamera.GetComponent<CameraScript>();
+    }
 	
 	void Update () {
 		//Checking whether or not the player is firing
@@ -40,7 +48,9 @@ public class GunController : MonoBehaviour {
         } else {
             shotCounter = 0;
         }
-	}
+	    //Giving the bullets a bit of spread
+	    bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
+    }
 
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
@@ -56,8 +66,12 @@ public class GunController : MonoBehaviour {
 			Debug.Log("It is instantiating, all is good");
             //Instantiate the bullet and set it as a gameObject
             //additionally, give it a fireFrom position and rotation [Which is an empty object]
+            //adds camera shake when the bullet spawn
+            //Finally gives a rotation to the bullet to give a bulletSpread affect
             GameObject bulletToShoot = colourSelectManager.GetBulletToShoot();
             bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
+            mainCameraScript.SmallScreenShake();
+            bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
         }
     }
 }

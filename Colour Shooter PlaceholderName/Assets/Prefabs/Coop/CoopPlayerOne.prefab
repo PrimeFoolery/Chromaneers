@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.44, y: 0.88, z: -3.09}
+  m_LocalPosition: {x: 8.954512, y: 0.9, z: 14.82641}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4232551904641098}
@@ -223,7 +223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  usingXboxController: 1
+  shootingSpeed: 2
+  timeToShoot: 0.5
+  usingXboxController: 0
+  isShooting: 0
   coopCharacterControllerOne: {fileID: 114998027592461782}
 --- !u!114 &114998027592461782
 MonoBehaviour:
@@ -236,10 +239,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ad0b3add50dbb4093c7d34e0a897dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFiring: 0
   bulletSpeed: 5
+  bulletSpread: 5
   timeBetweenShots: 0.5
-  usingXboxController: 1
+  isFiring: 0
+  usingXboxController: 0
   fireFrom: {fileID: 4917914485626212}
   currentBullet:
   - {fileID: 1141967671576600, guid: 0873527bbbe12494e9f16f71beb9d1a3, type: 2}

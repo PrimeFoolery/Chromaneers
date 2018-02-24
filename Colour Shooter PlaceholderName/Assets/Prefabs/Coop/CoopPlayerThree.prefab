@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: 0.88, z: -2.23}
+  m_LocalPosition: {x: 3.2, y: 0.9, z: 5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4804866171820920}
@@ -222,9 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb56eac745a2ead4387cb05973f56ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFiring: 0
   bulletSpeed: 5
+  bulletSpread: 5
   timeBetweenShots: 0.5
+  isFiring: 0
+  usingXboxController: 0
   fireFrom: {fileID: 4727731473848350}
   currentBullet:
   - {fileID: 1557260129900302, guid: ffb380a95b9ffc34e8f039accc4cbced, type: 2}
@@ -243,7 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  usingXboxController: 1
+  shootingSpeed: 2
+  timeToShoot: 0.5
+  usingXboxController: 0
+  isShooting: 0
   coopCharacterControllerThree: {fileID: 114688111762235096}
 --- !u!136 &136126592081602496
 CapsuleCollider:
