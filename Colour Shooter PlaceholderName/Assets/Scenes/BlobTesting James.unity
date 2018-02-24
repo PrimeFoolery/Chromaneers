@@ -350,6 +350,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &683068925 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1709882734553460, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1317220002}
+--- !u!114 &683068930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 683068925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb906614a0c6874089559e1a46a3935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legColour: 
 --- !u!1 &1136530202
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   shootingSpeed: 0
+  timeToShoot: 0
   usingController: 0
+  usingXboxController: 0
   isShooting: 0
   pointToLook: {x: 0, y: 0, z: 0}
   gunController: {fileID: 1748289982}
@@ -734,9 +753,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805bb3d83c7ae554298e508acbbe6477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFiring: 0
   bulletSpeed: 5
+  bulletSpread: 0
   timeBetweenShots: 0.5
+  isFiring: 0
+  usingXboxController: 0
   fireFrom: {fileID: 1136530203}
   currentBullet:
   - {fileID: 1141967671576600, guid: 0873527bbbe12494e9f16f71beb9d1a3, type: 2}
@@ -911,3 +932,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1915797211 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1892276400510362, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1317220002}
+--- !u!114 &1915797216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1915797211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb906614a0c6874089559e1a46a3935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legColour: 
+--- !u!1 &1965934574 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1924544731675542, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1317220002}
+--- !u!114 &1965934579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965934574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb906614a0c6874089559e1a46a3935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  legColour: 

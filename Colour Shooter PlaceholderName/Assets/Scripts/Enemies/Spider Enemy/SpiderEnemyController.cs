@@ -13,6 +13,7 @@ public class SpiderEnemyController : MonoBehaviour
     public GameObject leg2;
     public GameObject leg3;
     public GameObject leg4;
+    public int howManyLegsAreAlive = 4;
 
     public Material RedJellyMaterial;
     public Material BlueJellyMaterial;
@@ -32,7 +33,8 @@ public class SpiderEnemyController : MonoBehaviour
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
-	            leg1.GetComponent<Renderer>().material = BlueLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = BlueLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "blue";
 	            leg2.GetComponent<Renderer>().material = BlueLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "blue";
@@ -42,7 +44,8 @@ public class SpiderEnemyController : MonoBehaviour
 	            leg4.GetComponent<SpiderLegScript>().legColour = "blue";
             } else if (legColour == 2)
 	        {
-	            leg1.GetComponent<Renderer>().material = YellowLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "yellow";
                 leg2.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "yellow";
@@ -58,7 +61,8 @@ public class SpiderEnemyController : MonoBehaviour
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
-	            leg1.GetComponent<Renderer>().material = RedLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = RedLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "red";
                 leg2.GetComponent<Renderer>().material = RedLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "red";
@@ -69,7 +73,8 @@ public class SpiderEnemyController : MonoBehaviour
             }
 	        else if (legColour == 2)
 	        {
-	            leg1.GetComponent<Renderer>().material = YellowLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "yellow";
                 leg2.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "yellow";
@@ -85,7 +90,8 @@ public class SpiderEnemyController : MonoBehaviour
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
-	            leg1.GetComponent<Renderer>().material = BlueLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = BlueLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "blue";
                 leg2.GetComponent<Renderer>().material = BlueLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "blue";
@@ -96,7 +102,8 @@ public class SpiderEnemyController : MonoBehaviour
             }
 	        else if (legColour == 2)
 	        {
-	            leg1.GetComponent<Renderer>().material = RedLegMaterial;
+	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+                leg1.GetComponent<Renderer>().material = RedLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "red";
                 leg2.GetComponent<Renderer>().material = RedLegMaterial;
 	            leg2.GetComponent<SpiderLegScript>().legColour = "red";
