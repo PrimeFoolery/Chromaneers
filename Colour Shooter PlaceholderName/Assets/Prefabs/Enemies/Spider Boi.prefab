@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 0.8585878, y: 0.858588, z: 0.8585879}
   m_Children: []
   m_Father: {fileID: 4423226318928910}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4064103341973064
 Transform:
@@ -189,7 +189,7 @@ Transform:
   m_LocalScale: {x: 0.858588, y: 0.85858834, z: 0.8585883}
   m_Children: []
   m_Father: {fileID: 4423226318928910}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 70.100006, y: -94.642006, z: -80.1}
 --- !u!4 &4423226318928910
 Transform:
@@ -203,10 +203,10 @@ Transform:
   m_Children:
   - {fileID: 4765212115422106}
   - {fileID: 4064103341973064}
-  - {fileID: 4308615159895028}
   - {fileID: 4014190726367810}
   - {fileID: 4490520198137526}
   - {fileID: 4608657120132180}
+  - {fileID: 4308615159895028}
   m_Father: {fileID: 4728567078195502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,7 +221,7 @@ Transform:
   m_LocalScale: {x: 0.858588, y: 0.858588, z: 0.85858786}
   m_Children: []
   m_Father: {fileID: 4423226318928910}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4608657120132180
 Transform:
@@ -234,7 +234,7 @@ Transform:
   m_LocalScale: {x: 0.8585883, y: 0.8585882, z: 0.85858804}
   m_Children: []
   m_Father: {fileID: 4423226318928910}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 70.100006, y: -7.9860005, z: -86.9}
 --- !u!4 &4728567078195502
 Transform:
@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb906614a0c6874089559e1a46a3935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  legColour: 
 --- !u!114 &114919180817844396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,6 +590,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c6c0d71d99816469a58392c89f59c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leg1: {fileID: 1924544731675542}
+  leg2: {fileID: 1892276400510362}
+  leg3: {fileID: 1709882734553460}
+  leg4: {fileID: 1826816007122692}
+  RedJellyMaterial: {fileID: 2100000, guid: 7f3d0608bf3644c4ca9a8eda2a68788d, type: 2}
+  BlueJellyMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
+  YellowJellyMaterial: {fileID: 2100000, guid: 5e1c7f2a371699e4f99259567a4be0db, type: 2}
+  BlueLegMaterial: {fileID: 2100000, guid: 91fcd283cde65b34193556277d1b0d3d, type: 2}
+  RedLegMaterial: {fileID: 2100000, guid: 9195c1d6c7d12fa4b94ad13fad4fe615, type: 2}
+  YellowLegMaterial: {fileID: 2100000, guid: ae72b3f681d14cb4eae489e1fbdad5c9, type: 2}
 --- !u!136 &136191196109801526
 CapsuleCollider:
   m_ObjectHideFlags: 1

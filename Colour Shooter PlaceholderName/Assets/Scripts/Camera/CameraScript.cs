@@ -80,7 +80,7 @@ public class CameraScript : MonoBehaviour
         }
         if (currentGameState == GameState.SinglePlayer)//IF THE GAME IS IN SINGLEPLAYER
         {
-            Debug.Log(targetCameraPosition);
+            //Debug.Log(targetCameraPosition);
             rawMousePos = Input.mousePosition;
             rawMousePos.z = 0f;
             normMousePos = Camera.main.ScreenToWorldPoint(rawMousePos);
