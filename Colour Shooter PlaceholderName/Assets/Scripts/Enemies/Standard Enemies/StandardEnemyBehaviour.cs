@@ -75,6 +75,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             readyToRetarget = true;
             retargetingDelay = 5f;
         }
+        transform.LookAt(targetPlayer.transform);
 	}
     void FindClosestPlayer() {
         readyToRetarget = false;
