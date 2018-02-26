@@ -50,7 +50,7 @@ public class GunController : MonoBehaviour {
         }
 	    //Giving the bullets a bit of spread
 	    bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
-    }
+	}
 
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {

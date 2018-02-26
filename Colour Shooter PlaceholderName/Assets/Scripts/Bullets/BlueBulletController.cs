@@ -7,6 +7,7 @@ public class BlueBulletController : MonoBehaviour {
 
     [Header ("Bullet variables")]
     public float speed;
+	public float deceleration;
     public float bulletLifeTime;
     public int bulletDamage;
 
@@ -30,11 +31,13 @@ public class BlueBulletController : MonoBehaviour {
 	}
 	
 	void Update () {
+		print("Bullet move speed = " + (speed - deceleration));
         //Setting previous button position to the new updated position
 		previousBulletPosition = transform.position;
 
         //Moving the bullet
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+		speed = speed * deceleration;
 
         //Bullets lifeTime
         bulletLifeTime -= Time.deltaTime;
