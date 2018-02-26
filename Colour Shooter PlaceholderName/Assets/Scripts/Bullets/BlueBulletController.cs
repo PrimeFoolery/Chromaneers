@@ -31,7 +31,6 @@ public class BlueBulletController : MonoBehaviour {
 	}
 	
 	void Update () {
-		print("Bullet move speed = " + (speed - deceleration));
         //Setting previous button position to the new updated position
 		previousBulletPosition = transform.position;
 
@@ -53,6 +52,7 @@ public class BlueBulletController : MonoBehaviour {
 			//Destroy (paint);
 		}
         
+        /*
 	    if (redEnemy.GetComponent<NavMeshAgent>().speed == enemySlowSpeed) {
             print("I am slowed");
 	        slowTimer -= Time.deltaTime;
@@ -61,6 +61,7 @@ public class BlueBulletController : MonoBehaviour {
 	            redEnemy.GetComponent<NavMeshAgent>().speed = enemyNormalSpeed;
             }
         }
+        */
 	}
 
     void OnCollisionEnter (Collision theCol) {
