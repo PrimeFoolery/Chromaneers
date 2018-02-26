@@ -5921,6 +5921,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 722809951}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &724279805 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1117249399534128, guid: c2bde13d6754b15428e440fb50fd0ee7,
+    type: 2}
+  m_PrefabInternal: {fileID: 978645043}
+--- !u!114 &724279806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 724279805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ecafebf7ff21944a269bd7b2bca6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  singleplayerCharacterController: {fileID: 978645044}
 --- !u!1 &744399133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8137,6 +8155,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &978645044 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+    type: 2}
+  m_PrefabInternal: {fileID: 978645043}
+  m_Script: {fileID: 11500000, guid: 37bc464be91cfab4ba242fdcfa234a11, type: 3}
 --- !u!1 &978930188
 GameObject:
   m_ObjectHideFlags: 0
@@ -9409,7 +9433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1150920864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9422,10 +9446,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  RedEnemy: {fileID: 1720677307034088, guid: 8ae8b3cda2b25ba459d2ece2b6147a23, type: 2}
-  YellowEnemy: {fileID: 1611837554126876, guid: db48119ab5f39c842aaaf8c9bb083271,
+  RedEnemy: {fileID: 1720677307034088, guid: e2d5b819bdf6b4649afe4cc045385423, type: 2}
+  YellowEnemy: {fileID: 1611837554126876, guid: f62547fb5445cb44f8b54afcc9098daf,
     type: 2}
-  BlueEnemy: {fileID: 1611837554126876, guid: b718b0c313a5c4646937b37536959baf, type: 2}
+  BlueEnemy: {fileID: 1611837554126876, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
   SpiderEnemy: {fileID: 1379227417053802, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
     type: 2}
   RedShieldEnemy: {fileID: 1330400132766412, guid: bfab1120b28b5e143a87fc9a6a968714,
