@@ -42,13 +42,22 @@
             <e p="CoopCharacterControllerTwo.cs" t="Include" />
           </e>
           <e p="Enemies" t="Include">
-            <e p="BlueEnemyHealth.cs" t="Include" />
-            <e p="GreenEnemyHealth.cs" t="Include" />
-            <e p="OrangeEnemyHealth.cs" t="Include" />
-            <e p="PurpleEnemyHealth.cs" t="Include" />
-            <e p="RedEnemyHealth.cs" t="Include" />
-            <e p="StandardEnemyBehaviour.cs" t="Include" />
-            <e p="YellowEnemyHealth.cs" t="Include" />
+            <e p="Shield Enemy" t="Include">
+              <e p="ShieldBehaviour.cs" t="Include" />
+            </e>
+            <e p="Spider Enemy" t="Include">
+              <e p="SpiderEnemyController.cs" t="Include" />
+              <e p="SpiderLegScript.cs" t="Include" />
+            </e>
+            <e p="Standard Enemies" t="Include">
+              <e p="BlueEnemyHealth.cs" t="Include" />
+              <e p="GreenEnemyHealth.cs" t="Include" />
+              <e p="OrangeEnemyHealth.cs" t="Include" />
+              <e p="PurpleEnemyHealth.cs" t="Include" />
+              <e p="RedEnemyHealth.cs" t="Include" />
+              <e p="StandardEnemyBehaviour.cs" t="Include" />
+              <e p="YellowEnemyHealth.cs" t="Include" />
+            </e>
           </e>
           <e p="Misc" t="Include">
             <e p="ColourPicker.cs" t="Include" />

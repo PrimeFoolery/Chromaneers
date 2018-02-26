@@ -37,8 +37,7 @@ public class EnemySpawner : MonoBehaviour {
 				Instantiate (BlueEnemy);
 				Timer = 0;
 			}
-		    if (RanNumb == 3)
-		    {
+		    if (RanNumb == 3) {
 		        Instantiate(SpiderEnemy);
 		        Timer = 0;
 		    }
