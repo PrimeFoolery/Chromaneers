@@ -6,7 +6,7 @@ public class SpiderLegScript : MonoBehaviour
 {
 
     public string legColour;
-    private int legHealth = 5;
+    private int legHealth = 2;
     private bool setUpLeg = false;
     private SpiderEnemyController spiderBodyScript;
 

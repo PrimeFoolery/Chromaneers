@@ -10,8 +10,16 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject YellowEnemy;
 	public GameObject BlueEnemy;
     public GameObject SpiderEnemy;
+	public GameObject RedShieldEnemy;
+	public GameObject BlueShieldEnemy;
+	public GameObject YellowShieldEnemy;
+	public GameObject OrangeEnemy;
+	public GameObject PurpleEnemy;
+	public GameObject GreenEnemy;
 
 	private int RanNumb;
+	private int ranShieldEnemy;
+	private int ranSecondaryEnemy;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +32,7 @@ public class EnemySpawner : MonoBehaviour {
 
 		if (Timer >= 2) {
 			
-			RanNumb = Random.Range (0, 4);
+			RanNumb = Random.Range (0, 6);
 			if (RanNumb == 0) {
 				Instantiate (RedEnemy);
 				Timer = 0;
@@ -41,6 +49,36 @@ public class EnemySpawner : MonoBehaviour {
 		        Instantiate(SpiderEnemy);
 		        Timer = 0;
 		    }
+			if(RanNumb == 4||RanNumb == 5){
+				ranSecondaryEnemy = Random.Range (0, 3);
+				if(ranSecondaryEnemy==0){
+					Instantiate (OrangeEnemy);
+					Timer = 0;
+				}
+				if(ranSecondaryEnemy==1){
+					Instantiate (GreenEnemy);
+					Timer = 0;
+				}
+				if(ranSecondaryEnemy==2){
+					Instantiate (PurpleEnemy);
+					Timer = 0;
+				}
+			}
+			if(RanNumb == 6){
+				ranShieldEnemy = Random.Range (0,3);
+				if(ranShieldEnemy==0){
+					Instantiate (RedShieldEnemy);
+					Timer = 0;
+				}
+				if(ranShieldEnemy==1){
+					Instantiate (BlueShieldEnemy);
+					Timer = 0;
+				}
+				if(ranShieldEnemy==2){
+					Instantiate (YellowShieldEnemy);
+					Timer = 0;
+				}
+			}
 
         }
 	}

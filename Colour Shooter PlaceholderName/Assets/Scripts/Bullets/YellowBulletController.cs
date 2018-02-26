@@ -51,6 +51,18 @@ public class YellowBulletController : MonoBehaviour {
             //and destroy the bullet
             Destroy(gameObject);
         }
+		if (theCol.gameObject.CompareTag("OrangeEnemy")) {
+			//When it collides with the enemy, apply the damage
+			theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
+			//and destroy the bullet
+			Destroy(gameObject);
+		}
+		if (theCol.gameObject.CompareTag("GreenEnemy")) {
+			//When it collides with the enemy, apply the damage
+			theCol.gameObject.GetComponent<GreenEnemyHealth>().EnemyDamaged(bulletDamage);
+			//and destroy the bullet
+			Destroy(gameObject);
+		}
 
         //Check if its the Wall
         if (theCol.gameObject.CompareTag("Wall")) {

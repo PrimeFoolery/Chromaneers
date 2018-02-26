@@ -16,16 +16,19 @@ public class ShieldBehaviour : MonoBehaviour {
         {
             this.tag = "YellowEnemy";
             this.gameObject.GetComponent<YellowEnemyHealth>().enabled = true;
+			gameObject.GetComponent<Renderer> ().material = Yellow;
         }
         if (randomColour == 1)
         {
             this.tag = "RedEnemy";
             this.gameObject.GetComponent<RedEnemyHealth>().enabled = true;
+			gameObject.GetComponent<Renderer> ().material = Red;
         }
         if (randomColour == 2)
         {
             this.tag = "BlueEnemy";
             this.gameObject.GetComponent<BlueEnemyHealth>().enabled = true;
+			gameObject.GetComponent<Renderer> ().material = Blue;
         }
     }
 	

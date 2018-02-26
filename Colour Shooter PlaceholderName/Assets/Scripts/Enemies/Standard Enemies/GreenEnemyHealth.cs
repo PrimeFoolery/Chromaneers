@@ -19,6 +19,7 @@ public class GreenEnemyHealth : MonoBehaviour {
         //If the enemy reaches 0 HP, destroy the enemy
         if (currentHealth <= 0) {
             Destroy(gameObject);
+			GetComponent<ParticleSystem> ().Play ();
         }
     }
 

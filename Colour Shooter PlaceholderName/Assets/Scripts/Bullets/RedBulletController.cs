@@ -51,6 +51,18 @@ public class RedBulletController : MonoBehaviour {
             //and destroy the bullet
             Destroy(gameObject);
         }
+		if (theCol.gameObject.tag == "PurpleEnemy") {
+			//When it collides with the enemy, apply the damage
+			theCol.gameObject.GetComponent<PurpleEnemyHealth>().EnemyDamaged(bulletDamage);
+			//and destroy the bullet
+			Destroy(gameObject);
+		}
+		if (theCol.gameObject.tag == "OrangeEnemy") {
+			//When it collides with the enemy, apply the damage
+			theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
+			//and destroy the bullet
+			Destroy(gameObject);
+		}
 
         //Check if its the Wall
         if (theCol.gameObject.tag == "Wall") {

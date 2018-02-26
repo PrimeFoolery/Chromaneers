@@ -16,7 +16,7 @@ public class SpiderEnemyController : MonoBehaviour
     public GameObject leg4;
     public int howManyLegsAreAlive = 4;
     private bool bodyDropped = false;
-    private int bodyHealth = 5;
+    private int bodyHealth = 2;
 
     public Material RedJellyMaterial;
     public Material BlueJellyMaterial;
@@ -224,7 +224,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        if (bodyDropped==false)
 	        {
                 GetComponentInParent<Transform>().position = new Vector3(GetComponentInParent<Transform>().position.x,0, GetComponentInParent<Transform>().position.z);
-	            transform.position = new Vector3(transform.position.x, targetPlayer.transform.position.y, transform.position.z);
+	            transform.position = new Vector3(transform.position.x, targetPlayer.transform.position.y-1f, transform.position.z);
 	            bodyDropped = true;
 	        }
 	    }

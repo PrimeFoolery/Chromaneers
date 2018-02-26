@@ -71,7 +71,7 @@ public class BlueBulletController : MonoBehaviour {
 	    //Check if it collides with the red enemy
         if (theCol.gameObject.CompareTag("RedEnemy")) {
             //Stunning Enemy from moving[WiP]
-            theCol.gameObject.GetComponent<NavMeshAgent>().speed = enemySlowSpeed;
+            //theCol.gameObject.GetComponent<NavMeshAgent>().speed = enemySlowSpeed;
 	        //Destroy bullet
 	        Destroy(gameObject);
         }
@@ -82,6 +82,18 @@ public class BlueBulletController : MonoBehaviour {
 		    //Destroy bullet
 		    Destroy(gameObject);
 	    }
+		if (theCol.gameObject.CompareTag("PurpleEnemy")) {
+			//Pushes the enemy back a slight amount [WiP]
+			theCol.gameObject.GetComponent<PurpleEnemyHealth>().EnemyDamaged(bulletDamage);
+			//Destroy bullet
+			Destroy(gameObject);
+		}
+		if (theCol.gameObject.CompareTag("GreenEnemy")) {
+			//Pushes the enemy back a slight amount [WiP]
+			theCol.gameObject.GetComponent<GreenEnemyHealth>().EnemyDamaged(bulletDamage);
+			//Destroy bullet
+			Destroy(gameObject);
+		}
 
         //Check if its the Wall
         if (theCol.gameObject.CompareTag("Wall")) {

@@ -26,5 +26,6 @@ public class PurpleEnemyHealth : MonoBehaviour {
     //since currentHealth is a private variable
     public void EnemyDamaged (int damage) {
         currentHealth -= damage;
+		GetComponent<ParticleSystem> ().Play ();
     }
 }
