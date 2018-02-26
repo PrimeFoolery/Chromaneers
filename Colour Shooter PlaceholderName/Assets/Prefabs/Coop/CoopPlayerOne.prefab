@@ -222,12 +222,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b718cf98792d174b95a37d4a18d614e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 0.5
   shootingSpeed: 2
-  timeToShoot: 0.5
-  usingXboxController: 0
+  timeToShoot: 0.2
+  usingXboxController: 1
   isShooting: 0
   coopCharacterControllerOne: {fileID: 114998027592461782}
+  movingAcceleration: 1.1
+  movingDecceleration: 0.9
+  shootingDecceleration: 0.95
 --- !u!114 &114998027592461782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   bulletSpread: 5
-  timeBetweenShots: 0.5
+  timeBetweenShots: 0.2
   isFiring: 0
   usingXboxController: 0
   fireFrom: {fileID: 4917914485626212}

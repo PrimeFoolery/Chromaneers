@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RedEnemyHealth : MonoBehaviour {
 
+	public GameObject splat;
 	public int health;
+	public float deathTimer = 1;
 
 	//Private variables
 	private int currentHealth;
@@ -19,7 +21,10 @@ public class RedEnemyHealth : MonoBehaviour {
 		//If the enemy reaches 0 HP, destroy the enemy
 		if (currentHealth <= 0) {
 			gameObject.GetComponent<ParticleSystem> ().Play();
-			Destroy(gameObject);
+			deathTimer -= Time.deltaTime;
+			if (deathTimer >= 0) {
+				Destroy (gameObject);
+			}
 		}
 	}
 
