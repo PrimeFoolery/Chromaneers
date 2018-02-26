@@ -11,6 +11,8 @@ public class GunController : MonoBehaviour {
     [Space(10)]
     public bool isFiring;
     public bool usingXboxController;
+    private Vector3 startingPosition;
+    private Vector3 recoiledPosition;
 
     [Header("GameObjects")]
     public Transform fireFrom;
@@ -25,8 +27,12 @@ public class GunController : MonoBehaviour {
     private float bulletSpreadWidth;
     private GameObject mainCamera;
     private CameraScript mainCameraScript;
+    private float gunRecoilSpeed = 1f;
 
-    void Start () {
+    void Start ()
+    {
+        startingPosition = transform.localPosition;
+        recoiledPosition = new Vector3(0,0,0.3f);
         //Calling the ColourSelectManager
         colourSelectManager = ColourSelectManager.instance;
         //Getting the mainCamera from the current scene
@@ -35,6 +41,7 @@ public class GunController : MonoBehaviour {
     }
 	
 	void Update () {
+        //Debug.Log("startingPosition:   " +startingPosition);
 		//Checking whether or not the player is firing
         if (isFiring) {
             //We calculate when he shot
@@ -45,8 +52,13 @@ public class GunController : MonoBehaviour {
                 //Calling function CurrentBulletFiring() which handles the bullets
                 CurrentBulletFiring();
             }
+            if (shotCounter > 0)
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed*Time.deltaTime);
+            }
         } else {
             shotCounter = 0;
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed * Time.deltaTime);
         }
 	    //Giving the bullets a bit of spread
 	    bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
@@ -68,6 +80,7 @@ public class GunController : MonoBehaviour {
             //additionally, give it a fireFrom position and rotation [Which is an empty object]
             //adds camera shake when the bullet spawn
             //Finally gives a rotation to the bullet to give a bulletSpread affect
+            transform.localPosition = recoiledPosition;
             GameObject bulletToShoot = colourSelectManager.GetBulletToShoot();
             bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
             mainCameraScript.SmallScreenShake();
