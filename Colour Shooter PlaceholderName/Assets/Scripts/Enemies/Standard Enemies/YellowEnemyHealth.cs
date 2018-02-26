@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class YellowEnemyHealth : MonoBehaviour {
 
 	public GameObject splat;
+	public GameObject EnemyEmpty;
     public int health;
 	public float deathTimer = 1;
 
@@ -23,6 +25,7 @@ public class YellowEnemyHealth : MonoBehaviour {
 			gameObject.GetComponent<ParticleSystem> ().Play();
 			deathTimer -= Time.deltaTime;
 			if (deathTimer >= 0) {
+				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 				Destroy (gameObject);
 			}
         }
