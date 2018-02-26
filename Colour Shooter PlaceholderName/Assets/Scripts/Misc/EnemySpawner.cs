@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject RedEnemy;
 	public GameObject YellowEnemy;
 	public GameObject BlueEnemy;
+    public GameObject SpiderEnemy;
 
 	private int RanNumb;
 
@@ -23,7 +24,7 @@ public class EnemySpawner : MonoBehaviour {
 
 		if (Timer >= 2) {
 			
-			RanNumb = Random.Range (0, 3);
+			RanNumb = Random.Range (0, 4);
 			if (RanNumb == 0) {
 				Instantiate (RedEnemy);
 				Timer = 0;
@@ -36,7 +37,12 @@ public class EnemySpawner : MonoBehaviour {
 				Instantiate (BlueEnemy);
 				Timer = 0;
 			}
+		    if (RanNumb == 3)
+		    {
+		        Instantiate(SpiderEnemy);
+		        Timer = 0;
+		    }
 
-		}
+        }
 	}
 }
