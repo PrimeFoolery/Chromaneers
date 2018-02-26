@@ -10,6 +10,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     NavMeshAgent agent;
     public bool isItCoop;
     private ColourSelectManager gameManager;
+    public int enemyDamage;
 
     //COOP PLAYER VARIABLES
     private GameObject RedPlayer;
@@ -77,6 +78,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         }
         transform.LookAt(targetPlayer.transform);
 	}
+
     void FindClosestPlayer() {
         readyToRetarget = false;
         //THIS CALCULATES THE DISTANCE BETWEEN THE ENEMY AND ALL OF THE PLAYERS AND THEN FINDS THE LOWEST AND SETS THE TARGETED PLAYER TO THAT
@@ -92,6 +94,14 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             targetPlayer = BluePlayer;
         } else if (closestDistance==distanceBetweenEnemyAndYellowPlayer) {
             targetPlayer = YellowPlayer;
+        }
+    }
+
+    void OnCollisionEnter(Collision theCol) {
+        //Check if it collides with the blue enemy
+        if (theCol.gameObject.CompareTag("Player")) {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
         }
     }
 }
