@@ -24,6 +24,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     private Vector3 moveVelocity;
     private float XDistBetweenPlayerAndAveragePlayerPos;
     private float ZDistBetweenPlayerAndAveragePlayerPos;
+	public float movingAcceleration = 1.1f;
+	public float movingDecceleration = 0.9f;
+	public float shootingDecceleration = 0.95f;
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
@@ -57,10 +60,48 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
             if (!isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed whilst walking
-                moveVelocity = moveInput * moveSpeed;
+				if(moveInput!= new Vector3(0,0,0)){
+					if(moveSpeed<=5f){
+						moveSpeed = moveSpeed * movingAcceleration;
+					}
+					if(moveSpeed>=5f){
+						moveSpeed = 5f;
+					}
+					moveVelocity = moveInput * moveSpeed;
+				}
+				if(moveInput== new Vector3(0,0,0)){
+					if(moveSpeed>=0.5f){
+						moveSpeed = moveSpeed * movingDecceleration;
+					}
+					if(moveSpeed<=0.5f){
+						moveSpeed = 0.5f;
+					}
+					moveVelocity = moveVelocity * movingDecceleration;
+				}
             } else if (isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-                moveVelocity = moveInput * shootingSpeed;
+				//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+				moveVelocity = moveInput * shootingSpeed;
+				if(moveInput!= new Vector3(0,0,0)){
+					if(moveSpeed<=2f){
+						moveSpeed = moveSpeed * movingAcceleration;
+					}
+					if(moveSpeed>=2f&&moveSpeed<=2.5f){
+						moveSpeed = 2f;
+					}
+					if(moveSpeed>=2.5f){
+						moveSpeed = moveSpeed * shootingDecceleration;
+					}
+					moveVelocity = moveInput * moveSpeed;
+				}
+				if(moveInput== new Vector3(0,0,0)){
+					if(moveSpeed>=0.5f){
+						moveSpeed = moveSpeed * movingDecceleration;
+					}
+					if(moveSpeed<=0.5f){
+						moveSpeed = 0.5f;
+					}
+					moveVelocity = moveVelocity * movingDecceleration;
+				}
             }
 
             //Making a new vector3 to do rotations with joystick
@@ -92,10 +133,50 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
 		    if (!isShooting) {
 		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
-		        moveVelocity = moveInput * moveSpeed;
+		        
+				if(moveInput!= new Vector3(0,0,0)){
+					if(moveSpeed<=5f){
+						moveSpeed = moveSpeed * movingAcceleration;
+					}
+					if(moveSpeed>=5f){
+						moveSpeed = 5f;
+					}
+					moveVelocity = moveInput * moveSpeed;
+				}
+				if(moveInput== new Vector3(0,0,0)){
+					if(moveSpeed>=0.5f){
+						moveSpeed = moveSpeed * movingDecceleration;
+					}
+					if(moveSpeed<=0.5f){
+						moveSpeed = 0.5f;
+					}
+					moveVelocity = moveVelocity * movingDecceleration;
+				}
+
 		    } else if (isShooting) {
 		        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
 		        moveVelocity = moveInput * shootingSpeed;
+				if(moveInput!= new Vector3(0,0,0)){
+					if(moveSpeed<=2f){
+						moveSpeed = moveSpeed * movingAcceleration;
+					}
+					if(moveSpeed>=2f&&moveSpeed<=2.5f){
+						moveSpeed = 2f;
+					}
+					if(moveSpeed>=2.5f){
+						moveSpeed = moveSpeed * shootingDecceleration;
+					}
+					moveVelocity = moveInput * moveSpeed;
+				}
+				if(moveInput== new Vector3(0,0,0)){
+					if(moveSpeed>=0.5f){
+						moveSpeed = moveSpeed * movingDecceleration;
+					}
+					if(moveSpeed<=0.5f){
+						moveSpeed = 0.5f;
+					}
+					moveVelocity = moveVelocity * movingDecceleration;
+				}
 		    }
 
             //Making a new vector3 to do rotations with joystick
