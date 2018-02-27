@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoopCharacterHealthControllerThree : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour {
 	public Material deadMat;
 	public float duration;
 	public Renderer rend;
+
+	[Header("UI")] 
+	public Text currentHP;
 
 	public CoopCharacterControllerThree coopCharacterControllerThree;
 
@@ -33,6 +37,9 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour {
 	}
 	
 	void Update () {
+		//Basic text to see HP
+		currentHP.text = "Yellow Current Health = " + currentHealth.ToString(); 
+
 		//If the player reaches 0 HP, set speed to 0 and set material to something different
 		if (currentHealth <= 0) {
 			coopCharacterControllerThree.moveSpeed = 0;
