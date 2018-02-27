@@ -394,11 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   isItCoop: 1
-<<<<<<< HEAD
   enemyDamage: 1
-=======
-  enemyDamage: 0
->>>>>>> 85127f4bc53eba2a95721c4f7382412450b8b239
 --- !u!136 &136996010345690640
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -408,7 +404,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.74
+  m_Radius: 0.43
   m_Height: 4.37
   m_Direction: 1
   m_Center: {x: -0.11, y: 0, z: 0}
