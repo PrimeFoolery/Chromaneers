@@ -5,6 +5,8 @@ using UnityEngine;
 public class SingleplayerHealthController : MonoBehaviour {
 
     public int health;
+	public float invincibility;
+	public bool canBeDamaged;
 
     public SingleplayerCharacterController singleplayerCharacterController;
 
@@ -18,16 +20,31 @@ public class SingleplayerHealthController : MonoBehaviour {
 	}
 	
 	void Update () {
-        print(currentHealth);
+        print("Player health = " +currentHealth);
+		print("Time before taking damage again = " + invincibility);
+		print("can I be damaged? " + canBeDamaged);
 		//If the player reaches 0 HP, set speed to 0 and set material to something different
 	    if (currentHealth <= 0) {
 	        singleplayerCharacterController.moveSpeed = 0;
 	    }
+		
+		//Making a timer to decide when the player can or cant take damage
+		invincibility -= Time.deltaTime;
+		//If the time is 0 then the player can take damage
+		//but if the number is larger than 0, then it cant
+		if (invincibility <= 0) {
+			canBeDamaged = true;
+			invincibility = 0;
+		} else if (invincibility > 0) {
+			canBeDamaged = false;
+		}
 	}
 
     //Used to call this void in the bullet scripts
     //since currentHealth is a private variable
     public void EnemyDamaged(int damage) {
-        currentHealth -= damage;
+	    if (canBeDamaged) {
+		    currentHealth -= damage;
+	    }
     }
 }
