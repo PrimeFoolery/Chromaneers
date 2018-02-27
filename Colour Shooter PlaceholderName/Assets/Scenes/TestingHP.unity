@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: eb64d8400b99444b3969c37640130e8e, type: 2}
 --- !u!1 &26239309
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,62 +670,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
-        type: 2}
-      propertyPath: usingController
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
-        type: 2}
-      propertyPath: timeToShoot
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114971858408766426, guid: c2bde13d6754b15428e440fb50fd0ee7,
-        type: 2}
-      propertyPath: bulletSpread
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114971858408766426, guid: c2bde13d6754b15428e440fb50fd0ee7,
-        type: 2}
-      propertyPath: timeBetweenShots
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &668747867 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1117249399534128, guid: c2bde13d6754b15428e440fb50fd0ee7,
-    type: 2}
-  m_PrefabInternal: {fileID: 668747866}
---- !u!114 &668747868 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
-    type: 2}
-  m_PrefabInternal: {fileID: 668747866}
-  m_Script: {fileID: 11500000, guid: 37bc464be91cfab4ba242fdcfa234a11, type: 3}
---- !u!114 &668747869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668747867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ecafebf7ff21944a269bd7b2bca6b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  singleplayerCharacterController: {fileID: 668747868}
 --- !u!1 &823088883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,3 +1650,45 @@ RectTransform:
   m_AnchoredPosition: {x: 8.75, y: 0}
   m_SizeDelta: {x: 2.83, y: 6.46}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1945254279
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.8364983
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104755184949866, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+  m_IsPrefabParent: 0

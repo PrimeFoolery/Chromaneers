@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleplayerHealthController : MonoBehaviour {
+public class CoopCharacterHealthControllerOne : MonoBehaviour {
 
 	[Header("Health Variables")]
-    public int health;
+	public int health;
 	public float invincibility;
 	public bool canBeDamaged;
 	
@@ -16,27 +16,27 @@ public class SingleplayerHealthController : MonoBehaviour {
 	public float duration;
 	public Renderer rend;
 
-    public SingleplayerCharacterController singleplayerCharacterController;
+	public CoopCharacterControllerOne coopCharacterControllerOne;
 
-    //Private variables
-    private int currentHealth;
+	//Private variables
+	private int currentHealth;
 
-    void Start () {
-	    //Setting the current health to be the health variable
-	    //so that when we start the game, the enemy has full HP
-	    currentHealth = health;
+	void Start () {
+		//Setting the current health to be the health variable
+		//so that when we start the game, the enemy has full HP
+		currentHealth = health;
 	    
-	    //Getting the renderer
-	    //And setting the main material to its origin material
-	    rend = GetComponent<Renderer>();
-	    rend.material = matOne;
-    }
+		//Getting the renderer
+		//And setting the main material to its origin material
+		rend = GetComponent<Renderer>();
+		rend.material = matOne;
+	}
 	
 	void Update () {
 		//If the player reaches 0 HP, set speed to 0 and set material to something different
-	    if (currentHealth <= 0) {
-	        singleplayerCharacterController.moveSpeed = 0;
-	    }
+		if (currentHealth <= 0) {
+			coopCharacterControllerOne.moveSpeed = 0;
+		}
 		
 		//Making a timer to decide when the player can or cant take damage
 		//Also making a material lerp
@@ -57,11 +57,11 @@ public class SingleplayerHealthController : MonoBehaviour {
 		}
 	}
 
-    //Used to call this void in the bullet scripts
-    //since currentHealth is a private variable
-    public void EnemyDamaged(int damage) {
-	    if (canBeDamaged) {
-		    currentHealth -= damage;
-	    }
-    }
+	//Used to call this void in the bullet scripts
+	//since currentHealth is a private variable
+	public void EnemyDamaged(int damage) {
+		if (canBeDamaged) {
+			currentHealth -= damage;
+		}
+	}
 }

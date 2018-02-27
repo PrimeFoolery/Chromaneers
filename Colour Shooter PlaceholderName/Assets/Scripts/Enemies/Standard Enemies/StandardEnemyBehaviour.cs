@@ -5,19 +5,23 @@ using UnityEngine.AI;
 
 public class StandardEnemyBehaviour : MonoBehaviour {
 
+    [Header("Singleplayer Variables")]
     public GameObject player;
     private GameObject targetPlayer;
     NavMeshAgent agent;
-    public bool isItCoop;
-    private ColourSelectManager gameManager;
-    public int enemyDamage;
 
     //COOP PLAYER VARIABLES
+    [Header("Coop Variables")]
     private GameObject RedPlayer;
     private GameObject BluePlayer;
     private GameObject YellowPlayer;
     private float retargetingDelay = 5f;
     private bool readyToRetarget = true;
+    
+   [Header("Misc")]
+    public bool isItCoop;
+    private ColourSelectManager gameManager;
+    public int enemyDamage;
 
     // Use this for initialization
     void Start () {
@@ -98,12 +102,33 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision theCol) {
-        //Check if it collides with the blue enemy
+        //Check if it collides with the player
         if (theCol.gameObject.CompareTag("Player")) {
             //When it collides with the enemy, apply the damage
             theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
             //Resseting the timer for the player to take damage
             theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
+        }
+        //Check if it collides with coop player one
+        if (theCol.gameObject.CompareTag("BluePlayer")) {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(enemyDamage);
+            //Resseting the timer for the player to take damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
+        }
+        //Check if it collides with coop player two
+        if (theCol.gameObject.CompareTag("RedPlayer")) {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(enemyDamage);
+            //Resseting the timer for the player to take damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
+        }
+        //Check if it collides with coop player three
+        if (theCol.gameObject.CompareTag("YellowPlayer")) {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(enemyDamage);
+            //Resseting the timer for the player to take damage
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
         }
     }
 }

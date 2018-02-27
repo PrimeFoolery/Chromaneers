@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23568887262767628}
   - component: {fileID: 54031898343618478}
   - component: {fileID: 114909718584468080}
+  - component: {fileID: 114427798164542556}
   m_Layer: 0
   m_Name: SingleplayerCharacter
   m_TagString: Player
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22455406, y: 0.88, z: -0.056997776}
+  m_LocalPosition: {x: 0, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4715286875538916}
@@ -115,6 +116,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -130,6 +132,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -147,6 +150,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -162,6 +166,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -211,6 +216,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114427798164542556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117249399534128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ecafebf7ff21944a269bd7b2bca6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  invincibility: 1
+  canBeDamaged: 0
+  matOne: {fileID: 2100000, guid: 3f7bec6c7d6535842b836065ec7f3db3, type: 2}
+  matTwo: {fileID: 2100000, guid: ffc46f2ae1bb7408284f7716b4d21fbe, type: 2}
+  deadMat: {fileID: 2100000, guid: 373d03dd47ba0495bb81cf4cb9f00abb, type: 2}
+  duration: 0.5
+  rend: {fileID: 23568887262767628}
+  singleplayerCharacterController: {fileID: 114909718584468080}
 --- !u!114 &114909718584468080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,10 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bc464be91cfab4ba242fdcfa234a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   shootingSpeed: 2
+  timeToShoot: 0.2
   usingController: 0
+  usingXboxController: 0
   isShooting: 0
+  pointToLook: {x: 0, y: 0, z: 0}
   gunController: {fileID: 114971858408766426}
 --- !u!114 &114971858408766426
 MonoBehaviour:
@@ -238,9 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805bb3d83c7ae554298e508acbbe6477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFiring: 0
   bulletSpeed: 5
-  timeBetweenShots: 0.1
+  bulletSpread: 5
+  timeBetweenShots: 0.2
+  isFiring: 0
+  usingXboxController: 0
   fireFrom: {fileID: 4707290842054872}
   currentBullet:
   - {fileID: 1141967671576600, guid: 0873527bbbe12494e9f16f71beb9d1a3, type: 2}
