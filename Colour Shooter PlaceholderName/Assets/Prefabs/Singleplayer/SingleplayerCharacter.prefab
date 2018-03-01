@@ -269,12 +269,17 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletSpread: 5
   timeBetweenShots: 0.2
+  timeBetweenSplats: 1
   isFiring: 0
+  isSplatting: 0
   usingXboxController: 0
   fireFrom: {fileID: 4707290842054872}
   currentBullet:
   - {fileID: 1141967671576600, guid: 0873527bbbe12494e9f16f71beb9d1a3, type: 2}
+  paintSplatProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
+    type: 2}
   colourSelectManager: {fileID: 0}
+  colourPicker: {fileID: 0}
 --- !u!136 &136126592081602496
 CapsuleCollider:
   m_ObjectHideFlags: 1

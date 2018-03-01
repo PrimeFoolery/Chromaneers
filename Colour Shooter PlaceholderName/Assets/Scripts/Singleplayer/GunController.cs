@@ -8,8 +8,11 @@ public class GunController : MonoBehaviour {
     public float bulletSpeed;
     public float bulletSpread;
     public float timeBetweenShots;
+    public float timeBetweenSplats;
     [Space(10)]
     public bool isFiring;
+
+    public bool isSplatting;
     public bool usingXboxController;
     private Vector3 startingPosition;
     private Vector3 recoiledPosition;
@@ -17,9 +20,13 @@ public class GunController : MonoBehaviour {
     [Header("GameObjects")]
     public Transform fireFrom;
     public GameObject[] currentBullet;
+    public GameObject paintSplatProjector;
 
     [Header("Script References")]
     public ColourSelectManager colourSelectManager;
+
+    public ColourPicker colourPicker;
+    
 
     //Private variables
     private float shotCounter;
@@ -28,6 +35,7 @@ public class GunController : MonoBehaviour {
     private GameObject mainCamera;
     private CameraScript mainCameraScript;
     private float gunRecoilSpeed = 1f;
+    private GameObject newestPaintSplat;
 
     void Start ()
     {
@@ -35,6 +43,7 @@ public class GunController : MonoBehaviour {
         recoiledPosition = new Vector3(0,0,0.3f);
         //Calling the ColourSelectManager
         colourSelectManager = ColourSelectManager.instance;
+        colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
         //Getting the mainCamera from the current scene
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
@@ -43,6 +52,7 @@ public class GunController : MonoBehaviour {
 	void Update () {
         //Debug.Log("startingPosition:   " +startingPosition);
 		//Checking whether or not the player is firing
+	    Debug.Log(shotCounter);
         if (isFiring) {
             //We calculate when he shot
             shotCounter -= Time.deltaTime;
@@ -56,12 +66,24 @@ public class GunController : MonoBehaviour {
             {
                 transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed*Time.deltaTime);
             }
-        } else {
+        } else if (isSplatting)
+	    {
+	        shotCounter -= Time.deltaTime;
+	        if (shotCounter <= 0)
+	        {
+	            shotCounter = timeBetweenSplats;
+	            Splat();
+	        }
+	    }
+        else {
             shotCounter = 0;
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed * Time.deltaTime);
         }
+
+	    
 	    //Giving the bullets a bit of spread
 	    bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
+	    
 	}
 
     //Function that handles the bullets and which ones to instantiate
@@ -86,5 +108,30 @@ public class GunController : MonoBehaviour {
             mainCameraScript.SmallScreenShake();
             bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
         }
+    }
+
+    void Splat()
+    {
+        Debug.Log("Splat is Happening");
+        float randomRotationXAndW = Random.Range(0, 360);
+        float randomRotationZ = Random.Range(0, 360);
+        float rotationY = -randomRotationZ;
+        if (colourPicker.currentColourHighligted=="Blue")
+        {
+            Debug.Log("Blue Splat is Happening");
+            newestPaintSplat = Instantiate(paintSplatProjector,transform.position,new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
+            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToBlue();
+        } else
+        if (colourPicker.currentColourHighligted == "Red")
+        {
+            newestPaintSplat = Instantiate(paintSplatProjector, transform.position, new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
+            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToRed();
+        } else
+        if (colourPicker.currentColourHighligted == "Yellow")
+        {
+            newestPaintSplat = Instantiate(paintSplatProjector, transform.position, new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
+            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToYellow();
+        }
+
     }
 }

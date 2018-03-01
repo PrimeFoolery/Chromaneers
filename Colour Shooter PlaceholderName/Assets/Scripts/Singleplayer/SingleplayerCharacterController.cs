@@ -71,10 +71,23 @@ public class SingleplayerCharacterController : MonoBehaviour {
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
+                //Putting Splats down
+                if (Input.GetMouseButton(1))
+                {
+                    gunController.isSplatting = true;
+                    isShooting = true;
+                    timeToShoot = 0.5f;
+                }
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
                 gunController.isFiring = false;
+                isShooting = false;
+            }
+            //Not Splatting
+            if (Input.GetMouseButtonUp(1))
+            {
+                gunController.isSplatting = false ;
                 isShooting = false;
             }
         }
@@ -131,6 +144,31 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 }
             }
         }
+        //Looking at the floor below player
+	    RaycastHit hit;
+        Ray ray = new Ray(transform.position,Vector3.down);
+        Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
+	    if (Physics.Raycast(ray, out hit, 20f))
+	    {
+            Debug.Log(hit.collider.name);
+	        if (hit.collider)
+	        {
+	            Texture2D tex = (Texture2D)hit.transform.gameObject.GetComponent<Renderer>().material.mainTexture;
+	            Vector2 pixelUV = hit.textureCoord;
+	            Debug.Log("PixelUV:  " + pixelUV);
+	            if (tex!=null)
+	            {
+	                pixelUV.x *= tex.width;
+	                int texXPos = Mathf.RoundToInt(pixelUV.x);
+	                pixelUV.y *= tex.height;
+	                int texYPos = Mathf.RoundToInt(pixelUV.x);
+	                print(tex.GetPixel(texXPos, texYPos));
+                }
+	            
+            }
+           
+	    }
+	    
 	}
 
     void FixedUpdate () {
