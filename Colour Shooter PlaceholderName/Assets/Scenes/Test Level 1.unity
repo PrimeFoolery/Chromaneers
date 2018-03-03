@@ -8482,6 +8482,36 @@ Prefab:
       propertyPath: timeBetweenSplats
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushScale
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
+        type: 2}
+      propertyPath: brush.brushColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
@@ -20744,6 +20774,7 @@ GameObject:
   - component: {fileID: 2125795540}
   - component: {fileID: 2125795538}
   - component: {fileID: 2125795539}
+  - component: {fileID: 2125795542}
   m_Layer: 0
   m_Name: Grassland
   m_TagString: Untagged
@@ -20819,6 +20850,24 @@ Transform:
   m_Father: {fileID: 569859136}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125795542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2125795537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cc1b9412eea6e4a8798f4b2f88b4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintSet:
+  - mainTextureName: _MainTex
+    normalTextureName: _BumpMap
+    heightTextureName: _ParallaxMap
+    useMainPaint: 1
+    useNormalPaint: 0
+    useHeightPaint: 0
 --- !u!1 &2126039011
 GameObject:
   m_ObjectHideFlags: 0
