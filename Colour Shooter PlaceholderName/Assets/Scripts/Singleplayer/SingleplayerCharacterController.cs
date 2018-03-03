@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Es.InkPainter;
 using UnityEngine;
 
 public class SingleplayerCharacterController : MonoBehaviour {
@@ -23,6 +24,17 @@ public class SingleplayerCharacterController : MonoBehaviour {
     private Camera mainCamera;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
+    [System.Serializable]
+    private enum UseMethodType
+    {
+        RaycastHitInfo,
+    }
+    [SerializeField]
+    private Brush brush;
+    [SerializeField]
+    private UseMethodType useMethodType = UseMethodType.RaycastHitInfo;
+    [SerializeField]
+    bool erase = false;
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
@@ -74,15 +86,15 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 //Putting Splats down
                 if (Input.GetMouseButton(1))
                 {
-                    gunController.isSplatting = true;
-                    isShooting = true;
-                    timeToShoot = 0.5f;
+                    //gunController.isSplatting = true;
+                    //isShooting = true;
+                    //timeToShoot = 0.5f;
                 }
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
-                gunController.isFiring = false;
-                isShooting = false;
+                //gunController.isFiring = false;
+                //isShooting = false;
             }
             //Not Splatting
             if (Input.GetMouseButtonUp(1))
@@ -145,7 +157,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
             }
         }
         //Looking at the floor below player
-	    RaycastHit hit;
+        RaycastHit hit;
         Ray ray = new Ray(transform.position,Vector3.down);
         Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 	    if (Physics.Raycast(ray, out hit, 20f))
@@ -153,24 +165,59 @@ public class SingleplayerCharacterController : MonoBehaviour {
             Debug.Log(hit.collider.name);
 	        if (hit.collider)
 	        {
-	            Texture2D tex = (Texture2D)hit.transform.gameObject.GetComponent<Renderer>().material.mainTexture;
+	            /*Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
+	            Texture2D tex = rend.material.mainTexture as Texture2D;
 	            Vector2 pixelUV = hit.textureCoord;
 	            Debug.Log("PixelUV:  " + pixelUV);
-	            if (tex!=null)
-	            {
-	                pixelUV.x *= tex.width;
-	                int texXPos = Mathf.RoundToInt(pixelUV.x);
-	                pixelUV.y *= tex.height;
-	                int texYPos = Mathf.RoundToInt(pixelUV.x);
-	                print(tex.GetPixel(texXPos, texYPos));
-                }
 	            
+	            pixelUV.x *= tex.width;
+	            int texXPos = Mathf.RoundToInt(pixelUV.x);
+	            pixelUV.y *= tex.height;
+	            int texYPos = Mathf.RoundToInt(pixelUV.x);
+	            print(tex.GetPixel(texXPos, texYPos));*/
+                
+                
+	            if (Input.GetMouseButtonDown(1))
+	            {
+	                bool success = true;
+	                var paintObject = hit.transform.GetComponent<InkCanvas>();
+	                if (paintObject!=null)
+	                {
+	                    if (useMethodType == UseMethodType.RaycastHitInfo)
+	                    {
+	                        success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+	                    }
+	                }
+
+	                if (!success)
+	                {
+                        Debug.Log("Paint not painted correctly");
+	                }
+	            }
+
+	            if (timeToShoot<=0)
+	            {
+	                if (Input.GetMouseButtonDown(1))
+	                {
+                       
+	                    //timeToShoot = 0.5f;
+	                    //isShooting = true;
+	                    
+	                }
+                }
+	            if (Input.GetMouseButtonUp(1))
+	            {
+	                timeToShoot = 0.5f;
+	                isShooting = true;
+	            }
+
+
             }
            
 	    }
 	    
 	}
-
+    void PaintGround() { }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
