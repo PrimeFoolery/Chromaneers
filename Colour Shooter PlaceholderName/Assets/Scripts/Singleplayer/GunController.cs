@@ -120,17 +120,17 @@ public class GunController : MonoBehaviour {
         {
             Debug.Log("Blue Splat is Happening");
             newestPaintSplat = Instantiate(paintSplatProjector,transform.position,new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
-            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToBlue();
+            //newestPaintSplat.GetComponent<paintProjectorController>().ChangeToBlue();
         } else
         if (colourPicker.currentColourHighligted == "Red")
         {
             newestPaintSplat = Instantiate(paintSplatProjector, transform.position, new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
-            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToRed();
+            //newestPaintSplat.GetComponent<paintProjectorController>().ChangeToRed();
         } else
         if (colourPicker.currentColourHighligted == "Yellow")
         {
             newestPaintSplat = Instantiate(paintSplatProjector, transform.position, new Quaternion(randomRotationXAndW, rotationY, randomRotationZ, randomRotationXAndW));
-            newestPaintSplat.GetComponent<paintProjectorController>().ChangeToYellow();
+            //newestPaintSplat.GetComponent<paintProjectorController>().ChangeToYellow();
         }
 
     }

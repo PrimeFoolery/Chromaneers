@@ -13,6 +13,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingController;
     public bool usingXboxController;
     public bool isShooting;
+    public GameObject paintProjector;
+    public ColourPicker colourPicker;
 
     public Vector3 pointToLook;
 
@@ -39,6 +41,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
+	    colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
 	}
@@ -156,6 +159,32 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 }
             }
         }
+
+	    if (colourPicker.currentColourHighligted=="Blue")
+	    {
+	        brush.Color = Color.blue;
+	    }
+	    if (colourPicker.currentColourHighligted == "Red")
+	    {
+	        brush.Color = Color.red;
+	    }
+	    if (colourPicker.currentColourHighligted == "Yellow")
+	    {
+	        brush.Color = Color.yellow;
+	    }
+	    if (colourPicker.currentColourHighligted == "Purple")
+	    {
+	        brush.Color = Color.magenta;
+	    }
+	    if (colourPicker.currentColourHighligted == "Orange")
+	    {
+	        brush.Color = Color.yellow;
+	    }
+	    if (colourPicker.currentColourHighligted == "Green")
+	    {
+	        brush.Color = Color.green;
+	    }
+
         //Looking at the floor below player
         RaycastHit hit;
         Ray ray = new Ray(transform.position,Vector3.down);
@@ -165,45 +194,39 @@ public class SingleplayerCharacterController : MonoBehaviour {
             Debug.Log(hit.collider.name);
 	        if (hit.collider)
 	        {
-	            /*Renderer rend = hit.collider.gameObject.GetComponent<Renderer>();
-	            Texture2D tex = rend.material.mainTexture as Texture2D;
-	            Vector2 pixelUV = hit.textureCoord;
-	            Debug.Log("PixelUV:  " + pixelUV);
 	            
-	            pixelUV.x *= tex.width;
-	            int texXPos = Mathf.RoundToInt(pixelUV.x);
-	            pixelUV.y *= tex.height;
-	            int texYPos = Mathf.RoundToInt(pixelUV.x);
-	            print(tex.GetPixel(texXPos, texYPos));*/
                 
                 
-	            if (Input.GetMouseButtonDown(1))
+	            if (Input.GetMouseButton(1))
 	            {
-	                bool success = true;
-	                var paintObject = hit.transform.GetComponent<InkCanvas>();
-	                if (paintObject!=null)
-	                {
-	                    if (useMethodType == UseMethodType.RaycastHitInfo)
-	                    {
-	                        success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
-	                    }
-	                }
-
-	                if (!success)
-	                {
-                        Debug.Log("Paint not painted correctly");
-	                }
+	                
 	            }
 
 	            if (timeToShoot<=0)
 	            {
 	                if (Input.GetMouseButtonDown(1))
 	                {
-                       
-	                    //timeToShoot = 0.5f;
-	                    //isShooting = true;
-	                    
-	                }
+	                    bool success = true;
+	                    var paintObject = hit.transform.GetComponent<InkCanvas>();
+	                    if (paintObject != null)
+	                    {
+	                        if (useMethodType == UseMethodType.RaycastHitInfo)
+	                        {
+	                            brush.Scale = 0.068f;
+	                            GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+                                paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
+	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+	                        }
+	                    }
+
+	                    if (!success)
+	                    {
+	                        Debug.Log("Paint not painted correctly");
+	                    }
+                        //timeToShoot = 0.5f;
+                        //isShooting = true;
+
+                    }
                 }
 	            if (Input.GetMouseButtonUp(1))
 	            {

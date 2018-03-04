@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 54031898343618478}
   - component: {fileID: 114909718584468080}
   - component: {fileID: 114427798164542556}
-  m_Layer: 0
+  - component: {fileID: 114384109578356554}
+  m_Layer: 8
   m_Name: SingleplayerCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -44,7 +45,7 @@ GameObject:
   - component: {fileID: 65399807100519334}
   - component: {fileID: 23485909329117084}
   - component: {fileID: 114971858408766426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +60,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4707290842054872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fireFrom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.23, z: 0}
+  m_LocalPosition: {x: 4.5, y: 0.9, z: 20.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4715286875538916}
@@ -216,6 +217,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114384109578356554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117249399534128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ecafebf7ff21944a269bd7b2bca6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  invincibility: 0
+  canBeDamaged: 0
+  matOne: {fileID: 0}
+  matTwo: {fileID: 0}
+  deadMat: {fileID: 0}
+  duration: 0
+  rend: {fileID: 0}
+  singleplayerCharacterController: {fileID: 114909718584468080}
 --- !u!114 &114427798164542556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,8 +274,24 @@ MonoBehaviour:
   usingController: 0
   usingXboxController: 0
   isShooting: 0
+  paintProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
+    type: 2}
   pointToLook: {x: 0, y: 0, z: 0}
   gunController: {fileID: 114971858408766426}
+  brush:
+    brushTexture: {fileID: 2800000, guid: b33b349d2ecfb94499503a68223cc237, type: 3}
+    brushNormalTexture: {fileID: 0}
+    brushHeightTexture: {fileID: 0}
+    brushScale: 0.068
+    rotateAngle: 0
+    brushNormalBlend: 0
+    brushHeightBlend: 0
+    brushColor: {r: 1, g: 0, b: 0, a: 1}
+    colorBlendType: 0
+    normalBlendType: 0
+    heightBlendType: 0
+  useMethodType: 0
+  erase: 0
 --- !u!114 &114971858408766426
 MonoBehaviour:
   m_ObjectHideFlags: 1

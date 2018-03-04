@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4412550999177872}
-  - component: {fileID: 119194275265981490}
   - component: {fileID: 114253796114932084}
   m_Layer: 0
   m_Name: PaintSplatProjector
@@ -35,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1240175364592992}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.29, y: 0.9, z: 12.94}
+  m_LocalPosition: {x: 11.596319, y: -0.19999999, z: 23.88003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,25 +51,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33518b5041a8c5a4a90907fec97999c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BluePaintSplat: {fileID: 2100000, guid: f0205aa773aa72b4387b9e89bb3ad078, type: 2}
-  RedPaintSplat: {fileID: 2100000, guid: 55f1cb34a3d11694181cdf1cf6d4f746, type: 2}
-  YellowPaintSplat: {fileID: 2100000, guid: 318ef90d89acc354587892ada6a7b80b, type: 2}
-  lifeTimer: 5
---- !u!119 &119194275265981490
-Projector:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1240175364592992}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0.1
-  m_FarClipPlane: 100
-  m_FieldOfView: 62.07
-  m_AspectRatio: 1
-  m_Orthographic: 1
-  m_OrthographicSize: 5.2
-  m_Material: {fileID: 2100000, guid: f0205aa773aa72b4387b9e89bb3ad078, type: 2}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 256
