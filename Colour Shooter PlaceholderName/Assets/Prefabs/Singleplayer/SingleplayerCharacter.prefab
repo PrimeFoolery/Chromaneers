@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 54031898343618478}
   - component: {fileID: 114909718584468080}
   - component: {fileID: 114427798164542556}
-  - component: {fileID: 114384109578356554}
   m_Layer: 8
   m_Name: SingleplayerCharacter
   m_TagString: Player
@@ -217,26 +216,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114384109578356554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1117249399534128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ecafebf7ff21944a269bd7b2bca6b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  invincibility: 0
-  canBeDamaged: 0
-  matOne: {fileID: 0}
-  matTwo: {fileID: 0}
-  deadMat: {fileID: 0}
-  duration: 0
-  rend: {fileID: 0}
-  singleplayerCharacterController: {fileID: 114909718584468080}
 --- !u!114 &114427798164542556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,6 +255,7 @@ MonoBehaviour:
   isShooting: 0
   paintProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
     type: 2}
+  colourPicker: {fileID: 0}
   pointToLook: {x: 0, y: 0, z: 0}
   gunController: {fileID: 114971858408766426}
   brush:
