@@ -109,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611837554126876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5095642, y: 0, z: -2.0148168}
+  m_LocalPosition: {x: 10.609131, y: -0.19999999, z: 5.286434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4451740849247206}
@@ -164,9 +164,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919898109711374}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.1695642, y: -0.23, z: -1.2551832}
-  m_LocalScale: {x: 0.099999994, y: 1, z: 0.10000011}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.17649817, y: 0.013483524, z: 0.03999996}
+  m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4104755184949866}
   m_RootOrder: 3
@@ -369,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8669c599d454b5f4b931b4941f07c07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splat: {fileID: 1449820532938932, guid: 9b108c7f0bf2fa34ba52189abbdc6646, type: 2}
-  EnemyEmpty: {fileID: 0}
+  splat: {fileID: 1961620274042458, guid: 4cbfd2a53ddba5049bae93e19266016a, type: 2}
+  EnemyEmpty: {fileID: 1919898109711374}
   health: 5
   deathTimer: 1
 --- !u!114 &114761770530762886
@@ -386,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   isItCoop: 1
+  enemyDamage: 1
 --- !u!136 &136996010345690640
 CapsuleCollider:
   m_ObjectHideFlags: 1

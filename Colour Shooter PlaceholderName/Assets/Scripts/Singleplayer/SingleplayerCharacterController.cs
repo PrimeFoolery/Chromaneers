@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Es.InkPainter;
 using UnityEngine;
 
 public class SingleplayerCharacterController : MonoBehaviour {
@@ -12,6 +13,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingController;
     public bool usingXboxController;
     public bool isShooting;
+    public GameObject paintProjector;
+    public ColourPicker colourPicker;
 
     public Vector3 pointToLook;
 
@@ -23,10 +26,22 @@ public class SingleplayerCharacterController : MonoBehaviour {
     private Camera mainCamera;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
+    [System.Serializable]
+    private enum UseMethodType
+    {
+        RaycastHitInfo,
+    }
+    [SerializeField]
+    private Brush brush;
+    [SerializeField]
+    private UseMethodType useMethodType = UseMethodType.RaycastHitInfo;
+    [SerializeField]
+    bool erase = false;
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
+	    colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
 	}
@@ -71,10 +86,23 @@ public class SingleplayerCharacterController : MonoBehaviour {
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
+                //Putting Splats down
+                if (Input.GetMouseButton(1))
+                {
+                    //gunController.isSplatting = true;
+                    //isShooting = true;
+                    //timeToShoot = 0.5f;
+                }
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
-                gunController.isFiring = false;
+                //gunController.isFiring = false;
+                //isShooting = false;
+            }
+            //Not Splatting
+            if (Input.GetMouseButtonUp(1))
+            {
+                gunController.isSplatting = false ;
                 isShooting = false;
             }
         }
@@ -131,8 +159,88 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 }
             }
         }
-	}
 
+	    if (colourPicker.currentColourHighligted=="Blue")
+	    {
+	        brush.Color = Color.blue;
+	    }
+	    if (colourPicker.currentColourHighligted == "Red")
+	    {
+	        brush.Color = Color.red;
+	    }
+	    if (colourPicker.currentColourHighligted == "Yellow")
+	    {
+	        brush.Color = Color.yellow;
+	    }
+	    if (colourPicker.currentColourHighligted == "Purple")
+	    {
+	        brush.Color = Color.magenta;
+	    }
+	    if (colourPicker.currentColourHighligted == "Orange")
+	    {
+	        brush.Color = Color.yellow;
+	    }
+	    if (colourPicker.currentColourHighligted == "Green")
+	    {
+	        brush.Color = Color.green;
+	    }
+
+        //Looking at the floor below player
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position,Vector3.down);
+        Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
+	    if (Physics.Raycast(ray, out hit, 20f))
+	    {
+            Debug.Log(hit.collider.name);
+	        if (hit.collider)
+	        {
+	            
+                
+                
+	            if (Input.GetMouseButton(1))
+	            {
+	                
+	            }
+
+	            if (timeToShoot<=0)
+	            {
+	                if (Input.GetMouseButtonDown(1))
+	                {
+	                    bool success = true;
+	                    var paintObject = hit.transform.GetComponent<InkCanvas>();
+	                    if (paintObject != null)
+	                    {
+	                        if (useMethodType == UseMethodType.RaycastHitInfo)
+	                        {
+	                            brush.Scale = 0.068f;
+	                            GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+                                paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
+	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+	                        }
+	                    }
+
+	                    if (!success)
+	                    {
+	                        Debug.Log("Paint not painted correctly");
+	                    }
+                        //timeToShoot = 0.5f;
+                        //isShooting = true;
+
+                    }
+                }
+	            if (Input.GetMouseButtonUp(1))
+	            {
+	                timeToShoot = 0.5f;
+	                isShooting = true;
+	            }
+
+
+            }
+           
+	    }
+	    
+	}
+    void PaintGround() { }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;

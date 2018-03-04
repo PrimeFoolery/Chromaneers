@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ColourPicker : MonoBehaviour {
 
     [Header("Colour Picker Variables")]
-    public string currentColourHighligted;
+    public string currentColourHighligted="Blue";
 
 	[Header ("Colour Picker GameObjects")]
 	public GameObject colourPicker;

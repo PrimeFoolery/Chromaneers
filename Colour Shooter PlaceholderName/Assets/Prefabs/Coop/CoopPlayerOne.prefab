@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 23568887262767628}
   - component: {fileID: 54031898343618478}
   - component: {fileID: 114543723125740802}
+  - component: {fileID: 114879534976830574}
   m_Layer: 0
   m_Name: CoopPlayerOne
   m_TagString: BluePlayer
@@ -115,6 +116,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -130,6 +132,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -147,6 +150,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -162,6 +166,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -231,6 +236,26 @@ MonoBehaviour:
   movingAcceleration: 1.1
   movingDecceleration: 0.9
   shootingDecceleration: 0.95
+--- !u!114 &114879534976830574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117249399534128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a216693091a444d9071512d91517b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  invincibility: 1
+  canBeDamaged: 0
+  matOne: {fileID: 2100000, guid: 020a0c811fda6f84285321481e49cc1e, type: 2}
+  matTwo: {fileID: 2100000, guid: b35d10409bbf143bbbe3ba298dc4102f, type: 2}
+  deadMat: {fileID: 2100000, guid: 97d9c178e765b4799bf16b54c7a45af7, type: 2}
+  duration: 0.5
+  rend: {fileID: 23568887262767628}
+  coopCharacterControllerOne: {fileID: 114543723125740802}
 --- !u!114 &114998027592461782
 MonoBehaviour:
   m_ObjectHideFlags: 1

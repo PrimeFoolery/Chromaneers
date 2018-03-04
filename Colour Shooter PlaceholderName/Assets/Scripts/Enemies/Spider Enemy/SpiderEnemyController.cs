@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class SpiderEnemyController : MonoBehaviour
 {
-
+	
     private int bodyColour;
     private Material bodyMaterial;
     private int legColour;
     private string legMaterial;
+	[Header("Spider Variables")]
     public GameObject leg1;
     public GameObject leg2;
     public GameObject leg3;
@@ -18,6 +19,7 @@ public class SpiderEnemyController : MonoBehaviour
     private bool bodyDropped = false;
     private int bodyHealth = 2;
 
+	[Header("Spider Materials")]
     public Material RedJellyMaterial;
     public Material BlueJellyMaterial;
     public Material YellowJellyMaterial;
@@ -28,11 +30,13 @@ public class SpiderEnemyController : MonoBehaviour
     public Material BlueParticleMaterial;
     public Material YellowParticleMaterial;
 
+	[Header("Player and Misc")]
     public GameObject player;
     private GameObject targetPlayer;
     NavMeshAgent agent;
     public bool isItCoop;
     private ColourSelectManager gameManager;
+	public int enemyDamage;
 
     //COOP PLAYER VARIABLES
     private GameObject RedPlayer;
@@ -265,6 +269,35 @@ public class SpiderEnemyController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+	    
+	    //Check if it collides with the blue enemy
+	    if (other.gameObject.CompareTag("Player")) {
+		    //When it collides with the enemy, apply the damage
+		    other.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
+		    //Resseting the timer for the player to take damage
+		    other.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
+	    }
+	    //Check if it collides with coop player one
+	    if (other.gameObject.CompareTag("BluePlayer")) {
+		    //When it collides with the enemy, apply the damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(enemyDamage);
+		    //Resseting the timer for the player to take damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
+	    }
+	    //Check if it collides with coop player two
+	    if (other.gameObject.CompareTag("RedPlayer")) {
+		    //When it collides with the enemy, apply the damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(enemyDamage);
+		    //Resseting the timer for the player to take damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
+	    }
+	    //Check if it collides with coop player three
+	    if (other.gameObject.CompareTag("YellowPlayer")) {
+		    //When it collides with the enemy, apply the damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(enemyDamage);
+		    //Resseting the timer for the player to take damage
+		    other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
+	    }
     }
     void FindClosestPlayer()
     {

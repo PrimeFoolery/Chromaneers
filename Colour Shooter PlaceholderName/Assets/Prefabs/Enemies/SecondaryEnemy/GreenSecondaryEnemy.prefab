@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   isItCoop: 1
+  enemyDamage: 2
 --- !u!114 &114542642784803246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,7 +298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8155a64b1e8ad7b489760a620bf3a943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  blueHealth: 3
+  yellowHealth: 3
+  sphere: {fileID: 1476923942138426}
+  blueJellyMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
+  yellowJellyMaterial: {fileID: 2100000, guid: 5e1c7f2a371699e4f99259567a4be0db, type: 2}
+  greenJellyMaterial: {fileID: 2100000, guid: 565e403fcae185047a132200443e4b63, type: 2}
 --- !u!136 &136229558932293396
 CapsuleCollider:
   m_ObjectHideFlags: 1
