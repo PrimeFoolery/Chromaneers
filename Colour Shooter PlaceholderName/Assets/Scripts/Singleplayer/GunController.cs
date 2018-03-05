@@ -52,7 +52,6 @@ public class GunController : MonoBehaviour {
 	void Update () {
         //Debug.Log("startingPosition:   " +startingPosition);
 		//Checking whether or not the player is firing
-	    Debug.Log(shotCounter);
         if (isFiring) {
             //We calculate when he shot
             shotCounter -= Time.deltaTime;
