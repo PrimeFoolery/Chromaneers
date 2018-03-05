@@ -14,6 +14,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingXboxController;
     public bool isShooting;
     public GameObject paintProjector;
+	public List<GameObject> projectorsList = new List<GameObject>();
     public ColourPicker colourPicker;
 
     public Vector3 pointToLook;
@@ -26,6 +27,18 @@ public class SingleplayerCharacterController : MonoBehaviour {
     private Camera mainCamera;
     private Vector3 moveInput;
     private Vector3 moveVelocity;
+
+	//Colours for painting ground
+
+	private Color redColor = Color.red;
+	private Color orangeColor = new Color(1,0.75f,0,1);
+	private Color yellowColor = Color.yellow;
+	private Color greenColor = Color.green;
+	private Color blueColor = Color.blue;
+	private Color purpleColor = new Color(0.6f,0,1,1);
+
+	private string colourPlayerIsStandingOn;
+
     [System.Serializable]
     private enum UseMethodType
     {
@@ -162,33 +175,33 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 	    if (colourPicker.currentColourHighligted=="Blue")
 	    {
-	        brush.Color = Color.blue;
+			brush.Color = blueColor;
 	    }
 	    if (colourPicker.currentColourHighligted == "Red")
 	    {
-	        brush.Color = Color.red;
+			brush.Color = redColor;
 	    }
 	    if (colourPicker.currentColourHighligted == "Yellow")
 	    {
-	        brush.Color = Color.yellow;
+			brush.Color = yellowColor;
 	    }
 	    if (colourPicker.currentColourHighligted == "Purple")
 	    {
-	        brush.Color = Color.magenta;
+			brush.Color = purpleColor;
 	    }
 	    if (colourPicker.currentColourHighligted == "Orange")
 	    {
-	        brush.Color = Color.yellow;
+			brush.Color = orangeColor;
 	    }
 	    if (colourPicker.currentColourHighligted == "Green")
 	    {
-	        brush.Color = Color.green;
+	        brush.Color = greenColor;
 	    }
-
+		//distance between player and projectors
         //Looking at the floor below player
         RaycastHit hit;
         Ray ray = new Ray(transform.position,Vector3.down);
-        Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
+        //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 	    if (Physics.Raycast(ray, out hit, 20f))
 	    {
             Debug.Log(hit.collider.name);
@@ -199,50 +212,59 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 
 	            if (Input.GetMouseButton(1))
 	            {
-	                
+					bool success = true;
+					var paintObject = hit.transform.GetComponent<InkCanvas>();
+					if (paintObject != null)
+					{
+						if (useMethodType == UseMethodType.RaycastHitInfo)
+						{
+							brush.Scale = 0.068f;
+							GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+							paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
+							projectorsList.Add (paintProjectionObject);
+							paintProjectionObject = null;
+							//success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+						}
+					}
+
+					if (!success)
+					{
+						Debug.Log("Paint not painted correctly");
+					}
 	            }
-
-	            if (timeToShoot<=0)
-	            {
-	                if (Input.GetMouseButtonDown(1))
-	                {
-	                    bool success = true;
-	                    var paintObject = hit.transform.GetComponent<InkCanvas>();
-	                    if (paintObject != null)
-	                    {
-	                        if (useMethodType == UseMethodType.RaycastHitInfo)
-	                        {
-	                            brush.Scale = 0.068f;
-	                            GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
-                                paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
-	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
-	                        }
-	                    }
-
-	                    if (!success)
-	                    {
-	                        Debug.Log("Paint not painted correctly");
-	                    }
-                        //timeToShoot = 0.5f;
-                        //isShooting = true;
-
-                    }
-                }
-	            if (Input.GetMouseButtonUp(1))
-	            {
-	                timeToShoot = 0.5f;
-	                isShooting = true;
-	            }
-
-
-            }
-           
+            } 
 	    }
-	    
+		for (int i = projectorsList.Count-1;i>0;i--){
+			paintProjectorController currentProjectorScript = projectorsList [i].GetComponent<paintProjectorController> ();
+			if (currentProjectorScript.isPlayerOnSplat == true) {
+				if (currentProjectorScript.projectorsBrush.Color == redColor) {
+					colourPlayerIsStandingOn = "red";
+				} else if (currentProjectorScript.projectorsBrush.Color == orangeColor) {
+					colourPlayerIsStandingOn = "orange";
+				} else if (currentProjectorScript.projectorsBrush.Color == yellowColor) {
+					colourPlayerIsStandingOn = "yellow";
+				} else if (currentProjectorScript.projectorsBrush.Color == greenColor) {
+					colourPlayerIsStandingOn = "green";
+				} else if (currentProjectorScript.projectorsBrush.Color == blueColor) {
+					colourPlayerIsStandingOn = "blue";
+				} else if (currentProjectorScript.projectorsBrush.Color == purpleColor) {
+					colourPlayerIsStandingOn = "purple";
+				}
+				break;
+			} else {
+				colourPlayerIsStandingOn = "null";
+			}
+
+		}
+		Debug.Log (colourPlayerIsStandingOn);
 	}
-    void PaintGround() { }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
     }
+	public void RefreshPaint(){
+		foreach(GameObject projector in projectorsList){
+			projector.GetComponent<paintProjectorController> ().Repaint ();
+		}
+	}
 }
