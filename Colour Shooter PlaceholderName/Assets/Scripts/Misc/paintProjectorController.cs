@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class paintProjectorController : MonoBehaviour
 {
-    private Brush projectorsBrush;
+    public Brush projectorsBrush;
     private RaycastHit projectorHit;
     private InkCanvas projectorTargetInkCanvas;
+	private SingleplayerCharacterController singlePlayer;
 
-    private bool hasPaintBeenPainted = false;
+	private bool brushHasBeenSet;
+	private bool hasPaintBeenPainted = false;
     private float lifeTimer = 5f;
+	private float distanceBetweenProjectorAndPlayer;
+	public bool isPlayerOnSplat = true;
     
 
     // Use this for initialization
     void Start () {
-		
+		singlePlayer = GameObject.FindGameObjectWithTag ("Player").GetComponent<SingleplayerCharacterController> ();
 	}
 	
 	// Update is called once per frame
@@ -37,15 +41,34 @@ public class paintProjectorController : MonoBehaviour
 	        projectorsBrush.Scale = projectorsBrush.Scale + 0.01f;
 	        projectorTargetInkCanvas.Erase(projectorsBrush, projectorHit);
 	        projectorsBrush.Scale = 0.068f;
+			singlePlayer.projectorsList.Remove (gameObject);
+			singlePlayer.RefreshPaint ();
             Destroy(gameObject);
 	    }
+		distanceBetweenProjectorAndPlayer = Vector3.Distance (transform.position, singlePlayer.gameObject.transform.position);
+		if(distanceBetweenProjectorAndPlayer<=3.5f){
+			isPlayerOnSplat = true;
+		}
+		if(distanceBetweenProjectorAndPlayer>3.5f){
+			isPlayerOnSplat = false;
+		}
     }
 
     public void PaintStart(RaycastHit hit,InkCanvas hitCanvas,Brush brush)
     {
-        projectorsBrush = brush;
-        projectorHit = hit;
-        projectorTargetInkCanvas = hitCanvas;
+		if(brushHasBeenSet==false){
+			Debug.Log ("ProjectorBrush Changing");
+			projectorsBrush.Color = brush.Color;
+			projectorsBrush.Scale = brush.Scale;
+			projectorsBrush.BrushTexture = brush.BrushTexture;
+			projectorHit = hit;
+			projectorTargetInkCanvas = hitCanvas;
+			brushHasBeenSet = true;
+		}
+       
     }
+	public void Repaint(){
+		hasPaintBeenPainted = false;
+	}
    
 }
