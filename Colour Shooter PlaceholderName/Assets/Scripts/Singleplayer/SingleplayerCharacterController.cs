@@ -257,7 +257,19 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 		}
 		Debug.Log (colourPlayerIsStandingOn);
-	}
+	    if (colourPlayerIsStandingOn=="yellow")
+	    {
+	        moveSpeed = 6;
+	    } else
+	    if (colourPlayerIsStandingOn == "purple")
+	    {
+	        moveSpeed = 2;
+	    }
+	    else
+	    {
+	        moveSpeed = 4;
+	    }
+    }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
