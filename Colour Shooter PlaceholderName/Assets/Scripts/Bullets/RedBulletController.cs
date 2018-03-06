@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class RedBulletController : MonoBehaviour {
 
     [Header("Bullet variables")]
     public float speed;
+    public float deceleration;
     public float bulletLifeTime;
     public int bulletDamage;
 
@@ -27,6 +29,7 @@ public class RedBulletController : MonoBehaviour {
 
         //Moving the bullet
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        speed = speed * deceleration;
 
         //Bullets lifeTime
         bulletLifeTime -= Time.deltaTime;
