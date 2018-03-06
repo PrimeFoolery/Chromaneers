@@ -9,6 +9,7 @@ public class paintProjectorController : MonoBehaviour
     private RaycastHit projectorHit;
     private InkCanvas projectorTargetInkCanvas;
 	private SingleplayerCharacterController singlePlayer;
+	private EnemyManager enemyManagerScript;
 
 	private bool brushHasBeenSet;
 	private bool hasPaintBeenPainted = false;
@@ -20,6 +21,7 @@ public class paintProjectorController : MonoBehaviour
     // Use this for initialization
     void Start () {
 		singlePlayer = GameObject.FindGameObjectWithTag ("Player").GetComponent<SingleplayerCharacterController> ();
+		enemyManagerScript = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<EnemyManager> ();
 	}
 	
 	// Update is called once per frame
@@ -51,6 +53,9 @@ public class paintProjectorController : MonoBehaviour
 		}
 		if(distanceBetweenProjectorAndPlayer>3.5f){
 			isPlayerOnSplat = false;
+		}
+		foreach(GameObject enemy in enemyManagerScript.enemyList){
+			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemy.gameObject.transform.position);
 		}
     }
 

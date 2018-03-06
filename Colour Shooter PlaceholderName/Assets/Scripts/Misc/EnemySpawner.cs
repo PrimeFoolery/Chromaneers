@@ -17,13 +17,16 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject PurpleEnemy;
 	public GameObject GreenEnemy;
 
+	private GameObject tempEnemy;
+	private EnemyManager enemyManagerScript;
+
 	private int RanNumb;
 	private int ranShieldEnemy;
 	private int ranSecondaryEnemy;
 
 	// Use this for initialization
 	void Start () {
-		
+		enemyManagerScript = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<EnemyManager> ();
 	}
 	
 	// Update is called once per frame
@@ -34,48 +37,58 @@ public class EnemySpawner : MonoBehaviour {
 			
 			RanNumb = Random.Range (0, 6);
 			if (RanNumb == 0) {
-				Instantiate (RedEnemy);
+				tempEnemy = Instantiate (RedEnemy);
+				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 			if (RanNumb == 1) {
-				Instantiate (YellowEnemy);
+				tempEnemy = Instantiate (YellowEnemy);
+				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 			if (RanNumb == 2) {
-				Instantiate (BlueEnemy);
+				tempEnemy = Instantiate (BlueEnemy);
+				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 		    if (RanNumb == 3) {
-		        Instantiate(SpiderEnemy);
+				tempEnemy = Instantiate(SpiderEnemy);
+				enemyManagerScript.enemyList.Add (tempEnemy);
 		        Timer = 0;
 		    }
 			if(RanNumb == 4||RanNumb == 5){
 				ranSecondaryEnemy = Random.Range (0, 3);
 				if(ranSecondaryEnemy==0){
-					Instantiate (OrangeEnemy);
+					tempEnemy = Instantiate (OrangeEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranSecondaryEnemy==1){
-					Instantiate (GreenEnemy);
+					tempEnemy = Instantiate (GreenEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranSecondaryEnemy==2){
-					Instantiate (PurpleEnemy);
+					tempEnemy = Instantiate (PurpleEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 			}
 			if(RanNumb == 6){
 				ranShieldEnemy = Random.Range (0,3);
 				if(ranShieldEnemy==0){
-					Instantiate (RedShieldEnemy);
+					tempEnemy = Instantiate (RedShieldEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranShieldEnemy==1){
-					Instantiate (BlueShieldEnemy);
+					tempEnemy = Instantiate (BlueShieldEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranShieldEnemy==2){
-					Instantiate (YellowShieldEnemy);
+					tempEnemy = Instantiate (YellowShieldEnemy);
+					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 			}
