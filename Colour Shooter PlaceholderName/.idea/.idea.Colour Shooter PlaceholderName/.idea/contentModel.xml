@@ -3,8 +3,63 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="ImportedAssets" t="Include">
+          <e p="InkPainter" t="Include">
+            <e p="readme_en.txt" t="Include" />
+            <e p="readme_jp.txt" t="Include" />
+            <e p="Sample" t="Include">
+              <e p="Script" t="Include">
+                <e p="MousePainter.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Script" t="Include">
+              <e p="Core" t="Include">
+                <e p="Brush.cs" t="Include" />
+                <e p="InkCanvas.cs" t="Include" />
+                <e p="Math.cs" t="Include" />
+                <e p="MeshOperator.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="UVChecker.cs" t="Include" />
+              </e>
+              <e p="Effective" t="Include">
+                <e p="GrabArea.cs" t="Include" />
+                <e p="HeightFluid.cs" t="Include" />
+                <e p="ReverseUV.cs" t="Include" />
+                <e p="TextureMorphing.cs" t="Include" />
+              </e>
+              <e p="Extenision" t="Include">
+                <e p="GameObjectExtension.cs" t="Include" />
+              </e>
+              <e p="Util" t="Include">
+                <e p="SceneViewCamera.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Shader" t="Include">
+              <e p="Effective" t="Include">
+                <e p="GrabArea.shader" t="Include" />
+                <e p="HeightDrip.shader" t="Include" />
+                <e p="HeightToColor.shader" t="Include" />
+                <e p="HeightToNormal.shader" t="Include" />
+                <e p="InvertAlpha.shader" t="Include" />
+                <e p="ReverseUV.shader" t="Include" />
+                <e p="SingleColorFill.shader" t="Include" />
+                <e p="TextureMorphing.shader" t="Include" />
+              </e>
+              <e p="Lib" t="Include">
+                <e p="InkPainterFoundation.cginc" t="Include" />
+              </e>
+              <e p="Paint" t="Include">
+                <e p="PaintHeight.shader" t="Include" />
+                <e p="PaintMain.shader" t="Include" />
+                <e p="PaintNormal.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Material" t="Include">
           <e p="Enemies" t="Include">
             <e p="Jelly" t="Include">
@@ -12,6 +67,9 @@
               <e p="JellyShader.shader" t="Include" />
               <e p="Transparent.shader" t="Include" />
             </e>
+          </e>
+          <e p="Paint" t="Include">
+            <e p="PaintSplat.shader" t="Include" />
           </e>
         </e>
         <e p="Plugins" t="Include">
@@ -66,6 +124,8 @@
             <e p="ColourPicker.cs" t="Include" />
             <e p="ColourSelectManager.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
+            <e p="paintProjectorController.cs" t="Include" />
+            <e p="SplatPainter.cs" t="Include" />
           </e>
           <e p="Singleplayer" t="Include">
             <e p="GunController.cs" t="Include" />
