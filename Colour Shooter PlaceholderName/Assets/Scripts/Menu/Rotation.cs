@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour {
 
-    float rotateSpeed = 5;
+    public float rotateSpeed = 5;
         
 	// Use this for initialization
 	void Start () {
