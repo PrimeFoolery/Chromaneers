@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject PurpleEnemy;
 	public GameObject GreenEnemy;
 
-	private GameObject tempEnemy;
+	public GameObject tempEnemy;
 	private EnemyManager enemyManagerScript;
 
 	private int RanNumb;
