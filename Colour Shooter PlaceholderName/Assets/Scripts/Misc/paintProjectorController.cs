@@ -57,6 +57,41 @@ public class paintProjectorController : MonoBehaviour
 		/*
 		foreach(GameObject enemy in enemyManagerScript.enemyList){
 			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemy.gameObject.transform.position);
+		    if (distanceBetweenThisEnemyAndProjector<=3.5f)
+		    {
+		        PaintDetectionScript thisEnemiesPaintDetectionScript = enemy.GetComponent<PaintDetectionScript>();
+
+                thisEnemiesPaintDetectionScript.isEnemyOnPaint = true;
+		        if (projectorsBrush.Color==Color.red)
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "red";
+		        } else
+		        if (projectorsBrush.Color == Color.yellow)
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "yellow";
+		        }
+		        else
+		        if (projectorsBrush.Color == new Color(1,0.75f,0,1))
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "orange";
+		        }
+		        else
+		        if (projectorsBrush.Color == Color.green)
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "green";
+		        }
+		        else
+		        if (projectorsBrush.Color == Color.blue)
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "blue";
+		        }
+		        else
+		        if (projectorsBrush.Color == new Color(0.6f,0,1,1))
+		        {
+		            thisEnemiesPaintDetectionScript.rawColourOfPaint = "purple";
+		        }
+
+            }
 		}
 		*/
     }
