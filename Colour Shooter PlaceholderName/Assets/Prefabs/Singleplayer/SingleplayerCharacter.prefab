@@ -258,11 +258,18 @@ MonoBehaviour:
   colourPicker: {fileID: 0}
   pointToLook: {x: 0, y: 0, z: 0}
   gunController: {fileID: 114971858408766426}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  orangeColor: {r: 1, g: 0.75, b: 0, a: 1}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  blueColor: {r: 0, g: 0, b: 1, a: 1}
+  purpleColor: {r: 0.6, g: 0, b: 1, a: 1}
+  colourPlayerIsStandingOn: 
   brush:
-    brushTexture: {fileID: 2800000, guid: b33b349d2ecfb94499503a68223cc237, type: 3}
+    brushTexture: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
     brushNormalTexture: {fileID: 0}
     brushHeightTexture: {fileID: 0}
-    brushScale: 0.068
+    brushScale: 0.33
     rotateAngle: 0
     brushNormalBlend: 0
     brushHeightBlend: 0

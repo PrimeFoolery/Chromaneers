@@ -208,6 +208,10 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    if (Physics.Raycast(ray, out hit, 20f))
 	    {
             Debug.Log(hit.collider.name);
+	        float groundSizeX = hit.collider.gameObject.transform.localScale.x;
+	        float neededBrushSize = (-0.191f * Mathf.Log(groundSizeX, Mathf.Exp(1))) + 0.8595f;
+            Debug.Log("brush size:  "+neededBrushSize);
+	        brush.Scale = neededBrushSize;
 	        if (hit.collider)
 	        {
 	            
@@ -221,7 +225,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 					{
 						if (useMethodType == UseMethodType.RaycastHitInfo)
 						{
-							brush.Scale = 0.068f;
+							//brush.Scale = 0.068f;
 							GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
 							paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
 							listManager.projectorsList.Add (paintProjectionObject);
@@ -237,7 +241,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	            }
             } 
 	    }
-		Debug.Log (colourPlayerIsStandingOn);
+		//Debug.Log (colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn=="yellow")
 	    {
 	        moveSpeed = 6;

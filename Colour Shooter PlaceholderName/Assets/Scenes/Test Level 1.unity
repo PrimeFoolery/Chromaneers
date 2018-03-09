@@ -7195,7 +7195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &825792293
 Transform:
   m_ObjectHideFlags: 0
@@ -7326,6 +7326,10 @@ Prefab:
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 1124180115}
+    - target: {fileID: 1117249399534128, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -8639,6 +8643,10 @@ Prefab:
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 1652727641}
+    - target: {fileID: 1117249399534128, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -8894,12 +8902,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114909718584468080, guid: c2bde13d6754b15428e440fb50fd0ee7,
         type: 2}
-      propertyPath: brush.brushTexture
-      value: 
-      objectReference: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
-    - target: {fileID: 1117249399534128, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: brush.brushScale
+      value: 0.068
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
@@ -9033,6 +9037,10 @@ Prefab:
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 823542429}
+    - target: {fileID: 1117249399534128, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -10261,7 +10269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1150920864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11446,7 +11454,7 @@ Prefab:
     - target: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
         type: 2}
       propertyPath: isItSingleplayer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1387481424639414, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
       propertyPath: m_IsActive
@@ -13524,7 +13532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1312512188
 Transform:
   m_ObjectHideFlags: 0
@@ -14598,7 +14606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1421757907
 Transform:
   m_ObjectHideFlags: 0
@@ -16736,8 +16744,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1618155467}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.2, y: -0.7, z: 40.57}
-  m_LocalScale: {x: 10.8, y: 1, z: 10.8}
+  m_LocalPosition: {x: -14, y: -0.7, z: 19.3}
+  m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 770052866}
   m_RootOrder: 11
@@ -17667,7 +17675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1713763782
 Transform:
   m_ObjectHideFlags: 0
