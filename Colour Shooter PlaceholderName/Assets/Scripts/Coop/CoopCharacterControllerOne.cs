@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Es.InkPainter;
 
 public class CoopCharacterControllerOne : MonoBehaviour {
 
@@ -11,9 +12,34 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
+    public GameObject paintProjector;
+
+    private EnemyManager listManager;
+    public ColourPicker colourPicker;
 
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
+
+    public Color redColor = Color.red;
+    public Color orangeColor = new Color(1, 0.75f, 0, 1);
+    public Color yellowColor = Color.yellow;
+    public Color greenColor = Color.green;
+    public Color blueColor = Color.blue;
+    public Color purpleColor = new Color(0.6f, 0, 1, 1);
+
+    public string colourPlayerIsStandingOn;
+
+    [System.Serializable]
+    private enum UseMethodType
+    {
+        RaycastHitInfo,
+    }
+    [SerializeField]
+    private Brush brush;
+    [SerializeField]
+    private UseMethodType useMethodType = UseMethodType.RaycastHitInfo;
+    [SerializeField]
+    bool erase = false;
 
     //Private variables
     private Rigidbody myRB;
@@ -32,8 +58,11 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
+	    colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
+	    listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
+	    brush.Color = blueColor;
 	}
 	
 	void Update () {
@@ -126,7 +155,42 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            coopCharacterControllerOne.isFiring = false;
 	            isShooting = false;
 	        }
-	    }
+            RaycastHit hit;
+            Ray ray = new Ray(transform.position, Vector3.down);
+            //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
+            if (Physics.Raycast(ray, out hit, 20f))
+            {
+                Debug.Log(hit.collider.name);
+                if (hit.collider)
+                {
+
+
+
+                    if (Input.GetKey(KeyCode.Joystick1Button6))
+                    {
+                        bool success = true;
+                        var paintObject = hit.transform.GetComponent<InkCanvas>();
+                        if (paintObject != null)
+                        {
+                            if (useMethodType == UseMethodType.RaycastHitInfo)
+                            {
+                                brush.Scale = 0.068f;
+                                GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+                                paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
+                                listManager.projectorsList.Add(paintProjectionObject);
+                                paintProjectionObject = null;
+                                //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+                            }
+                        }
+
+                        if (!success)
+                        {
+                            Debug.Log("Paint not painted correctly");
+                        }
+                    }
+                }
+            }
+        }
 
 		if (usingXboxController) {
 			//Making a vector3 to store the characters inputs
@@ -190,18 +254,68 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire1")) {
+		        if (Input.GetButtonDown("Fire1Right")) {
 		            coopCharacterControllerOne.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
                 }
 		    }
 		    //Not shootings the bullet
-			if (Input.GetButtonUp("Fire1")) {
+			if (Input.GetButtonUp("Fire1Right")) {
 				coopCharacterControllerOne.isFiring = false;
 			    isShooting = false;
 			}
-		}
+		    RaycastHit hit;
+		    Ray ray = new Ray(transform.position, Vector3.down);
+		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
+		    if (Physics.Raycast(ray, out hit, 20f))
+		    {
+		        Debug.Log(hit.collider.name);
+		        if (hit.collider)
+		        {
+
+
+
+		            if (Input.GetButton("Fire1Left"))
+		            {
+		                bool success = true;
+		                var paintObject = hit.transform.GetComponent<InkCanvas>();
+		                if (paintObject != null)
+		                {
+		                    if (useMethodType == UseMethodType.RaycastHitInfo)
+		                    {
+		                        brush.Scale = 0.068f;
+		                        GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+		                        paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
+		                        listManager.projectorsList.Add(paintProjectionObject);
+		                        paintProjectionObject = null;
+		                        //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+		                    }
+		                }
+
+		                if (!success)
+		                {
+		                    Debug.Log("Paint not painted correctly");
+		                }
+		            }
+		        }
+		    }
+        }
+	    
+	    Debug.Log(colourPlayerIsStandingOn);
+	    if (colourPlayerIsStandingOn == "yellow")
+	    {
+	        moveSpeed = 6;
+	    }
+	    else
+	    if (colourPlayerIsStandingOn == "purple")
+	    {
+	        moveSpeed = 2;
+	    }
+	    else
+	    {
+	        moveSpeed = 4;
+	    }
     }
 
     void FixedUpdate () {

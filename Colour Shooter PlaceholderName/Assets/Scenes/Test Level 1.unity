@@ -7321,47 +7321,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114488731105616336, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114488731105616336, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: timeToShoot
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: timeBetweenShots
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 114627511303337698, guid: cc9082562e65e2140bac760c1e57fcc1,
         type: 2}
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 1124180115}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1757956546276824, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1999543679534352, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -8670,47 +8634,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114889375755103684, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114889375755103684, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: timeToShoot
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: timeBetweenShots
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 114138347575659052, guid: 91e46474f1e38d2429c7de4a09526859,
         type: 2}
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 1652727641}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1107473467943248, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909476435378218, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -8969,6 +8897,10 @@ Prefab:
       propertyPath: brush.brushTexture
       value: 
       objectReference: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
+    - target: {fileID: 1117249399534128, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bde13d6754b15428e440fb50fd0ee7, type: 2}
   m_IsPrefabParent: 0
@@ -9096,47 +9028,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: timeBetweenShots
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: timeToShoot
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 114879534976830574, guid: 308643343fd891648ab475618f2bf2f6,
         type: 2}
       propertyPath: currentHP
       value: 
       objectReference: {fileID: 823542429}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: usingXboxController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1077965453519916, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1159455726761294, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117249399534128, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -11550,6 +11446,10 @@ Prefab:
     - target: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
         type: 2}
       propertyPath: isItSingleplayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387481424639414, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11572,6 +11472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: []
+  projectorsList: []
+  isGameSinglePlayer: 0
 --- !u!1 &1226842733
 GameObject:
   m_ObjectHideFlags: 0

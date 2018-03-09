@@ -81,7 +81,19 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             retargetingDelay = 5f;
         }
         transform.LookAt(targetPlayer.transform);
-	}
+	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint=="yellow")
+	    {
+	        agent.speed = 4;
+	    } else
+	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "purple")
+	    {
+	        agent.speed = 1;
+	    }
+	    else
+	    {
+	        agent.speed = 2;
+	    }
+    }
 
     void FindClosestPlayer() {
         readyToRetarget = false;

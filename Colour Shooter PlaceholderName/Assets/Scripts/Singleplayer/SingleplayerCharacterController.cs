@@ -14,7 +14,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingXboxController;
     public bool isShooting;
     public GameObject paintProjector;
-	public List<GameObject> projectorsList = new List<GameObject>();
+
+    private EnemyManager listManager;
     public ColourPicker colourPicker;
 
     public Vector3 pointToLook;
@@ -30,14 +31,14 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 	//Colours for painting ground
 
-	private Color redColor = Color.red;
-	private Color orangeColor = new Color(1,0.75f,0,1);
-	private Color yellowColor = Color.yellow;
-	private Color greenColor = Color.green;
-	private Color blueColor = Color.blue;
-	private Color purpleColor = new Color(0.6f,0,1,1);
+	public Color redColor = Color.red;
+    public Color orangeColor = new Color(1,0.75f,0,1);
+    public Color yellowColor = Color.yellow;
+    public Color greenColor = Color.green;
+    public Color blueColor = Color.blue;
+    public Color purpleColor = new Color(0.6f,0,1,1);
 
-	private string colourPlayerIsStandingOn;
+	public string colourPlayerIsStandingOn;
 
     [System.Serializable]
     private enum UseMethodType
@@ -57,6 +58,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
+	    listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
 	}
 
 	void Update () {
@@ -222,7 +224,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 							brush.Scale = 0.068f;
 							GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
 							paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
-							projectorsList.Add (paintProjectionObject);
+							listManager.projectorsList.Add (paintProjectionObject);
 							paintProjectionObject = null;
 							//success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
 						}
@@ -235,28 +237,6 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	            }
             } 
 	    }
-		for (int i = projectorsList.Count-1;i>0;i--){
-			paintProjectorController currentProjectorScript = projectorsList [i].GetComponent<paintProjectorController> ();
-			if (currentProjectorScript.isPlayerOnSplat == true) {
-				if (currentProjectorScript.projectorsBrush.Color == redColor) {
-					colourPlayerIsStandingOn = "red";
-				} else if (currentProjectorScript.projectorsBrush.Color == orangeColor) {
-					colourPlayerIsStandingOn = "orange";
-				} else if (currentProjectorScript.projectorsBrush.Color == yellowColor) {
-					colourPlayerIsStandingOn = "yellow";
-				} else if (currentProjectorScript.projectorsBrush.Color == greenColor) {
-					colourPlayerIsStandingOn = "green";
-				} else if (currentProjectorScript.projectorsBrush.Color == blueColor) {
-					colourPlayerIsStandingOn = "blue";
-				} else if (currentProjectorScript.projectorsBrush.Color == purpleColor) {
-					colourPlayerIsStandingOn = "purple";
-				}
-				break;
-			} else {
-				colourPlayerIsStandingOn = "null";
-			}
-
-		}
 		Debug.Log (colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn=="yellow")
 	    {
@@ -275,9 +255,5 @@ public class SingleplayerCharacterController : MonoBehaviour {
         //Set the Rigidbody to retreieve the moveVelocity;
         myRB.velocity = moveVelocity;
     }
-	public void RefreshPaint(){
-		foreach(GameObject projector in projectorsList){
-			projector.GetComponent<paintProjectorController> ().Repaint ();
-		}
-	}
+	
 }

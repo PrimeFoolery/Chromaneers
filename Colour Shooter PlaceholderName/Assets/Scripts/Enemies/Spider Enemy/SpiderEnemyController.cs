@@ -37,6 +37,7 @@ public class SpiderEnemyController : MonoBehaviour
     public bool isItCoop;
     private ColourSelectManager gameManager;
 	public int enemyDamage;
+    private PaintDetectionScript paintDetector;
 
     //COOP PLAYER VARIABLES
     private GameObject RedPlayer;
@@ -47,7 +48,8 @@ public class SpiderEnemyController : MonoBehaviour
 
     // Use this for initialization
     void Start ()
-	{
+    {
+        paintDetector = gameObject.GetComponentInParent<PaintDetectionScript>();
 	    gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
 
 	    if (gameManager.isItSingleplayer == true)
@@ -205,26 +207,80 @@ public class SpiderEnemyController : MonoBehaviour
 	        readyToRetarget = true;
 	        retargetingDelay = 5f;
 	    }
-        if (howManyLegsAreAlive==4)
-        {
-            agent.speed = 4f;
-        }
-	    if (howManyLegsAreAlive == 3)
+
+	    if (paintDetector.colourOfPaint=="yellow")
 	    {
-	        agent.speed = 3.5f;
-        }
-	    if (howManyLegsAreAlive == 2)
+	        if (howManyLegsAreAlive == 4)
+	        {
+	            agent.speed = 5.5f;
+	        }
+	        if (howManyLegsAreAlive == 3)
+	        {
+	            agent.speed = 5f;
+	        }
+	        if (howManyLegsAreAlive == 2)
+	        {
+	            agent.speed = 4.5f;
+	        }
+	        if (howManyLegsAreAlive == 1)
+	        {
+	            agent.speed = 4f;
+	        }
+        }else if(paintDetector.colourOfPaint == "purple")
+
 	    {
-	        agent.speed = 3f;
-        }
-	    if (howManyLegsAreAlive == 1)
+	        if (howManyLegsAreAlive == 4)
+	        {
+	            agent.speed = 2.5f;
+	        }
+	        if (howManyLegsAreAlive == 3)
+	        {
+	            agent.speed = 2f;
+	        }
+	        if (howManyLegsAreAlive == 2)
+	        {
+	            agent.speed = 1.5f;
+	        }
+	        if (howManyLegsAreAlive == 1)
+	        {
+	            agent.speed = 1f;
+	        }
+	    }
+	    else
 	    {
-	        agent.speed = 2.5f;
+	        if (howManyLegsAreAlive == 4)
+	        {
+	            agent.speed = 4f;
+	        }
+	        if (howManyLegsAreAlive == 3)
+	        {
+	            agent.speed = 3.5f;
+	        }
+	        if (howManyLegsAreAlive == 2)
+	        {
+	            agent.speed = 3f;
+	        }
+	        if (howManyLegsAreAlive == 1)
+	        {
+	            agent.speed = 2.5f;
+	        }
         }
+        
 
 	    if (howManyLegsAreAlive == 0)
 	    {
-	        agent.speed = 1f;
+	        if (paintDetector.colourOfPaint=="yellow")
+	        {
+	            agent.speed = 2f;
+            } else if (paintDetector.colourOfPaint == "purple")
+	        {
+	            agent.speed = 0.5f;
+	        }
+	        else
+	        {
+	            agent.speed = 1f;
+            }
+            
 	        if (bodyDropped==false)
 	        {
                 GetComponentInParent<Transform>().position = new Vector3(GetComponentInParent<Transform>().position.x,0, GetComponentInParent<Transform>().position.z);

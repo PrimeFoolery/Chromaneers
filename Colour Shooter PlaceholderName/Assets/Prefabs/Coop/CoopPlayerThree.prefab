@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727731473848350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fireFrom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 54031898343618478}
   - component: {fileID: 114889375755103684}
   - component: {fileID: 114138347575659052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CoopPlayerThree
   m_TagString: YellowPlayer
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 65790672053745552}
   - component: {fileID: 23642574076202686}
   - component: {fileID: 114688111762235096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,6 +235,7 @@ MonoBehaviour:
   deadMat: {fileID: 2100000, guid: 7409c3311c9ff46949522f082d5a8633, type: 2}
   duration: 0.5
   rend: {fileID: 23568887262767628}
+  currentHP: {fileID: 0}
   coopCharacterControllerThree: {fileID: 114889375755103684}
 --- !u!114 &114688111762235096
 MonoBehaviour:
@@ -251,7 +252,7 @@ MonoBehaviour:
   bulletSpread: 5
   timeBetweenShots: 0.2
   isFiring: 0
-  usingXboxController: 0
+  usingXboxController: 1
   fireFrom: {fileID: 4727731473848350}
   currentBullet:
   - {fileID: 1557260129900302, guid: ffb380a95b9ffc34e8f039accc4cbced, type: 2}
@@ -274,7 +275,31 @@ MonoBehaviour:
   timeToShoot: 0.2
   usingXboxController: 1
   isShooting: 0
+  paintProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
+    type: 2}
+  colourPicker: {fileID: 0}
   coopCharacterControllerThree: {fileID: 114688111762235096}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  orangeColor: {r: 1, g: 0.75, b: 0, a: 1}
+  yellowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  blueColor: {r: 0, g: 0, b: 1, a: 1}
+  purpleColor: {r: 0.6, g: 0, b: 1, a: 1}
+  colourPlayerIsStandingOn: 
+  brush:
+    brushTexture: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
+    brushNormalTexture: {fileID: 0}
+    brushHeightTexture: {fileID: 0}
+    brushScale: 0.068
+    rotateAngle: 0
+    brushNormalBlend: 0
+    brushHeightBlend: 0
+    brushColor: {r: 0, g: 0, b: 0, a: 0}
+    colorBlendType: 0
+    normalBlendType: 0
+    heightBlendType: 0
+  useMethodType: 0
+  erase: 0
   movingAcceleration: 1.1
   movingDecceleration: 0.9
   shootingDecceleration: 0.95
