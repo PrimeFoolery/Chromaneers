@@ -54,9 +54,11 @@ public class paintProjectorController : MonoBehaviour
 		if(distanceBetweenProjectorAndPlayer>3.5f){
 			isPlayerOnSplat = false;
 		}
+		/*
 		foreach(GameObject enemy in enemyManagerScript.enemyList){
 			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemy.gameObject.transform.position);
 		}
+		*/
     }
 
     public void PaintStart(RaycastHit hit,InkCanvas hitCanvas,Brush brush)

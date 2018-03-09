@@ -60,6 +60,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	}
 
 	void Update () {
+		Debug.Log(moveSpeed);
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 	    if (!isShooting) {
