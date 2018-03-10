@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour {
 
 		if (Timer >= 2) {
 			
-			RanNumb = Random.Range (0, 6);
+			RanNumb = Random.Range (0, 3);
 			if (RanNumb == 0) {
 				tempEnemy = Instantiate (RedEnemy);
 				enemyManagerScript.enemyList.Add (tempEnemy);

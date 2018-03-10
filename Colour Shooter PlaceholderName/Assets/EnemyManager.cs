@@ -275,6 +275,7 @@ public class EnemyManager : MonoBehaviour {
                     }
                     else
                     {
+                        Debug.Log("is enemy on paint:  "+ enemy.GetComponent<PaintDetectionScript>().isEnemyOnPaint);
                         enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
                     }
                 }
@@ -286,6 +287,24 @@ public class EnemyManager : MonoBehaviour {
         foreach (GameObject projector in projectorsList)
         {
             projector.GetComponent<paintProjectorController>().Repaint();
+        }
+    }
+
+    public void MakeAllNull()
+    {
+        foreach (GameObject enemy in enemyList)
+        {
+            enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+        }
+
+        if (isGameSinglePlayer==true)
+        {
+            singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
+        }else if (isGameSinglePlayer==false)
+        {
+            coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
+            coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
+            coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
         }
     }
 }

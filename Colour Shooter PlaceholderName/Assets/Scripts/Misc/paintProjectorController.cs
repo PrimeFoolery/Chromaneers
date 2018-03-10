@@ -68,6 +68,7 @@ public class paintProjectorController : MonoBehaviour
 	        projectorsBrush.Scale = 0.068f;
 			enemyManagerScript.projectorsList.Remove (gameObject);
 			enemyManagerScript.RefreshPaint ();
+	        enemyManagerScript.MakeAllNull();
             Destroy(gameObject);
         }
 
@@ -116,14 +117,16 @@ public class paintProjectorController : MonoBehaviour
 		
 		foreach(GameObject enemy in enemyManagerScript.enemyList){
 			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemy.gameObject.transform.position);
-		    if (distanceBetweenThisEnemyAndProjector<=3.75f)
+		    PaintDetectionScript thisEnemiesPaintDetectionScript = enemy.GetComponent<PaintDetectionScript>();
+            if (distanceBetweenThisEnemyAndProjector<=3.75f)
 		    {
-		        PaintDetectionScript thisEnemiesPaintDetectionScript = enemy.GetComponent<PaintDetectionScript>();
-
                 thisEnemiesPaintDetectionScript.isEnemyOnPaint = true;
-		        
-
             }
+
+		    if (distanceBetweenThisEnemyAndProjector>3.75f)
+		    {
+		        thisEnemiesPaintDetectionScript.isEnemyOnPaint = false;
+		    }
 		}
 		
     }

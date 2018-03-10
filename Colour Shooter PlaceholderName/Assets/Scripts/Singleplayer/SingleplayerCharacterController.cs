@@ -253,6 +253,15 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    {
 	        moveSpeed = 4;
 	    }
+
+	    if (colourPlayerIsStandingOn == "red")
+	    {
+	        moveSpeed = -Mathf.Abs(moveSpeed);
+        }
+	    else
+	    {
+	        moveSpeed = Mathf.Abs(moveSpeed);
+        }
     }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
