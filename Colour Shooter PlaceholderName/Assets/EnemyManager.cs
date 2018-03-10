@@ -10,11 +10,11 @@ public class EnemyManager : MonoBehaviour {
     private ColourSelectManager gameManager;
     public bool isGameSinglePlayer;
 
-    private GameObject singlePlayer;
+    public GameObject singlePlayer;
 
-    private GameObject coopBluePlayer;
-    private GameObject coopRedPlayer;
-    private GameObject coopYellowPlayer;
+    public GameObject coopBluePlayer;
+    public GameObject coopRedPlayer;
+    public GameObject coopYellowPlayer;
 
     // Use this for initialization
     void Start ()
@@ -39,13 +39,18 @@ public class EnemyManager : MonoBehaviour {
 	{
 	    if (isGameSinglePlayer == true) 
 	    {
-	        for (int i = projectorsList.Count - 1; i > 0; i--)
+	        if (projectorsList.Count==0)
+	        {
+	            singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
+            }
+	        for (int i = projectorsList.Count-1; i > 0; i--)
 	        {
 	            paintProjectorController currentProjectorScript = projectorsList[i].GetComponent<paintProjectorController>();
 	            if (currentProjectorScript.isPlayerOnSplat == true)
 	            {
 	                if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().redColor)
 	                {
+                        Debug.Log("Change colour to red");
 	                    singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "red";
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().orangeColor)
@@ -54,6 +59,7 @@ public class EnemyManager : MonoBehaviour {
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().yellowColor)
 	                {
+                        Debug.Log("Change colour to yellow");
 	                    singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "yellow";
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().greenColor)
@@ -72,6 +78,7 @@ public class EnemyManager : MonoBehaviour {
 	            }
 	            else
 	            {
+                    Debug.Log("not on any projectors");
 	                singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
 	            }
 
@@ -296,15 +303,6 @@ public class EnemyManager : MonoBehaviour {
         {
             enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
         }
-
-        if (isGameSinglePlayer==true)
-        {
-            singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
-        }else if (isGameSinglePlayer==false)
-        {
-            coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
-            coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
-            coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
-        }
+        
     }
 }

@@ -10502,7 +10502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1150920864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11715,6 +11715,10 @@ MonoBehaviour:
   enemyList: []
   projectorsList: []
   isGameSinglePlayer: 0
+  singlePlayer: {fileID: 0}
+  coopBluePlayer: {fileID: 0}
+  coopRedPlayer: {fileID: 0}
+  coopYellowPlayer: {fileID: 0}
 --- !u!1 &1226842733
 GameObject:
   m_ObjectHideFlags: 0

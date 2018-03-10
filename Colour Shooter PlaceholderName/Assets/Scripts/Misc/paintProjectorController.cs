@@ -68,7 +68,46 @@ public class paintProjectorController : MonoBehaviour
 	        projectorsBrush.Scale = 0.068f;
 			enemyManagerScript.projectorsList.Remove (gameObject);
 			enemyManagerScript.RefreshPaint ();
-	        enemyManagerScript.MakeAllNull();
+	        //enemyManagerScript.MakeAllNull();
+	        if (isGameSinglePlayer==true)
+	        {
+	            if (distanceBetweenProjectorAndPlayer<=3.75f)
+	            {
+	                enemyManagerScript.singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
+	            }
+
+	            foreach (GameObject enemy in enemyManagerScript.enemyList)
+	            {
+	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+                    if (distanceBetweenThisEnemyAndProjector<=3.75f)
+                    {
+                        enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+                    }
+	            }
+            }
+	        else
+	        {
+	            if (distanceBetweenProjectorAndRedPlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
+	            }
+	            if (distanceBetweenProjectorAndYellowPlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
+	            }
+	            if (distanceBetweenProjectorAndBluePlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
+	            }
+                foreach (GameObject enemy in enemyManagerScript.enemyList)
+	            {
+	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+	                if (distanceBetweenThisEnemyAndProjector <= 3.75f)
+	                {
+	                    enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+	                }
+	            }
+            }
             Destroy(gameObject);
         }
 

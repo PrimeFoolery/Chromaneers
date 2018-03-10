@@ -233,7 +233,32 @@ public class SingleplayerCharacterController : MonoBehaviour {
 						}
 					}
 
-					if (!success)
+	                if (brush.Color == redColor)
+	                {
+	                    colourPlayerIsStandingOn = "red";
+	                }
+	                if (brush.Color == orangeColor)
+	                {
+	                    colourPlayerIsStandingOn = "orange";
+	                }
+	                if (brush.Color == yellowColor)
+	                {
+	                    colourPlayerIsStandingOn = "yellow";
+	                }
+	                if (brush.Color == greenColor)
+	                {
+	                    colourPlayerIsStandingOn = "green";
+	                }
+	                if (brush.Color == blueColor)
+	                {
+	                    colourPlayerIsStandingOn = "blue";
+	                }
+	                if (brush.Color == purpleColor)
+	                {
+	                    colourPlayerIsStandingOn = "purple";
+	                }
+
+                    if (!success)
 					{
 						Debug.Log("Paint not painted correctly");
 					}
