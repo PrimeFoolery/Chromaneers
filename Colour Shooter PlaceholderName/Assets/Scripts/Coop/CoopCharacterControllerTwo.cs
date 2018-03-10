@@ -160,6 +160,9 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 20f))
             {
                 Debug.Log(hit.collider.name);
+                float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
+                float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
+                brush.Scale = neededBrushSize;
                 if (hit.collider)
                 {
 

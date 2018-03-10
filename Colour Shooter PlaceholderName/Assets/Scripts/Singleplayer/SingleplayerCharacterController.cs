@@ -207,12 +207,9 @@ public class SingleplayerCharacterController : MonoBehaviour {
         //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 	    if (Physics.Raycast(ray, out hit, 20f))
 	    {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
 	        float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
-            Debug.Log("groundSizeX:  "+groundSizeX);
-	        //float neededBrushSize = (-0.191f * Mathf.Log(groundSizeX, Mathf.Exp(1))) + 0.8595f;
 	        float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
-            Debug.Log("brush size:  "+neededBrushSize);
 	        brush.Scale = neededBrushSize;
 	        if (hit.collider)
 	        {
