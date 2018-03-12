@@ -128,6 +128,52 @@ public class EnemyManager : MonoBehaviour {
                     }
 	            }
 	        }
+
+	        for (int enemy = 0;  enemy < enemyList.Count;  enemy++)
+	        {
+	            for (int i = projectorsList.Count-2; i > 0 ; i--)
+	            {
+	                paintProjectorController currentProjectorScript = projectorsList[i].GetComponent<paintProjectorController>();
+	                if (currentProjectorScript.enemyOnPaintList[enemy]==true)
+	                {
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().redColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "red";
+                        }
+                        else
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().orangeColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "orange";
+                        }
+                        else
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().yellowColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "yellow";
+                        }
+                        else
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().greenColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "green";
+                        }
+                        else
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().blueColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "blue";
+                        }
+                        else
+                        if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().purpleColor)
+                        {
+                            enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "purple";
+                        }
+
+                        break;
+                    }
+	                else
+	                {
+	                    enemyList[enemy].GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+	                }
+                }
+	        }
         } else if (isGameSinglePlayer==false)
 	    {
             for (int i = projectorsList.Count - 1; i > 0; i--)
@@ -304,5 +350,13 @@ public class EnemyManager : MonoBehaviour {
             enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
         }
         
+    }
+
+    public void AddExtraBoolToProjectorsScript()
+    {
+        for (int i = 0; i<projectorsList.Count;i++)
+        {
+            projectorsList[i].GetComponent<paintProjectorController>().enemyOnPaintList.Add(false);
+        }
     }
 }
