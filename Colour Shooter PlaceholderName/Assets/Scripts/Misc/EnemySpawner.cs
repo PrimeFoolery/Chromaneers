@@ -35,24 +35,28 @@ public class EnemySpawner : MonoBehaviour {
 
 		if (Timer >= 2) {
 			
-			RanNumb = Random.Range (0, 3);
+			RanNumb = Random.Range (0, 6);
 			if (RanNumb == 0) {
 				tempEnemy = Instantiate (RedEnemy);
+				enemyManagerScript.AddExtraBoolToProjectorsScript ();
 				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 			if (RanNumb == 1) {
 				tempEnemy = Instantiate (YellowEnemy);
+				enemyManagerScript.AddExtraBoolToProjectorsScript ();
 				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 			if (RanNumb == 2) {
 				tempEnemy = Instantiate (BlueEnemy);
+				enemyManagerScript.AddExtraBoolToProjectorsScript ();
 				enemyManagerScript.enemyList.Add (tempEnemy);
 				Timer = 0;
 			}
 		    if (RanNumb == 3) {
 				tempEnemy = Instantiate(SpiderEnemy);
+				enemyManagerScript.AddExtraBoolToProjectorsScript ();
 				enemyManagerScript.enemyList.Add (tempEnemy);
 		        Timer = 0;
 		    }
@@ -60,16 +64,19 @@ public class EnemySpawner : MonoBehaviour {
 				ranSecondaryEnemy = Random.Range (0, 3);
 				if(ranSecondaryEnemy==0){
 					tempEnemy = Instantiate (OrangeEnemy);
+					enemyManagerScript.AddExtraBoolToProjectorsScript ();
 					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranSecondaryEnemy==1){
 					tempEnemy = Instantiate (GreenEnemy);
+					enemyManagerScript.AddExtraBoolToProjectorsScript ();
 					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
 				if(ranSecondaryEnemy==2){
 					tempEnemy = Instantiate (PurpleEnemy);
+					enemyManagerScript.AddExtraBoolToProjectorsScript ();
 					enemyManagerScript.enemyList.Add (tempEnemy);
 					Timer = 0;
 				}
