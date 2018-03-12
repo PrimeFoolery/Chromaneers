@@ -17,8 +17,9 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     private GameObject YellowPlayer;
     private float retargetingDelay = 5f;
     private bool readyToRetarget = true;
-    
-   [Header("Misc")]
+    bool redPaintLock = false;
+
+    [Header("Misc")]
     public bool isItCoop;
     private ColourSelectManager gameManager;
     public int enemyDamage;
@@ -93,24 +94,66 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 	    {
 	        agent.speed = 2;
 	    }
+
+	    
+	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "red")
+	    {
+	        float XRandom = 0;
+	        float ZRandom = 0;
+            if (redPaintLock == false)
+	        {
+	            XRandom = Random.Range(-10000f, 10000f);
+	            ZRandom = Random.Range(-10000f, 10000f);
+	            redPaintLock = true;
+	        }
+            Debug.Log("ON RED");
+	        GameObject tempGameObject = new GameObject("tempObject");
+            tempGameObject.transform.position = new Vector3(XRandom, 0, ZRandom);
+	        targetPlayer = tempGameObject;
+
+	    }
+	    else
+	    {
+	        redPaintLock = true;
+	        if (isItCoop==false)
+	        {
+	            targetPlayer = player;
+	        }
+	        else
+	        {
+	            FindClosestPlayer();
+            }
+	        
+	    }
     }
 
     void FindClosestPlayer() {
-        readyToRetarget = false;
-        //THIS CALCULATES THE DISTANCE BETWEEN THE ENEMY AND ALL OF THE PLAYERS AND THEN FINDS THE LOWEST AND SETS THE TARGETED PLAYER TO THAT
-        float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
-        float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
-        float distanceBetweenEnemyAndYellowPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
-       
-        float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer), Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
-      
-        if (closestDistance==distanceBetweenEnemyAndRedPlayer) {
-            targetPlayer = RedPlayer;
-        } else if (closestDistance==distanceBetweenEnemyAndBluePlayer) {
-            targetPlayer = BluePlayer;
-        } else if (closestDistance==distanceBetweenEnemyAndYellowPlayer) {
-            targetPlayer = YellowPlayer;
-        }
+        
+
+            readyToRetarget = false;
+            //THIS CALCULATES THE DISTANCE BETWEEN THE ENEMY AND ALL OF THE PLAYERS AND THEN FINDS THE LOWEST AND SETS THE TARGETED PLAYER TO THAT
+            float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
+            float distanceBetweenEnemyAndBluePlayer =
+                Vector3.Distance(transform.position, BluePlayer.transform.position);
+            float distanceBetweenEnemyAndYellowPlayer =
+                Vector3.Distance(transform.position, YellowPlayer.transform.position);
+
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer),
+                Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+
+            if (closestDistance == distanceBetweenEnemyAndRedPlayer)
+            {
+                targetPlayer = RedPlayer;
+            }
+            else if (closestDistance == distanceBetweenEnemyAndBluePlayer)
+            {
+                targetPlayer = BluePlayer;
+            }
+            else if (closestDistance == distanceBetweenEnemyAndYellowPlayer)
+            {
+                targetPlayer = YellowPlayer;
+            }
+        
     }
 
     void OnCollisionEnter(Collision theCol) {

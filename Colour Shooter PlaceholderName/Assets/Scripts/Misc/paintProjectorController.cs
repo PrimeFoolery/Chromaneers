@@ -10,6 +10,7 @@ public class paintProjectorController : MonoBehaviour
     private InkCanvas projectorTargetInkCanvas;
 	private SingleplayerCharacterController singlePlayer;
 	private EnemyManager enemyManagerScript;
+	public List<bool> enemyOnPaintList = new List<bool> ();
     private bool isGameSinglePlayer;
 
     private CoopCharacterControllerOne blueCoopController;
@@ -43,7 +44,7 @@ public class paintProjectorController : MonoBehaviour
             redCoopController = GameObject.FindGameObjectWithTag("RedPlayer").GetComponent<CoopCharacterControllerTwo>();
             yellowCoopController = GameObject.FindGameObjectWithTag("YellowPlayer").GetComponent<CoopCharacterControllerThree>();
         }
-        
+		AssignBoolListToObjectList ();
 		
     }
 	
@@ -68,6 +69,46 @@ public class paintProjectorController : MonoBehaviour
 	        projectorsBrush.Scale = 0.068f;
 			enemyManagerScript.projectorsList.Remove (gameObject);
 			enemyManagerScript.RefreshPaint ();
+	        //enemyManagerScript.MakeAllNull();
+	        if (isGameSinglePlayer==true)
+	        {
+	            if (distanceBetweenProjectorAndPlayer<=3.75f)
+	            {
+	                enemyManagerScript.singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
+	            }
+
+	            foreach (GameObject enemy in enemyManagerScript.enemyList)
+	            {
+	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+                    if (distanceBetweenThisEnemyAndProjector<=3.75f)
+                    {
+                        enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+                    }
+	            }
+            }
+	        else
+	        {
+	            if (distanceBetweenProjectorAndRedPlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
+	            }
+	            if (distanceBetweenProjectorAndYellowPlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
+	            }
+	            if (distanceBetweenProjectorAndBluePlayer <= 3.75f)
+	            {
+	                enemyManagerScript.coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
+	            }
+                foreach (GameObject enemy in enemyManagerScript.enemyList)
+	            {
+	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+	                if (distanceBetweenThisEnemyAndProjector <= 3.75f)
+	                {
+	                    enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+	                }
+	            }
+            }
             Destroy(gameObject);
         }
 
@@ -112,22 +153,24 @@ public class paintProjectorController : MonoBehaviour
 	            isYellowPlayerOnSplat = false;
 	        }
         }
-		
-		
-		foreach(GameObject enemy in enemyManagerScript.enemyList){
-			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemy.gameObject.transform.position);
-		    if (distanceBetweenThisEnemyAndProjector<=3.75f)
-		    {
-		        PaintDetectionScript thisEnemiesPaintDetectionScript = enemy.GetComponent<PaintDetectionScript>();
-
-                thisEnemiesPaintDetectionScript.isEnemyOnPaint = true;
-		        
-
-            }
+		for(int i = 0; i<enemyManagerScript.enemyList.Count ;i++){
+			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemyManagerScript.enemyList[i].gameObject.transform.position);
+			if (distanceBetweenThisEnemyAndProjector<=6.5f)
+			{
+				enemyOnPaintList[i] = true;
+			}
+			if (distanceBetweenThisEnemyAndProjector>6.5f)
+			{
+				enemyOnPaintList[i] = false;
+			}
 		}
 		
     }
-
+	private void AssignBoolListToObjectList(){
+		for(int i = 0;i<enemyManagerScript.enemyList.Count;i++){
+			enemyOnPaintList.Add (false);
+		}
+	}
     public void PaintStart(RaycastHit hit,InkCanvas hitCanvas,Brush brush)
     {
 		if(brushHasBeenSet==false){

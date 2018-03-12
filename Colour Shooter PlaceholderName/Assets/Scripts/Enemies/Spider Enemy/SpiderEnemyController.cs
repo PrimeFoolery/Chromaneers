@@ -265,9 +265,17 @@ public class SpiderEnemyController : MonoBehaviour
 	            agent.speed = 2.5f;
 	        }
         }
-        
 
-	    if (howManyLegsAreAlive == 0)
+	    if (paintDetector.colourOfPaint == "red")
+	    {
+	        agent.speed = -Mathf.Abs(agent.speed);
+	    }
+	    else
+	    {
+	        agent.speed = Mathf.Abs(agent.speed);
+	    }
+
+        if (howManyLegsAreAlive == 0)
 	    {
 	        if (paintDetector.colourOfPaint=="yellow")
 	        {

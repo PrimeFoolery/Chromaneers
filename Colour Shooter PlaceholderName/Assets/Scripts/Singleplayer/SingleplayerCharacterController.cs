@@ -59,6 +59,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
 	    listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+		brush.Color = blueColor;
 	}
 
 	void Update () {
@@ -70,7 +71,12 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        moveVelocity = moveInput * moveSpeed;
         } else if (isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-	        moveVelocity = moveInput * shootingSpeed;
+			if (colourPlayerIsStandingOn == "red") {
+				moveVelocity = moveInput * -1 * shootingSpeed;
+			} else {
+				moveVelocity = moveInput * shootingSpeed;
+			}
+
         }
 
         //Checking if it is using the mouse
@@ -113,7 +119,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
                 //gunController.isFiring = false;
-                //isShooting = false;
+                isShooting = false;
             }
             //Not Splatting
             if (Input.GetMouseButtonUp(1))
@@ -233,7 +239,32 @@ public class SingleplayerCharacterController : MonoBehaviour {
 						}
 					}
 
-					if (!success)
+	                if (brush.Color == redColor)
+	                {
+	                    colourPlayerIsStandingOn = "red";
+	                }
+	                if (brush.Color == orangeColor)
+	                {
+	                    colourPlayerIsStandingOn = "orange";
+	                }
+	                if (brush.Color == yellowColor)
+	                {
+	                    colourPlayerIsStandingOn = "yellow";
+	                }
+	                if (brush.Color == greenColor)
+	                {
+	                    colourPlayerIsStandingOn = "green";
+	                }
+	                if (brush.Color == blueColor)
+	                {
+	                    colourPlayerIsStandingOn = "blue";
+	                }
+	                if (brush.Color == purpleColor)
+	                {
+	                    colourPlayerIsStandingOn = "purple";
+	                }
+
+                    if (!success)
 					{
 						Debug.Log("Paint not painted correctly");
 					}
@@ -253,6 +284,15 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    {
 	        moveSpeed = 4;
 	    }
+
+	    if (colourPlayerIsStandingOn == "red")
+	    {
+	        moveSpeed = -Mathf.Abs(moveSpeed);
+        }
+		if (colourPlayerIsStandingOn == "null")
+	    {
+	        moveSpeed = Mathf.Abs(moveSpeed);
+        }
     }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
