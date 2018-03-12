@@ -59,6 +59,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
         //Getting the mainCamera from the current scene
         mainCamera = FindObjectOfType<Camera>();
 	    listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+		brush.Color = blueColor;
 	}
 
 	void Update () {
@@ -70,7 +71,12 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        moveVelocity = moveInput * moveSpeed;
         } else if (isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-	        moveVelocity = moveInput * shootingSpeed;
+			if (colourPlayerIsStandingOn == "red") {
+				moveVelocity = moveInput * -1 * shootingSpeed;
+			} else {
+				moveVelocity = moveInput * shootingSpeed;
+			}
+
         }
 
         //Checking if it is using the mouse
@@ -113,7 +119,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
                 //gunController.isFiring = false;
-                //isShooting = false;
+                isShooting = false;
             }
             //Not Splatting
             if (Input.GetMouseButtonUp(1))
@@ -283,7 +289,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    {
 	        moveSpeed = -Mathf.Abs(moveSpeed);
         }
-	    else
+		if (colourPlayerIsStandingOn == "null")
 	    {
 	        moveSpeed = Mathf.Abs(moveSpeed);
         }
