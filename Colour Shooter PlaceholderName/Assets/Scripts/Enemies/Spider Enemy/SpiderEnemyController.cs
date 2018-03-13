@@ -280,7 +280,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        if (paintDetector.colourOfPaint=="yellow")
 	        {
 	            agent.speed = 2f;
-            } else if (paintDetector.colourOfPaint == "purple")
+            } else if (paintDetector.colourOfPaint == "blue")
 	        {
 	            agent.speed = 0.5f;
 	        }

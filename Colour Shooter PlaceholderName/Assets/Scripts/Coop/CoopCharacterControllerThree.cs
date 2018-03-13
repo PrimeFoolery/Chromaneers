@@ -108,9 +108,16 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 					moveVelocity = moveVelocity * movingDecceleration;
 				}
 			} else if (isShooting) {
-				//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-				moveVelocity = moveInput * shootingSpeed;
-				if(moveInput!= new Vector3(0,0,0)){
+                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+			    if (colourPlayerIsStandingOn == "red")
+			    {
+			        moveVelocity = moveInput * -1 * shootingSpeed;
+			    }
+			    else
+			    {
+			        moveVelocity = moveInput * shootingSpeed;
+			    }
+                if (moveInput!= new Vector3(0,0,0)){
 					if(moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
 					}
@@ -185,7 +192,30 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                                 //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
                             }
                         }
-
+                        if (brush.Color == redColor)
+                        {
+                            colourPlayerIsStandingOn = "red";
+                        }
+                        if (brush.Color == orangeColor)
+                        {
+                            colourPlayerIsStandingOn = "orange";
+                        }
+                        if (brush.Color == yellowColor)
+                        {
+                            colourPlayerIsStandingOn = "yellow";
+                        }
+                        if (brush.Color == greenColor)
+                        {
+                            colourPlayerIsStandingOn = "green";
+                        }
+                        if (brush.Color == blueColor)
+                        {
+                            colourPlayerIsStandingOn = "blue";
+                        }
+                        if (brush.Color == purpleColor)
+                        {
+                            colourPlayerIsStandingOn = "purple";
+                        }
                         if (!success)
                         {
                             Debug.Log("Paint not painted correctly");
@@ -219,9 +249,16 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 					moveVelocity = moveVelocity * movingDecceleration;
 				}
 			} else if (isShooting) {
-				//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-				moveVelocity = moveInput * shootingSpeed;
-				if(moveInput!= new Vector3(0,0,0)){
+                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+			    if (colourPlayerIsStandingOn == "red")
+			    {
+			        moveVelocity = moveInput * -1 * shootingSpeed;
+			    }
+			    else
+			    {
+			        moveVelocity = moveInput * shootingSpeed;
+			    }
+                if (moveInput!= new Vector3(0,0,0)){
 					if(moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
 					}
@@ -294,8 +331,31 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		                        //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
 		                    }
 		                }
-
-		                if (!success)
+		                if (brush.Color == redColor)
+		                {
+		                    colourPlayerIsStandingOn = "red";
+		                }
+		                if (brush.Color == orangeColor)
+		                {
+		                    colourPlayerIsStandingOn = "orange";
+		                }
+		                if (brush.Color == yellowColor)
+		                {
+		                    colourPlayerIsStandingOn = "yellow";
+		                }
+		                if (brush.Color == greenColor)
+		                {
+		                    colourPlayerIsStandingOn = "green";
+		                }
+		                if (brush.Color == blueColor)
+		                {
+		                    colourPlayerIsStandingOn = "blue";
+		                }
+		                if (brush.Color == purpleColor)
+		                {
+		                    colourPlayerIsStandingOn = "purple";
+		                }
+                        if (!success)
 		                {
 		                    Debug.Log("Paint not painted correctly");
 		                }
@@ -310,13 +370,21 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        moveSpeed = 6;
 	    }
 	    else
-	    if (colourPlayerIsStandingOn == "purple")
+	    if (colourPlayerIsStandingOn == "blue")
 	    {
 	        moveSpeed = 2;
 	    }
 	    else
 	    {
 	        moveSpeed = 4;
+	    }
+	    if (colourPlayerIsStandingOn == "red")
+	    {
+	        moveSpeed = -Mathf.Abs(moveSpeed);
+	    }
+	    if (colourPlayerIsStandingOn == "null")
+	    {
+	        moveSpeed = Mathf.Abs(moveSpeed);
 	    }
     }
 

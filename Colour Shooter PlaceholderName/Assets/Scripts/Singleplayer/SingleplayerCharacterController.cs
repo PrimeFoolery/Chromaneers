@@ -108,23 +108,10 @@ public class SingleplayerCharacterController : MonoBehaviour {
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
-                //Putting Splats down
-                if (Input.GetMouseButton(1))
-                {
-                    //gunController.isSplatting = true;
-                    //isShooting = true;
-                    //timeToShoot = 0.5f;
-                }
             }
             //Not shootings the bullet
             if (Input.GetMouseButtonUp(0)) {
-                //gunController.isFiring = false;
-                isShooting = false;
-            }
-            //Not Splatting
-            if (Input.GetMouseButtonUp(1))
-            {
-                gunController.isSplatting = false ;
+                gunController.isFiring = false;
                 isShooting = false;
             }
         }
@@ -276,7 +263,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	    {
 	        moveSpeed = 6;
 	    } else
-	    if (colourPlayerIsStandingOn == "purple")
+	    if (colourPlayerIsStandingOn == "blue")
 	    {
 	        moveSpeed = 2;
 	    }

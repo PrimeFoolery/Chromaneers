@@ -86,7 +86,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 	    {
 	        agent.speed = 4;
 	    } else
-	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "purple")
+	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "blue")
 	    {
 	        agent.speed = 1;
 	    }
