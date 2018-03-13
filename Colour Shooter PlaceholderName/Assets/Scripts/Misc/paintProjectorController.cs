@@ -53,6 +53,7 @@ public class paintProjectorController : MonoBehaviour
 	{
 	    if (hasPaintBeenPainted==false)
 	    {
+		    Debug.Log("paint should be getting painted");
 	        projectorTargetInkCanvas.Paint(projectorsBrush, projectorHit);
 	        hasPaintBeenPainted = true;
 	    }

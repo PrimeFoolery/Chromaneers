@@ -55,6 +55,7 @@ public class CharacterThreeGunController : MonoBehaviour {
 
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
+		Debug.Log ("Bullet Should be firing");
         if (!coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick3Button7)) {
@@ -75,7 +76,7 @@ public class CharacterThreeGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire3")) {
+			if (Input.GetButton("Fire3Right")) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
                     print("I am null! Check ColourSelectManager");
                     return;

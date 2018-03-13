@@ -90,12 +90,22 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 			if (!isShooting) {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
-					if(moveSpeed<=5f){
-						moveSpeed = moveSpeed * movingAcceleration;
-					}
-					if(moveSpeed>=5f){
-						moveSpeed = 5f;
-					}
+					if(colourPlayerIsStandingOn!="yellow"){
+						if(moveSpeed<=5f){
+							moveSpeed = moveSpeed * movingAcceleration;
+						}
+						if(moveSpeed>=5f){
+							moveSpeed = 5f;
+						}
+					}else
+						if(colourPlayerIsStandingOn=="yellow"){
+							if(moveSpeed<=7f){
+								moveSpeed = moveSpeed * movingAcceleration;
+							}
+							if(moveSpeed>=7f){
+								moveSpeed = 7f;
+							}
+						}
 					moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
@@ -184,7 +194,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                         {
                             if (useMethodType == UseMethodType.RaycastHitInfo)
                             {
-                                brush.Scale = 0.068f;
+                                //brush.Scale = 0.068f;
                                 GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
                                 paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
                                 listManager.projectorsList.Add(paintProjectionObject);
@@ -231,12 +241,23 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 			if (!isShooting) {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
-					if(moveSpeed<=5f){
-						moveSpeed = moveSpeed * movingAcceleration;
+					if(colourPlayerIsStandingOn!="yellow"){
+						if(moveSpeed<=5f){
+							moveSpeed = moveSpeed * movingAcceleration;
+						}
+						if(moveSpeed>=5f){
+							moveSpeed = 5f;
+						}
+					}else
+					if(colourPlayerIsStandingOn=="yellow"){
+						if(moveSpeed<=7f){
+							moveSpeed = moveSpeed * movingAcceleration;
+						}
+						if(moveSpeed>=7f){
+							moveSpeed = 7f;
+						}
 					}
-					if(moveSpeed>=5f){
-						moveSpeed = 5f;
-					}
+
 					moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
@@ -310,6 +331,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    if (Physics.Raycast(ray, out hit, 20f))
 		    {
 		        Debug.Log(hit.collider.name);
+				float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
+				float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
+				brush.Scale = neededBrushSize;
 		        if (hit.collider)
 		        {
 
@@ -323,7 +347,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		                {
 		                    if (useMethodType == UseMethodType.RaycastHitInfo)
 		                    {
-		                        brush.Scale = 0.068f;
+		                        //brush.Scale = 0.068f;
 		                        GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
 		                        paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
 		                        listManager.projectorsList.Add(paintProjectionObject);
@@ -333,6 +357,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		                }
 		                if (brush.Color == redColor)
 		                {
+							Debug.Log ("RedStartOn:  "+name);
 		                    colourPlayerIsStandingOn = "red";
 		                }
 		                if (brush.Color == orangeColor)
