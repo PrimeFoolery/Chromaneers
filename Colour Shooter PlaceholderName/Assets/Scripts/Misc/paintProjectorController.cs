@@ -53,7 +53,7 @@ public class paintProjectorController : MonoBehaviour
 	{
 	    if (hasPaintBeenPainted==false)
 	    {
-		    Debug.Log("paint should be getting painted");
+		    //Debug.Log("paint should be getting painted");
 	        projectorTargetInkCanvas.Paint(projectorsBrush, projectorHit);
 	        hasPaintBeenPainted = true;
 	    }
@@ -175,7 +175,7 @@ public class paintProjectorController : MonoBehaviour
     public void PaintStart(RaycastHit hit,InkCanvas hitCanvas,Brush brush)
     {
 		if(brushHasBeenSet==false){
-			Debug.Log ("ProjectorBrush Changing");
+			//Debug.Log ("ProjectorBrush Changing");
 			projectorsBrush.Color = brush.Color;
 			projectorsBrush.Scale = brush.Scale;
 			projectorsBrush.BrushTexture = brush.BrushTexture;

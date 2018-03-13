@@ -62,7 +62,7 @@ public class CameraScript : MonoBehaviour
         }
         cameraComponent = gameObject.GetComponent<Camera>();
         aspectRatio = cameraComponent.aspect;
-        Debug.Log(aspectRatio);
+        //Debug.Log(aspectRatio);
     }
 
     // Update is called once per frame

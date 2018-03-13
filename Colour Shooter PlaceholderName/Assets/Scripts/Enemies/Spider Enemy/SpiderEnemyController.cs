@@ -164,7 +164,7 @@ public class SpiderEnemyController : MonoBehaviour
 	            leg4.GetComponent<SpiderLegScript>().legColour = "red";
             }
         }
-        Debug.Log("leg colour:  "+legColour+"  body colour:  "+bodyColour);
+        //Debug.Log("leg colour:  "+legColour+"  body colour:  "+bodyColour);
         gameObject.GetComponent<Renderer>().material = bodyMaterial;
 	}
 	// Update is called once per frame

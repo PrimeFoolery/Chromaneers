@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour {
 	            {
 	                if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().redColor)
 	                {
-                        Debug.Log("Change colour to red");
+                        //Debug.Log("Change colour to red");
 	                    singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "red";
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().orangeColor)
@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour {
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().yellowColor)
 	                {
-                        Debug.Log("Change colour to yellow");
+                        //Debug.Log("Change colour to yellow");
 	                    singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "yellow";
 	                }
 	                else if (currentProjectorScript.projectorsBrush.Color == singlePlayer.GetComponent<SingleplayerCharacterController>().greenColor)
@@ -78,7 +78,7 @@ public class EnemyManager : MonoBehaviour {
 	            }
 	            else
 	            {
-                    Debug.Log("not on any projectors");
+                    //Debug.Log("not on any projectors");
 	                singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
 	            }
 
@@ -340,7 +340,7 @@ public class EnemyManager : MonoBehaviour {
     {
         foreach (GameObject projector in projectorsList)
         {
-            projector.GetComponent<paintProjectorController>().Repaint();
+            //projector.GetComponent<paintProjectorController>().Repaint();
         }
     }
 

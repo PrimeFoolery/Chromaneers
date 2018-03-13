@@ -91,12 +91,12 @@ public class GunController : MonoBehaviour {
         if (Input.GetMouseButton (0) || Input.GetKey(KeyCode.Joystick1Button7)) {
             if (colourSelectManager.GetBulletToShoot() == null) {
 				//Making a LogError incase something is null
-				Debug.Log ("Its null captain! Please fix it");
+				//Debug.Log ("Its null captain! Please fix it");
 				//Returning
                 return;
             }
 			//Print to check if something is working
-			Debug.Log("It is instantiating, all is good");
+			//Debug.Log("It is instantiating, all is good");
             //Instantiate the bullet and set it as a gameObject
             //additionally, give it a fireFrom position and rotation [Which is an empty object]
             //adds camera shake when the bullet spawn
@@ -111,7 +111,7 @@ public class GunController : MonoBehaviour {
 
     void Splat()
     {
-        Debug.Log("Splat is Happening");
+        //Debug.Log("Splat is Happening");
         float randomRotationXAndW = Random.Range(0, 360);
         float randomRotationZ = Random.Range(0, 360);
         float rotationY = -randomRotationZ;

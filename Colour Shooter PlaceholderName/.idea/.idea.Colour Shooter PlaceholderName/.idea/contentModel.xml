@@ -6,7 +6,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="EnemyManager.cs" t="Include" />
         <e p="ImportedAssets" t="Include">
           <e p="InkPainter" t="Include">
             <e p="readme_en.txt" t="Include" />
@@ -73,7 +72,6 @@
             <e p="PaintSplat.shader" t="Include" />
           </e>
         </e>
-        <e p="PaintDetectionScript.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Editor" t="Include">
             <e p="JetBrains" t="Include">
@@ -128,7 +126,9 @@
           <e p="Misc" t="Include">
             <e p="ColourPicker.cs" t="Include" />
             <e p="ColourSelectManager.cs" t="Include" />
+            <e p="EnemyManager.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
+            <e p="PaintDetectionScript.cs" t="Include" />
             <e p="paintProjectorController.cs" t="Include" />
             <e p="rotating3DModels.cs" t="Include" />
             <e p="SplatPainter.cs" t="Include" />
