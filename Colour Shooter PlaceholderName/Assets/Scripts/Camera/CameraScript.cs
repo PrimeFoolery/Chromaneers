@@ -126,7 +126,8 @@ public class CameraScript : MonoBehaviour
     {
        // Debug.Log(normMousePos);
         //averagePos = SPPlayer.transform.position;
-        averagePos = (new Vector3((SPPlayer.transform.position.x + (normMousePos.x/5)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (normMousePos.z/5))));
+        //averagePos = (new Vector3((SPPlayer.transform.position.x + (normMousePos.x/5)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (normMousePos.z/5))));
+        averagePos = (new Vector3(SPPlayer.transform.position.x , SPPlayer.transform.position.y, SPPlayer.transform.position.z ));
     }
     private void CalculateSizeNeeded()
     {

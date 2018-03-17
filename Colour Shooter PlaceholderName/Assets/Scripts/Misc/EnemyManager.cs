@@ -340,7 +340,7 @@ public class EnemyManager : MonoBehaviour {
     {
         foreach (GameObject projector in projectorsList)
         {
-            //projector.GetComponent<paintProjectorController>().Repaint();
+            projector.GetComponent<paintProjectorController>().Repaint();
         }
     }
 

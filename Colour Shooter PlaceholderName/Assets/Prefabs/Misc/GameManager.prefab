@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4945073668045224}
   - component: {fileID: 114813963058682294}
+  - component: {fileID: 114642093904597446}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -40,6 +41,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114642093904597446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387481424639414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604165d99ff7148e1a9bf9b7b3adcbeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList: []
+  projectorsList: []
+  isGameSinglePlayer: 0
+  singlePlayer: {fileID: 0}
+  coopBluePlayer: {fileID: 0}
+  coopRedPlayer: {fileID: 0}
+  coopYellowPlayer: {fileID: 0}
 --- !u!114 &114813963058682294
 MonoBehaviour:
   m_ObjectHideFlags: 1

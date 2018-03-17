@@ -38,6 +38,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public Color blueColor = Color.blue;
     public Color purpleColor = new Color(0.6f,0,1,1);
 
+    private float splatTimer = 0f;
+
 	public string colourPlayerIsStandingOn;
 
     [System.Serializable]
@@ -211,50 +213,63 @@ public class SingleplayerCharacterController : MonoBehaviour {
                 
 	            if (Input.GetMouseButton(1))
 	            {
-					bool success = true;
-					var paintObject = hit.transform.GetComponent<InkCanvas>();
-					if (paintObject != null)
-					{
-						if (useMethodType == UseMethodType.RaycastHitInfo)
-						{
-							//brush.Scale = 0.068f;
-							GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
-							paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject,brush);
-							listManager.projectorsList.Add (paintProjectionObject);
-							paintProjectionObject = null;
-							//success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
-						}
-					}
+	                if (splatTimer<=0f)
+	                {
+	                    bool success = true;
+	                    var paintObject = hit.transform.GetComponent<InkCanvas>();
+	                    if (paintObject != null)
+	                    {
+	                        if (useMethodType == UseMethodType.RaycastHitInfo)
+	                        {
+	                            //brush.Scale = 0.068f;
+	                            GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
+	                            paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
+	                            listManager.projectorsList.Add(paintProjectionObject);
+	                            paintProjectionObject = null;
+	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+	                        }
+	                    }
 
-	                if (brush.Color == redColor)
-	                {
-	                    colourPlayerIsStandingOn = "red";
-	                }
-	                if (brush.Color == orangeColor)
-	                {
-	                    colourPlayerIsStandingOn = "orange";
-	                }
-	                if (brush.Color == yellowColor)
-	                {
-	                    colourPlayerIsStandingOn = "yellow";
-	                }
-	                if (brush.Color == greenColor)
-	                {
-	                    colourPlayerIsStandingOn = "green";
-	                }
-	                if (brush.Color == blueColor)
-	                {
-	                    colourPlayerIsStandingOn = "blue";
-	                }
-	                if (brush.Color == purpleColor)
-	                {
-	                    colourPlayerIsStandingOn = "purple";
+	                    if (brush.Color == redColor)
+	                    {
+	                        colourPlayerIsStandingOn = "red";
+	                    }
+	                    if (brush.Color == orangeColor)
+	                    {
+	                        colourPlayerIsStandingOn = "orange";
+	                    }
+	                    if (brush.Color == yellowColor)
+	                    {
+	                        colourPlayerIsStandingOn = "yellow";
+	                    }
+	                    if (brush.Color == greenColor)
+	                    {
+	                        colourPlayerIsStandingOn = "green";
+	                    }
+	                    if (brush.Color == blueColor)
+	                    {
+	                        colourPlayerIsStandingOn = "blue";
+	                    }
+	                    if (brush.Color == purpleColor)
+	                    {
+	                        colourPlayerIsStandingOn = "purple";
+	                    }
+
+	                    if (!success)
+	                    {
+	                        Debug.Log("Paint not painted correctly");
+	                    }
+
+	                    splatTimer = 0.2f;
 	                }
 
-                    if (!success)
-					{
-						Debug.Log("Paint not painted correctly");
-					}
+	                splatTimer -= Time.deltaTime;
+
+	            }
+
+	            if (Input.GetMouseButtonUp(1))
+	            {
+	                splatTimer = 0f;
 	            }
             } 
 	    }

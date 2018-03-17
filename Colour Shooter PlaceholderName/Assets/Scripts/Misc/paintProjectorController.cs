@@ -69,8 +69,13 @@ public class paintProjectorController : MonoBehaviour
 	        projectorTargetInkCanvas.Erase(projectorsBrush, projectorHit);
 	        projectorsBrush.Scale = 0.068f;
 			enemyManagerScript.projectorsList.Remove (gameObject);
-			enemyManagerScript.RefreshPaint ();
-	        //enemyManagerScript.MakeAllNull();
+	        foreach (GameObject projector in enemyManagerScript.projectorsList)
+	        {
+	            if (Vector3.Distance(projector.transform.position,gameObject.transform.position)<8f&& Vector3.Distance(projector.transform.position, gameObject.transform.position) > 0.5f)
+	            {
+                    projector.GetComponent<paintProjectorController>().Repaint();
+	            }
+	        }
 	        if (isGameSinglePlayer==true)
 	        {
 	            if (distanceBetweenProjectorAndPlayer<=3.75f)
