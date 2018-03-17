@@ -53,6 +53,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	public float movingAcceleration = 1.1f;
 	public float movingDecceleration = 0.9f;
 	public float shootingDecceleration = 0.95f;
+    private float poisonTimer = 3f;
 
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
@@ -119,7 +120,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 				}
             } else if (isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-                if (colourPlayerIsStandingOn == "red")
+                if (colourPlayerIsStandingOn == "orange")
                 {
                     moveVelocity = moveInput * -1 * shootingSpeed;
                 }
@@ -273,7 +274,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
 		    } else if (isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-		        if (colourPlayerIsStandingOn == "red")
+		        if (colourPlayerIsStandingOn == "orange")
 		        {
 		            moveVelocity = moveInput * -1 * shootingSpeed;
 		        }
@@ -404,13 +405,23 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    {
 	        moveSpeed = 4;
 	    }
-	    if (colourPlayerIsStandingOn == "red")
+	    if (colourPlayerIsStandingOn == "orange")
 	    {
 	        moveSpeed = -Mathf.Abs(moveSpeed);
 	    }
 	    if (colourPlayerIsStandingOn == "null")
 	    {
 	        moveSpeed = Mathf.Abs(moveSpeed);
+	    }
+	    if (colourPlayerIsStandingOn == "red")
+	    {
+	        Debug.Log("onRed:  " + poisonTimer);
+	        poisonTimer -= Time.deltaTime;
+	        if (poisonTimer <= 0)
+	        {
+	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+	            poisonTimer = 3f;
+	        }
 	    }
     }
 

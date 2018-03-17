@@ -39,6 +39,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public Color purpleColor = new Color(0.6f,0,1,1);
 
     private float splatTimer = 0f;
+    private float poisonTimer = 3f;
 
 	public string colourPlayerIsStandingOn;
 
@@ -73,7 +74,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        moveVelocity = moveInput * moveSpeed;
         } else if (isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-			if (colourPlayerIsStandingOn == "red") {
+			if (colourPlayerIsStandingOn == "orange") {
 				moveVelocity = moveInput * -1 * shootingSpeed;
 			} else {
 				moveVelocity = moveInput * shootingSpeed;
@@ -287,14 +288,26 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        moveSpeed = 4;
 	    }
 
-	    if (colourPlayerIsStandingOn == "red")
+	    if (colourPlayerIsStandingOn == "orange")
 	    {
 	        moveSpeed = -Mathf.Abs(moveSpeed);
         }
 		if (colourPlayerIsStandingOn == "null")
 	    {
 	        moveSpeed = Mathf.Abs(moveSpeed);
-        }
+	        poisonTimer = 3f;
+	    }
+
+	    if (colourPlayerIsStandingOn == "red")
+	    {
+            Debug.Log("onRed:  "+poisonTimer);
+	        poisonTimer -= Time.deltaTime;
+            if(poisonTimer<=0)
+	        {
+                gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(1);
+	            poisonTimer = 3f;
+	        }
+	    }
     }
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;

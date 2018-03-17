@@ -37,7 +37,7 @@ public class SingleplayerHealthController : MonoBehaviour {
 	    if (currentHealth <= 0) {
 	        singleplayerCharacterController.moveSpeed = 0;
 	    }
-		
+		Debug.Log("playerHealth:  "+currentHealth);
 		//Making a timer to decide when the player can or cant take damage
 		//Also making a material lerp
 		invincibility -= Time.deltaTime;
@@ -61,7 +61,9 @@ public class SingleplayerHealthController : MonoBehaviour {
     //since currentHealth is a private variable
     public void EnemyDamaged(int damage) {
 	    if (canBeDamaged) {
+            Debug.Log("playerDamageds");
 		    currentHealth -= damage;
+	        invincibility = 1f;
 	    }
     }
 }

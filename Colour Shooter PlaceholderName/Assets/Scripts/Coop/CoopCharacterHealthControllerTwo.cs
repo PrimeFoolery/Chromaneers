@@ -69,6 +69,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     public void EnemyDamaged(int damage) {
         if (canBeDamaged) {
             currentHealth -= damage;
+            invincibility = 1f;
         }
     }
 }

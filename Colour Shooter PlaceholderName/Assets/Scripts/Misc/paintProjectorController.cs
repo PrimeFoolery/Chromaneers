@@ -71,7 +71,7 @@ public class paintProjectorController : MonoBehaviour
 			enemyManagerScript.projectorsList.Remove (gameObject);
 	        foreach (GameObject projector in enemyManagerScript.projectorsList)
 	        {
-	            if (Vector3.Distance(projector.transform.position,gameObject.transform.position)<8f&& Vector3.Distance(projector.transform.position, gameObject.transform.position) > 0.5f)
+	            if (Vector3.Distance(projector.transform.position,gameObject.transform.position)<10f&& Vector3.Distance(projector.transform.position, gameObject.transform.position) > 0.5f)
 	            {
                     projector.GetComponent<paintProjectorController>().Repaint();
 	            }
