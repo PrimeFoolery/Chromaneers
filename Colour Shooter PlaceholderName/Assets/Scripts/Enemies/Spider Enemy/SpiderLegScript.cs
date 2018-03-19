@@ -15,6 +15,7 @@ public class SpiderLegScript : MonoBehaviour
 	void Start ()
 	{
 	    spiderBodyScript = GetComponentInParent<SpiderEnemyController>();
+
 	}
 	
 	// Update is called once per frame
@@ -101,5 +102,11 @@ public class SpiderLegScript : MonoBehaviour
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
 		}
+    }
+
+    public void DamageLeg()
+    {
+        legHealth -= 1;
+        gameObject.GetComponent<ParticleSystem>().Play();
     }
 }

@@ -38,6 +38,8 @@ public class SpiderEnemyController : MonoBehaviour
     private ColourSelectManager gameManager;
 	public int enemyDamage;
     private PaintDetectionScript paintDetector;
+    private float poisonTimer = 3f;
+    private EnemyManager enemyManagerScript;
 
     //COOP PLAYER VARIABLES
     private GameObject RedPlayer;
@@ -46,13 +48,15 @@ public class SpiderEnemyController : MonoBehaviour
     private float retargetingDelay = 5f;
     private bool readyToRetarget = true;
 
+
     // Use this for initialization
     void Start ()
     {
         paintDetector = gameObject.GetComponentInParent<PaintDetectionScript>();
 	    gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
+        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
 
-	    if (gameManager.isItSingleplayer == true)
+        if (gameManager.isItSingleplayer == true)
 	    {
 	        isItCoop = false;
 	    }
@@ -226,24 +230,24 @@ public class SpiderEnemyController : MonoBehaviour
 	        {
 	            agent.speed = 4f;
 	        }
-        }else if(paintDetector.colourOfPaint == "purple")
+        }else if(paintDetector.colourOfPaint == "blue")
 
 	    {
 	        if (howManyLegsAreAlive == 4)
 	        {
-	            agent.speed = 2.5f;
+	            agent.speed = 1.5f;
 	        }
 	        if (howManyLegsAreAlive == 3)
 	        {
-	            agent.speed = 2f;
+	            agent.speed = 1f;
 	        }
 	        if (howManyLegsAreAlive == 2)
 	        {
-	            agent.speed = 1.5f;
+	            agent.speed = 0.5f;
 	        }
 	        if (howManyLegsAreAlive == 1)
 	        {
-	            agent.speed = 1f;
+	            agent.speed = 0f;
 	        }
 	    }
 	    else
@@ -282,7 +286,7 @@ public class SpiderEnemyController : MonoBehaviour
 	            agent.speed = 2f;
             } else if (paintDetector.colourOfPaint == "blue")
 	        {
-	            agent.speed = 0.5f;
+	            agent.speed = 0f;
 	        }
 	        else
 	        {
@@ -299,9 +303,36 @@ public class SpiderEnemyController : MonoBehaviour
         if(bodyHealth<=0)
 	    {
             gameObject.GetComponent<ParticleSystem>().Play();
+	        enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
 	    }
+
+	    if (paintDetector.colourOfPaint=="red")
+	    {
+	        poisonTimer -= Time.deltaTime;
+	        if (poisonTimer <= 0)
+	        {
+	           
+	            if (leg1 !=null)
+	            {
+                    leg1.GetComponent<SpiderLegScript>().DamageLeg();
+	            } else if (leg2!=null)
+	            {
+                    leg2.GetComponent<SpiderLegScript>().DamageLeg();
+	            }
+	            else if (leg3 != null)
+	            {
+	                leg3.GetComponent<SpiderLegScript>().DamageLeg();
+	            }
+	            else if (leg4 != null)
+	            {
+	                leg2.GetComponent<SpiderLegScript>().DamageLeg();
+	            }
+                
+                poisonTimer = 3f;
+	        }
+        }
     }
 
     void OnCollisionEnter(Collision other)

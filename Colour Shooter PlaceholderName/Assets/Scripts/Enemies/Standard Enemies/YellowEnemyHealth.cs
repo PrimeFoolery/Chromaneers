@@ -12,11 +12,13 @@ public class YellowEnemyHealth : MonoBehaviour {
 
     //Private variables
     private int currentHealth;
+    private EnemyManager enemyManagerScript;
 
     void Start () {
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
         currentHealth = health;
+        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
     }
 
     void Update () {
@@ -26,7 +28,8 @@ public class YellowEnemyHealth : MonoBehaviour {
 			deathTimer -= Time.deltaTime;
 			if (deathTimer >= 0) {
 				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
-				Destroy (gameObject);
+			    enemyManagerScript.enemyList.Remove(gameObject);
+                Destroy (gameObject);
 			}
         }
     }

@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 0.9, z: 20.2}
+  m_LocalPosition: {x: 25.3, y: 4, z: 37.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4715286875538916}
@@ -196,7 +196,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -236,6 +236,7 @@ MonoBehaviour:
   duration: 0.5
   rend: {fileID: 23568887262767628}
   singleplayerCharacterController: {fileID: 114909718584468080}
+  GameManager: {fileID: 0}
 --- !u!114 &114909718584468080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,7 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bc464be91cfab4ba242fdcfa234a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 5
+  movingAcceleration: 1.1
+  movingDecceleration: 0.65
+  shootingDecceleration: 0.75
   shootingSpeed: 2
   timeToShoot: 0.2
   usingController: 0
@@ -269,7 +273,7 @@ MonoBehaviour:
     brushTexture: {fileID: 2800000, guid: f0b3c64f5a6ece641a2cf64f967d8f9a, type: 3}
     brushNormalTexture: {fileID: 0}
     brushHeightTexture: {fileID: 0}
-    brushScale: 0.33
+    brushScale: 0.068
     rotateAngle: 0
     brushNormalBlend: 0
     brushHeightBlend: 0

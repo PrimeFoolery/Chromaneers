@@ -86,7 +86,8 @@ public class CameraScript : MonoBehaviour
             normMousePos = Camera.main.ScreenToWorldPoint(rawMousePos);
             CalculateAveragePosInSinglePlayer();
             targetCameraPosition = new Vector3(averagePos.x, averagePos.y + 15f, averagePos.z - 7.5f);//The target Position above player is calculated
-            transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//The Camera always moves smoothly towards
+            //transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//The Camera always moves smoothly towards
+            transform.position = targetCameraPosition;
             transform.LookAt(averagePos); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, 11, ref zoomSpeed, dampTime);
         }

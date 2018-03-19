@@ -14,10 +14,13 @@ public class GreenEnemyHealth : MonoBehaviour {
 	public Material yellowJellyMaterial;
 	public Material greenJellyMaterial;
 
-	void Start () {
-		//Setting the current health to be the health variable
-		//so that when we start the game, the enemy has full HP
-	}
+    private EnemyManager enemyManagerScript;
+
+    void Start () {
+        //Setting the current health to be the health variable
+        //so that when we start the game, the enemy has full HP
+        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+    }
 
 	void Update () {
 		//If the enemy reaches 0 HP, destroy the enemy
@@ -36,7 +39,8 @@ public class GreenEnemyHealth : MonoBehaviour {
 			yellowHealth=0;
 		}
 		if(yellowHealth<=0&&blueHealth<=0){
-			Destroy (this.gameObject);
+		    enemyManagerScript.enemyList.Remove(gameObject);
+            Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
 		if(recoveryTimer<=0){

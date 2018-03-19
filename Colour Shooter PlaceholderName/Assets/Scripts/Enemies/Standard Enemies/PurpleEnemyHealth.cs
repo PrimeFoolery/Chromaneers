@@ -16,9 +16,12 @@ public class PurpleEnemyHealth : MonoBehaviour {
 	public Material blueJellyMaterial;
 	public Material purpleJellyMaterial;
 
+    private EnemyManager enemyManagerScript;
+
     void Start () {
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
+        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
     }
 
     void Update () {
@@ -38,7 +41,8 @@ public class PurpleEnemyHealth : MonoBehaviour {
 			blueHealth=0;
 		}
 		if(blueHealth<=0&&redHealth<=0){
-			Destroy (this.gameObject);
+		    enemyManagerScript.enemyList.Remove(gameObject);
+            Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
 		if(recoveryTimer<=0){

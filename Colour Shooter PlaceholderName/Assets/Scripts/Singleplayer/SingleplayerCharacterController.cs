@@ -7,6 +7,9 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
     [Header("Player Variables")]
     public float moveSpeed;
+    public float movingAcceleration = 1.1f;
+    public float movingDecceleration = 0.9f;
+    public float shootingDecceleration = 0.95f;
     public float shootingSpeed;
     public float timeToShoot;
     [Space (10)]
@@ -70,8 +73,32 @@ public class SingleplayerCharacterController : MonoBehaviour {
         //Making a vector3 to store the characters inputs
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 	    if (!isShooting) {
-	        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
-	        moveVelocity = moveInput * moveSpeed;
+            //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+            if(moveInput!= new Vector3(0,0,0))
+	        {
+	            moveVelocity = moveInput * moveSpeed;
+	            if (moveSpeed <= 5f)
+	            {
+	                moveSpeed = moveSpeed * movingAcceleration;
+	            }
+	            if (moveSpeed >= 5f)
+	            {
+	                moveSpeed = 5f;
+	            }
+            }
+	        if (moveInput == new Vector3(0, 0, 0))
+	        {
+	            if (moveSpeed >= 0.5f)
+	            {
+	                moveSpeed = moveSpeed * movingDecceleration;
+	            }
+	            if (moveSpeed <= 0.5f)
+	            {
+	                moveSpeed = 0.5f;
+	            }
+	            moveVelocity = moveVelocity * movingDecceleration;
+	        }
+
         } else if (isShooting) {
 	        //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
 			if (colourPlayerIsStandingOn == "orange") {
@@ -79,6 +106,34 @@ public class SingleplayerCharacterController : MonoBehaviour {
 			} else {
 				moveVelocity = moveInput * shootingSpeed;
 			}
+	        if (moveInput != new Vector3(0, 0, 0))
+	        {
+	            if (moveSpeed <= 2f)
+	            {
+	                moveSpeed = moveSpeed * movingAcceleration;
+	            }
+	            if (moveSpeed >= 2f && moveSpeed <= 2.5f)
+	            {
+	                moveSpeed = 2f;
+	            }
+	            if (moveSpeed >= 2.5f)
+	            {
+	                moveSpeed = moveSpeed * shootingDecceleration;
+	            }
+	            moveVelocity = moveInput * moveSpeed;
+	        }
+	        if (moveInput == new Vector3(0, 0, 0))
+	        {
+	            if (moveSpeed >= 0.5f)
+	            {
+	                moveSpeed = moveSpeed * movingDecceleration;
+	            }
+	            if (moveSpeed <= 0.5f)
+	            {
+	                moveSpeed = 0.5f;
+	            }
+	            moveVelocity = moveVelocity * movingDecceleration;
+	        }
 
         }
 

@@ -9,6 +9,13 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     public GameObject player;
     private GameObject targetPlayer;
     NavMeshAgent agent;
+    private BlueEnemyHealth blueHealth;
+    private YellowEnemyHealth yellowHealth;
+    private OrangeEnemyHealth orangeHealth;
+    private PurpleEnemyHealth purpleHealth;
+    private GreenEnemyHealth greenHealth;
+    private RedEnemyHealth redHealth;
+    private float poisonTimer = 3f;
 
     //COOP PLAYER VARIABLES
     [Header("Coop Variables")]
@@ -45,6 +52,14 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             BluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
         }
+
+        blueHealth = gameObject.GetComponent<BlueEnemyHealth>();
+        purpleHealth = gameObject.GetComponent<PurpleEnemyHealth>();
+        redHealth = gameObject.GetComponent<RedEnemyHealth>();
+        orangeHealth = gameObject.GetComponent<OrangeEnemyHealth>();
+        yellowHealth = gameObject.GetComponent<YellowEnemyHealth>();
+        greenHealth = gameObject.GetComponent<GreenEnemyHealth>();
+
     }
 	
 	// Update is called once per frame
@@ -126,15 +141,38 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 	        
 	    }
 	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "red")
-	    {/*
-	        Debug.Log("onRed:  " + poisonTimer);
-	        poisonTimer -= Time.deltaTime;
-	        if (poisonTimer <= 0)
-	        {
-	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
-	            poisonTimer = 3f;
-	        }*/
-	    }
+        {
+            poisonTimer -= Time.deltaTime;
+            if (poisonTimer <= 0)
+            {
+                if (blueHealth != null)
+                {
+                    blueHealth.EnemyDamaged(1);
+                }
+                else if (purpleHealth != null)
+                {
+                    purpleHealth.EnemyDamaged(1);
+                }
+                else if (redHealth != null)
+                {
+                    redHealth.EnemyDamaged(1);
+                }
+                else if (orangeHealth != null)
+                {
+                    orangeHealth.EnemyDamaged(1);
+                }
+                else if (yellowHealth != null)
+                {
+                    yellowHealth.EnemyDamaged(1);
+                }
+                else if (greenHealth != null)
+                {
+                    greenHealth.EnemyDamaged(1);
+                }
+                poisonTimer = 3f;
+            }
+            
+        }
     }
 
     void FindClosestPlayer() {
