@@ -130,8 +130,11 @@ public class ColourPicker : MonoBehaviour {
 	void isUIEnabled () {
 		//Input to activate the UI
 		if (Input.GetKey (KeyCode.E)) {
-			//All images being turned on
-			colourPicker.GetComponent<Image> ().enabled = true;
+            //Slow motion activates
+            Time.timeScale = 0.1f;
+
+            //All images being turned on
+            colourPicker.GetComponent<Image> ().enabled = true;
 			blueColourSelect.GetComponent<Image> ().enabled = true;
 			redColourSelect.GetComponent<Image> ().enabled = true;
 			yellowColourSelect.GetComponent<Image> ().enabled = true;
@@ -144,8 +147,10 @@ public class ColourPicker : MonoBehaviour {
 			//Cursor.lockState = CursorLockMode.None;
 			//Cursor.visible = true;
 		} else {
-			//Else all images being turned off
-			colourPicker.GetComponent<Image> ().enabled = false;
+            //Slow Motion turned off
+            Time.timeScale = 1f;
+            //Else all images being turned off
+            colourPicker.GetComponent<Image> ().enabled = false;
 			blueColourSelect.GetComponent<Image> ().enabled = false;
 			redColourSelect.GetComponent<Image> ().enabled = false;
 			yellowColourSelect.GetComponent<Image> ().enabled = false;

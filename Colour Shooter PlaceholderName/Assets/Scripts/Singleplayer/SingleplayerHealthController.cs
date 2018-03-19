@@ -18,6 +18,8 @@ public class SingleplayerHealthController : MonoBehaviour {
 
     public SingleplayerCharacterController singleplayerCharacterController;
 
+    public GameObject GameManager;
+
     //Private variables
     private int currentHealth;
 
@@ -51,9 +53,11 @@ public class SingleplayerHealthController : MonoBehaviour {
 			if (currentHealth <= 0) {
 				rend.material = deadMat;
 			}
-		} else if (invincibility > 0) {
+            GameManager.GetComponent<UIFader>().FadeOut();
+        } else if (invincibility > 0) {
 			canBeDamaged = false;
 			rend.material.Lerp(matOne, matTwo, gettingDamaged);
+            GameManager.GetComponent<UIFader>().FadeIn();
 		}
 	}
 
