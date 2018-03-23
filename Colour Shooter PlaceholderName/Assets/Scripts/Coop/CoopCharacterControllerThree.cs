@@ -29,6 +29,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
     public string colourPlayerIsStandingOn;
 
+    private float splatTimer = 0f;
+    public GameObject paintBlob;
+
     [System.Serializable]
     private enum UseMethodType
     {
@@ -189,48 +192,29 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
                     if (Input.GetKey(KeyCode.Joystick3Button6))
                     {
-                        bool success = true;
-                        var paintObject = hit.transform.GetComponent<InkCanvas>();
-                        if (paintObject != null)
+                        if (splatTimer <= 0f)
                         {
-                            if (useMethodType == UseMethodType.RaycastHitInfo)
+                            bool success = true;
+                            var paintObject = hit.transform.GetComponent<InkCanvas>();
+                            if (paintObject != null)
                             {
-                                //brush.Scale = 0.068f;
-                                GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
-                                paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
-                                listManager.projectorsList.Add(paintProjectionObject);
-                                paintProjectionObject = null;
-                                //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+                                if (useMethodType == UseMethodType.RaycastHitInfo)
+                                {
+                                    GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+                                    tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
+                                    tempPaintSplot.GetComponent<Renderer>().material.color = yellowColor;
+                                    tempPaintSplot = null;
+                                }
                             }
+                            if (!success)
+                            {
+                                Debug.Log("Paint not painted correctly");
+                            }
+
+                            splatTimer = 0.5f;
                         }
-                        if (brush.Color == redColor)
-                        {
-                            colourPlayerIsStandingOn = "red";
-                        }
-                        if (brush.Color == orangeColor)
-                        {
-                            colourPlayerIsStandingOn = "orange";
-                        }
-                        if (brush.Color == yellowColor)
-                        {
-                            colourPlayerIsStandingOn = "yellow";
-                        }
-                        if (brush.Color == greenColor)
-                        {
-                            colourPlayerIsStandingOn = "green";
-                        }
-                        if (brush.Color == blueColor)
-                        {
-                            colourPlayerIsStandingOn = "blue";
-                        }
-                        if (brush.Color == purpleColor)
-                        {
-                            colourPlayerIsStandingOn = "purple";
-                        }
-                        if (!success)
-                        {
-                            Debug.Log("Paint not painted correctly");
-                        }
+
+                        splatTimer -= Time.deltaTime;
                     }
                 }
             }
@@ -342,50 +326,30 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
 		            if (Input.GetButton("Fire3Left"))
 		            {
-		                bool success = true;
-		                var paintObject = hit.transform.GetComponent<InkCanvas>();
-		                if (paintObject != null)
+		                if (splatTimer <= 0f)
 		                {
-		                    if (useMethodType == UseMethodType.RaycastHitInfo)
+		                    bool success = true;
+		                    var paintObject = hit.transform.GetComponent<InkCanvas>();
+		                    if (paintObject != null)
 		                    {
-		                        //brush.Scale = 0.068f;
-		                        GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
-		                        paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
-		                        listManager.projectorsList.Add(paintProjectionObject);
-		                        paintProjectionObject = null;
-		                        //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+		                        if (useMethodType == UseMethodType.RaycastHitInfo)
+		                        {
+		                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+		                            tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
+		                            tempPaintSplot.GetComponent<Renderer>().material.color = yellowColor;
+                                    tempPaintSplot = null;
+		                        }
 		                    }
+		                    if (!success)
+		                    {
+		                        Debug.Log("Paint not painted correctly");
+		                    }
+
+		                    splatTimer = 0.5f;
 		                }
-		                if (brush.Color == redColor)
-		                {
-							Debug.Log ("RedStartOn:  "+name);
-		                    colourPlayerIsStandingOn = "red";
-		                }
-		                if (brush.Color == orangeColor)
-		                {
-		                    colourPlayerIsStandingOn = "orange";
-		                }
-		                if (brush.Color == yellowColor)
-		                {
-		                    colourPlayerIsStandingOn = "yellow";
-		                }
-		                if (brush.Color == greenColor)
-		                {
-		                    colourPlayerIsStandingOn = "green";
-		                }
-		                if (brush.Color == blueColor)
-		                {
-		                    colourPlayerIsStandingOn = "blue";
-		                }
-		                if (brush.Color == purpleColor)
-		                {
-		                    colourPlayerIsStandingOn = "purple";
-		                }
-                        if (!success)
-		                {
-		                    Debug.Log("Paint not painted correctly");
-		                }
-		            }
+
+		                splatTimer -= Time.deltaTime;
+                    }
 		        }
 		    }
         }

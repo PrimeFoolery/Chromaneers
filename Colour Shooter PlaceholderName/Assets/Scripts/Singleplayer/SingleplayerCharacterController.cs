@@ -17,6 +17,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
     public bool usingXboxController;
     public bool isShooting;
     public GameObject paintProjector;
+    public GameObject paintBlob;
 
     private EnemyManager listManager;
     public ColourPicker colourPicker;
@@ -277,15 +278,18 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	                    {
 	                        if (useMethodType == UseMethodType.RaycastHitInfo)
 	                        {
-	                            //brush.Scale = 0.068f;
+	                            /*//brush.Scale = 0.068f;
 	                            GameObject paintProjectionObject = Instantiate(paintProjector, transform.position, Quaternion.identity);
 	                            paintProjectionObject.GetComponent<paintProjectorController>().PaintStart(hit, paintObject, brush);
 	                            listManager.projectorsList.Add(paintProjectionObject);
 	                            paintProjectionObject = null;
-	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);
+	                            //success = erase ? paintObject.Erase(brush, hit) : paintObject.Paint(brush, hit);*/
+	                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+                                tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush,hit,paintObject);
+	                            tempPaintSplot = null;
 	                        }
 	                    }
-
+                        /*
 	                    if (brush.Color == redColor)
 	                    {
 	                        colourPlayerIsStandingOn = "red";
@@ -310,13 +314,13 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	                    {
 	                        colourPlayerIsStandingOn = "purple";
 	                    }
-
+                        */
 	                    if (!success)
 	                    {
 	                        Debug.Log("Paint not painted correctly");
 	                    }
 
-	                    splatTimer = 0.2f;
+	                    splatTimer = 0.5f;
 	                }
 
 	                splatTimer -= Time.deltaTime;
@@ -325,7 +329,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 	            if (Input.GetMouseButtonUp(1))
 	            {
-	                splatTimer = 0f;
+	                //splatTimer = 0f;
 	            }
             } 
 	    }

@@ -50,126 +50,135 @@ public class paintProjectorController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
-	    if (hasPaintBeenPainted==false)
-	    {
-		    //Debug.Log("paint should be getting painted");
-	        projectorTargetInkCanvas.Paint(projectorsBrush, projectorHit);
-	        hasPaintBeenPainted = true;
-	    }
+    {
+        if (gameObject.name!="fillerProjector")
+        {
+            //Debug.Log(distanceBetweenProjectorAndPlayer);
+            if (hasPaintBeenPainted == false)
+            {
+                //Debug.Log("paint should be getting painted");
+                projectorTargetInkCanvas.Paint(projectorsBrush, projectorHit);
+                hasPaintBeenPainted = true;
+            }
 
-	    if (hasPaintBeenPainted==true)
-	    {
-	        lifeTimer -= Time.deltaTime;
-	    }
+            if (hasPaintBeenPainted == true)
+            {
+                lifeTimer -= Time.deltaTime;
+            }
 
-	    if (lifeTimer<=0f)
-	    {
-	        projectorsBrush.Scale = projectorsBrush.Scale + 0.01f;
-	        projectorTargetInkCanvas.Erase(projectorsBrush, projectorHit);
-	        projectorsBrush.Scale = 0.068f;
-			enemyManagerScript.projectorsList.Remove (gameObject);
-	        foreach (GameObject projector in enemyManagerScript.projectorsList)
-	        {
-	            if (Vector3.Distance(projector.transform.position,gameObject.transform.position)<10f&& Vector3.Distance(projector.transform.position, gameObject.transform.position) > 0.5f)
-	            {
-                    projector.GetComponent<paintProjectorController>().Repaint();
-	            }
-	        }
-	        if (isGameSinglePlayer==true)
-	        {
-	            if (distanceBetweenProjectorAndPlayer<=3.75f)
-	            {
-	                enemyManagerScript.singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
-	            }
-
-	            foreach (GameObject enemy in enemyManagerScript.enemyList)
-	            {
-	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
-                    if (distanceBetweenThisEnemyAndProjector<=3.75f)
+            if (lifeTimer <= 0f)
+            {
+                projectorsBrush.Scale = projectorsBrush.Scale + 0.01f;
+                projectorTargetInkCanvas.Erase(projectorsBrush, projectorHit);
+                projectorsBrush.Scale = 0.068f;
+                enemyManagerScript.projectorsList.Remove(gameObject);
+                foreach (GameObject projector in enemyManagerScript.projectorsList)
+                {
+                    if (Vector3.Distance(projector.transform.position, gameObject.transform.position) < 10f && Vector3.Distance(projector.transform.position, gameObject.transform.position) > 0.5f)
                     {
-                        enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+                        projector.GetComponent<paintProjectorController>().Repaint();
                     }
-	            }
-            }
-	        else
-	        {
-	            if (distanceBetweenProjectorAndRedPlayer <= 3.75f)
-	            {
-	                enemyManagerScript.coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
-	            }
-	            if (distanceBetweenProjectorAndYellowPlayer <= 3.75f)
-	            {
-	                enemyManagerScript.coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
-	            }
-	            if (distanceBetweenProjectorAndBluePlayer <= 3.75f)
-	            {
-	                enemyManagerScript.coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
-	            }
-                foreach (GameObject enemy in enemyManagerScript.enemyList)
-	            {
-	                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
-	                if (distanceBetweenThisEnemyAndProjector <= 3.75f)
-	                {
-	                    enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
-	                }
-	            }
-            }
-            Destroy(gameObject);
-        }
+                }
+                if (isGameSinglePlayer == true)
+                {
+                    if (distanceBetweenProjectorAndPlayer >= 5.5f)
+                    {
+                        enemyManagerScript.singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
+                    }
 
-	    if (isGameSinglePlayer==true)
-	    {
-	        distanceBetweenProjectorAndPlayer = Vector3.Distance(transform.position, singlePlayer.gameObject.transform.position);
-	        if (distanceBetweenProjectorAndPlayer <= 3.75f)
-	        {
-	            isPlayerOnSplat = true;
-	        }
-	        if (distanceBetweenProjectorAndPlayer > 3.75f)
-	        {
-	            isPlayerOnSplat = false;
-	        }
-        } else if (isGameSinglePlayer==false)
-	    {
-	        distanceBetweenProjectorAndBluePlayer =Vector3.Distance(transform.position, blueCoopController.gameObject.transform.position);
-	        if (distanceBetweenProjectorAndBluePlayer <= 3.75f)
-	        {
-	            isBluePlayerOnSplat = true;
-	        }
-	        if (distanceBetweenProjectorAndBluePlayer > 3.75f)
-	        {
-	            isBluePlayerOnSplat = false;
-	        }
-	        distanceBetweenProjectorAndRedPlayer = Vector3.Distance(transform.position, redCoopController.gameObject.transform.position);
-	        if (distanceBetweenProjectorAndRedPlayer <= 3.75f)
-	        {
-	            isRedPlayerOnSplat = true;
-	        }
-	        if (distanceBetweenProjectorAndRedPlayer > 3.75f)
-	        {
-	            isRedPlayerOnSplat = false;
-	        }
-	        distanceBetweenProjectorAndYellowPlayer = Vector3.Distance(transform.position, yellowCoopController.gameObject.transform.position);
-	        if (distanceBetweenProjectorAndYellowPlayer <= 3.75f)
-	        {
-	            isYellowPlayerOnSplat = true;
-	        }
-	        if (distanceBetweenProjectorAndYellowPlayer > 3.75f)
-	        {
-	            isYellowPlayerOnSplat = false;
-	        }
+                    foreach (GameObject enemy in enemyManagerScript.enemyList)
+                    {
+                        float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+                        if (distanceBetweenThisEnemyAndProjector <= 5.5f)
+                        {
+                            enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+                        }
+                    }
+                }
+                else
+                {
+                    if (distanceBetweenProjectorAndRedPlayer <= 5.5f)
+                    {
+                        enemyManagerScript.coopRedPlayer.GetComponent<CoopCharacterControllerTwo>().colourPlayerIsStandingOn = "null";
+                    }
+                    if (distanceBetweenProjectorAndYellowPlayer <= 5.5f)
+                    {
+                        enemyManagerScript.coopYellowPlayer.GetComponent<CoopCharacterControllerThree>().colourPlayerIsStandingOn = "null";
+                    }
+                    if (distanceBetweenProjectorAndBluePlayer <= 5.5f)
+                    {
+                        enemyManagerScript.coopBluePlayer.GetComponent<CoopCharacterControllerOne>().colourPlayerIsStandingOn = "null";
+                    }
+                    foreach (GameObject enemy in enemyManagerScript.enemyList)
+                    {
+                        float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
+                        if (distanceBetweenThisEnemyAndProjector <= 3.75f)
+                        {
+                            enemy.GetComponent<PaintDetectionScript>().colourOfPaint = "null";
+                        }
+                    }
+                }
+                Destroy(gameObject);
+            }
+
+            if (isGameSinglePlayer == true)
+            {
+                distanceBetweenProjectorAndPlayer = Vector3.Distance(transform.position, singlePlayer.gameObject.transform.position);
+                if (distanceBetweenProjectorAndPlayer <= 5.5f)
+                {
+                    Debug.Log("player on splat");
+                    isPlayerOnSplat = true;
+                }
+                if (distanceBetweenProjectorAndPlayer > 5.5f)
+                {
+                    Debug.Log("player not on splat");
+                    isPlayerOnSplat = false;
+                }
+            }
+            else if (isGameSinglePlayer == false)
+            {
+                distanceBetweenProjectorAndBluePlayer = Vector3.Distance(transform.position, blueCoopController.gameObject.transform.position);
+                if (distanceBetweenProjectorAndBluePlayer <= 5.5f)
+                {
+                    isBluePlayerOnSplat = true;
+                }
+                if (distanceBetweenProjectorAndBluePlayer > 5.5f)
+                {
+                    isBluePlayerOnSplat = false;
+                }
+                distanceBetweenProjectorAndRedPlayer = Vector3.Distance(transform.position, redCoopController.gameObject.transform.position);
+                if (distanceBetweenProjectorAndRedPlayer <= 5.5f)
+                {
+                    isRedPlayerOnSplat = true;
+                }
+                if (distanceBetweenProjectorAndRedPlayer > 5.5f)
+                {
+                    isRedPlayerOnSplat = false;
+                }
+                distanceBetweenProjectorAndYellowPlayer = Vector3.Distance(transform.position, yellowCoopController.gameObject.transform.position);
+                if (distanceBetweenProjectorAndYellowPlayer <= 5.5f)
+                {
+                    isYellowPlayerOnSplat = true;
+                }
+                if (distanceBetweenProjectorAndYellowPlayer > 5.5f)
+                {
+                    isYellowPlayerOnSplat = false;
+                }
+            }
+            for (int i = 0; i < enemyManagerScript.enemyList.Count; i++)
+            {
+                float distanceBetweenThisEnemyAndProjector = Vector3.Distance(transform.position, enemyManagerScript.enemyList[i].gameObject.transform.position);
+                if (distanceBetweenThisEnemyAndProjector <= 6.5f)
+                {
+                    enemyOnPaintList[i] = true;
+                }
+                if (distanceBetweenThisEnemyAndProjector > 6.5f)
+                {
+                    enemyOnPaintList[i] = false;
+                }
+            }
         }
-		for(int i = 0; i<enemyManagerScript.enemyList.Count ;i++){
-			float distanceBetweenThisEnemyAndProjector = Vector3.Distance (transform.position, enemyManagerScript.enemyList[i].gameObject.transform.position);
-			if (distanceBetweenThisEnemyAndProjector<=6.5f)
-			{
-				enemyOnPaintList[i] = true;
-			}
-			if (distanceBetweenThisEnemyAndProjector>6.5f)
-			{
-				enemyOnPaintList[i] = false;
-			}
-		}
+        
 		
     }
 	private void AssignBoolListToObjectList(){

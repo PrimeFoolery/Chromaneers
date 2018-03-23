@@ -6,6 +6,9 @@ public class EnemyManager : MonoBehaviour {
 
 	public List<GameObject> enemyList = new List<GameObject>();
     public List<GameObject> projectorsList = new List<GameObject>();
+    public GameObject paintProjector;
+
+    private GameObject fillerGameObject;
 
     private ColourSelectManager gameManager;
     public bool isGameSinglePlayer;
@@ -18,7 +21,10 @@ public class EnemyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start ()
-	{
+    {
+        fillerGameObject = Instantiate(paintProjector, new Vector3(0, -100, 0),Quaternion.identity);
+        fillerGameObject.name = "fillerProjector";
+        projectorsList.Add(fillerGameObject);
 	    gameManager = gameObject.GetComponent<ColourSelectManager>();
 	    if (gameManager.isItSingleplayer==true)
 	    {
@@ -39,7 +45,7 @@ public class EnemyManager : MonoBehaviour {
 	{
 	    if (isGameSinglePlayer == true) 
 	    {
-	        if (projectorsList.Count==0)
+	        if (projectorsList.Count==1)
 	        {
 	            singlePlayer.GetComponent<SingleplayerCharacterController>().colourPlayerIsStandingOn = "null";
             }
