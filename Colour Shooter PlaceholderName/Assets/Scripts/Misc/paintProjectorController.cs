@@ -126,12 +126,12 @@ public class paintProjectorController : MonoBehaviour
                 distanceBetweenProjectorAndPlayer = Vector3.Distance(transform.position, singlePlayer.gameObject.transform.position);
                 if (distanceBetweenProjectorAndPlayer <= 5.5f)
                 {
-                    Debug.Log("player on splat");
+                    //Debug.Log("player on splat");
                     isPlayerOnSplat = true;
                 }
                 if (distanceBetweenProjectorAndPlayer > 5.5f)
                 {
-                    Debug.Log("player not on splat");
+                    //Debug.Log("player not on splat");
                     isPlayerOnSplat = false;
                 }
             }

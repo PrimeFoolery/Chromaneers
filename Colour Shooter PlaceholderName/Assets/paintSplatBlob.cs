@@ -76,7 +76,7 @@ public class paintSplatBlob : MonoBehaviour
 
     public void SetPaintVariables(Brush inputBrush, RaycastHit inputHit, InkCanvas inputInkCanvas)
     {
-        Debug.Log("setting blob variables");
+        //Debug.Log("setting blob variables");
         Brush tempBrush = inputBrush;
         if (hasPaintBeenSet==false)
         {

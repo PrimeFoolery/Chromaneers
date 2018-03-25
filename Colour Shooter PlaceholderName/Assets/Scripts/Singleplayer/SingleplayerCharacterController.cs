@@ -45,7 +45,10 @@ public class SingleplayerCharacterController : MonoBehaviour {
     private float splatTimer = 0f;
     private float poisonTimer = 3f;
 
-	public string colourPlayerIsStandingOn;
+    public Texture[] SplatTextures;
+
+
+    public string colourPlayerIsStandingOn;
 
     [System.Serializable]
     private enum UseMethodType
@@ -272,6 +275,8 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	            {
 	                if (splatTimer<=0f)
 	                {
+	                    int randomSplatMap = Random.Range(0, SplatTextures.Length);
+	                    brush.BrushTexture = SplatTextures[randomSplatMap];
 	                    bool success = true;
 	                    var paintObject = hit.transform.GetComponent<InkCanvas>();
 	                    if (paintObject != null)
