@@ -8,6 +8,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     [Header("Singleplayer Variables")]
     public GameObject player;
     private GameObject targetPlayer;
+    public bool isAggroPlayer = false;
     NavMeshAgent agent;
     private BlueEnemyHealth blueHealth;
     private YellowEnemyHealth yellowHealth;
@@ -29,12 +30,14 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     [Header("Misc")]
     public bool isItCoop;
     private ColourSelectManager gameManager;
+    private EnemySpawner spawner;
+    public string thisEnemiesSpawnPoint;
     public int enemyDamage;
 
     // Use this for initialization
     void Start () {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
-        
+        spawner = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
         if (gameManager.isItSingleplayer==true) {
             isItCoop = false;
         }
@@ -75,7 +78,65 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 player = GameObject.FindGameObjectWithTag("Player");
             }
             else if (player!=null) {
-                agent.SetDestination(targetPlayer.transform.position);
+                if (Vector3.Distance(transform.position,player.transform.position)<7f&&isAggroPlayer==false)
+                {
+                    if (thisEnemiesSpawnPoint=="A")
+                    {
+                        foreach (GameObject enemy in spawner.pointAEnemyList)
+                        {
+                            if (enemy.GetComponent<StandardEnemyBehaviour>()!=null)
+                            {
+                               enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer=true;
+                            }
+
+                            if (enemy.GetComponentInChildren<SpiderEnemyController>()!=null)
+                            {
+                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                            }
+
+                        }
+                    }
+                    if (thisEnemiesSpawnPoint == "B")
+                    {
+                        foreach (GameObject enemy in spawner.pointBEnemyList)
+                        {
+                            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+                            {
+                                enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
+                            }
+
+                            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+                            {
+                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                            }
+
+                        }
+                    }
+                    if (thisEnemiesSpawnPoint == "C")
+                    {
+                        foreach (GameObject enemy in spawner.pointCEnemyList)
+                        {
+                            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+                            {
+                                enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
+                            }
+
+                            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+                            {
+                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                            }
+
+                        }
+                    }
+
+
+                }
+
+                if (isAggroPlayer == true)
+                {
+                    agent.SetDestination(targetPlayer.transform.position);
+                }
+                
             }
 			
 		}
