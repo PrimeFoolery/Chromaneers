@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SingleplayerHealthController : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class SingleplayerHealthController : MonoBehaviour {
     public int health;
 	public float invincibility;
 	public bool canBeDamaged;
+
+    [Header("HealthBar")]
+    public Image HealthBarUI;
+    public Sprite[] HeartSprites;
 	
 	[Header("Materials")]
 	public Material matOne;
@@ -35,6 +40,7 @@ public class SingleplayerHealthController : MonoBehaviour {
     }
 	
 	void Update () {
+        HealthBarUI.sprite = HeartSprites[currentHealth];
 		//If the player reaches 0 HP, set speed to 0 and set material to something different
 	    if (currentHealth <= 0) {
 	        singleplayerCharacterController.moveSpeed = 0;
