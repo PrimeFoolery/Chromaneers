@@ -7,22 +7,35 @@ public class ColourPicker : MonoBehaviour {
     public string currentColourHighligted="Blue";
 
 	[Header ("Colour Picker GameObjects")]
-	public GameObject colourPicker;
+	public Image colourPicker;
 	[Space (10)]
-	public GameObject blueColourSelect;
-	public GameObject redColourSelect;
-	public GameObject yellowColourSelect;
-	public GameObject purpleColourSelect;
-	public GameObject greenColourSelect;
-	public GameObject orangeColourSelect;
+	public Image blueColourSelect;
+	public Image redColourSelect;
+	public Image yellowColourSelect;
+    public Image purpleColourSelect;
+	public Image greenColourSelect;
+	public Image orangeColourSelect;
+    public Image colourSelector;
+    public RectTransform blueColourSelectTransform;
+    public RectTransform redColourSelectTransform;
+    public RectTransform yellowColourSelectTransform;
+    public RectTransform purpleColourSelectTransform;
+    public RectTransform greenColourSelectTransform;
+    public RectTransform orangeColourSelectTransform;
+    public RectTransform colourSelectorTransform;
 
-	[Header ("Colour Picker Text")]
+    [Header ("Colour Picker Text")]
 	public Text currentColourSelected;
 
     [Header("Colour Picker Script References")]
 	public ColourSelectManager colourSelectManager;
 
-	void Start () {
+    private bool mouseLock = false;
+
+    private float lockedMousePosX;
+    private float lockedMousePosY;
+
+    void Start () {
 		colourSelectManager = ColourSelectManager.instance;
 
 		//Setting the current colour to the starting bullet
@@ -38,13 +51,15 @@ public class ColourPicker : MonoBehaviour {
         orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.6f);
 
         //Setting the UI components to false
-        colourPicker.GetComponent<Image> ().enabled = false;
-		blueColourSelect.GetComponent<Image> ().enabled = false;
-		redColourSelect.GetComponent<Image> ().enabled = false;
-		yellowColourSelect.GetComponent<Image> ().enabled = false;
-		purpleColourSelect.GetComponent<Image> ().enabled = false;
-		greenColourSelect.GetComponent<Image> ().enabled = false;
-		orangeColourSelect.GetComponent<Image> ().enabled = false;
+        colourPicker.enabled = false;
+
+		blueColourSelect.enabled = false;
+		redColourSelect.enabled = false;
+		yellowColourSelect.enabled = false;
+		purpleColourSelect.enabled = false;
+		greenColourSelect.enabled = false;
+		orangeColourSelect.enabled = false;
+	    colourSelector.enabled = false;
 		currentColourSelected.GetComponent<Text> ().enabled = false;
 	}
 
@@ -134,34 +149,97 @@ public class ColourPicker : MonoBehaviour {
             Time.timeScale = 0.1f;
 
             //All images being turned on
-            colourPicker.GetComponent<Image> ().enabled = true;
-			blueColourSelect.GetComponent<Image> ().enabled = true;
-			redColourSelect.GetComponent<Image> ().enabled = true;
-			yellowColourSelect.GetComponent<Image> ().enabled = true;
-			purpleColourSelect.GetComponent<Image> ().enabled = true;
-			greenColourSelect.GetComponent<Image> ().enabled = true;
-			orangeColourSelect.GetComponent<Image> ().enabled = true;
-			currentColourSelected.GetComponent<Text> ().enabled = true;
+            colourPicker.enabled = true;
+			blueColourSelect.enabled = true;
+			redColourSelect.enabled = true;
+			yellowColourSelect.enabled = true;
+			purpleColourSelect.enabled = true;
+			greenColourSelect.enabled = true;
+			orangeColourSelect.enabled = true;
+			currentColourSelected.enabled = true;
+		    colourSelector.enabled = true;
+		    Vector2 tempMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+            if (mouseLock==false)
+            {
+                lockedMousePosX = tempMousePos.x;
+                lockedMousePosY = tempMousePos.y;
+                mouseLock = true;
+            }
+		    float unlockedMousePosX = tempMousePos.x;
+		    float unlockedMousePosY = tempMousePos.y;
+		    float differenceBetweenLockedAndUnlockedMousePosX = unlockedMousePosX - lockedMousePosX;
+		    float differenceBetweenLockedAndUnlockedMousePosY = lockedMousePosY - unlockedMousePosY;
+            
+		    float distanceBetweenSelectorAndBlue = Vector2.Distance(colourSelectorTransform.anchoredPosition,blueColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorAndRed = Vector2.Distance(colourSelectorTransform.anchoredPosition, redColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorAndYellow = Vector2.Distance(colourSelectorTransform.anchoredPosition, yellowColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorAndOrange = Vector2.Distance(colourSelectorTransform.anchoredPosition, orangeColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorAndGreen = Vector2.Distance(colourSelectorTransform.anchoredPosition, greenColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorAndPurple = Vector2.Distance(colourSelectorTransform.anchoredPosition, purpleColourSelectTransform.anchoredPosition);
+		    float distanceBetweenSelectorCurrentPosAndSelectorStartPos =Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(3.34f, 0));
+            //Debug.Log("R: "+(1-(Mathf.Abs(distanceBetweenSelectorAndRed)/10))+ " Y: "+ (1-(Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)) + " B: "+ (1-(Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+		    if (distanceBetweenSelectorAndBlue<distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndPurple)
+		    {
+                SelectColourBlue();
+		    }
+		    if (distanceBetweenSelectorAndRed < distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndRed < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndRed < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndRed < distanceBetweenSelectorAndBlue && distanceBetweenSelectorAndRed < distanceBetweenSelectorAndPurple)
+		    {
+		        SelectColourRed();
+		    }
+		    if (distanceBetweenSelectorAndYellow < distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndYellow < distanceBetweenSelectorAndBlue && distanceBetweenSelectorAndYellow < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndYellow < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndYellow < distanceBetweenSelectorAndPurple)
+		    {
+		        SelectColourYellow();
+		    }
+		    if (distanceBetweenSelectorAndGreen < distanceBetweenSelectorAndBlue && distanceBetweenSelectorAndGreen < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndGreen < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndGreen < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndGreen < distanceBetweenSelectorAndPurple)
+		    {
+		        SelectColourGreen();
+		    }
+		    if (distanceBetweenSelectorAndPurple < distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndPurple < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndPurple < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndPurple < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndPurple < distanceBetweenSelectorAndBlue)
+		    {
+		        SelectColourPurple();
+		    }
+		    if (distanceBetweenSelectorAndOrange < distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndOrange < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndOrange < distanceBetweenSelectorAndBlue && distanceBetweenSelectorAndOrange < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndOrange < distanceBetweenSelectorAndPurple)
+		    {
+		        SelectColourOrange();
+		    }
+            Debug.Log(distanceBetweenSelectorCurrentPosAndSelectorStartPos);
+		    if (distanceBetweenSelectorCurrentPosAndSelectorStartPos<=5.5f)
+		    {
+		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
+            }
 
-			//Unlocking the mouse to use and making it visible
-			//Cursor.lockState = CursorLockMode.None;
-			//Cursor.visible = true;
+		    if (distanceBetweenSelectorCurrentPosAndSelectorStartPos>=5.5f)
+		    {
+		        //colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
+
+                colourSelectorTransform.anchoredPosition = Vector2.MoveTowards(colourSelectorTransform.anchoredPosition,new Vector2(3.334f, 0f), 0.1f);
+		       
+		    }
+            colourSelector.color = new Color((1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), (1 - (Mathf.Abs(distanceBetweenSelectorAndGreen) / 10)), (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            Cursor.visible = false;
+
+		    //Unlocking the mouse to use and making it visible
+		    //Cursor.lockState = CursorLockMode.None;
+		    //Cursor.visible = true;
 		} else {
             //Slow Motion turned off
             Time.timeScale = 1f;
             //Else all images being turned off
-            colourPicker.GetComponent<Image> ().enabled = false;
-			blueColourSelect.GetComponent<Image> ().enabled = false;
-			redColourSelect.GetComponent<Image> ().enabled = false;
-			yellowColourSelect.GetComponent<Image> ().enabled = false;
-			purpleColourSelect.GetComponent<Image> ().enabled = false;
-			greenColourSelect.GetComponent<Image> ().enabled = false;
-			orangeColourSelect.GetComponent<Image> ().enabled = false;
-			currentColourSelected.GetComponent<Text> ().enabled = false;
+            colourPicker.enabled = false;
+			blueColourSelect.enabled = false;
+			redColourSelect.enabled = false;
+			yellowColourSelect.enabled = false;
+			purpleColourSelect.enabled = false;
+			greenColourSelect.enabled = false;
+			orangeColourSelect.enabled = false;
+			currentColourSelected.enabled = false;
+		    colourSelector.enabled = false;
+		    mouseLock = false;
 
-            //Locking the mouse and hiding it
-           // Cursor.lockState = CursorLockMode.Locked;
-			//Cursor.visible = false;
+		    //Locking the mouse and hiding it
+		    // Cursor.lockState = CursorLockMode.Locked;
+		    //Cursor.visible = false;
+		    Cursor.visible = true;
 		}
 	}
 
