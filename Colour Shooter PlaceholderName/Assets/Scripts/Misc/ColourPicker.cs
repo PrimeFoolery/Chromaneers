@@ -216,28 +216,7 @@ public class ColourPicker : MonoBehaviour {
             Debug.Log(distanceBetweenMouseLockedAndMouseUnlocked);
 		    if (distanceBetweenMouseLockedAndMouseUnlocked>545f)
 		    {
-		        //colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
                 colourSelectorTransform.anchoredPosition = (new Vector2(3.34f,0f)+(diffBetweenSelectorAndStart/distanceBetweenSelectorAndCentre) * 5.4f);
-                //colourSelectorTransform.anchoredPosition = Vector2.MoveTowards(colourSelectorTransform.anchoredPosition,new Vector2(3.334f, 0f), 0.01f);
-		       /* if (currentColourHighligted=="Blue")
-		        {
-                    colourSelectorTransform.anchoredPosition = new Vector2(6.2f,4.6f);
-		        } else if (currentColourHighligted == "Purple")
-		        {
-		            colourSelectorTransform.anchoredPosition = new Vector2(0.8f, 4.7f);
-                } else if (currentColourHighligted == "Red")
-		        {
-		            colourSelectorTransform.anchoredPosition = new Vector2(-2f, 0f);
-                } else if (currentColourHighligted == "Orange")
-		        {
-		            colourSelectorTransform.anchoredPosition = new Vector2(0.8f, -4.4f);
-                } else if (currentColourHighligted == "Yellow")
-		        {
-		            colourSelectorTransform.anchoredPosition = new Vector2(6.1f, -4.4f);
-                } else if (currentColourHighligted == "Green")
-		        {
-		            colourSelectorTransform.anchoredPosition = new Vector2(8.7f, 0f);
-                }*/
             }
             Debug.Log("Selector Position: "+colourSelectorTransform.anchoredPosition);
             colourSelector.color = new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)));

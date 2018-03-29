@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     public GameState currentGameState = GameState.Multiplayer;
     private ColourSelectManager gameManager;
 
-    private float cameraMoveSpeed = 2f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed = 0.15f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Camera cameraComponent;
 
@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
             //transform.position = targetCameraPosition;
 
             transform.position = Vector3.SmoothDamp(transform.position, targetCameraPosition, ref velocity, cameraMoveSpeed);
-            averagePos.y = 0;
+            //averagePos.y = 0;
 
 
             //transform.LookAt(averagePos); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
@@ -103,7 +103,9 @@ public class CameraScript : MonoBehaviour
             CalculateAveragePosInCoOp();//CALCULATE THE AVERAGE POSITION BETWEEN ALL 3 PLAYERS
             CalculateSizeNeeded();//CALCULATE THE LEVEL OF ZOOM THAT THE CAMERA NEEDS TO BE TO FIT ALL PLAYERS ON SCREEN
             targetCameraPosition = new Vector3(averagePos.x, averagePos.y + 15f, averagePos.z - 7.5f);//WHERE THE CAMERA SHOULD BE MOVING
-            transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//MOVING THE CAMERA TOWARDS THE TARGET POS FOR IT
+            Vector3 velocity = Vector3.zero;
+            transform.position = Vector3.SmoothDamp(transform.position, targetCameraPosition, ref velocity, cameraMoveSpeed);
+            //transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//MOVING THE CAMERA TOWARDS THE TARGET POS FOR IT
             transform.LookAt(new Vector3(averagePos.x, 0, averagePos.z));//HAVING THE CAMERA LOOK AT THE TARGET POS
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, sizeNeeded, ref zoomSpeed, dampTime);//CHANGING THE SIZE TO THE NEEDED ONE TO FIT ALL PLAYERS ON SCREEN
         }
@@ -115,7 +117,7 @@ public class CameraScript : MonoBehaviour
         else
         {
             shakeDuration = 0f;
-            transform.localPosition = targetCameraPosition;
+            //transform.localPosition = targetCameraPosition;
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
@@ -133,9 +135,13 @@ public class CameraScript : MonoBehaviour
     private void CalculateAveragePosInSinglePlayer()
     {
        // Debug.Log(normMousePos);
+        Vector2 centreOfScreen = new Vector2(Screen.width/2,Screen.height/2);
+        Debug.Log(centreOfScreen);
+        Vector2 differenceBetweenCentreAndMouse = new Vector2(Input.mousePosition.x - centreOfScreen.x , Input.mousePosition.y - centreOfScreen.y);
+
         //averagePos = SPPlayer.transform.position;
-        //averagePos = (new Vector3((SPPlayer.transform.position.x + (normMousePos.x/5)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (normMousePos.z/5))));
-        averagePos = (new Vector3(SPPlayer.transform.position.x , SPPlayer.transform.position.y, SPPlayer.transform.position.z ));
+        averagePos = (new Vector3((SPPlayer.transform.position.x + (differenceBetweenCentreAndMouse.x/150)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (differenceBetweenCentreAndMouse.y/150))));
+        //averagePos = (new Vector3(SPPlayer.transform.position.x , SPPlayer.transform.position.y, SPPlayer.transform.position.z ));
     }
     private void CalculateSizeNeeded()
     {
