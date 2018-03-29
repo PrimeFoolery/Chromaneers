@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     public GameState currentGameState = GameState.Multiplayer;
     private ColourSelectManager gameManager;
 
-    private float cameraMoveSpeed = 1f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed = 2f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Camera cameraComponent;
 
@@ -85,10 +85,17 @@ public class CameraScript : MonoBehaviour
             rawMousePos.z = 0f;
             normMousePos = Camera.main.ScreenToWorldPoint(rawMousePos);
             CalculateAveragePosInSinglePlayer();
+            Vector3 velocity = Vector3.zero;
             targetCameraPosition = new Vector3(averagePos.x, averagePos.y + 15f, averagePos.z - 7.5f);//The target Position above player is calculated
             //transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//The Camera always moves smoothly towards
-            transform.position = targetCameraPosition;
-            transform.LookAt(averagePos); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
+            //transform.position = targetCameraPosition;
+
+            transform.position = Vector3.SmoothDamp(transform.position, targetCameraPosition, ref velocity, cameraMoveSpeed);
+            averagePos.y = 0;
+
+
+            //transform.LookAt(averagePos); //THE CAMERA LOOKS TOWARDS PLAYER CONSTANTLY
+            //transform.rotation.y = 0;
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, 11, ref zoomSpeed, dampTime);
         }
         if (currentGameState == GameState.Multiplayer)//IF THE GAME IS IN MULTIPLAYER
