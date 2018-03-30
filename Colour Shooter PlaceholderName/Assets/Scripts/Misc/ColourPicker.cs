@@ -23,6 +23,7 @@ public class ColourPicker : MonoBehaviour {
     public RectTransform greenColourSelectTransform;
     public RectTransform orangeColourSelectTransform;
     public RectTransform colourSelectorTransform;
+    public RectTransform colourWheelCentre;
 
     [Header ("Colour Picker Text")]
 	public Text currentColourSelected;
@@ -52,8 +53,8 @@ public class ColourPicker : MonoBehaviour {
 
         //Setting the UI components to false
         colourPicker.enabled = false;
-
-		blueColourSelect.enabled = false;
+        colourSelector.gameObject.GetComponent<LineRenderer>().enabled = false;
+        blueColourSelect.enabled = false;
 		redColourSelect.enabled = false;
 		yellowColourSelect.enabled = false;
 		purpleColourSelect.enabled = false;
@@ -157,6 +158,7 @@ public class ColourPicker : MonoBehaviour {
 			greenColourSelect.enabled = true;
 			orangeColourSelect.enabled = true;
 			currentColourSelected.enabled = true;
+            colourSelector.gameObject.GetComponent<LineRenderer>().enabled = true;
 		    colourSelector.enabled = true;
 		    Vector2 tempMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             if (mouseLock==false)
@@ -179,6 +181,7 @@ public class ColourPicker : MonoBehaviour {
 		    float distanceBetweenSelectorAndPurple = Vector2.Distance(colourSelectorTransform.anchoredPosition, purpleColourSelectTransform.anchoredPosition);
 		    
 		    Vector2 diffBetweenSelectorAndStart = colourSelectorTransform.anchoredPosition - new Vector2(3.34f, 0f);
+            
 		    float distanceBetweenSelectorAndCentre = diffBetweenSelectorAndStart.magnitude;
 
 
@@ -210,7 +213,9 @@ public class ColourPicker : MonoBehaviour {
 
             if (distanceBetweenMouseLockedAndMouseUnlocked<=545f)
 		    {
-		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
+		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 80));
+                colourSelector.gameObject.GetComponent<LineRenderer>().SetPosition(1, colourWheelCentre.GetComponent<RectTransform>().position);
+                colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))), Color.black);
             }
             Debug.Log(distanceBetweenSelectorAndCentre);
             Debug.Log(distanceBetweenMouseLockedAndMouseUnlocked);
@@ -239,7 +244,8 @@ public class ColourPicker : MonoBehaviour {
 			orangeColourSelect.enabled = false;
 			currentColourSelected.enabled = false;
 		    colourSelector.enabled = false;
-		    mouseLock = false;
+            colourSelector.gameObject.GetComponent<LineRenderer>().enabled = false;
+            mouseLock = false;
 
 		    //Locking the mouse and hiding it
 		    // Cursor.lockState = CursorLockMode.Locked;

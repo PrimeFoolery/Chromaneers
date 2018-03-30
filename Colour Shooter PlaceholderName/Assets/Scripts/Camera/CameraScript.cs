@@ -111,7 +111,7 @@ public class CameraScript : MonoBehaviour
         }
         if (shakeDuration > 0)
         {
-            transform.localPosition = targetCameraPosition + Random.insideUnitSphere * shakeAmount;
+            transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
@@ -140,7 +140,8 @@ public class CameraScript : MonoBehaviour
         Vector2 differenceBetweenCentreAndMouse = new Vector2(Input.mousePosition.x - centreOfScreen.x , Input.mousePosition.y - centreOfScreen.y);
 
         //averagePos = SPPlayer.transform.position;
-        averagePos = (new Vector3((SPPlayer.transform.position.x + (differenceBetweenCentreAndMouse.x/150)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + (differenceBetweenCentreAndMouse.y/150))));
+        averagePos = (new Vector3((SPPlayer.transform.position.x + Mathf.Max(Mathf.Min((differenceBetweenCentreAndMouse.x/150),5f),-5f)), SPPlayer.transform.position.y, (SPPlayer.transform.position.z + Mathf.Max(Mathf.Min((differenceBetweenCentreAndMouse.y/150),5f),-5f))));
+        
         //averagePos = (new Vector3(SPPlayer.transform.position.x , SPPlayer.transform.position.y, SPPlayer.transform.position.z ));
     }
     private void CalculateSizeNeeded()
