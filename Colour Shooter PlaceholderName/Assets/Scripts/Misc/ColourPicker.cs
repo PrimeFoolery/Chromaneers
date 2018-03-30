@@ -159,7 +159,7 @@ public class ColourPicker : MonoBehaviour {
 			orangeColourSelect.enabled = true;
 			currentColourSelected.enabled = true;
             colourSelector.gameObject.GetComponent<LineRenderer>().enabled = true;
-		    colourSelector.enabled = true;
+		    //colourSelector.enabled = true;
 		    Vector2 tempMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             if (mouseLock==false)
             {
@@ -214,7 +214,7 @@ public class ColourPicker : MonoBehaviour {
             if (distanceBetweenMouseLockedAndMouseUnlocked<=545f)
 		    {
 		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 80));
-                colourSelector.gameObject.GetComponent<LineRenderer>().SetPosition(1, colourWheelCentre.GetComponent<RectTransform>().position);
+                colourSelector.gameObject.GetComponent<LineRenderer>().SetPosition(1, colourWheelCentre.GetComponent<RectTransform>().position+new Vector3(0,1,0));
                 colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))), Color.black);
             }
             Debug.Log(distanceBetweenSelectorAndCentre);
@@ -223,6 +223,7 @@ public class ColourPicker : MonoBehaviour {
 		    {
                 colourSelectorTransform.anchoredPosition = (new Vector2(3.34f,0f)+(diffBetweenSelectorAndStart/distanceBetweenSelectorAndCentre) * 5.4f);
             }
+            //colourSelector.gameObject.GetComponent<LineRenderer>().SetWidth(distanceBetweenMouseLockedAndMouseUnlocked/100,1-(distanceBetweenMouseLockedAndMouseUnlocked/100));
             Debug.Log("Selector Position: "+colourSelectorTransform.anchoredPosition);
             colourSelector.color = new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)));
             //Debug.Log("R: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10))) + " G: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10))) + " B: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))));
