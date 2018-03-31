@@ -136,7 +136,7 @@ public class CameraScript : MonoBehaviour
     {
        // Debug.Log(normMousePos);
         Vector2 centreOfScreen = new Vector2(Screen.width/2,Screen.height/2);
-        Debug.Log(centreOfScreen);
+        //Debug.Log(centreOfScreen);
         Vector2 differenceBetweenCentreAndMouse = new Vector2(Input.mousePosition.x - centreOfScreen.x , Input.mousePosition.y - centreOfScreen.y);
 
         //averagePos = SPPlayer.transform.position;

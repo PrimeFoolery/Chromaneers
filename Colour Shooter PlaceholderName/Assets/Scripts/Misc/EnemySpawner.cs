@@ -168,6 +168,115 @@ public class EnemySpawner : MonoBehaviour {
 	            tempStandardEnemyBehaviour = null;
                 //SPAWN POINT C ENEMIES
 
+                tempEnemy = Instantiate(SpiderEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
+                if (tempSpiderEnemyController != null)
+                {
+                    tempSpiderEnemyController.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(SpiderEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
+                if (tempSpiderEnemyController != null)
+                {
+                    tempSpiderEnemyController.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+                tempEnemy = Instantiate(YellowEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(RedEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(BlueEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(OrangeEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(GreenEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                //
+
+                tempEnemy = Instantiate(PurpleEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointCEnemyList.Add(tempEnemy);
+                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                if (tempStandardEnemyBehaviour != null)
+                {
+                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = "C";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
                 //ALL ENEMIES SPAWNED
                 haveAllEnemiesSpawned = true;
 	        }

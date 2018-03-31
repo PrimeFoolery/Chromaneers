@@ -365,7 +365,7 @@ public class SpiderEnemyController : MonoBehaviour
         if(bodyHealth<=0)
 	    {
             gameObject.GetComponent<ParticleSystem>().Play();
-	        enemyManagerScript.enemyList.Remove(gameObject);
+	        enemyManagerScript.enemyList.Remove(transform.parent.gameObject);
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
 	    }

@@ -16,6 +16,7 @@ public class ColourPicker : MonoBehaviour {
 	public Image greenColourSelect;
 	public Image orangeColourSelect;
     public Image colourSelector;
+    public Color selectorColor;
     public RectTransform blueColourSelectTransform;
     public RectTransform redColourSelectTransform;
     public RectTransform yellowColourSelectTransform;
@@ -85,7 +86,7 @@ public class ColourPicker : MonoBehaviour {
     //Red bullet selecter
 	public void SelectColourRed () {
         //Selected the respective bullet prefab
-        Debug.Log ("Colour Red Selected");
+        //Debug.Log ("Colour Red Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.redBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Red".ToString ();
@@ -159,7 +160,7 @@ public class ColourPicker : MonoBehaviour {
 			orangeColourSelect.enabled = true;
 			currentColourSelected.enabled = true;
             colourSelector.gameObject.GetComponent<LineRenderer>().enabled = true;
-		    //colourSelector.enabled = true;
+		    colourSelector.enabled = true;
 		    Vector2 tempMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             if (mouseLock==false)
             {
@@ -184,8 +185,7 @@ public class ColourPicker : MonoBehaviour {
             
 		    float distanceBetweenSelectorAndCentre = diffBetweenSelectorAndStart.magnitude;
 
-
-            //Debug.Log("R: "+(1-(Mathf.Abs(distanceBetweenSelectorAndRed)/10))+ " Y: "+ (1-(Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)) + " B: "+ (1-(Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            
 		    if (distanceBetweenSelectorAndBlue<distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndPurple)
 		    {
                 SelectColourBlue();
@@ -213,21 +213,92 @@ public class ColourPicker : MonoBehaviour {
 
             if (distanceBetweenMouseLockedAndMouseUnlocked<=545f)
 		    {
-		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 80));
+		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
                 colourSelector.gameObject.GetComponent<LineRenderer>().SetPosition(1, colourWheelCentre.GetComponent<RectTransform>().position+new Vector3(0,1,0));
-                colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))), Color.black);
+                colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(selectorColor, Color.black);
             }
-            Debug.Log(distanceBetweenSelectorAndCentre);
-            Debug.Log(distanceBetweenMouseLockedAndMouseUnlocked);
+            //Debug.Log(distanceBetweenSelectorAndCentre);
+            //Debug.Log(distanceBetweenMouseLockedAndMouseUnlocked);
 		    if (distanceBetweenMouseLockedAndMouseUnlocked>545f)
 		    {
                 colourSelectorTransform.anchoredPosition = (new Vector2(3.34f,0f)+(diffBetweenSelectorAndStart/distanceBetweenSelectorAndCentre) * 5.4f);
             }
             //colourSelector.gameObject.GetComponent<LineRenderer>().SetWidth(distanceBetweenMouseLockedAndMouseUnlocked/100,1-(distanceBetweenMouseLockedAndMouseUnlocked/100));
-            Debug.Log("Selector Position: "+colourSelectorTransform.anchoredPosition);
-            colourSelector.color = new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)));
+            //Debug.Log("Selector Position: "+colourSelectorTransform.anchoredPosition);
+
+            //colourSelector.color = new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)));
+            //selectorColor = Color.blue * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10));
+            //Debug.Log("Blue Level: " + Color.blue * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            //Debug.Log("Yellow Level: " + Color.yellow * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            //Debug.Log("Red Level: " +  (1-(Mathf.Abs(distanceBetweenSelectorAndRed) / 100)));
+            //Debug.Log("Purple Level: " +  (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            //Debug.Log("Orange Level: " +  (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            //Debug.Log("Green Level: " + Color.green * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            selectorColor = (((Color.blue*(1- (Mathf.Abs(distanceBetweenSelectorAndBlue)/10)))+ (Color.red * (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) /10)))+ (Color.yellow * (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)))+(Color.green * (1 - (Mathf.Abs(distanceBetweenSelectorAndGreen) / 10))) + (new Color(1,0.75f,0,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndOrange) / 10))) + (new Color(0.6f,0,1,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndPurple) / 10)))) / 6);
+            selectorColor.a = 1;
+            if (Mathf.Min(distanceBetweenSelectorAndBlue,distanceBetweenSelectorAndGreen,distanceBetweenSelectorAndOrange,distanceBetweenSelectorAndPurple,distanceBetweenSelectorAndRed,distanceBetweenSelectorAndYellow)==distanceBetweenSelectorAndBlue)
+            {
+                selectorColor = (selectorColor + (Color.blue * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 2.8f))) / 2);
+                if (selectorColor.b<=0.2f)
+                {
+                    selectorColor.b = 0.2f;
+                }
+            } else
+            if (Mathf.Min(distanceBetweenSelectorAndBlue, distanceBetweenSelectorAndGreen, distanceBetweenSelectorAndOrange, distanceBetweenSelectorAndPurple, distanceBetweenSelectorAndRed, distanceBetweenSelectorAndYellow) == distanceBetweenSelectorAndPurple)
+            {
+                selectorColor = (selectorColor + (new Color(0.6f,0,1,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndPurple) / 2.8f))) / 2);
+                if (selectorColor.b <= 0.2f)
+                {
+                    selectorColor.b = 0.2f;
+                }
+                if (selectorColor.r <= 0.12f)
+                {
+                    selectorColor.r = 0.12f;
+                }
+            } else
+            if (Mathf.Min(distanceBetweenSelectorAndBlue, distanceBetweenSelectorAndGreen, distanceBetweenSelectorAndOrange, distanceBetweenSelectorAndPurple, distanceBetweenSelectorAndRed, distanceBetweenSelectorAndYellow) == distanceBetweenSelectorAndRed)
+            {
+                selectorColor = (selectorColor + (Color.red * (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 2.8f))) / 2);
+                if (selectorColor.r <= 0.2f)
+                {
+                    selectorColor.r = 0.2f;
+                }
+            } else
+            if (Mathf.Min(distanceBetweenSelectorAndBlue, distanceBetweenSelectorAndGreen, distanceBetweenSelectorAndOrange, distanceBetweenSelectorAndPurple, distanceBetweenSelectorAndRed, distanceBetweenSelectorAndYellow) == distanceBetweenSelectorAndOrange)
+            {
+                selectorColor = (selectorColor + (new Color(1,0.6f,0,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndOrange) / 2.8f))) / 2);
+                if (selectorColor.r <= 0.2f)
+                {
+                    selectorColor.r = 0.2f;
+                }
+                if (selectorColor.g <= 0.15f)
+                {
+                    selectorColor.g = 0.15f;
+                }
+            } else
+            if (Mathf.Min(distanceBetweenSelectorAndBlue, distanceBetweenSelectorAndGreen, distanceBetweenSelectorAndOrange, distanceBetweenSelectorAndPurple, distanceBetweenSelectorAndRed, distanceBetweenSelectorAndYellow) == distanceBetweenSelectorAndYellow)
+            {
+                selectorColor = (selectorColor + (Color.yellow * (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 2.8f))) / 2);
+                if (selectorColor.r <= 0.2f)
+                {
+                    selectorColor.r = 0.2f;
+                }
+                if (selectorColor.g <= 0.18f)
+                {
+                    selectorColor.g = 0.18f;
+                }
+            } else
+            if (Mathf.Min(distanceBetweenSelectorAndBlue, distanceBetweenSelectorAndGreen, distanceBetweenSelectorAndOrange, distanceBetweenSelectorAndPurple, distanceBetweenSelectorAndRed, distanceBetweenSelectorAndYellow) == distanceBetweenSelectorAndGreen)
+            {
+                selectorColor = (selectorColor + (Color.green * (1 - (Mathf.Abs(distanceBetweenSelectorAndGreen) / 2.8f))) / 2);
+                if (selectorColor.g <= 0.2f)
+                {
+                    selectorColor.g = 0.2f;
+                }
+            }
             //Debug.Log("R: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10))) + " G: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10))) + " B: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))));
             Cursor.visible = false;
+            colourSelector.color = selectorColor;
 
 		    //Unlocking the mouse to use and making it visible
 		    //Cursor.lockState = CursorLockMode.None;

@@ -63,9 +63,13 @@ public class paintSplatBlob : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(0,(gravity+upwardVelocity)*Time.deltaTime,0);
-	    upwardVelocity = upwardVelocity * velocityDecel;
-	    if (transform.position.y<(startingYPos/2))
+
+		transform.Translate(0,(gravity+upwardVelocity)*(Time.deltaTime),0);
+	    upwardVelocity = ((upwardVelocity )* (velocityDecel));
+        //Debug.Log("Upward Velocity: " + upwardVelocity);
+        //upwardVelocity = upwardVelocity;
+        //Debug.Log("Upward Velocity: " + upwardVelocity);
+        if (transform.position.y<(startingYPos/2))
 	    {
 	        GameObject tempPaintProjector = Instantiate(paintProjector, transform.position, Quaternion.identity);
             tempPaintProjector.GetComponent<paintProjectorController>().PaintStart(whereRaycastHit, objectHit, blobsBrush);
