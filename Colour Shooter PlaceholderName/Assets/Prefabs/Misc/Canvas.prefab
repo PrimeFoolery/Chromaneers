@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.686}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1002,6 +1002,7 @@ MonoBehaviour:
   greenColourSelect: {fileID: 114241030740649770}
   orangeColourSelect: {fileID: 114727639565536192}
   colourSelector: {fileID: 114559388432098338}
+  selectorColor: {r: 0, g: 0, b: 0, a: 0}
   blueColourSelectTransform: {fileID: 224226752744161166}
   redColourSelectTransform: {fileID: 224771677502678972}
   yellowColourSelectTransform: {fileID: 224867961440079868}
@@ -1010,6 +1011,7 @@ MonoBehaviour:
   orangeColourSelectTransform: {fileID: 224419874989717268}
   colourSelectorTransform: {fileID: 224997937567555714}
   colourWheelCentre: {fileID: 224359063950752568}
+  dampTime: 0.2
   currentColourSelected: {fileID: 114151630517449444}
   colourSelectManager: {fileID: 0}
 --- !u!114 &114436379765628460
@@ -1258,7 +1260,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1685,19 +1687,19 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1.8
+    widthMultiplier: 2.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
-        time: 0
-        value: 0.8305092
+        time: 0.0015029907
+        value: 0.6144085
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
         time: 1
-        value: 0
+        value: 0.6144104
         inSlope: 0
         outSlope: 0
         tangentMode: 0

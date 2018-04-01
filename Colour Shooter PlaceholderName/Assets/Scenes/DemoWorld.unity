@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -976,9 +976,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 20cd376a21f584ab48031c89c442da87, type: 3}
 --- !u!1 &849673969
@@ -1398,25 +1398,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1637166254}
-    - target: {fileID: 120651320269002274, guid: e2a180c73b2bae142b4092eb0771ddf0,
+    - target: {fileID: 114435575345971896, guid: e2a180c73b2bae142b4092eb0771ddf0,
         type: 2}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 120651320269002274, guid: e2a180c73b2bae142b4092eb0771ddf0,
-        type: 2}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0.0015029907
-      objectReference: {fileID: 0}
-    - target: {fileID: 120651320269002274, guid: e2a180c73b2bae142b4092eb0771ddf0,
-        type: 2}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.6144085
-      objectReference: {fileID: 0}
-    - target: {fileID: 120651320269002274, guid: e2a180c73b2bae142b4092eb0771ddf0,
-        type: 2}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0.6144104
+      propertyPath: dampTime
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2a180c73b2bae142b4092eb0771ddf0, type: 2}
@@ -2258,7 +2243,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4415894506921228, guid: bb201dfa08cd3b9468015ed8ad43b144, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.4137897
+      value: 7.98
       objectReference: {fileID: 0}
     - target: {fileID: 4415894506921228, guid: bb201dfa08cd3b9468015ed8ad43b144, type: 2}
       propertyPath: m_LocalPosition.z

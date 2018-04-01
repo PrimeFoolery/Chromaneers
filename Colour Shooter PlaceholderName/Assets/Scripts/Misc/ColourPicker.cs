@@ -26,6 +26,8 @@ public class ColourPicker : MonoBehaviour {
     public RectTransform colourSelectorTransform;
     public RectTransform colourWheelCentre;
 
+    public float dampTime = 0.3f;
+
     [Header ("Colour Picker Text")]
 	public Text currentColourSelected;
 
@@ -74,7 +76,7 @@ public class ColourPicker : MonoBehaviour {
     //Blue bullet selecter
 	public void SelectColourBlue () {
         //Selected the respective bullet prefab
-		Debug.Log ("Colour Blue Selected");
+		//Debug.Log ("Colour Blue Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.blueBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Blue".ToString ();
@@ -98,7 +100,7 @@ public class ColourPicker : MonoBehaviour {
     //Yellow bullet selecter
 	public void SelectColourYellow () {
         //Selected the respective bullet prefab
-		Debug.Log ("Colour Yellow Selected");
+		//Debug.Log ("Colour Yellow Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.yellowBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Yellow".ToString ();
@@ -110,7 +112,7 @@ public class ColourPicker : MonoBehaviour {
 	//Purple bullet selecter
 	public void SelectColourPurple () {
         //Selected the respective bullet prefab
-		Debug.Log ("Colour Purple Selected");
+		//Debug.Log ("Colour Purple Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.purpleBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Purple".ToString ();
@@ -122,7 +124,7 @@ public class ColourPicker : MonoBehaviour {
 	//Green bullet selecter
 	public void SelectColourGreen () {
         //Selected the respective bullet prefab
-		Debug.Log ("Colour Green Selected");
+		//Debug.Log ("Colour Green Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.greenBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Green".ToString ();
@@ -134,7 +136,7 @@ public class ColourPicker : MonoBehaviour {
 	//Orange bullet selecter
 	public void SelectColourOrange () {
         //Selected the respective bullet prefab
-		Debug.Log ("Colour Orange Selected");
+		//Debug.Log ("Colour Orange Selected");
 		colourSelectManager.SetBulletToShoot (colourSelectManager.orangeBulletPrefab);
         //Changes text and colour
 		currentColourSelected.text = "Current Colour: Orange".ToString ();
@@ -160,7 +162,7 @@ public class ColourPicker : MonoBehaviour {
 			orangeColourSelect.enabled = true;
 			currentColourSelected.enabled = true;
             colourSelector.gameObject.GetComponent<LineRenderer>().enabled = true;
-		    colourSelector.enabled = true;
+		    //colourSelector.enabled = true;
 		    Vector2 tempMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
             if (mouseLock==false)
             {
@@ -174,16 +176,19 @@ public class ColourPicker : MonoBehaviour {
 		    float differenceBetweenLockedAndUnlockedMousePosY = lockedMousePosY - unlockedMousePosY;
             float distanceBetweenMouseLockedAndMouseUnlocked = (new Vector2(unlockedMousePosX-lockedMousePosX,unlockedMousePosY-lockedMousePosY)).magnitude;
             
-		    float distanceBetweenSelectorAndBlue = Vector2.Distance(colourSelectorTransform.anchoredPosition,blueColourSelectTransform.anchoredPosition);
-		    float distanceBetweenSelectorAndRed = Vector2.Distance(colourSelectorTransform.anchoredPosition, redColourSelectTransform.anchoredPosition);
-		    float distanceBetweenSelectorAndYellow = Vector2.Distance(colourSelectorTransform.anchoredPosition, yellowColourSelectTransform.anchoredPosition);
-		    float distanceBetweenSelectorAndOrange = Vector2.Distance(colourSelectorTransform.anchoredPosition, orangeColourSelectTransform.anchoredPosition);
-		    float distanceBetweenSelectorAndGreen = Vector2.Distance(colourSelectorTransform.anchoredPosition, greenColourSelectTransform.anchoredPosition);
-		    float distanceBetweenSelectorAndPurple = Vector2.Distance(colourSelectorTransform.anchoredPosition, purpleColourSelectTransform.anchoredPosition);
-		    
-		    Vector2 diffBetweenSelectorAndStart = colourSelectorTransform.anchoredPosition - new Vector2(3.34f, 0f);
+		    float distanceBetweenSelectorAndBlue = Vector2.Distance(colourSelectorTransform.anchoredPosition,new Vector2(6.4f,4.5f));
+		    float distanceBetweenSelectorAndRed = Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(-2f, 0f));
+		    float distanceBetweenSelectorAndYellow = Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(6.4f, -4.5f));
+		    float distanceBetweenSelectorAndOrange = Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(0.4f, -4.5f));
+		    float distanceBetweenSelectorAndGreen = Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(8.75f, 0f));
+		    float distanceBetweenSelectorAndPurple = Vector2.Distance(colourSelectorTransform.anchoredPosition, new Vector2(0.4f, 4.5f));
+
+            Vector2 diffBetweenSelectorAndStart = colourSelectorTransform.anchoredPosition - new Vector2(3.34f, 0f);
+            Vector2 diffBetweenLockedAndUnlockedMousePos = tempMousePos-(new Vector2(lockedMousePosX,lockedMousePosY));
+		    diffBetweenLockedAndUnlockedMousePos.y = 1- diffBetweenLockedAndUnlockedMousePos.y;
             
 		    float distanceBetweenSelectorAndCentre = diffBetweenSelectorAndStart.magnitude;
+		    float distanceBetweenLockedAndUnlockedMousePos = diffBetweenLockedAndUnlockedMousePos.magnitude;
 
             
 		    if (distanceBetweenSelectorAndBlue<distanceBetweenSelectorAndGreen && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndYellow && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndOrange && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndRed && distanceBetweenSelectorAndBlue < distanceBetweenSelectorAndPurple)
@@ -215,25 +220,16 @@ public class ColourPicker : MonoBehaviour {
 		    {
 		        colourSelectorTransform.anchoredPosition = new Vector2(3.34f + (differenceBetweenLockedAndUnlockedMousePosX / 100), 0f + (differenceBetweenLockedAndUnlockedMousePosY / 100));
                 colourSelector.gameObject.GetComponent<LineRenderer>().SetPosition(1, colourWheelCentre.GetComponent<RectTransform>().position+new Vector3(0,1,0));
-                colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(selectorColor, Color.black);
             }
-            //Debug.Log(distanceBetweenSelectorAndCentre);
-            //Debug.Log(distanceBetweenMouseLockedAndMouseUnlocked);
 		    if (distanceBetweenMouseLockedAndMouseUnlocked>545f)
 		    {
-                colourSelectorTransform.anchoredPosition = (new Vector2(3.34f,0f)+(diffBetweenSelectorAndStart/distanceBetweenSelectorAndCentre) * 5.4f);
+                colourSelectorTransform.anchoredPosition = (new Vector2(3.34f,0f)+(diffBetweenLockedAndUnlockedMousePos/distanceBetweenLockedAndUnlockedMousePos) * 5.4f);
             }
-            //colourSelector.gameObject.GetComponent<LineRenderer>().SetWidth(distanceBetweenMouseLockedAndMouseUnlocked/100,1-(distanceBetweenMouseLockedAndMouseUnlocked/100));
-            //Debug.Log("Selector Position: "+colourSelectorTransform.anchoredPosition);
-
-            //colourSelector.color = new Color(1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10)), 1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)));
-            //selectorColor = Color.blue * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10));
-            //Debug.Log("Blue Level: " + Color.blue * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
-            //Debug.Log("Yellow Level: " + Color.yellow * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
-            //Debug.Log("Red Level: " +  (1-(Mathf.Abs(distanceBetweenSelectorAndRed) / 100)));
-            //Debug.Log("Purple Level: " +  (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
-            //Debug.Log("Orange Level: " +  (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
-            //Debug.Log("Green Level: " + Color.green * (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10)));
+            
+		    colourSelector.gameObject.GetComponent<LineRenderer>().SetWidth(2 + distanceBetweenSelectorAndCentre / 4, 2 - (distanceBetweenSelectorAndCentre / 4));
+		    colourSelector.gameObject.GetComponent<LineRenderer>().SetColors(selectorColor, Color.black);
+            //Debug.Log("dist between Mouse and centre:  "+distanceBetweenSelectorAndCentre/4);
+            
             selectorColor = (((Color.blue*(1- (Mathf.Abs(distanceBetweenSelectorAndBlue)/10)))+ (Color.red * (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) /10)))+ (Color.yellow * (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10)))+(Color.green * (1 - (Mathf.Abs(distanceBetweenSelectorAndGreen) / 10))) + (new Color(1,0.75f,0,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndOrange) / 10))) + (new Color(0.6f,0,1,1) * (1 - (Mathf.Abs(distanceBetweenSelectorAndPurple) / 10)))) / 6);
             selectorColor.a = 1;
             if (Mathf.Min(distanceBetweenSelectorAndBlue,distanceBetweenSelectorAndGreen,distanceBetweenSelectorAndOrange,distanceBetweenSelectorAndPurple,distanceBetweenSelectorAndRed,distanceBetweenSelectorAndYellow)==distanceBetweenSelectorAndBlue)
@@ -296,13 +292,8 @@ public class ColourPicker : MonoBehaviour {
                     selectorColor.g = 0.2f;
                 }
             }
-            //Debug.Log("R: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndBlue) / 10))) + " G: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndRed) / 10))) + " B: "+ (1 - (1 - (Mathf.Abs(distanceBetweenSelectorAndYellow) / 10))));
             Cursor.visible = false;
             colourSelector.color = selectorColor;
-
-		    //Unlocking the mouse to use and making it visible
-		    //Cursor.lockState = CursorLockMode.None;
-		    //Cursor.visible = true;
 		} else {
             //Slow Motion turned off
             Time.timeScale = 1f;
@@ -329,6 +320,7 @@ public class ColourPicker : MonoBehaviour {
     //Setting alphas of the colour wheel to represent which colour is selected
     void whatColourIsCurrentlySelected () {
         //CurrentColourSelected is blue
+        Vector2 velocity = Vector2.zero;
         if (currentColourHighligted == "Blue") {
             blueColourSelect.GetComponent<Image>().color = new Color (0.008f, 0.48f, 0.78f, 1f);
             redColourSelect.GetComponent<Image>().color = new Color (1f, 0.004f, 0.05f, 0.6f);
@@ -336,6 +328,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color (0.51f, 0.11f, 0.52f, 0.6f);
             greenColourSelect.GetComponent<Image>().color = new Color (0.008f, 0.59f, 0.2f, 0.6f);
             orangeColourSelect.GetComponent<Image>().color = new Color (1f, 0.5f, 0f, 0.6f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.63f,5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.63f,5f),dampTime * Time.deltaTime );
+            }
+            if (redColourSelectTransform.anchoredPosition!=new Vector2(-2f,0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.4f, -4.5f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.4f, -4.5f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(8.75f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(8.75f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.4f, 4.5f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.4f, 4.5f), dampTime * Time.deltaTime);
+            }
         }
 
         //CurrentColourSelected is red
@@ -346,6 +362,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color(0.51f, 0.11f, 0.52f, 0.6f);
             greenColourSelect.GetComponent<Image>().color = new Color(0.008f, 0.59f, 0.2f, 0.6f);
             orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.6f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.4f, 4.5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.4f, 4.5f), dampTime * Time.deltaTime);
+            }
+            if (redColourSelectTransform.anchoredPosition != new Vector2(-2.62f, 0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2.62f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.4f, -4.5f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.4f, -4.5f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(8.75f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(8.75f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.4f, 4.5f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.4f, 4.5f), dampTime * Time.deltaTime);
+            }
         }
 
         //CurrentColourSelected is yellow
@@ -356,6 +396,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color(0.51f, 0.11f, 0.52f, 0.6f);
             greenColourSelect.GetComponent<Image>().color = new Color(0.008f, 0.59f, 0.2f, 0.6f);
             orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.6f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.4f, 4.5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.4f, 4.5f), dampTime * Time.deltaTime);
+            }
+            if (redColourSelectTransform.anchoredPosition != new Vector2(-2f, 0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.59f, -5.09f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.59f, -5.09f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.4f, -4.5f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(8.75f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(8.75f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.4f, 4.5f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.4f, 4.5f), dampTime * Time.deltaTime);
+            }
         }
 
         //CurrentColourSelected is purple
@@ -366,6 +430,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color(0.51f, 0.11f, 0.52f, 1f);
             greenColourSelect.GetComponent<Image>().color = new Color(0.008f, 0.59f, 0.2f, 0.6f);
             orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.6f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.4f, 4.5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.4f, 4.5f), dampTime * Time.deltaTime);
+            }
+            if (redColourSelectTransform.anchoredPosition != new Vector2(-2f, 0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.4f, -4.5f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.4f, -4.5f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(8.75f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(8.75f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.3f, 4.85f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.3f, 4.85f), dampTime * Time.deltaTime);
+            }
         }
 
         //CurrentColourSelected is green
@@ -376,6 +464,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color(0.51f, 0.11f, 0.52f, 0.6f);
             greenColourSelect.GetComponent<Image>().color = new Color(0.008f, 0.59f, 0.2f, 1f);
             orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 0.6f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.4f, 4.5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.4f, 4.5f), dampTime * Time.deltaTime);
+            }
+            if (redColourSelectTransform.anchoredPosition != new Vector2(-2f, 0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.4f, -4.5f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.4f, -4.5f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(9.45f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(9.45f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.4f, 4.5f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.4f, 4.5f), dampTime * Time.deltaTime);
+            }
         }
 
         //CurrentColourSelected is orange
@@ -386,6 +498,30 @@ public class ColourPicker : MonoBehaviour {
             purpleColourSelect.GetComponent<Image>().color = new Color(0.51f, 0.11f, 0.52f, 0.6f);
             greenColourSelect.GetComponent<Image>().color = new Color(0.008f, 0.59f, 0.2f, 0.6f);
             orangeColourSelect.GetComponent<Image>().color = new Color(1f, 0.5f, 0f, 1f);
+            if (blueColourSelectTransform.anchoredPosition != new Vector2(6.4f, 4.5f))
+            {
+                blueColourSelectTransform.anchoredPosition = Vector2.MoveTowards(blueColourSelectTransform.anchoredPosition, new Vector2(6.4f, 4.5f), dampTime * Time.deltaTime);
+            }
+            if (redColourSelectTransform.anchoredPosition != new Vector2(-2f, 0))
+            {
+                redColourSelectTransform.anchoredPosition = Vector2.MoveTowards(redColourSelectTransform.anchoredPosition, new Vector2(-2f, 0), dampTime * Time.deltaTime);
+            }
+            if (yellowColourSelectTransform.anchoredPosition != new Vector2(6.4f, -4.5f))
+            {
+                yellowColourSelectTransform.anchoredPosition = Vector2.MoveTowards(yellowColourSelectTransform.anchoredPosition, new Vector2(6.4f, -4.5f), dampTime * Time.deltaTime);
+            }
+            if (orangeColourSelectTransform.anchoredPosition != new Vector2(0.08f, -5.15f))
+            {
+                orangeColourSelectTransform.anchoredPosition = Vector2.MoveTowards(orangeColourSelectTransform.anchoredPosition, new Vector2(0.08f, -5.15f), dampTime * Time.deltaTime);
+            }
+            if (greenColourSelectTransform.anchoredPosition != new Vector2(8.75f, 0f))
+            {
+                greenColourSelectTransform.anchoredPosition = Vector2.MoveTowards(greenColourSelectTransform.anchoredPosition, new Vector2(8.75f, 0f), dampTime * Time.deltaTime);
+            }
+            if (purpleColourSelectTransform.anchoredPosition != new Vector2(0.4f, 4.5f))
+            {
+                purpleColourSelectTransform.anchoredPosition = Vector2.MoveTowards(purpleColourSelectTransform.anchoredPosition, new Vector2(0.4f, 4.5f), dampTime * Time.deltaTime);
+            }
         }
     }
 }
