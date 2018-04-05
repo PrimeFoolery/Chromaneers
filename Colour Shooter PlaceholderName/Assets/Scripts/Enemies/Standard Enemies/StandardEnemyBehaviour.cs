@@ -80,56 +80,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             else if (player!=null) {
                 if (Vector3.Distance(transform.position,player.transform.position)<7f&&isAggroPlayer==false)
                 {
-                    if (thisEnemiesSpawnPoint=="A")
-                    {
-                        foreach (GameObject enemy in spawner.pointAEnemyList)
-                        {
-                            if (enemy.GetComponent<StandardEnemyBehaviour>()!=null)
-                            {
-                               enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer=true;
-                            }
-
-                            if (enemy.GetComponentInChildren<SpiderEnemyController>()!=null)
-                            {
-                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-                            }
-
-                        }
-                    }
-                    if (thisEnemiesSpawnPoint == "B")
-                    {
-                        foreach (GameObject enemy in spawner.pointBEnemyList)
-                        {
-                            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
-                            {
-                                enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
-                            }
-
-                            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
-                            {
-                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-                            }
-
-                        }
-                    }
-                    if (thisEnemiesSpawnPoint == "C")
-                    {
-                        foreach (GameObject enemy in spawner.pointCEnemyList)
-                        {
-                            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
-                            {
-                                enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
-                            }
-
-                            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
-                            {
-                                enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-                            }
-
-                        }
-                    }
-
-
+                    spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
                 }
 
                 if (isAggroPlayer == true)
@@ -141,11 +92,19 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 			
 		}
 		if (isItCoop) {
-            if (retargetingDelay==5f)
-            {
-                FindClosestPlayer();
+		    if (isAggroPlayer==false&&(Vector3.Distance(transform.position,RedPlayer.transform.position)<7f||Vector3.Distance(transform.position,BluePlayer.transform.position)<7f|| Vector3.Distance(transform.position, YellowPlayer.transform.position) < 7f))
+		    {
+		        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
             }
-			agent.SetDestination (targetPlayer.transform.position);
+		    if (isAggroPlayer == true)
+		    {
+		        if (retargetingDelay == 5f)
+		        {
+		            FindClosestPlayer();
+		        }
+		        agent.SetDestination(targetPlayer.transform.position);
+            }
+            
 
 		}
         if (readyToRetarget==false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
@@ -199,7 +158,6 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 	        {
 	            FindClosestPlayer();
             }
-	        
 	    }
 	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "red")
         {
@@ -232,7 +190,6 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 }
                 poisonTimer = 3f;
             }
-            
         }
     }
 

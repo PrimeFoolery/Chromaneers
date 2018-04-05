@@ -25,10 +25,12 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject OrangeEnemy;
 	public GameObject PurpleEnemy;
 	public GameObject GreenEnemy;
+    public GameObject SnakeEnemy;
 
 	public GameObject tempEnemy;
     private StandardEnemyBehaviour tempStandardEnemyBehaviour;
     private SpiderEnemyController tempSpiderEnemyController;
+    private SnakeEnemyScript tempSnakeEnemyScript;
 	private EnemyManager enemyManagerScript;
 
 	private int RanNumb;
@@ -182,18 +184,19 @@ public class EnemySpawner : MonoBehaviour {
                 tempStandardEnemyBehaviour = null;
                 //
 
-                tempEnemy = Instantiate(SpiderEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                tempEnemy = Instantiate(SnakeEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
                 enemyManagerScript.enemyList.Add(tempEnemy);
                 pointCEnemyList.Add(tempEnemy);
-                tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
-                if (tempSpiderEnemyController != null)
+                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                if (tempSnakeEnemyScript != null)
                 {
-                    tempSpiderEnemyController.thisEnemiesSpawnPoint = "C";
+                    tempSnakeEnemyScript.thisEnemiesSpawnPoint = "C";
                 }
                 tempEnemy = null;
                 tempSpiderEnemyController = null;
                 tempStandardEnemyBehaviour = null;
+	            tempSnakeEnemyScript = null;
                 //
                 tempEnemy = Instantiate(YellowEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
@@ -284,76 +287,79 @@ public class EnemySpawner : MonoBehaviour {
 	    
         
 
-        /*//OLD SPAWNING SYSTEM
-		Timer += Time.deltaTime;
-
-		if (Timer >= 2) {
-			
-			RanNumb = Random.Range (0, 6);
-			if (RanNumb == 0) {
-				tempEnemy = Instantiate (RedEnemy);
-				enemyManagerScript.AddExtraBoolToProjectorsScript ();
-				enemyManagerScript.enemyList.Add (tempEnemy);
-				Timer = 0;
-			}
-			if (RanNumb == 1) {
-				tempEnemy = Instantiate (YellowEnemy);
-				enemyManagerScript.AddExtraBoolToProjectorsScript ();
-				enemyManagerScript.enemyList.Add (tempEnemy);
-				Timer = 0;
-			}
-			if (RanNumb == 2) {
-				tempEnemy = Instantiate (BlueEnemy);
-				enemyManagerScript.AddExtraBoolToProjectorsScript ();
-				enemyManagerScript.enemyList.Add (tempEnemy);
-				Timer = 0;
-			}
-		    if (RanNumb == 3) {
-				tempEnemy = Instantiate(SpiderEnemy);
-				enemyManagerScript.AddExtraBoolToProjectorsScript ();
-				enemyManagerScript.enemyList.Add (tempEnemy);
-		        Timer = 0;
-		    }
-			if(RanNumb == 4||RanNumb == 5){
-				ranSecondaryEnemy = Random.Range (0, 3);
-				if(ranSecondaryEnemy==0){
-					tempEnemy = Instantiate (OrangeEnemy);
-					enemyManagerScript.AddExtraBoolToProjectorsScript ();
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-				if(ranSecondaryEnemy==1){
-					tempEnemy = Instantiate (GreenEnemy);
-					enemyManagerScript.AddExtraBoolToProjectorsScript ();
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-				if(ranSecondaryEnemy==2){
-					tempEnemy = Instantiate (PurpleEnemy);
-					enemyManagerScript.AddExtraBoolToProjectorsScript ();
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-			}
-			if(RanNumb == 6){
-				ranShieldEnemy = Random.Range (0,3);
-				if(ranShieldEnemy==0){
-					tempEnemy = Instantiate (RedShieldEnemy);
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-				if(ranShieldEnemy==1){
-					tempEnemy = Instantiate (BlueShieldEnemy);
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-				if(ranShieldEnemy==2){
-					tempEnemy = Instantiate (YellowShieldEnemy);
-					enemyManagerScript.enemyList.Add (tempEnemy);
-					Timer = 0;
-				}
-			}
-
-        }*/
+        
 	}
+
+    public void AggroGroupOfEnemies(string enemyGroup)
+    {
+        if (enemyGroup=="A")
+        {
+            foreach (GameObject enemy in pointAEnemyList)
+            {
+                if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+                {
+                    enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
+                }
+
+                if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+                {
+                    enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                }
+                if (enemy.GetComponentsInChildren<SnakeEnemyScript>() != null)
+                {
+                    foreach (SnakeEnemyScript enemySnake in enemy.GetComponentsInChildren<SnakeEnemyScript>())
+                    {
+                       enemySnake.isAggroPlayer = true;
+                    }
+                }
+
+            }
+        }
+        if (enemyGroup == "B")
+        {
+            foreach (GameObject enemy in pointBEnemyList)
+            {
+                if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+                {
+                    enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
+                }
+
+                if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+                {
+                    enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                }
+                if (enemy.GetComponentsInChildren<SnakeEnemyScript>() != null)
+                {
+                    foreach (SnakeEnemyScript enemySnake in enemy.GetComponentsInChildren<SnakeEnemyScript>())
+                    {
+                        enemySnake.isAggroPlayer = true;
+                    }
+                }
+
+            }
+        }
+        if (enemyGroup == "C")
+        {
+            foreach (GameObject enemy in pointCEnemyList)
+            {
+                if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+                {
+                    enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
+                }
+
+                if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+                {
+                    enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
+                }
+                if (enemy.GetComponentsInChildren<SnakeEnemyScript>() != null)
+                {
+                    foreach (SnakeEnemyScript enemySnake in enemy.GetComponentsInChildren<SnakeEnemyScript>())
+                    {
+                        enemySnake.isAggroPlayer = true;
+                    }
+                }
+
+            }
+        }
+    }
 }

@@ -101,7 +101,7 @@ public class SpiderEnemyController : MonoBehaviour
 	            leg4.GetComponent<SpiderLegScript>().legColour = "blue";
             } else if (legColour == 2)
 	        {
-	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+	            //Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
                 leg1.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "yellow";
                 leg2.GetComponent<Renderer>().material = YellowLegMaterial;
@@ -119,7 +119,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
-	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+	           // Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
                 leg1.GetComponent<Renderer>().material = RedLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "red";
                 leg2.GetComponent<Renderer>().material = RedLegMaterial;
@@ -131,7 +131,7 @@ public class SpiderEnemyController : MonoBehaviour
             }
 	        else if (legColour == 2)
 	        {
-	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+	            //Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
                 leg1.GetComponent<Renderer>().material = YellowLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "yellow";
                 leg2.GetComponent<Renderer>().material = YellowLegMaterial;
@@ -195,55 +195,8 @@ public class SpiderEnemyController : MonoBehaviour
 	        {
 	            if (Vector3.Distance(transform.position, player.transform.position) < 7f && isAggroPlayer == false)
 	            {
-	               
-	                if (thisEnemiesSpawnPoint == "A")
-	                {
-	                    foreach (GameObject enemy in spawner.pointAEnemyList)
-	                    {
-	                        if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
-	                        {
-	                            enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
-	                        }
 
-	                        if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
-	                        {
-	                            enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-	                        }
-
-                        }
-	                }
-	                if (thisEnemiesSpawnPoint == "B")
-	                {
-	                    foreach (GameObject enemy in spawner.pointBEnemyList)
-	                    {
-	                        if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
-	                        {
-	                            enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
-	                        }
-
-	                        if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
-	                        {
-	                            enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-	                        }
-
-                        }
-	                }
-	                if (thisEnemiesSpawnPoint == "C")
-	                {
-	                    foreach (GameObject enemy in spawner.pointCEnemyList)
-	                    {
-	                        if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
-	                        {
-	                            enemy.GetComponent<StandardEnemyBehaviour>().isAggroPlayer = true;
-	                        }
-
-	                        if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
-	                        {
-	                            enemy.GetComponentInChildren<SpiderEnemyController>().isAggroPlayer = true;
-	                        }
-
-                        }
-	                }
+	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
 
                 }
 
@@ -257,13 +210,20 @@ public class SpiderEnemyController : MonoBehaviour
         }
 	    if (isItCoop)
 	    {
-	        if (retargetingDelay == 5f)
+	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 7f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 7f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 7f))
 	        {
-	            FindClosestPlayer();
+	            spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
 	        }
-	        agent.SetDestination(targetPlayer.transform.position);
+	        if (isAggroPlayer == true)
+	        {
+	            if (retargetingDelay == 5f)
+	            {
+	                FindClosestPlayer();
+	            }
+	            agent.SetDestination(targetPlayer.transform.position);
+	        }
 
-	    }
+        }
 	    if (readyToRetarget == false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
 	    {
 	        retargetingDelay -= Time.deltaTime;
