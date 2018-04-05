@@ -170,20 +170,6 @@ public class EnemySpawner : MonoBehaviour {
 	            tempStandardEnemyBehaviour = null;
                 //SPAWN POINT C ENEMIES
 
-                tempEnemy = Instantiate(SpiderEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                pointCEnemyList.Add(tempEnemy);
-                tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
-                if (tempSpiderEnemyController != null)
-                {
-                    tempSpiderEnemyController.thisEnemiesSpawnPoint = "C";
-                }
-                tempEnemy = null;
-                tempSpiderEnemyController = null;
-                tempStandardEnemyBehaviour = null;
-                //
-
                 tempEnemy = Instantiate(SnakeEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
                 enemyManagerScript.enemyList.Add(tempEnemy);
@@ -197,6 +183,7 @@ public class EnemySpawner : MonoBehaviour {
                 tempSpiderEnemyController = null;
                 tempStandardEnemyBehaviour = null;
 	            tempSnakeEnemyScript = null;
+                /*
                 //
                 tempEnemy = Instantiate(YellowEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
@@ -280,6 +267,7 @@ public class EnemySpawner : MonoBehaviour {
                 tempEnemy = null;
                 tempSpiderEnemyController = null;
                 tempStandardEnemyBehaviour = null;
+                */
                 //ALL ENEMIES SPAWNED
                 haveAllEnemiesSpawned = true;
 	        }
