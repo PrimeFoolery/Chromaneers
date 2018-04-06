@@ -137,7 +137,7 @@ public class EnemyManager : MonoBehaviour {
 
 	        for (int enemy = 0;  enemy < enemyList.Count;  enemy++)
 	        {
-	            for (int i = projectorsList.Count-2; i > 0 ; i--)
+	            for (int i = projectorsList.Count-1; i > 0 ; i--)
 	            {
 	                paintProjectorController currentProjectorScript = projectorsList[i].GetComponent<paintProjectorController>();
 	                if (currentProjectorScript.enemyOnPaintList[enemy]==true)
@@ -297,7 +297,7 @@ public class EnemyManager : MonoBehaviour {
             }
 			for (int enemy = 0;  enemy < enemyList.Count;  enemy++)
 			{
-				for (int i = projectorsList.Count-2; i > 0 ; i--)
+				for (int i = projectorsList.Count-1; i > 0 ; i--)
 				{
 					paintProjectorController currentProjectorScript = projectorsList[i].GetComponent<paintProjectorController>();
 					if (currentProjectorScript.enemyOnPaintList[enemy]==true)

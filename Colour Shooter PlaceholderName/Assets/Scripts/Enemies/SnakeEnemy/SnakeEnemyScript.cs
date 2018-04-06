@@ -41,6 +41,9 @@ public class SnakeEnemyScript : MonoBehaviour
     public GameObject bluePlayerChar;
     public GameObject yellowPlayerChar;
 
+    public string colourOfPaintBelow = "null";
+    public bool colourOverride = false;
+
 
 	// Use this for initialization
 	void Start ()
@@ -163,6 +166,7 @@ public class SnakeEnemyScript : MonoBehaviour
 
 	    if (name=="SnakeHead")
 	    {
+	        GetComponentInParent<Transform>().position = transform.position;
 	        if (isitCoop == false)
 	        {
 	            if (Vector3.Distance(transform.position, singlePlayerChar.transform.position) < 7f && isAggroPlayer == false)
@@ -230,9 +234,39 @@ public class SnakeEnemyScript : MonoBehaviour
 	            SegmentBehind.GetComponent<SnakeEnemyScript>().CalculateClosestPlayer();
             }
 
+	        
 	        GetComponentInParent<snakeManager>().amountOfSnakeSegments -= 1;
+	        enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(this.gameObject);
 	    }
+
+	    if (colourOverride==false&&gameObject.GetComponent<PaintDetectionScript>().colourOfPaint!="")
+	    {
+	        colourOfPaintBelow = gameObject.GetComponent<PaintDetectionScript>().colourOfPaint;
+        }
+
+	    if (name=="SnakeHead")
+	    {
+	        colourOfPaintBelow = gameObject.GetComponent<PaintDetectionScript>().colourOfPaint;
+	        if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "null")
+	        {
+	            foreach (SnakeEnemyScript snakeSegment in gameObject.transform.parent.GetComponentsInChildren<SnakeEnemyScript>())
+	            {
+	                snakeSegment.colourOfPaintBelow = "null";
+                    snakeSegment.colourOverride = false;
+	            }
+            }
+        }
+	    if (colourOfPaintBelow != "null")
+	    {
+	        foreach (SnakeEnemyScript snakeSegment in gameObject.transform.parent.GetComponentsInChildren<SnakeEnemyScript>())
+	        {
+	            snakeSegment.colourOfPaintBelow = colourOfPaintBelow;
+                snakeSegment.colourOverride = true;
+	            
+	        }
+	        
+        }
 	}
 
     public void CalculateClosestPlayer()
@@ -266,7 +300,6 @@ public class SnakeEnemyScript : MonoBehaviour
         {
             targetPlayer = singlePlayerChar;
         }
-
         Target_Or_SegmentAhead = targetPlayer.transform;
     }
 

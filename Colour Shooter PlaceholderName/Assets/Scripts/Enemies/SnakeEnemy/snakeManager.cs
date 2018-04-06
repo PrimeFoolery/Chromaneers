@@ -19,7 +19,7 @@ public class snakeManager : MonoBehaviour {
 	void Update () {
 	    if (amountOfSnakeSegments<=0)
 	    {
-	        enemyManagerScript.enemyList.Remove(gameObject);
+	        //enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(gameObject);
 	    }
 	}

@@ -172,7 +172,17 @@ public class EnemySpawner : MonoBehaviour {
 
                 tempEnemy = Instantiate(SnakeEnemy, spawnPointCTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
+                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
                 pointCEnemyList.Add(tempEnemy);
                 tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
                 if (tempSnakeEnemyScript != null)
