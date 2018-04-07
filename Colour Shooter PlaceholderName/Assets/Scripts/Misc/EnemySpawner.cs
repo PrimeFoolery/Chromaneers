@@ -26,11 +26,13 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject PurpleEnemy;
 	public GameObject GreenEnemy;
     public GameObject SnakeEnemy;
+    public GameObject FastEnemy;
 
 	public GameObject tempEnemy;
     private StandardEnemyBehaviour tempStandardEnemyBehaviour;
     private SpiderEnemyController tempSpiderEnemyController;
     private SnakeEnemyScript tempSnakeEnemyScript;
+    private FastEnemy tempFastEnemyScript;
 	private EnemyManager enemyManagerScript;
 
 	private int RanNumb;
@@ -50,6 +52,7 @@ public class EnemySpawner : MonoBehaviour {
 	        if (SceneManager.GetActiveScene().name == "DemoWorld")
 	        {
                 //SPAWN POINT A ENEMIES
+                /*
 	            tempEnemy = Instantiate(RedEnemy, spawnPointATransform.position+new Vector3(Random.Range(-3f,3f),0,Random.Range(-3f,3f)), Quaternion.identity);
                 enemyManagerScript.AddExtraBoolToProjectorsScript();
                 enemyManagerScript.enemyList.Add(tempEnemy);
@@ -108,7 +111,242 @@ public class EnemySpawner : MonoBehaviour {
 	            tempEnemy = null;
 	            tempSpiderEnemyController = null;
 	            tempStandardEnemyBehaviour = null;
-
+                */
+                //
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+	            tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+	            enemyManagerScript.AddExtraBoolToProjectorsScript();
+	            enemyManagerScript.enemyList.Add(tempEnemy);
+	            pointAEnemyList.Add(tempEnemy);
+	            tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+	            if (tempFastEnemyScript != null)
+	            {
+	                tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+	            }
+	            tempEnemy = null;
+	            tempSpiderEnemyController = null;
+	            tempStandardEnemyBehaviour = null;
+	            tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
+                tempEnemy = Instantiate(FastEnemy, spawnPointATransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                enemyManagerScript.AddExtraBoolToProjectorsScript();
+                enemyManagerScript.enemyList.Add(tempEnemy);
+                pointAEnemyList.Add(tempEnemy);
+                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                if (tempFastEnemyScript != null)
+                {
+                    tempFastEnemyScript.thisEnemiesSpawnPoint = "A";
+                }
+                tempEnemy = null;
+                tempSpiderEnemyController = null;
+                tempStandardEnemyBehaviour = null;
+                tempFastEnemyScript = null;
 
                 //SPAWN POINT B ENEMIES
                 tempEnemy = Instantiate(SpiderEnemy, spawnPointBTransform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
@@ -311,6 +549,11 @@ public class EnemySpawner : MonoBehaviour {
                     }
                 }
 
+                if (enemy.GetComponent<FastEnemy>()!=null)
+                {
+                    enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
+                }
+
             }
         }
         if (enemyGroup == "B")
@@ -332,6 +575,10 @@ public class EnemySpawner : MonoBehaviour {
                     {
                         enemySnake.isAggroPlayer = true;
                     }
+                }
+                if (enemy.GetComponent<FastEnemy>() != null)
+                {
+                    enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
                 }
 
             }
@@ -355,6 +602,10 @@ public class EnemySpawner : MonoBehaviour {
                     {
                         enemySnake.isAggroPlayer = true;
                     }
+                }
+                if (enemy.GetComponent<FastEnemy>() != null)
+                {
+                    enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
                 }
 
             }

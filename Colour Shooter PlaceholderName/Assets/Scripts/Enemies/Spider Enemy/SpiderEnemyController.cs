@@ -38,7 +38,7 @@ public class SpiderEnemyController : MonoBehaviour
     private ColourSelectManager gameManager;
 	public int enemyDamage;
     private PaintDetectionScript paintDetector;
-    private float poisonTimer = 3f;
+    private float poisonTimer = 4f;
     private EnemyManager enemyManagerScript;
     private EnemySpawner spawner;
     public bool isAggroPlayer = false;
@@ -352,9 +352,13 @@ public class SpiderEnemyController : MonoBehaviour
 	                leg2.GetComponent<SpiderLegScript>().DamageLeg();
 	            }
                 
-                poisonTimer = 3f;
+                poisonTimer = 4f;
 	        }
         }
+	    else
+	    {
+	        poisonTimer = 4f;
+	    }
     }
 
     void OnCollisionEnter(Collision other)

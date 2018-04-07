@@ -43,6 +43,7 @@ public class SnakeEnemyScript : MonoBehaviour
 
     public string colourOfPaintBelow = "null";
     public bool colourOverride = false;
+    private float poisonTimer = 4f;
 
 
 	// Use this for initialization
@@ -162,6 +163,17 @@ public class SnakeEnemyScript : MonoBehaviour
 	        agent.SetDestination(Target_Or_SegmentAhead.position);
 	    }
 
+	    if (colourOfPaintBelow!="yellow"&&colourOfPaintBelow!="blue")
+	    {
+	        if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) > 3f)
+	        {
+	            agent.speed = 6;
+	        }
+	        else if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) < 3f)
+	        {
+	            agent.speed = 4;
+	        }
+        }
 	    
 
 	    if (name=="SnakeHead")
@@ -240,33 +252,54 @@ public class SnakeEnemyScript : MonoBehaviour
             Destroy(this.gameObject);
 	    }
 
-	    if (colourOverride==false&&gameObject.GetComponent<PaintDetectionScript>().colourOfPaint!="")
-	    {
-	        colourOfPaintBelow = gameObject.GetComponent<PaintDetectionScript>().colourOfPaint;
-        }
+	    colourOfPaintBelow = gameObject.GetComponent<PaintDetectionScript>().colourOfPaint;
 
-	    if (name=="SnakeHead")
+	    if (colourOfPaintBelow=="yellow")
 	    {
-	        colourOfPaintBelow = gameObject.GetComponent<PaintDetectionScript>().colourOfPaint;
-	        if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "null")
+	        if (name=="SnakeHead")
 	        {
-	            foreach (SnakeEnemyScript snakeSegment in gameObject.transform.parent.GetComponentsInChildren<SnakeEnemyScript>())
-	            {
-	                snakeSegment.colourOfPaintBelow = "null";
-                    snakeSegment.colourOverride = false;
-	            }
-            }
-        }
-	    if (colourOfPaintBelow != "null")
-	    {
-	        foreach (SnakeEnemyScript snakeSegment in gameObject.transform.parent.GetComponentsInChildren<SnakeEnemyScript>())
-	        {
-	            snakeSegment.colourOfPaintBelow = colourOfPaintBelow;
-                snakeSegment.colourOverride = true;
-	            
+	            agent.speed = 5;
 	        }
-	        
+	        else
+	        {
+	            agent.speed = 6;
+	        }
+	    }else
+
+	    if (colourOfPaintBelow=="blue")
+	    {
+	        if (name=="SnakeHead")
+	        {
+	            agent.speed = 1;
+	        }else
+	        {
+	            agent.speed = 2;
+	        }
+	    }
+	    else
+	    {
+	        if (name=="SnakeHead")
+	        {
+                agent.speed = 3;
+	        }
+	    }
+
+	    if (colourOfPaintBelow=="red")
+	    {
+	        poisonTimer -= Time.deltaTime;
+	        if (poisonTimer<=0)
+	        {
+	            segmentHealth -= 1;
+                gameObject.GetComponent<ParticleSystem>().Play();
+	            poisonTimer = 4f;
+	        }
+
         }
+	    else
+	    {
+	        poisonTimer = 4f;
+	    }
+	    
 	}
 
     public void CalculateClosestPlayer()

@@ -16,7 +16,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     private PurpleEnemyHealth purpleHealth;
     private GreenEnemyHealth greenHealth;
     private RedEnemyHealth redHealth;
-    private float poisonTimer = 3f;
+    private float poisonTimer = 4f;
 
     //COOP PLAYER VARIABLES
     [Header("Coop Variables")]
@@ -188,9 +188,13 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 {
                     greenHealth.EnemyDamaged(1);
                 }
-                poisonTimer = 3f;
+                poisonTimer = 4f;
             }
         }
+	    else
+	    {
+	        poisonTimer = 4f;
+	    }
     }
 
     void FindClosestPlayer() {

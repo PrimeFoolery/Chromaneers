@@ -873,6 +873,7 @@ MonoBehaviour:
     type: 2}
   GreenEnemy: {fileID: 1923391692171364, guid: bb584a80f71fa4975aaf7d9115c9dc24, type: 2}
   SnakeEnemy: {fileID: 1351670481487472, guid: 790b956cf9618c648a63ca66ec6c6138, type: 2}
+  FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
   tempEnemy: {fileID: 0}
 --- !u!1 &752332391
 GameObject:
@@ -2310,7 +2311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114879534976830574, guid: 308643343fd891648ab475618f2bf2f6,
         type: 2}
@@ -2399,7 +2400,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114627511303337698, guid: cc9082562e65e2140bac760c1e57fcc1,
         type: 2}
