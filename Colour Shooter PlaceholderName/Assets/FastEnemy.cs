@@ -15,8 +15,9 @@ public class FastEnemy : MonoBehaviour {
     private int thisEnemiesHealth = 1;
 
     public Renderer SphereRenderer;
+    public bool colourOverride = false;
     public string colourOfEnemy;
-    private int randomColour;
+    public int randomColour;
     public Material blueMaterial;
     public GameObject blueSplat;
     public Material blueParticle;
@@ -73,7 +74,11 @@ public class FastEnemy : MonoBehaviour {
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
         }
 
-        randomColour = Random.Range(1, 2);
+        if (colourOverride==false)
+        {
+            randomColour = Random.Range(1, 4);
+        }
+        
         if (randomColour==1)
         {
             colourOfEnemy = "blue";
