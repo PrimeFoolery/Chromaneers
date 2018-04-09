@@ -96,6 +96,7 @@ public class FastEnemy : MonoBehaviour {
             SphereRenderer.material = yellowMaterial;
             gameObject.GetComponent<ParticleSystemRenderer>().material =yellowParticle;
         }
+        FindClosestPlayer();
     }
 	
 	// Update is called once per frame
