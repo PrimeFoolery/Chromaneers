@@ -133,9 +133,9 @@ public class EnemySpawner : MonoBehaviour {
 
                 //SPAWN POINT F ENEMIES
 
-                SpawnSpiderEnemy("F");
-	            SpawnSpiderEnemy("F");
-	            SpawnSpiderEnemy("F");
+	            SpawnStandardBlueEnemy("F");
+                SpawnStandardRedEnemy("F");
+                SpawnStandardYellowEnemy("F");
 
                 //SPAWN POINT G ENEMIES
 
@@ -157,8 +157,10 @@ public class EnemySpawner : MonoBehaviour {
 
                 //SPAWN POINT I ENEMIES
 
-                SpawnStandardGreenEnemy("I");
-	            SpawnFastEnemy("I", "yellow");
+                
+	            SpawnSpiderEnemy("I");
+	            SpawnSpiderEnemy("I");
+	            SpawnSpiderEnemy("I");
 
                 //SPAWN POINT J ENEMIES
 
