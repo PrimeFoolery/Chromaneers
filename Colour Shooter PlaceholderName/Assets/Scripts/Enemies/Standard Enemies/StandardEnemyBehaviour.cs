@@ -7,7 +7,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
     [Header("Singleplayer Variables")]
     public GameObject player;
-    private GameObject targetPlayer;
+    public GameObject targetPlayer;
     public bool isAggroPlayer = false;
     NavMeshAgent agent;
     private BlueEnemyHealth blueHealth;
@@ -62,6 +62,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         orangeHealth = gameObject.GetComponent<OrangeEnemyHealth>();
         yellowHealth = gameObject.GetComponent<YellowEnemyHealth>();
         greenHealth = gameObject.GetComponent<GreenEnemyHealth>();
+        FindClosestPlayer();
 
     }
 	
@@ -210,6 +211,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
             float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer),
                 Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+            Debug.Log(closestDistance);
 
             if (closestDistance == distanceBetweenEnemyAndRedPlayer)
             {
