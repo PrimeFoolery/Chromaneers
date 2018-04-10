@@ -364,7 +364,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 
 	    if (colourPlayerIsStandingOn == "red")
 	    {
-            Debug.Log("onRed:  "+poisonTimer);
+            //Debug.Log("onRed:  "+poisonTimer);
 	        poisonTimer -= Time.deltaTime;
             if(poisonTimer<=0)
 	        {

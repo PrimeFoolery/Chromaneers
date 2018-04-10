@@ -334,7 +334,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		                    {
 		                        if (useMethodType == UseMethodType.RaycastHitInfo)
 		                        {
-		                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+		                            colourPicker.currentColourHighligted = "Yellow";
+                                    GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
 		                            tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
 		                            tempPaintSplot.GetComponent<Renderer>().material.color = yellowColor;
                                     tempPaintSplot = null;

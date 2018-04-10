@@ -54,6 +54,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             RedPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             BluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
+		    FindClosestPlayer();
         }
 
         blueHealth = gameObject.GetComponent<BlueEnemyHealth>();
@@ -62,7 +63,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         orangeHealth = gameObject.GetComponent<OrangeEnemyHealth>();
         yellowHealth = gameObject.GetComponent<YellowEnemyHealth>();
         greenHealth = gameObject.GetComponent<GreenEnemyHealth>();
-        FindClosestPlayer();
+        
 
     }
 	
@@ -79,9 +80,9 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 player = GameObject.FindGameObjectWithTag("Player");
             }
             else if (player!=null) {
-                if (Vector3.Distance(transform.position,player.transform.position)<7f&&isAggroPlayer==false)
+                if (Vector3.Distance(transform.position,player.transform.position)<15f&&isAggroPlayer==false)
                 {
-                    spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+                    AggroToggle();
                 }
 
                 if (isAggroPlayer == true)
@@ -93,9 +94,9 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 			
 		}
 		if (isItCoop) {
-		    if (isAggroPlayer==false&&(Vector3.Distance(transform.position,RedPlayer.transform.position)<7f||Vector3.Distance(transform.position,BluePlayer.transform.position)<7f|| Vector3.Distance(transform.position, YellowPlayer.transform.position) < 7f))
+		    if (isAggroPlayer==false&&(Vector3.Distance(transform.position,RedPlayer.transform.position)<15f||Vector3.Distance(transform.position,BluePlayer.transform.position)<15f|| Vector3.Distance(transform.position, YellowPlayer.transform.position) < 15f))
 		    {
-		        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+		        AggroToggle();
             }
 		    if (isAggroPlayer == true)
 		    {
@@ -171,7 +172,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 }
                 else if (purpleHealth != null)
                 {
-                    purpleHealth.EnemyDamaged(1);
+                    purpleHealth.PoisonDamaged();
                 }
                 else if (redHealth != null)
                 {
@@ -179,7 +180,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 }
                 else if (orangeHealth != null)
                 {
-                    orangeHealth.EnemyDamaged(1);
+                    orangeHealth.PoisonDamaged();
                 }
                 else if (yellowHealth != null)
                 {
@@ -187,7 +188,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
                 }
                 else if (greenHealth != null)
                 {
-                    greenHealth.EnemyDamaged(1);
+                    greenHealth.PoisonDamaged();
                 }
                 poisonTimer = 4f;
             }
@@ -257,5 +258,10 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
         }
+    }
+
+    public void AggroToggle()
+    {
+        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
     }
 }

@@ -330,7 +330,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		                    {
 		                        if (useMethodType == UseMethodType.RaycastHitInfo)
 		                        {
-		                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+		                            colourPicker.currentColourHighligted = "Red";
+                                    GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
 		                            tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
 		                            tempPaintSplot.GetComponent<Renderer>().material.color = redColor;
                                     tempPaintSplot = null;
@@ -356,8 +357,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	        moveSpeed = 6;
 	    }
 	    else
-	    if (colourPlayerIsStandingOn == "purple")
-	    {
+	    if (colourPlayerIsStandingOn == "blue") { 
 	        moveSpeed = 2;
 	    }
 	    else

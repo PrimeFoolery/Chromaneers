@@ -193,10 +193,10 @@ public class SpiderEnemyController : MonoBehaviour
 	        }
 	        else if (player != null)
 	        {
-	            if (Vector3.Distance(transform.position, player.transform.position) < 7f && isAggroPlayer == false)
+	            if (Vector3.Distance(transform.position, player.transform.position) < 15f && isAggroPlayer == false)
 	            {
 
-	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+	                ToggleAggro();
 
                 }
 
@@ -210,9 +210,9 @@ public class SpiderEnemyController : MonoBehaviour
         }
 	    if (isItCoop)
 	    {
-	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 7f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 7f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 7f))
+	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 15f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 15f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 15f))
 	        {
-	            spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+	            ToggleAggro();
 	        }
 	        if (isAggroPlayer == true)
 	        {
@@ -349,9 +349,16 @@ public class SpiderEnemyController : MonoBehaviour
 	            }
 	            else if (leg4 != null)
 	            {
-	                leg2.GetComponent<SpiderLegScript>().DamageLeg();
+	                leg4.GetComponent<SpiderLegScript>().DamageLeg();
+	            }else
+	            {
+                    gameObject.GetComponent<ParticleSystem>().Play();
+	                bodyHealth -= 1;
 	            }
-                
+	            if (isAggroPlayer == false)
+	            {
+	                ToggleAggro();
+	            }
                 poisonTimer = 4f;
 	        }
         }
@@ -369,6 +376,10 @@ public class SpiderEnemyController : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;
+                if (isAggroPlayer==false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -378,6 +389,10 @@ public class SpiderEnemyController : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;
+                if (isAggroPlayer == false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -387,6 +402,10 @@ public class SpiderEnemyController : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;
+                if (isAggroPlayer == false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -442,5 +461,10 @@ public class SpiderEnemyController : MonoBehaviour
         {
             targetPlayer = YellowPlayer;
         }
+    }
+
+    void ToggleAggro()
+    {
+        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
     }
 }
