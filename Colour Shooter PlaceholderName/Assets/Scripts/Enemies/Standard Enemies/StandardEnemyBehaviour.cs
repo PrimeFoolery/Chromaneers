@@ -233,7 +233,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         //Check if it collides with the player
         if (theCol.gameObject.CompareTag("Player")) {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
+            theCol.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
         }

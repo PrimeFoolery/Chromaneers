@@ -272,7 +272,7 @@ public class SnakeEnemyScript : MonoBehaviour
         if (theCol.gameObject.CompareTag("Player"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
         }

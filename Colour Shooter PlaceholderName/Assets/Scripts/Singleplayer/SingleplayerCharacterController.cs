@@ -368,7 +368,7 @@ public class SingleplayerCharacterController : MonoBehaviour {
 	        poisonTimer -= Time.deltaTime;
             if(poisonTimer<=0)
 	        {
-                gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(1);
+                gameObject.GetComponent<SingleplayerHealthController>().GetHit();
 	            poisonTimer = 3f;
 	        }
 	    }

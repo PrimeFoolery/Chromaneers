@@ -77,7 +77,7 @@ public class SpiderLegScript : MonoBehaviour
 		//Check if it collides with the blue enemy
 		if (other.gameObject.CompareTag("Player")) {
 			//When it collides with the enemy, apply the damage
-			other.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
+			other.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
 		}
