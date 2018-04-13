@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class CoopCharacterHealthControllerTwo : MonoBehaviour {
 
+    [Header("General")]
+    public string PlayerState;
+
     [Header("Health Variables")]
     public int health;
-    public float invincibility;
     public bool canBeDamaged;
-	
+    public float InvTimer;
+
+    [Header("HealthBar")]
+    public Image HealthBarUI;
+    public Sprite[] HeartSprites;
+
     [Header("Materials")]
     public Material matOne;
     public Material matTwo;
@@ -26,6 +33,8 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     private int currentHealth;
 
     void Start () {
+        PlayerState = "Alive";
+        canBeDamaged = true;
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
         currentHealth = health;
@@ -37,39 +46,39 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     }
 	
     void Update () {
-        //Basic text to see HP
-        currentHP.text = "Red Current Health = " + currentHealth.ToString(); 
+        HealthBarUI.sprite = HeartSprites[currentHealth];
 
-        //If the player reaches 0 HP, set speed to 0 and set material to something different
-        if (currentHealth <= 0) {
-            coopCharacterControllerTwo.moveSpeed = 0;
-        }
-		
-        //Making a timer to decide when the player can or cant take damage
-        //Also making a material lerp
-        invincibility -= Time.deltaTime;
-        float gettingDamaged = Mathf.PingPong(Time.time, duration) / duration;
-        //If the time is 0 then the player can take damage
-        //but if the number is larger than 0, then it cant
-        if (invincibility <= 0) {
-            canBeDamaged = true;
-            rend.material = matOne;
-            invincibility = 0;
-            if (currentHealth <= 0) {
-                rend.material = deadMat;
+        if (PlayerState == "Alive")
+        {
+            if (canBeDamaged == false)
+            {
+                print("Getting HIT");
+
+                InvTimer -= Time.deltaTime;
+                rend.material.Lerp(matOne, matTwo, 2f);
+                if (InvTimer <= 0)
+                {
+                    canBeDamaged = true;
+                }
             }
-        } else if (invincibility > 0) {
-            canBeDamaged = false;
-            rend.material.Lerp(matOne, matTwo, gettingDamaged);
+            if (currentHealth <= 0)
+            {
+                PlayerState = "Dead";
+            }
+        }
+        if (PlayerState == "Dead")
+        {
+            coopCharacterControllerTwo.moveSpeed = 0;
         }
     }
 
-    //Used to call this void in the bullet scripts
-    //since currentHealth is a private variable
-    public void EnemyDamaged(int damage) {
-        if (canBeDamaged) {
-            currentHealth -= damage;
-            invincibility = 1f;
+    public void GetHit()
+    {
+        if (canBeDamaged == true)
+        {
+            currentHealth -= 1;
+            InvTimer = 2;
+            canBeDamaged = false;
         }
     }
 }

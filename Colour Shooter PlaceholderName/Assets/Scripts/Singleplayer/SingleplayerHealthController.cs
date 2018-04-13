@@ -10,10 +10,8 @@ public class SingleplayerHealthController : MonoBehaviour {
 
     [Header("Health Variables")]
     public int health;
-	public float invincibility;
 	public bool canBeDamaged;
     public float InvTimer;
-
 
     [Header("HealthBar")]
     public Image HealthBarUI;
@@ -56,7 +54,8 @@ public class SingleplayerHealthController : MonoBehaviour {
                 print("Getting HIT");
                 
                 InvTimer -= Time.deltaTime;
-                if(InvTimer <= 0)
+                rend.material.Lerp(matOne, matTwo, 2f);
+                if (InvTimer <= 0)
                 {
                     canBeDamaged = true;
                 }

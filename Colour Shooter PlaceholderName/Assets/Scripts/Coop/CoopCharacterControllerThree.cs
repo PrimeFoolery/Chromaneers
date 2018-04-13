@@ -383,7 +383,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        poisonTimer -= Time.deltaTime;
 	        if (poisonTimer <= 0)
 	        {
-	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
 	            poisonTimer = 3f;
 	        }
 	    }

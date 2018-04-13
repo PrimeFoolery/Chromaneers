@@ -240,21 +240,21 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         //Check if it collides with coop player one
         if (theCol.gameObject.CompareTag("BluePlayer")) {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(enemyDamage);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
         }
         //Check if it collides with coop player two
         if (theCol.gameObject.CompareTag("RedPlayer")) {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(enemyDamage);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
         }
         //Check if it collides with coop player three
         if (theCol.gameObject.CompareTag("YellowPlayer")) {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(enemyDamage);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
         }
