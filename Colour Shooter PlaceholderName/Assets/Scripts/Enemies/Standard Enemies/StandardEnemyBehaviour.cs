@@ -54,6 +54,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             RedPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             BluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
+            FindClosestPlayer();
         }
 
         blueHealth = gameObject.GetComponent<BlueEnemyHealth>();
@@ -62,7 +63,6 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         orangeHealth = gameObject.GetComponent<OrangeEnemyHealth>();
         yellowHealth = gameObject.GetComponent<YellowEnemyHealth>();
         greenHealth = gameObject.GetComponent<GreenEnemyHealth>();
-        FindClosestPlayer();
 
     }
 	
