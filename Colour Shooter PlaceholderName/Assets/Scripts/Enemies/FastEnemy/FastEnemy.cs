@@ -72,7 +72,6 @@ public class FastEnemy : MonoBehaviour {
             RedPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             BluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
-            FindClosestPlayer();
         }
 
         if (colourOverride==false)
@@ -97,7 +96,7 @@ public class FastEnemy : MonoBehaviour {
             SphereRenderer.material = yellowMaterial;
             gameObject.GetComponent<ParticleSystemRenderer>().material =yellowParticle;
         }
-        
+        FindClosestPlayer();
     }
 	
 	// Update is called once per frame
