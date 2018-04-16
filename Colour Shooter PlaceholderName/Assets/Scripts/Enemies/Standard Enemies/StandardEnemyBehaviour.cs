@@ -54,14 +54,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             RedPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             BluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
-<<<<<<< HEAD
-<<<<<<< HEAD
             FindClosestPlayer();
-=======
-		    FindClosestPlayer();
->>>>>>> 6769b378405accfa78021887384f3eaa5d11e632
-=======
->>>>>>> parent of 69eb0d3... apparently I have updates?
         }
 
         blueHealth = gameObject.GetComponent<BlueEnemyHealth>();
@@ -70,15 +63,6 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         orangeHealth = gameObject.GetComponent<OrangeEnemyHealth>();
         yellowHealth = gameObject.GetComponent<YellowEnemyHealth>();
         greenHealth = gameObject.GetComponent<GreenEnemyHealth>();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        
->>>>>>> 6769b378405accfa78021887384f3eaa5d11e632
-=======
-        FindClosestPlayer();
->>>>>>> parent of 69eb0d3... apparently I have updates?
-
     }
 	
 	// Update is called once per frame

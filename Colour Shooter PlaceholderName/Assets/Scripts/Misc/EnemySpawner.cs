@@ -90,101 +90,7 @@ public class EnemySpawner : MonoBehaviour {
 
         //PS SPAWNPOINTLETTER NEEDS TO BE A CAPITAL LETTER FROM A-J AS SO FAR ONLY 10 SPAWN POINTS ARE SUPPORTED
 
-        if (haveAllEnemiesSpawned==false)
-	    {
-	        if (SceneManager.GetActiveScene().name == "DemoWorld")
-	        {
-
-<<<<<<< HEAD
-                
-=======
-
-                //SPAWN POINT A ENEMIES
-                SpawnFastEnemy("A","random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "random");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-
-                //SPAWN POINT B ENEMIES
-
-                SpawnSpiderEnemy("B");
-                SpawnStandardRedEnemy("B");
-                SpawnStandardBlueEnemy("B");
-	            SpawnStandardYellowEnemy("B");
-
-                //SPAWN POINT C ENEMIES
-<<<<<<< HEAD
-                
-	            SpawnSnakeEnemy("C", "blue");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-	            SpawnFastEnemy("A", "red");
-=======
-<<<<<<< HEAD
-=======
-
-                SpawnSnakeEnemy("C", "blue");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "red");
-                SpawnFastEnemy("C", "red");
-                SpawnFastEnemy("C", "red");
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
-
-                SpawnSnakeEnemy("C", "blue");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-	            SpawnFastEnemy("C", "red");
-
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "random");
-                SpawnFastEnemy("C", "red");
-                SpawnFastEnemy("C", "red");
-                SpawnFastEnemy("C", "red");
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
-
-                //FINISHING SPAWNING
-                haveAllEnemiesSpawned = true;
-	        }
-        }
+        
 	    
         
 
@@ -281,8 +187,6 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnGSpawned == false)
         {
             //SPAWN POINT G ENEMIES
-
-<<<<<<< HEAD
             SpawnStandardBlueEnemy("G");
             SpawnStandardRedEnemy("G");
             SpawnStandardYellowEnemy("G");
@@ -300,7 +204,6 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnHSpawned == false)
         {
             //SPAWN POINT H ENEMIES
-=======
                 SpawnFastEnemy("D", "random");
                 SpawnFastEnemy("D", "random");
                 SpawnFastEnemy("D", "random");
@@ -314,8 +217,7 @@ public class EnemySpawner : MonoBehaviour {
                 SpawnFastEnemy("D", "red");
                 SpawnFastEnemy("D", "red");
                 SpawnFastEnemy("D", "red");
-
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+                
 
             SpawnSnakeEnemy("H", "MAXRANDOM");
             SpawnSnakeEnemy("H", "MAXRANDOM");
@@ -328,9 +230,6 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnISpawned == false)
         {
             //SPAWN POINT I ENEMIES
->>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
-
-<<<<<<< HEAD
 
             SpawnSpiderEnemy("I");
             SpawnSpiderEnemy("I");
@@ -343,150 +242,12 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnJSpawned == false)
         {
             //SPAWN POINT J ENEMIES
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+            
             SpawnStandardGreenEnemy("J");
             SpawnFastEnemy("J", "yellow");
             hasSpawnJSpawned = true;
         }
     }
-=======
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "red");
-                SpawnFastEnemy("D", "red");
-                SpawnFastEnemy("D", "red");
-
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
->>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
-
-
-=======
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "random");
-                SpawnFastEnemy("E", "red");
-                SpawnFastEnemy("E", "red");
-                SpawnFastEnemy("E", "red");
-
-                //SPAWN POINT F ENEMIES
-
-	            SpawnStandardBlueEnemy("F");
-                SpawnStandardRedEnemy("F");
-                SpawnStandardYellowEnemy("F");
-
-                //SPAWN POINT G ENEMIES
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
-
-
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "random");
-                SpawnFastEnemy("G", "red");
-                SpawnFastEnemy("G", "red");
-                SpawnFastEnemy("G", "red");
-
-
-
-
-<<<<<<< HEAD
-
-
-=======
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "random");
-                SpawnFastEnemy("H", "red");
-                SpawnFastEnemy("H", "red");
-                SpawnFastEnemy("H", "red");
-
-                //SPAWN POINT I ENEMIES
-
-                
-	            SpawnSpiderEnemy("I");
-	            SpawnSpiderEnemy("I");
-	            SpawnSpiderEnemy("I");
-<<<<<<< HEAD
-=======
-
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "random");
-                SpawnFastEnemy("I", "red");
-                SpawnFastEnemy("I", "red");
-                SpawnFastEnemy("I", "red");
-<<<<<<< HEAD
-=======
-
-                //SPAWN POINT J ENEMIES
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
->>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
-
-                //SPAWN POINT J ENEMIES
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
-
-
-<<<<<<< HEAD
-=======
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "random");
-                SpawnFastEnemy("J", "red");
-                SpawnFastEnemy("J", "red");
-                SpawnFastEnemy("J", "red");
-
-                //FINISHING SPAWNING
-                haveAllEnemiesSpawned = true;
-	        }
-        }
-	    
-        
->>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
 
 
     public void AggroGroupOfEnemies(string enemyGroup)
