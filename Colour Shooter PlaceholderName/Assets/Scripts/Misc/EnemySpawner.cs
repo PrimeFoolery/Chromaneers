@@ -18,6 +18,17 @@ public class EnemySpawner : MonoBehaviour {
     public Transform spawnPointITransform;
     public Transform spawnPointJTransform;
 
+    private bool hasSpawnASpawned = false;
+    private bool hasSpawnBSpawned = false;
+    private bool hasSpawnCSpawned = false;
+    private bool hasSpawnDSpawned = false;
+    private bool hasSpawnESpawned = false;
+    private bool hasSpawnFSpawned = false;
+    private bool hasSpawnGSpawned = false;
+    private bool hasSpawnHSpawned = false;
+    private bool hasSpawnISpawned = false;
+    private bool hasSpawnJSpawned = false;
+
     public List<GameObject> pointAEnemyList = new List<GameObject>();
     public List<GameObject> pointBEnemyList = new List<GameObject>();
     public List<GameObject> pointCEnemyList = new List<GameObject>();
@@ -84,6 +95,9 @@ public class EnemySpawner : MonoBehaviour {
 	        if (SceneManager.GetActiveScene().name == "DemoWorld")
 	        {
 
+<<<<<<< HEAD
+                
+=======
 
                 //SPAWN POINT A ENEMIES
                 SpawnFastEnemy("A","random");
@@ -108,6 +122,7 @@ public class EnemySpawner : MonoBehaviour {
 	            SpawnStandardYellowEnemy("B");
 
                 //SPAWN POINT C ENEMIES
+<<<<<<< HEAD
                 
 	            SpawnSnakeEnemy("C", "blue");
 	            SpawnFastEnemy("A", "red");
@@ -116,56 +131,55 @@ public class EnemySpawner : MonoBehaviour {
 	            SpawnFastEnemy("A", "red");
 	            SpawnFastEnemy("A", "red");
 	            SpawnFastEnemy("A", "red");
+=======
+<<<<<<< HEAD
+=======
 
-                //SPAWN POINT D ENEMIES
+                SpawnSnakeEnemy("C", "blue");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
 
-                SpawnStandardGreenEnemy("D");
-                SpawnStandardBlueEnemy("D");
-	            SpawnStandardRedEnemy("D");
-	            SpawnStandardYellowEnemy("D");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "red");
+                SpawnFastEnemy("C", "red");
+                SpawnFastEnemy("C", "red");
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
 
+                SpawnSnakeEnemy("C", "blue");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
+	            SpawnFastEnemy("C", "red");
 
-                //SPAWN POINT E ENEMIES
-
-                SpawnStandardGreenEnemy("E");
-	            SpawnStandardOrangeEnemy("E");
-                SpawnStandardPurpleEnemy("E");
-
-                //SPAWN POINT F ENEMIES
-
-	            SpawnStandardBlueEnemy("F");
-                SpawnStandardRedEnemy("F");
-                SpawnStandardYellowEnemy("F");
-
-                //SPAWN POINT G ENEMIES
-
-                SpawnStandardBlueEnemy("G");
-                SpawnStandardRedEnemy("G");
-                SpawnStandardYellowEnemy("G");
-                SpawnFastEnemy("G","random");
-	            SpawnFastEnemy("G", "random");
-	            SpawnFastEnemy("G", "random");
-	            SpawnFastEnemy("G", "random");
-	            SpawnFastEnemy("G", "random");
-	            SpawnFastEnemy("G", "random");
-
-
-                //SPAWN POINT H ENEMIES
-
-                SpawnSnakeEnemy("H","MAXRANDOM");
-	            SpawnSnakeEnemy("H", "MAXRANDOM");
-
-                //SPAWN POINT I ENEMIES
-
-                
-	            SpawnSpiderEnemy("I");
-	            SpawnSpiderEnemy("I");
-	            SpawnSpiderEnemy("I");
-
-                //SPAWN POINT J ENEMIES
-
-                SpawnStandardGreenEnemy("J");
-	            SpawnFastEnemy("J", "yellow");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "random");
+                SpawnFastEnemy("C", "red");
+                SpawnFastEnemy("C", "red");
+                SpawnFastEnemy("C", "red");
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
 
                 //FINISHING SPAWNING
                 haveAllEnemiesSpawned = true;
@@ -176,6 +190,304 @@ public class EnemySpawner : MonoBehaviour {
 
         
 	}
+
+    public void SpawnGroupA()
+    {
+        if (hasSpawnASpawned==false)
+        {
+            //SPAWN POINT A ENEMIES
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "random");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            hasSpawnASpawned = true;
+        }
+    }
+    public void SpawnGroupB()
+    {
+        if (hasSpawnBSpawned == false)
+        {
+            //SPAWN POINT B ENEMIES
+
+            SpawnSpiderEnemy("B");
+            SpawnStandardRedEnemy("B");
+            SpawnStandardBlueEnemy("B");
+            SpawnStandardYellowEnemy("B");
+            hasSpawnBSpawned = true;
+        }
+    }
+    public void SpawnGroupC()
+    {
+        if (hasSpawnCSpawned == false)
+        {
+            //SPAWN POINT C ENEMIES
+
+            SpawnSnakeEnemy("C", "blue");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            SpawnFastEnemy("A", "red");
+            hasSpawnCSpawned = true;
+        }
+    }
+    public void SpawnGroupD()
+    {
+        if (hasSpawnDSpawned == false)
+        {
+            //SPAWN POINT D ENEMIES
+
+            SpawnStandardGreenEnemy("D");
+            SpawnStandardBlueEnemy("D");
+            SpawnStandardRedEnemy("D");
+            SpawnStandardYellowEnemy("D");
+            hasSpawnDSpawned = true;
+        }
+    }
+    public void SpawnGroupE()
+    {
+        if (hasSpawnESpawned == false)
+        {
+            //SPAWN POINT E ENEMIES
+
+            SpawnStandardGreenEnemy("E");
+            SpawnStandardOrangeEnemy("E");
+            SpawnStandardPurpleEnemy("E");
+            hasSpawnESpawned = true;
+        }
+    }
+    public void SpawnGroupF()
+    {
+        if (hasSpawnFSpawned == false)
+        {
+            //SPAWN POINT F ENEMIES
+
+            SpawnSnakeEnemy("F", "MAXRANDOM");
+            hasSpawnFSpawned = true;
+        }
+    }
+    public void SpawnGroupG()
+    {
+        if (hasSpawnGSpawned == false)
+        {
+            //SPAWN POINT G ENEMIES
+
+<<<<<<< HEAD
+            SpawnStandardBlueEnemy("G");
+            SpawnStandardRedEnemy("G");
+            SpawnStandardYellowEnemy("G");
+            SpawnFastEnemy("G", "random");
+            SpawnFastEnemy("G", "random");
+            SpawnFastEnemy("G", "random");
+            SpawnFastEnemy("G", "random");
+            SpawnFastEnemy("G", "random");
+            SpawnFastEnemy("G", "random");
+            hasSpawnGSpawned = true;
+        }
+    }
+    public void SpawnGroupH()
+    {
+        if (hasSpawnHSpawned == false)
+        {
+            //SPAWN POINT H ENEMIES
+=======
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "red");
+                SpawnFastEnemy("D", "red");
+                SpawnFastEnemy("D", "red");
+
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+
+            SpawnSnakeEnemy("H", "MAXRANDOM");
+            SpawnSnakeEnemy("H", "MAXRANDOM");
+
+            hasSpawnHSpawned = true;
+        }
+    }
+    public void SpawnGroupI()
+    {
+        if (hasSpawnISpawned == false)
+        {
+            //SPAWN POINT I ENEMIES
+>>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
+
+<<<<<<< HEAD
+
+            SpawnSpiderEnemy("I");
+            SpawnSpiderEnemy("I");
+            SpawnSpiderEnemy("I");
+            hasSpawnISpawned = true;
+        }
+    }
+    public void SpawnGroupJ()
+    {
+        if (hasSpawnJSpawned == false)
+        {
+            //SPAWN POINT J ENEMIES
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            SpawnStandardGreenEnemy("J");
+            SpawnFastEnemy("J", "yellow");
+            hasSpawnJSpawned = true;
+        }
+    }
+=======
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "random");
+                SpawnFastEnemy("D", "red");
+                SpawnFastEnemy("D", "red");
+                SpawnFastEnemy("D", "red");
+
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+>>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
+
+
+=======
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "random");
+                SpawnFastEnemy("E", "red");
+                SpawnFastEnemy("E", "red");
+                SpawnFastEnemy("E", "red");
+
+                //SPAWN POINT F ENEMIES
+
+	            SpawnStandardBlueEnemy("F");
+                SpawnStandardRedEnemy("F");
+                SpawnStandardYellowEnemy("F");
+
+                //SPAWN POINT G ENEMIES
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+
+
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "random");
+                SpawnFastEnemy("G", "red");
+                SpawnFastEnemy("G", "red");
+                SpawnFastEnemy("G", "red");
+
+
+
+
+<<<<<<< HEAD
+
+
+=======
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "random");
+                SpawnFastEnemy("H", "red");
+                SpawnFastEnemy("H", "red");
+                SpawnFastEnemy("H", "red");
+
+                //SPAWN POINT I ENEMIES
+
+                
+	            SpawnSpiderEnemy("I");
+	            SpawnSpiderEnemy("I");
+	            SpawnSpiderEnemy("I");
+<<<<<<< HEAD
+=======
+
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "random");
+                SpawnFastEnemy("I", "red");
+                SpawnFastEnemy("I", "red");
+                SpawnFastEnemy("I", "red");
+<<<<<<< HEAD
+=======
+
+                //SPAWN POINT J ENEMIES
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+>>>>>>> 12cf849f3afd1558789acd202e3a47c87042830e
+
+                //SPAWN POINT J ENEMIES
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+
+
+<<<<<<< HEAD
+=======
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "random");
+                SpawnFastEnemy("J", "red");
+                SpawnFastEnemy("J", "red");
+                SpawnFastEnemy("J", "red");
+
+                //FINISHING SPAWNING
+                haveAllEnemiesSpawned = true;
+	        }
+        }
+	    
+        
+>>>>>>> 773ffa2c26ce1ae429d329678e2847ef04005afe
+
 
     public void AggroGroupOfEnemies(string enemyGroup)
     {

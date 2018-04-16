@@ -305,15 +305,15 @@ public class SpiderEnemyController : MonoBehaviour
 	    {
 	        if (paintDetector.colourOfPaint=="yellow")
 	        {
-	            agent.speed = 2f;
+	            agent.speed = 9f;
             } else if (paintDetector.colourOfPaint == "blue")
 	        {
-	            agent.speed = 0f;
+	            agent.speed = 8f;
 	        }
 	        else
 	        {
-	            agent.speed = 1f;
-            }
+	            agent.speed = 6f; 
+	        }
             
 	        if (bodyDropped==false)
 	        {

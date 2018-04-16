@@ -2195,6 +2195,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
@@ -2269,6 +2275,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
@@ -2304,6 +2316,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
@@ -2339,6 +2357,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
@@ -2413,6 +2437,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
@@ -2441,6 +2471,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfSnakeSegments: 6
+  snakeSegments:
+  - {fileID: 114806911832749096}
+  - {fileID: 114011832819987106}
+  - {fileID: 114386340173833964}
+  - {fileID: 114374840617893232}
+  - {fileID: 114252696120905886}
+  - {fileID: 114732199201650736}
 --- !u!114 &114806911832749096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2460,6 +2497,12 @@ MonoBehaviour:
   thisEnemiesSpawnPoint: 
   colourOfSnake: 
   randomColour: 0
+  headNormalSpeed: 3
+  headYellowSpeed: 5
+  headBlueSpeed: 1
+  bodyNormalSpeed: 5
+  bodyYellowSpeed: 7
+  bodyBlueSpeed: 3
   blueMaterial: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   blueSplat: {fileID: 1554259746399466, guid: c50a39ff77a6b074f87f9e15a66d8c5c, type: 2}
   blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
