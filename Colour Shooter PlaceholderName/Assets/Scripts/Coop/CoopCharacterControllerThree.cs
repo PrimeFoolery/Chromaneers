@@ -334,7 +334,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		                    {
 		                        if (useMethodType == UseMethodType.RaycastHitInfo)
 		                        {
-		                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
+		                            colourPicker.currentColourHighligted = "Yellow";
+                                    GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
 		                            tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
 		                            tempPaintSplot.GetComponent<Renderer>().material.color = yellowColor;
                                     tempPaintSplot = null;
@@ -382,7 +383,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        poisonTimer -= Time.deltaTime;
 	        if (poisonTimer <= 0)
 	        {
-	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
 	            poisonTimer = 3f;
 	        }
 	    }

@@ -39,7 +39,11 @@ public class RedEnemyHealth : MonoBehaviour {
 	//since currentHealth is a private variable
 	public void EnemyDamaged (int damage) {
 		gameObject.GetComponent<ParticleSystem> ().Play();
-		currentHealth -= damage;
+	    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
+	    {
+	        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
+	    }
+        currentHealth -= damage;
 
 	}
 }

@@ -109,20 +109,18 @@ public class SnakeEnemyScript : MonoBehaviour
 	        GetComponentInParent<Transform>().position = transform.position;
 	        if (isitCoop == false)
 	        {
-	            if (Vector3.Distance(transform.position, singlePlayerChar.transform.position) < 7f && isAggroPlayer == false)
+	            if (Vector3.Distance(transform.position, singlePlayerChar.transform.position) < 15f && isAggroPlayer == false)
 	            {
-
-	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
-
+                    ToggleAggro();
 	            }
 
 
 	        }
 	        else if (isitCoop == true)
 	        {
-	            if (isAggroPlayer == false && (Vector3.Distance(transform.position, redPlayerChar.transform.position) < 7f || Vector3.Distance(transform.position, bluePlayerChar.transform.position) < 7f || Vector3.Distance(transform.position, yellowPlayerChar.transform.position) < 7f))
+	            if (isAggroPlayer == false && (Vector3.Distance(transform.position, redPlayerChar.transform.position) < 15f || Vector3.Distance(transform.position, bluePlayerChar.transform.position) < 15f || Vector3.Distance(transform.position, yellowPlayerChar.transform.position) < 15f))
 	            {
-	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+	                ToggleAggro();
 	            }
 	        }
             timer -= Time.deltaTime;
@@ -219,7 +217,11 @@ public class SnakeEnemyScript : MonoBehaviour
 	        {
 	            segmentHealth -= 1;
                 gameObject.GetComponent<ParticleSystem>().Play();
-	            poisonTimer = 4f;
+	            if (isAggroPlayer == false)
+	            {
+	                ToggleAggro();
+	            }
+                poisonTimer = 4f;
 	        }
 
         }
@@ -270,7 +272,7 @@ public class SnakeEnemyScript : MonoBehaviour
         if (theCol.gameObject.CompareTag("Player"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
         }
@@ -278,7 +280,7 @@ public class SnakeEnemyScript : MonoBehaviour
         if (theCol.gameObject.CompareTag("BluePlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
         }
@@ -286,7 +288,7 @@ public class SnakeEnemyScript : MonoBehaviour
         if (theCol.gameObject.CompareTag("RedPlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
         }
@@ -294,7 +296,7 @@ public class SnakeEnemyScript : MonoBehaviour
         if (theCol.gameObject.CompareTag("YellowPlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
         }
@@ -305,6 +307,10 @@ public class SnakeEnemyScript : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 segmentHealth -= 1;
+                if (isAggroPlayer == false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(theCol.gameObject);
             }
         }
@@ -314,6 +320,10 @@ public class SnakeEnemyScript : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 segmentHealth -= 1;
+                if (isAggroPlayer == false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(theCol.gameObject);
             }
         }
@@ -323,6 +333,10 @@ public class SnakeEnemyScript : MonoBehaviour
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 segmentHealth -= 1;
+                if (isAggroPlayer == false)
+                {
+                    ToggleAggro();
+                }
                 Destroy(theCol.gameObject);
             }
         }
@@ -520,5 +534,10 @@ public class SnakeEnemyScript : MonoBehaviour
             gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
             
         }
+    }
+
+    void ToggleAggro()
+    {
+        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
     }
 }

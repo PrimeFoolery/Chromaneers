@@ -77,28 +77,28 @@ public class SpiderLegScript : MonoBehaviour
 		//Check if it collides with the blue enemy
 		if (other.gameObject.CompareTag("Player")) {
 			//When it collides with the enemy, apply the damage
-			other.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(enemyDamage);
+			other.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
 		}
 		//Check if it collides with coop player one
 		if (other.gameObject.CompareTag("BluePlayer")) {
 			//When it collides with the enemy, apply the damage
-			other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(enemyDamage);
+			other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
 		}
 		//Check if it collides with coop player two
 		if (other.gameObject.CompareTag("RedPlayer")) {
 			//When it collides with the enemy, apply the damage
-			other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(enemyDamage);
+			other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().GetHit();
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
 		}
 		//Check if it collides with coop player three
 		if (other.gameObject.CompareTag("YellowPlayer")) {
 			//When it collides with the enemy, apply the damage
-			other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(enemyDamage);
+			other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
 			//Resseting the timer for the player to take damage
 			//other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
 		}

@@ -102,14 +102,14 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 							moveSpeed = 5f;
 						}
 					}else
-						if(colourPlayerIsStandingOn=="yellow"){
-							if(moveSpeed<=7f){
-								moveSpeed = moveSpeed * movingAcceleration;
-							}
-							if(moveSpeed>=7f){
-								moveSpeed = 7f;
-							}
+					if(colourPlayerIsStandingOn=="yellow"){
+						if(moveSpeed<=7f){
+							moveSpeed = moveSpeed * movingAcceleration;
 						}
+						if(moveSpeed>=7f){
+							moveSpeed = 7f;
+						}
+					}
 					moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
@@ -334,6 +334,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		                    {
 		                        if (useMethodType == UseMethodType.RaycastHitInfo)
 		                        {
+		                            colourPicker.currentColourHighligted = "Blue";
 		                            GameObject tempPaintSplot = Instantiate(paintBlob, transform.position, Quaternion.identity);
 		                            tempPaintSplot.GetComponent<paintSplatBlob>().SetPaintVariables(brush, hit, paintObject);
 		                            tempPaintSplot.GetComponent<Renderer>().material.color = blueColor;
@@ -382,7 +383,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        poisonTimer -= Time.deltaTime;
 	        if (poisonTimer <= 0)
 	        {
-	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+	            gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
 	            poisonTimer = 3f;
 	        }
 	    }

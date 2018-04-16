@@ -57,14 +57,36 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		//currentHealth -= damage;
 		GetComponent<ParticleSystem> ().Play ();
 	}
-	public void OnCollisionEnter (Collision other){
+    public void PoisonDamaged()
+    {
+        GetComponent<ParticleSystem>().Play();
+        if (redHealth > 0)
+        {
+            redHealth -= 1;
+            recoveryTimer = 5f;
+        }
+        else
+        {
+            yellowHealth -= 1;
+            recoveryTimer = 5f;
+        }
+    }
+    public void OnCollisionEnter (Collision other){
 		if(other.gameObject.CompareTag("RedBullet")){
 			redHealth -= 1;
-			recoveryTimer = 5f;
+		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
+		    {
+		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
+		    }
+            recoveryTimer = 5f;
 		}
 		if(other.gameObject.CompareTag("YellowBullet")){
 			yellowHealth -= 1;
-			recoveryTimer = 5f;
+		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
+		    {
+		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
+		    }
+            recoveryTimer = 5f;
 		}
 	}
 }

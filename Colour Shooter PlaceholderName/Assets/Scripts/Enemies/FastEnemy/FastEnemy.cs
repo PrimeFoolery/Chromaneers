@@ -118,7 +118,7 @@ public class FastEnemy : MonoBehaviour {
 	        }
 	        else if (player != null)
 	        {
-	            if (Vector3.Distance(transform.position, player.transform.position) < 7f && isAggroPlayer == false)
+	            if (Vector3.Distance(transform.position, player.transform.position) < 15f && isAggroPlayer == false)
 	            {
 	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
 	            }
@@ -133,7 +133,7 @@ public class FastEnemy : MonoBehaviour {
 	    }
 	    if (isItCoop)
 	    {
-	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 7f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 7f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 7f))
+	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 15f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 15f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 15f))
 	        {
 	            spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
 	        }
@@ -240,7 +240,7 @@ public class FastEnemy : MonoBehaviour {
         if (theCol.gameObject.CompareTag("Player"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<SingleplayerHealthController>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<SingleplayerHealthController>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
         }
@@ -248,7 +248,7 @@ public class FastEnemy : MonoBehaviour {
         if (theCol.gameObject.CompareTag("BluePlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
         }
@@ -256,7 +256,7 @@ public class FastEnemy : MonoBehaviour {
         if (theCol.gameObject.CompareTag("RedPlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
         }
@@ -264,7 +264,7 @@ public class FastEnemy : MonoBehaviour {
         if (theCol.gameObject.CompareTag("YellowPlayer"))
         {
             //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().EnemyDamaged(1);
+            theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerThree>().invincibility = 1f;
         }
