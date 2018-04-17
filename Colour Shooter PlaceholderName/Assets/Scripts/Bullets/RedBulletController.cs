@@ -15,8 +15,6 @@ public class RedBulletController : MonoBehaviour {
     [Header("Misc")]
     public GameObject paint;
     public float paintLifeTime;
-    public ParticleSystem blueReboundBullet;
-    public GameObject enemyEmpty;
 
     enum bulletState
     {
@@ -104,7 +102,7 @@ public class RedBulletController : MonoBehaviour {
         }
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy"))
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("YellowEnemy"))
         {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
@@ -112,6 +110,8 @@ public class RedBulletController : MonoBehaviour {
             transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
             //Scaling the bullet down
             transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            //Change trail width
+            this.GetComponent<TrailRenderer>().startWidth = 0.3f;
                 
         }
 

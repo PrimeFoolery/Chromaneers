@@ -216,11 +216,7 @@ MonoBehaviour:
   speed: 11
   deceleration: 0.995
   bulletLifeTime: 2
+  reboundBulletLifeTime: 0.4
   bulletDamage: 1
   paint: {fileID: 1481389650309580, guid: a25c8d30977c5f44db758e9b0c6aa3ba, type: 2}
   paintLifeTime: 1
-  enemySlowSpeed: 1
-  enemyNormalSpeed: 2
-  slowTimer: 0.5
-  redEnemy: {fileID: 1720677307034088, guid: 8ae8b3cda2b25ba459d2ece2b6147a23, type: 2}
-  enemySlowed: 0

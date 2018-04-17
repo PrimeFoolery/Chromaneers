@@ -9,18 +9,19 @@ public class BlueBulletController : MonoBehaviour {
     public float speed;
 	public float deceleration;
     public float bulletLifeTime;
+    public float reboundBulletLifeTime;
     public int bulletDamage;
 
 	[Header("Misc")]
 	public GameObject paint;
 	public float paintLifeTime;
-    [Space(10)]
-    public float enemySlowSpeed;
-    public float enemyNormalSpeed;
-    public float slowTimer;
-    public GameObject redEnemy;
-    public enum EnemySlowed { notSlowed, canBeSlowed, slowed};
-    public EnemySlowed enemySlowed;
+
+    enum bulletState
+    {
+        normalBullet,
+        reboundBullet
+    }
+    private bulletState stateOfBullet;
 
 	//Private variables
 	Vector3 previousBulletPosition;
@@ -34,15 +35,31 @@ public class BlueBulletController : MonoBehaviour {
         //Setting previous button position to the new updated position
 		previousBulletPosition = transform.position;
 
-        //Moving the bullet
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-		speed = speed * deceleration;
+        if (stateOfBullet == bulletState.normalBullet) {
+            //Moving the bullet
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            speed = speed * deceleration;
 
-        //Bullets lifeTime
-        bulletLifeTime -= Time.deltaTime;
-        //Destroying the bullet after its time has reached 0
-        if (bulletLifeTime <= 0) {
-            Destroy(gameObject);
+            //Bullets lifeTime
+            bulletLifeTime -= Time.deltaTime;
+            //Destroying the bullet after its time has reached 0
+            if (bulletLifeTime <= 0) {
+                Destroy(gameObject);
+            }
+        }
+
+        if (stateOfBullet == bulletState.reboundBullet) {
+            //Rebound the bullet
+            transform.Translate(((Vector3.back * 0.8f * speed) + (Vector3.up * 0.2f * speed)) * Time.deltaTime);
+
+            speed = speed * deceleration;
+
+            //Bullets lifeTime
+            reboundBulletLifeTime -= Time.deltaTime;
+            //Destroying the bullet after its time has reached 0
+            if (reboundBulletLifeTime <= 0) {
+                Destroy(gameObject);
+            }
         }
 
 		//Paint LifeTime
@@ -51,17 +68,6 @@ public class BlueBulletController : MonoBehaviour {
 		if (bulletLifeTime <= 0) {
 			//Destroy (paint);
 		}
-        
-        /*
-	    if (redEnemy.GetComponent<NavMeshAgent>().speed == enemySlowSpeed) {
-            print("I am slowed");
-	        slowTimer -= Time.deltaTime;
-	        if (slowTimer <= 0) {
-                print("I am normal again");
-	            redEnemy.GetComponent<NavMeshAgent>().speed = enemyNormalSpeed;
-            }
-        }
-        */
 	}
 
     void OnCollisionEnter (Collision theCol) {
@@ -70,25 +76,9 @@ public class BlueBulletController : MonoBehaviour {
             //When it collides with the enemy, apply the damage
             theCol.gameObject.GetComponent<BlueEnemyHealth>().EnemyDamaged(bulletDamage);
             //and destroy the bullet
-            Destroy(gameObject);
-	        
+            Destroy(gameObject);   
         }
-	    //Check if it collides with the red enemy
-        if (theCol.gameObject.CompareTag("RedEnemy")) {
-            //Stunning Enemy from moving[WiP]
-            //theCol.gameObject.GetComponent<NavMeshAgent>().speed = enemySlowSpeed;
-	        //Destroy bullet
-	        print("Are you happening before");
-	        Destroy(gameObject);
-	        print("Are you happening after");
-        }
-	    //Check if it collides with the yellow enemy
-	    if (theCol.gameObject.CompareTag("YellowEnemy")) {
-		    //Pushes the enemy back a slight amount [WiP]
 
-		    //Destroy bullet
-		    Destroy(gameObject);
-	    }
 		if (theCol.gameObject.CompareTag("PurpleEnemy")) {
 			//Pushes the enemy back a slight amount [WiP]
 			theCol.gameObject.GetComponent<PurpleEnemyHealth>().EnemyDamaged(bulletDamage);
@@ -101,6 +91,18 @@ public class BlueBulletController : MonoBehaviour {
 			//Destroy bullet
 			Destroy(gameObject);
 		}
+
+        //Check if it collides with the red enemy
+        if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy")) {
+            //Change bullet state to rebound
+            stateOfBullet = bulletState.reboundBullet;
+            //Randomly rotate the gameObject into the sky
+            transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+            //Scaling the bullet down
+            transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            //Change trail width
+            this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+        }
 
         //Check if its the Wall
         if (theCol.gameObject.CompareTag("Wall")) {
