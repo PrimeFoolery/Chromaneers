@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     public GameState currentGameState = GameState.Multiplayer;
     private ColourSelectManager gameManager;
 
-    private float cameraMoveSpeed = 0.15f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed = 0.35f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Camera cameraComponent;
 
