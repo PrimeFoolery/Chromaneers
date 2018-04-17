@@ -137,13 +137,16 @@ public class EnemySpawner : MonoBehaviour {
         {
             //SPAWN POINT C ENEMIES
 
-            SpawnSnakeEnemy("C", "blue");
-            SpawnFastEnemy("A", "red");
-            SpawnFastEnemy("A", "red");
-            SpawnFastEnemy("A", "red");
-            SpawnFastEnemy("A", "red");
-            SpawnFastEnemy("A", "red");
-            SpawnFastEnemy("A", "red");
+            //SpawnSnakeEnemy("C", "blue");
+            SpawnFastEnemy("C", "red");
+            SpawnFastEnemy("C", "red");
+            SpawnFastEnemy("C", "red");
+            SpawnFastEnemy("C", "blue");
+            SpawnFastEnemy("C", "blue");
+			SpawnFastEnemy("C", "blue");
+			SpawnFastEnemy("C", "yellow");
+			SpawnFastEnemy("C", "yellow");
+			SpawnFastEnemy("C", "yellow");
             hasSpawnCSpawned = true;
         }
     }
@@ -154,9 +157,17 @@ public class EnemySpawner : MonoBehaviour {
             //SPAWN POINT D ENEMIES
 
             SpawnStandardGreenEnemy("D");
+			SpawnStandardPurpleEnemy("D");
+			SpawnStandardOrangeEnemy("D");
             SpawnStandardBlueEnemy("D");
             SpawnStandardRedEnemy("D");
-            SpawnStandardYellowEnemy("D");
+			SpawnStandardYellowEnemy("D");
+			SpawnStandardBlueEnemy("D");
+			SpawnStandardRedEnemy("D");
+			SpawnStandardYellowEnemy("D");
+			SpawnStandardBlueEnemy("D");
+			SpawnStandardRedEnemy("D");
+			SpawnStandardYellowEnemy("D");
             hasSpawnDSpawned = true;
         }
     }
@@ -165,10 +176,21 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnESpawned == false)
         {
             //SPAWN POINT E ENEMIES
-
+			SpawnSpiderEnemy("E");
+			SpawnSpiderEnemy("E");
+			SpawnSpiderEnemy("E");
+			SpawnSpiderEnemy("E");
+			SpawnFastEnemy("E", "random");
+			SpawnFastEnemy("E", "random");
+			SpawnFastEnemy("E", "random");
+			SpawnFastEnemy("E", "random");
+			SpawnFastEnemy("E", "random");
+			SpawnFastEnemy("E", "random");
+			/*
             SpawnStandardGreenEnemy("E");
             SpawnStandardOrangeEnemy("E");
             SpawnStandardPurpleEnemy("E");
+            */
             hasSpawnESpawned = true;
         }
     }
@@ -177,8 +199,17 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnFSpawned == false)
         {
             //SPAWN POINT F ENEMIES
-
+			SpawnStandardPurpleEnemy("F");
+			SpawnStandardOrangeEnemy("F");
+			SpawnStandardBlueEnemy("F");
+			SpawnStandardRedEnemy("F");
+			SpawnStandardYellowEnemy("F");
+			SpawnStandardBlueEnemy("F");
+			SpawnStandardRedEnemy("F");
+			SpawnStandardYellowEnemy("F");
+			/*
             SpawnSnakeEnemy("F", "MAXRANDOM");
+            */
             hasSpawnFSpawned = true;
         }
     }
@@ -187,6 +218,10 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnGSpawned == false)
         {
             //SPAWN POINT G ENEMIES
+			SpawnSnakeEnemy("G", "MAXRANDOM");
+			SpawnSnakeEnemy("G", "MAXRANDOM");
+			SpawnSnakeEnemy("G", "MAXRANDOM");
+			/*
             SpawnStandardBlueEnemy("G");
             SpawnStandardRedEnemy("G");
             SpawnStandardYellowEnemy("G");
@@ -196,6 +231,7 @@ public class EnemySpawner : MonoBehaviour {
             SpawnFastEnemy("G", "random");
             SpawnFastEnemy("G", "random");
             SpawnFastEnemy("G", "random");
+            */
             hasSpawnGSpawned = true;
         }
     }

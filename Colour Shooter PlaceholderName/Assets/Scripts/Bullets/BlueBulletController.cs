@@ -71,6 +71,7 @@ public class BlueBulletController : MonoBehaviour {
             theCol.gameObject.GetComponent<BlueEnemyHealth>().EnemyDamaged(bulletDamage);
             //and destroy the bullet
             Destroy(gameObject);
+	        
         }
 	    //Check if it collides with the red enemy
         if (theCol.gameObject.CompareTag("RedEnemy")) {
