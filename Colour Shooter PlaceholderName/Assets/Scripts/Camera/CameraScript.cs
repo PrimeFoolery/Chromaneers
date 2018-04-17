@@ -130,7 +130,26 @@ public class CameraScript : MonoBehaviour
     }
     private void CalculateAveragePosInCoOp()
     {
-        averagePos = (CoopBluePlayer.transform.position + CoopRedPlayer.transform.position + CoopYellowPlayer.transform.position) / 3; //THE AVERAGE POS OF ALL 3 PLAYERS
+        //averagePos = (CoopBluePlayer.transform.position + CoopRedPlayer.transform.position + CoopYellowPlayer.transform.position) / 3; //THE AVERAGE POS OF ALL 3 PLAYERS
+
+        float diffBetweenBlueAndRed = Vector3.Distance(CoopBluePlayer.transform.position, CoopRedPlayer.transform.position);
+        float diffBetweenBlueAndYellow = Vector3.Distance(CoopBluePlayer.transform.position, CoopYellowPlayer.transform.position);
+        float diffBetweenYellowAndRed = Vector3.Distance(CoopYellowPlayer.transform.position, CoopRedPlayer.transform.position);
+
+        if(Mathf.Max(diffBetweenBlueAndRed,diffBetweenBlueAndYellow,diffBetweenYellowAndRed)==diffBetweenBlueAndRed)
+        {
+            averagePos = (CoopBluePlayer.transform.position + CoopRedPlayer.transform.position) / 2;
+        } else if (Mathf.Max(diffBetweenBlueAndRed, diffBetweenBlueAndYellow, diffBetweenYellowAndRed) == diffBetweenBlueAndYellow)
+        {
+            averagePos = (CoopBluePlayer.transform.position + CoopYellowPlayer.transform.position) / 2;
+        }
+        else if (Mathf.Max(diffBetweenBlueAndRed, diffBetweenBlueAndYellow, diffBetweenYellowAndRed) == diffBetweenYellowAndRed)
+        {
+            averagePos = (CoopRedPlayer.transform.position + CoopYellowPlayer.transform.position) / 2;
+        }
+
+
+
     }
     private void CalculateAveragePosInSinglePlayer()
     {

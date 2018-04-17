@@ -20,6 +20,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     [Header("Script References")]
     public CharacterThreeGunController coopCharacterControllerThree;
 
+    private CoopCharacterControllerTwo redPlayer;
+    private CoopCharacterControllerOne bluePlayer;
+
     public Color redColor = Color.red;
     public Color orangeColor = new Color(1, 0.75f, 0, 1);
     public Color yellowColor = Color.yellow;
@@ -62,6 +65,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
+        bluePlayer = GameObject.FindGameObjectWithTag("BluePlayer").GetComponent<CoopCharacterControllerOne>();
+        redPlayer = GameObject.FindGameObjectWithTag("RedPlayer").GetComponent<CoopCharacterControllerTwo>();
         colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
         listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -72,17 +77,17 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	void Update () {
         XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
         ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
-        if (XDistBetweenPlayerAndAveragePlayerPos >= 19.75f)
+        if (XDistBetweenPlayerAndAveragePlayerPos >= 25f)
         {
             cameraBorderPushbackSpeed += 0.01f;
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(mainCameraScript.averagePos.x, transform.position.y, transform.position.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
+            //transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(mainCameraScript.averagePos.x, transform.position.y, transform.position.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
         }
-        if (ZDistBetweenPlayerAndAveragePlayerPos >= 11.15f)
+        if (ZDistBetweenPlayerAndAveragePlayerPos >= 15f)
         {
             cameraBorderPushbackSpeed += 0.01f;
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y, mainCameraScript.averagePos.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
+            //transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y, mainCameraScript.averagePos.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
         }
-        if (XDistBetweenPlayerAndAveragePlayerPos < 19.75f && ZDistBetweenPlayerAndAveragePlayerPos < 11.15f)
+        if (XDistBetweenPlayerAndAveragePlayerPos < 25f && ZDistBetweenPlayerAndAveragePlayerPos < 15f)
         {
             cameraBorderPushbackSpeed = 0f;
         }
@@ -91,7 +96,36 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
-			if (!isShooting) {
+            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+            {
+                if (moveInput.x <= 0)
+                {
+                    moveInput.x = 0;
+                }
+            }
+            else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
+            {
+                if (moveInput.x >= 0)
+                {
+                    moveInput.x = 0;
+                }
+            }
+
+            if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
+            {
+                if (moveInput.z <= 0)
+                {
+                    moveInput.z = 0;
+                }
+            }
+            else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
+            {
+                if (moveInput.z >= 0)
+                {
+                    moveInput.z = 0;
+                }
+            }
+            if (!isShooting) {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
 					if(colourPlayerIsStandingOn!="yellow"){
@@ -223,7 +257,36 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		if (usingXboxController) {
 			//Making a vector3 to store the characters inputs
 			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
-			if (!isShooting) {
+		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+		    {
+		        if (moveInput.x <= 0)
+		        {
+		            moveInput.x = 0;
+		        }
+		    }
+		    else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
+		    {
+		        if (moveInput.x >= 0)
+		        {
+		            moveInput.x = 0;
+		        }
+		    }
+
+		    if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
+		    {
+		        if (moveInput.z <= 0)
+		        {
+		            moveInput.z = 0;
+		        }
+		    }
+		    else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
+		    {
+		        if (moveInput.z >= 0)
+		        {
+		            moveInput.z = 0;
+		        }
+		    }
+            if (!isShooting) {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
 					if(colourPlayerIsStandingOn!="yellow"){
@@ -315,7 +378,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 		    if (Physics.Raycast(ray, out hit, 20f))
 		    {
-		        Debug.Log(hit.collider.name);
+		        //Debug.Log(hit.collider.name);
 				float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
 				float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
 				brush.Scale = neededBrushSize;
@@ -355,7 +418,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    }
         }
 	   
-	    Debug.Log(colourPlayerIsStandingOn);
+	    //Debug.Log(colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn == "yellow")
 	    {
 	        moveSpeed = 6;
