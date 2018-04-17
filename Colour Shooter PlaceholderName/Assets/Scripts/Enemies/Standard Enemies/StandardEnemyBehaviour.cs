@@ -210,7 +210,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
             float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer),
                 Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
-            //Debug.Log(closestDistance);
+            Debug.Log(closestDistance);
 
             if (closestDistance == distanceBetweenEnemyAndRedPlayer)
             {
