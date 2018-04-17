@@ -78,63 +78,63 @@ public class RedBulletController : MonoBehaviour {
     }
 
     void OnCollisionEnter (Collision theCol) {
-            //Check if its the Enemy
-            if (theCol.gameObject.tag == "RedEnemy")
-            {
-                //When it collides with the enemy, apply the damage
-                theCol.gameObject.GetComponent<RedEnemyHealth>().EnemyDamaged(bulletDamage);
-                //and destroy the bullet
-                Destroy(gameObject);
-            }
+        //Check if its the Enemy
+        if (theCol.gameObject.tag == "RedEnemy")
+        {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<RedEnemyHealth>().EnemyDamaged(bulletDamage);
+            //and destroy the bullet
+            Destroy(gameObject);
+        }
 
-            if (theCol.gameObject.tag == "PurpleEnemy")
-            {
-                //When it collides with the enemy, apply the damage
-                theCol.gameObject.GetComponent<PurpleEnemyHealth>().EnemyDamaged(bulletDamage);
-                //and destroy the bullet
-                Destroy(gameObject);
-            }
+        if (theCol.gameObject.tag == "PurpleEnemy")
+        {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<PurpleEnemyHealth>().EnemyDamaged(bulletDamage);
+            //and destroy the bullet
+            Destroy(gameObject);
+        }
 
-            if (theCol.gameObject.tag == "OrangeEnemy")
-            {
-                //When it collides with the enemy, apply the damage
-                theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
-                //and destroy the bullet
-                Destroy(gameObject);
-            }
+        if (theCol.gameObject.tag == "OrangeEnemy")
+        {
+            //When it collides with the enemy, apply the damage
+            theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
+            //and destroy the bullet
+            Destroy(gameObject);
+        }
 
-            //Check if it collides with the blue enemy
-            if (theCol.gameObject.CompareTag("BlueEnemy"))
-            {
-                //Instantiate bullet particle
-                //Instantiate(blueReboundBullet, this.transform.position, Quaternion.identity);
-                //and destroy the bullet
-                //Destroy(gameObject);
-                stateOfBullet = bulletState.reboundBullet;
-                transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+        //Check if it collides with the blue enemy
+        if (theCol.gameObject.CompareTag("BlueEnemy"))
+        {
+            //Change bullet state to rebound
+            stateOfBullet = bulletState.reboundBullet;
+            //Randomly rotate the gameObject into the sky
+            transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+            //Scaling the bullet down
+            transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
                 
-            }
+        }
 
-            //Check if its the Wall
-            if (theCol.gameObject.tag == "Wall")
+        //Check if its the Wall
+        if (theCol.gameObject.tag == "Wall")
+        {
+            //Testing Raycast hitting
+            RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward),
+                (transform.position - previousBulletPosition).magnitude);
+
+            for (int i = 0; i < hit.Length; i++)
             {
-                //Testing Raycast hitting
-                RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward),
-                    (transform.position - previousBulletPosition).magnitude);
+                //Print to check what object has collided
+                Debug.Log(hit[i].collider.gameObject.name);
 
-                for (int i = 0; i < hit.Length; i++)
-                {
-                    //Print to check what object has collided
-                    Debug.Log(hit[i].collider.gameObject.name);
+                //If it touches the wall, destroy
+                //Destroy(gameObject);
 
-                    //If it touches the wall, destroy
-                    //Destroy(gameObject);
-
-                    //Insantiating the paint when the bullet is destroyed
-                    Instantiate(paint, hit[i].point, hit[i].collider.gameObject.transform.rotation);
-                }
-
-                Debug.DrawLine(transform.position, previousBulletPosition);
+                //Insantiating the paint when the bullet is destroyed
+                Instantiate(paint, hit[i].point, hit[i].collider.gameObject.transform.rotation);
             }
+
+            Debug.DrawLine(transform.position, previousBulletPosition);
+        }
     }
 }
