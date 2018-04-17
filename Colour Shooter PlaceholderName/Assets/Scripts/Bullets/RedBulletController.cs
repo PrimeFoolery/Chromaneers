@@ -102,7 +102,7 @@ public class RedBulletController : MonoBehaviour {
         }
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("YellowEnemy"))
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("Wall"))
         {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
@@ -113,28 +113,6 @@ public class RedBulletController : MonoBehaviour {
             //Change trail width
             this.GetComponent<TrailRenderer>().startWidth = 0.3f;
                 
-        }
-
-        //Check if its the Wall
-        if (theCol.gameObject.tag == "Wall")
-        {
-            //Testing Raycast hitting
-            RaycastHit[] hit = Physics.RaycastAll(new Ray(previousBulletPosition, Vector3.forward),
-                (transform.position - previousBulletPosition).magnitude);
-
-            for (int i = 0; i < hit.Length; i++)
-            {
-                //Print to check what object has collided
-                Debug.Log(hit[i].collider.gameObject.name);
-
-                //If it touches the wall, destroy
-                //Destroy(gameObject);
-
-                //Insantiating the paint when the bullet is destroyed
-                Instantiate(paint, hit[i].point, hit[i].collider.gameObject.transform.rotation);
-            }
-
-            Debug.DrawLine(transform.position, previousBulletPosition);
         }
     }
 }
