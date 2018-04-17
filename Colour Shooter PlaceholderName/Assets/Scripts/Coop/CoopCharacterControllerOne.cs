@@ -20,6 +20,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
 
+    private CoopCharacterControllerTwo redPlayer;
+    private CoopCharacterControllerThree yellowPlayer;
+
     public Color redColor = Color.red;
     public Color orangeColor = new Color(1, 0.75f, 0, 1);
     public Color yellowColor = Color.yellow;
@@ -62,7 +65,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         //Getting the mainCamera from the current scene
-	    colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
+	    yellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer").GetComponent<CoopCharacterControllerThree>(); 
+	    redPlayer = GameObject.FindGameObjectWithTag("RedPlayer").GetComponent<CoopCharacterControllerTwo>();
+        colourPicker = GameObject.FindGameObjectWithTag("ColourPicker").GetComponent<ColourPicker>();
 	    listManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
@@ -70,27 +75,41 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
-	    XDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.x - mainCameraScript.averagePos.x);//CALCULATES DISTANCE ON X AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
-        ZDistBetweenPlayerAndAveragePlayerPos = Mathf.Abs(transform.position.z - mainCameraScript.averagePos.z);//CALCULATES DISTANCE ON Z AXIS BETWEEN THIS PLAYER AND THE AVERAGE PLAYER POS THE CAMERA IS POINTED AT
-        if (XDistBetweenPlayerAndAveragePlayerPos>=19.75f)
-        {
-            cameraBorderPushbackSpeed += 0.01f;
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3 (mainCameraScript.averagePos.x, transform.position.y, transform.position.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
-        }
-        if (ZDistBetweenPlayerAndAveragePlayerPos >= 11.15f)
-        {
-            cameraBorderPushbackSpeed += 0.01f;
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y, mainCameraScript.averagePos.z), cameraBorderPushbackSpeed);//PUSHES THE PLAYER BACK IF THE GO TOO FAR
-        }
-        if (XDistBetweenPlayerAndAveragePlayerPos < 19.75f&&ZDistBetweenPlayerAndAveragePlayerPos<11.15f)
-        {
-            cameraBorderPushbackSpeed = 0f;
-        }
+        
 
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
-	        //Making a vector3 to store the characters inputs
-	        moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
+            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
+            {
+                if (moveInput.x <= 0)
+                {
+                    moveInput.x = 0;
+                }
+            }
+            else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 35f)
+            {
+                if (moveInput.x >= 0)
+                {
+                    moveInput.x = 0;
+                }
+            }
+
+            if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -25f)
+            {
+                if (moveInput.z <= 0)
+                {
+                    moveInput.z = 0;
+                }
+            }
+            else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 25f)
+            {
+                if (moveInput.z >= 0)
+                {
+                    moveInput.z = 0;
+                }
+            }
+            //Making a vector3 to store the characters inputs
+            moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
             if (!isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
@@ -221,8 +240,37 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         }
 
 		if (usingXboxController) {
-			//Making a vector3 to store the characters inputs
-			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
+		    {
+		        if (moveInput.x <= 0)
+		        {
+		            moveInput.x = 0;
+		        }
+		    }
+		    else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 35f)
+		    {
+		        if (moveInput.x >= 0)
+		        {
+		            moveInput.x = 0;
+		        }
+		    }
+
+		    if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -25f)
+		    {
+		        if (moveInput.z <= 0)
+		        {
+		            moveInput.z = 0;
+		        }
+		    }
+		    else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 25f)
+		    {
+		        if (moveInput.z >= 0)
+		        {
+		            moveInput.z = 0;
+		        }
+		    }
+            //Making a vector3 to store the characters inputs
+            moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
 		    if (!isShooting) {
 		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 		        
