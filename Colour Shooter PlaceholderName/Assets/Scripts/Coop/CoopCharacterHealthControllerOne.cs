@@ -46,7 +46,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour {
 	}
 	
 	void Update () {
-        HealthBarUI.sprite = HeartSprites[currentHealth];
+        //HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
