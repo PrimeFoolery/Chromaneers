@@ -77,7 +77,9 @@ public class BlueBulletController : MonoBehaviour {
             //Stunning Enemy from moving[WiP]
             //theCol.gameObject.GetComponent<NavMeshAgent>().speed = enemySlowSpeed;
 	        //Destroy bullet
+	        print("Are you happening before");
 	        Destroy(gameObject);
+	        print("Are you happening after");
         }
 	    //Check if it collides with the yellow enemy
 	    if (theCol.gameObject.CompareTag("YellowEnemy")) {
