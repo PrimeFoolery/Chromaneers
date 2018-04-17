@@ -11,6 +11,9 @@ public class YellowBulletController : MonoBehaviour {
     public float reboundBulletLifeTime;
     public int bulletDamage;
 
+    private float directionTimer =1f;
+    private Vector3 savedDirection;
+
     [Header("Misc")]
     public GameObject paint;
     public float paintLifeTime;
@@ -30,7 +33,16 @@ public class YellowBulletController : MonoBehaviour {
         previousBulletPosition = transform.position;
     }
 
-    void Update () {
+    void Update ()
+    {
+
+        directionTimer -= Time.deltaTime;
+        if (directionTimer<=0f)
+        {
+            savedDirection = transform.position;
+            directionTimer = 1f;
+        }
+
         //Setting previous button position to the new updated position
         previousBulletPosition = transform.position;
 
@@ -70,28 +82,40 @@ public class YellowBulletController : MonoBehaviour {
     }
 
     void OnCollisionEnter (Collision theCol) {
-        //Check if its the Enemy
-        if (theCol.gameObject.CompareTag("YellowEnemy")) {
-            //When it collides with the enemy, apply the damage
-            theCol.gameObject.GetComponent<YellowEnemyHealth>().EnemyDamaged(bulletDamage);
-            //and destroy the bullet
-            Destroy(gameObject);
+        if (stateOfBullet == bulletState.normalBullet)
+        {
+            //Check if its the Enemy
+            if (theCol.gameObject.CompareTag("YellowEnemy"))
+            {
+                //When it collides with the enemy, apply the damage
+                theCol.gameObject.GetComponent<YellowEnemyHealth>().EnemyDamaged(bulletDamage);
+                //and destroy the bullet
+                Destroy(gameObject);
+            }
+            if (theCol.gameObject.CompareTag("OrangeEnemy"))
+            {
+                //When it collides with the enemy, apply the damage
+                theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
+                //and destroy the bullet
+                Destroy(gameObject);
+            }
+            if (theCol.gameObject.CompareTag("GreenEnemy"))
+            {
+                //When it collides with the enemy, apply the damage
+                theCol.gameObject.GetComponent<GreenEnemyHealth>().EnemyDamaged(bulletDamage);
+                //and destroy the bullet
+                Destroy(gameObject);
+            }
+            if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("OrangeEnemy") || theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("GreenEnemy") || theCol.gameObject.CompareTag("PurpleEnemy"))
+            {
+                theCol.gameObject.GetComponent<StandardEnemyBehaviour>().BulletKnockback(savedDirection);
+            }
         }
-		if (theCol.gameObject.CompareTag("OrangeEnemy")) {
-			//When it collides with the enemy, apply the damage
-			theCol.gameObject.GetComponent<OrangeEnemyHealth>().EnemyDamaged(bulletDamage);
-			//and destroy the bullet
-			Destroy(gameObject);
-		}
-		if (theCol.gameObject.CompareTag("GreenEnemy")) {
-			//When it collides with the enemy, apply the damage
-			theCol.gameObject.GetComponent<GreenEnemyHealth>().EnemyDamaged(bulletDamage);
-			//and destroy the bullet
-			Destroy(gameObject);
-		}
+
+        
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("Wall")) {
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("PurpleEnemy") || theCol.gameObject.CompareTag("Wall")) {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
             //Randomly rotate the gameObject into the sky

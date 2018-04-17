@@ -262,4 +262,9 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     {
         spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
     }
+
+    public void BulletKnockback(Vector3 bulletPosition)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
+    }
 }
