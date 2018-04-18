@@ -436,4 +436,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         myRB.velocity = moveVelocity;
 
     }
+    public void Knockback(Vector3 bulletPosition)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.3f);
+    }
 }

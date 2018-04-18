@@ -11,7 +11,7 @@ public class YellowBulletController : MonoBehaviour {
     public float reboundBulletLifeTime;
     public int bulletDamage;
 
-    private float directionTimer =1f;
+    private float directionTimer =0f;
     private Vector3 savedDirection;
 
     [Header("Misc")]
@@ -110,12 +110,21 @@ public class YellowBulletController : MonoBehaviour {
             {
                 theCol.gameObject.GetComponent<StandardEnemyBehaviour>().BulletKnockback(savedDirection);
             }
+
+            if (theCol.gameObject.CompareTag("BluePlayer"))
+            {
+                theCol.gameObject.GetComponent<CoopCharacterControllerOne>().Knockback(savedDirection);
+            }
+            if (theCol.gameObject.CompareTag("RedPlayer"))
+            {
+                theCol.gameObject.GetComponent<CoopCharacterControllerTwo>().Knockback(savedDirection);
+            }
         }
 
         
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("PurpleEnemy") || theCol.gameObject.CompareTag("Wall")) {
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("PurpleEnemy") || theCol.gameObject.CompareTag("Wall") || theCol.gameObject.CompareTag("RedPlayer") || theCol.gameObject.CompareTag("BluePlayer")) {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
             //Randomly rotate the gameObject into the sky

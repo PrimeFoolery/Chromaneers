@@ -12,7 +12,7 @@ public class RedBulletController : MonoBehaviour {
     public float reboundBulletLifeTime;
     public int bulletDamage;
 
-    private float directionTimer = 1f;
+    private float directionTimer = 0f;
     private Vector3 savedDirection;
 
     [Header("Misc")]
@@ -117,11 +117,19 @@ public class RedBulletController : MonoBehaviour {
             {
                 theCol.gameObject.GetComponent<StandardEnemyBehaviour>().BulletKnockback(savedDirection);
             }
+            if (theCol.gameObject.CompareTag("BluePlayer"))
+            {
+                theCol.gameObject.GetComponent<CoopCharacterControllerOne>().Knockback(savedDirection);
+            }
+            if (theCol.gameObject.CompareTag("YellowPlayer"))
+            {
+                theCol.gameObject.GetComponent<CoopCharacterControllerThree>().Knockback(savedDirection);
+            }
         }
         
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("GreenEnemy")||theCol.gameObject.CompareTag("Wall"))
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("GreenEnemy")||theCol.gameObject.CompareTag("Wall")||theCol.gameObject.CompareTag("YellowPlayer") || theCol.gameObject.CompareTag("BluePlayer"))
         {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
