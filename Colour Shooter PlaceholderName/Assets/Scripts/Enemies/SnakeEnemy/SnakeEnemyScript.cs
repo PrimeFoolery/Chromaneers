@@ -20,7 +20,7 @@ public class SnakeEnemyScript : MonoBehaviour
     private GameObject targetPlayer;
     private bool targetLock = false;
     private NavMeshAgent agent;
-    private float timer = 5f;
+    private float timer = 3f;
     private int segmentHealth = 3;
     public bool isAggroPlayer = false;
     public string thisEnemiesSpawnPoint;
@@ -115,7 +115,7 @@ public class SnakeEnemyScript : MonoBehaviour
             GetComponentInParent<Transform>().position = transform.position;
             if (isitCoop == false)
             {
-                if (Vector3.Distance(transform.position, singlePlayerChar.transform.position) < 15f && isAggroPlayer == false)
+                if (Vector3.Distance(transform.position, singlePlayerChar.transform.position) < 25f && isAggroPlayer == false)
                 {
                     ToggleAggro();
                 }
@@ -124,7 +124,7 @@ public class SnakeEnemyScript : MonoBehaviour
             }
             else if (isitCoop == true)
             {
-                if (isAggroPlayer == false && (Vector3.Distance(transform.position, redPlayerChar.transform.position) < 15f || Vector3.Distance(transform.position, bluePlayerChar.transform.position) < 15f || Vector3.Distance(transform.position, yellowPlayerChar.transform.position) < 15f))
+                if (isAggroPlayer == false && (Vector3.Distance(transform.position, redPlayerChar.transform.position) < 25f || Vector3.Distance(transform.position, bluePlayerChar.transform.position) < 25f || Vector3.Distance(transform.position, yellowPlayerChar.transform.position) < 25f))
                 {
                     ToggleAggro();
                 }
@@ -133,7 +133,7 @@ public class SnakeEnemyScript : MonoBehaviour
             if (timer <= 0)
             {
                 CalculateClosestPlayer();
-                timer = 5f;
+                timer = 3f;
             }
         }
 
@@ -259,15 +259,94 @@ public class SnakeEnemyScript : MonoBehaviour
 
             if (closestDistance == distanceBetweenEnemyAndRedPlayer)
             {
-                targetPlayer = redPlayerChar;
+                if (redPlayerChar.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = redPlayerChar;
+                }
+                else if (Mathf.Min(distanceBetweenEnemyAndBluePlayer, distanceBetweenEnemyAndYellowPlayer) == distanceBetweenEnemyAndBluePlayer)
+                {
+                    if (bluePlayerChar.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                    {
+                        targetPlayer = bluePlayerChar;
+                    }
+                    else if (yellowPlayerChar.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                    {
+                        targetPlayer = yellowPlayerChar;
+                    }
+                    else
+                    {
+                        agent.SetDestination(RandomNavmeshLocation(10f));
+                    }
+                }
+                else if (yellowPlayerChar.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = yellowPlayerChar;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
+
             }
             else if (closestDistance == distanceBetweenEnemyAndBluePlayer)
             {
-                targetPlayer = bluePlayerChar;
+                if (bluePlayerChar.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = bluePlayerChar;
+                }
+                else if (Mathf.Min(distanceBetweenEnemyAndRedPlayer, distanceBetweenEnemyAndYellowPlayer) == distanceBetweenEnemyAndRedPlayer)
+                {
+                    if (redPlayerChar.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                    {
+                        targetPlayer = redPlayerChar;
+                    }
+                    else if (yellowPlayerChar.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                    {
+                        targetPlayer = yellowPlayerChar;
+                    }
+                    else
+                    {
+                        agent.SetDestination(RandomNavmeshLocation(10f));
+                    }
+                }
+                else if (yellowPlayerChar.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = yellowPlayerChar;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
             }
             else if (closestDistance == distanceBetweenEnemyAndYellowPlayer)
             {
-                targetPlayer = yellowPlayerChar;
+                if (yellowPlayerChar.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = yellowPlayerChar;
+                }
+                else if (Mathf.Min(distanceBetweenEnemyAndRedPlayer, distanceBetweenEnemyAndBluePlayer) == distanceBetweenEnemyAndRedPlayer)
+                {
+                    if (redPlayerChar.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                    {
+                        targetPlayer = redPlayerChar;
+                    }
+                    else if (bluePlayerChar.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                    {
+                        targetPlayer = bluePlayerChar;
+                    }
+                    else
+                    {
+                        agent.SetDestination(RandomNavmeshLocation(10f));
+                    }
+                }
+                else if (bluePlayerChar.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = bluePlayerChar;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
             }
         }
         else
@@ -551,5 +630,17 @@ public class SnakeEnemyScript : MonoBehaviour
     void ToggleAggro()
     {
         spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+    }
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
     }
 }

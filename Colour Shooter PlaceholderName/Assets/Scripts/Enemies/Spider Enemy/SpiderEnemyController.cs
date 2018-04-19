@@ -48,7 +48,7 @@ public class SpiderEnemyController : MonoBehaviour
     private GameObject RedPlayer;
     private GameObject BluePlayer;
     private GameObject YellowPlayer;
-    private float retargetingDelay = 5f;
+    private float retargetingDelay = 3f;
     private bool readyToRetarget = true;
 
 
@@ -193,7 +193,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        }
 	        else if (player != null)
 	        {
-	            if (Vector3.Distance(transform.position, player.transform.position) < 15f && isAggroPlayer == false)
+	            if (Vector3.Distance(transform.position, player.transform.position) < 25f && isAggroPlayer == false)
 	            {
 
 	                ToggleAggro();
@@ -210,13 +210,13 @@ public class SpiderEnemyController : MonoBehaviour
         }
 	    if (isItCoop)
 	    {
-	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 15f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 15f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 15f))
+	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
 	            ToggleAggro();
 	        }
 	        if (isAggroPlayer == true)
 	        {
-	            if (retargetingDelay == 5f)
+	            if (retargetingDelay == 3f)
 	            {
 	                FindClosestPlayer();
 	            }
@@ -231,7 +231,7 @@ public class SpiderEnemyController : MonoBehaviour
 	    if (retargetingDelay <= 0f)
 	    {
 	        readyToRetarget = true;
-	        retargetingDelay = 5f;
+	        retargetingDelay = 3f;
 	    }
 
 	    if (paintDetector.colourOfPaint=="yellow")
@@ -451,20 +451,111 @@ public class SpiderEnemyController : MonoBehaviour
 
         if (closestDistance == distanceBetweenEnemyAndRedPlayer)
         {
-            targetPlayer = RedPlayer;
+            if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+            {
+                targetPlayer = RedPlayer;
+            }
+            else if (Mathf.Min(distanceBetweenEnemyAndBluePlayer, distanceBetweenEnemyAndYellowPlayer) == distanceBetweenEnemyAndBluePlayer)
+            {
+                if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
+            }
+            else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+            {
+                targetPlayer = YellowPlayer;
+            }
+            else
+            {
+                agent.SetDestination(RandomNavmeshLocation(10f));
+            }
+
         }
         else if (closestDistance == distanceBetweenEnemyAndBluePlayer)
         {
-            targetPlayer = BluePlayer;
+            if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+            {
+                targetPlayer = BluePlayer;
+            }
+            else if (Mathf.Min(distanceBetweenEnemyAndRedPlayer, distanceBetweenEnemyAndYellowPlayer) == distanceBetweenEnemyAndRedPlayer)
+            {
+                if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
+            }
+            else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+            {
+                targetPlayer = YellowPlayer;
+            }
+            else
+            {
+                agent.SetDestination(RandomNavmeshLocation(10f));
+            }
         }
         else if (closestDistance == distanceBetweenEnemyAndYellowPlayer)
         {
-            targetPlayer = YellowPlayer;
+            if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+            {
+                targetPlayer = YellowPlayer;
+            }
+            else if (Mathf.Min(distanceBetweenEnemyAndRedPlayer, distanceBetweenEnemyAndBluePlayer) == distanceBetweenEnemyAndRedPlayer)
+            {
+                if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else
+                {
+                    agent.SetDestination(RandomNavmeshLocation(10f));
+                }
+            }
+            else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+            {
+                targetPlayer = BluePlayer;
+            }
+            else
+            {
+                agent.SetDestination(RandomNavmeshLocation(10f));
+            }
         }
     }
 
     void ToggleAggro()
     {
         spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+    }
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
     }
 }

@@ -31,6 +31,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public Color purpleColor = new Color(0.6f, 0, 1, 1);
 
     public string colourPlayerIsStandingOn;
+    public bool canPlayerShoot = true;
 
     private float splatTimer = 0f;
     public GameObject paintBlob;
@@ -183,7 +184,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKeyDown(KeyCode.Joystick3Button7)) {
+                if (Input.GetKeyDown(KeyCode.Joystick3Button7)&&canPlayerShoot==true) {
                     coopCharacterControllerThree.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
@@ -345,7 +346,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire3Right")) {
+		        if (Input.GetButtonDown("Fire3Right") && canPlayerShoot == true) {
 		            coopCharacterControllerThree.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -362,7 +363,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 		    if (Physics.Raycast(ray, out hit, 20f))
 		    {
-		        Debug.Log(hit.collider.name);
+		        //Debug.Log(hit.collider.name);
 				float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
 				float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
 				brush.Scale = neededBrushSize;
@@ -402,7 +403,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    }
         }
 	   
-	    Debug.Log(colourPlayerIsStandingOn);
+	    //Debug.Log(colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn == "yellow")
 	    {
 	        moveSpeed = 6;

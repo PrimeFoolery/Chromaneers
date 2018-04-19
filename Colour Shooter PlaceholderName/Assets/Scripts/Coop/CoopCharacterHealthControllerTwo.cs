@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoopCharacterHealthControllerTwo : MonoBehaviour {
+public class CoopCharacterHealthControllerTwo : MonoBehaviour
+{
 
     [Header("General")]
     public string PlayerState;
@@ -12,6 +13,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     public int health;
     public bool canBeDamaged;
     public float InvTimer;
+    private float reviveTimer = 15f;
 
     [Header("HealthBar")]
     public Image HealthBarUI;
@@ -24,7 +26,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     public float duration;
     public Renderer rend;
 
-    [Header("UI")] 
+    [Header("UI")]
     public Text currentHP;
 
     public CoopCharacterControllerTwo coopCharacterControllerTwo;
@@ -32,20 +34,22 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
     //Private variables
     private int currentHealth;
 
-    void Start () {
+    void Start()
+    {
         PlayerState = "Alive";
         canBeDamaged = true;
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
         currentHealth = health;
-	    
+
         //Getting the renderer
         //And setting the main material to its origin material
         rend = GetComponent<Renderer>();
         rend.material = matOne;
     }
-	
-    void Update () {
+
+    void Update()
+    {
         //HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
@@ -58,6 +62,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
                 rend.material.Lerp(matOne, matTwo, 2f);
                 if (InvTimer <= 0)
                 {
+                    rend.material = matOne;
                     canBeDamaged = true;
                 }
             }
@@ -69,6 +74,25 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour {
         if (PlayerState == "Dead")
         {
             coopCharacterControllerTwo.moveSpeed = 0;
+            coopCharacterControllerTwo.canPlayerShoot = false;
+            reviveTimer -= Time.deltaTime;
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 2f)
+            {
+                reviveTimer -= Time.deltaTime;
+            }
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 2f)
+            {
+                reviveTimer -= Time.deltaTime;
+            }
+        }
+        if (reviveTimer <= 0)
+        {
+            coopCharacterControllerTwo.canPlayerShoot = true;
+            currentHealth = 6;
+            rend.material = matOne;
+            PlayerState = "Alive";
+            reviveTimer = 15f;
+
         }
     }
 

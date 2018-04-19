@@ -33,6 +33,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     public string colourPlayerIsStandingOn;
     private float splatTimer = 0f;
     public GameObject paintBlob;
+    public bool canPlayerShoot = true;
 
     [System.Serializable]
     private enum UseMethodType
@@ -181,7 +182,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKeyDown(KeyCode.Joystick2Button7)) {
+                if (Input.GetKeyDown(KeyCode.Joystick2Button7) && canPlayerShoot == true) {
                     coopCharacterControllerTwo.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
@@ -342,7 +343,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire2Right")) {
+		        if (Input.GetButtonDown("Fire2Right") && canPlayerShoot == true) {
 		            coopCharacterControllerTwo.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -358,7 +359,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 		    if (Physics.Raycast(ray, out hit, 20f))
 		    {
-		        Debug.Log(hit.collider.name);
+		        //Debug.Log(hit.collider.name);
 				float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
 				float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
 				brush.Scale = neededBrushSize;
@@ -398,7 +399,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    }
         }
 	    
-	    Debug.Log(colourPlayerIsStandingOn);
+	    //Debug.Log(colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn == "yellow")
 	    {
 	        moveSpeed = 6;

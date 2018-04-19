@@ -16,6 +16,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     private EnemyManager listManager;
     public ColourPicker colourPicker;
+    public bool canPlayerShoot = true;
 
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
@@ -79,6 +80,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
+            
+            //Making a vector3 to store the characters inputs
+            moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
             if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
             {
                 if (moveInput.x <= 0)
@@ -108,8 +112,6 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                     moveInput.z = 0;
                 }
             }
-            //Making a vector3 to store the characters inputs
-            moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
             if (!isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
@@ -184,7 +186,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKey(KeyCode.Joystick1Button7)) {
+                if (Input.GetKey(KeyCode.Joystick1Button7)&&canPlayerShoot==true) {
                     coopCharacterControllerOne.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
@@ -240,6 +242,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         }
 
 		if (usingXboxController) {
+		    
+            //Making a vector3 to store the characters inputs
+            moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
 		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
 		    {
 		        if (moveInput.x <= 0)
@@ -269,9 +274,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		            moveInput.z = 0;
 		        }
 		    }
-            //Making a vector3 to store the characters inputs
-            moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
-		    if (!isShooting) {
+            if (!isShooting) {
 		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
 		        
 				if(moveInput!= new Vector3(0,0,0)){
@@ -347,7 +350,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire1Right")) {
+		        if (Input.GetButtonDown("Fire1Right")&&canPlayerShoot==true) {
+                    Debug.Log("this is happening");
 		            coopCharacterControllerOne.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -403,7 +407,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    }
         }
 	    
-	    Debug.Log(colourPlayerIsStandingOn);
+	    //Debug.Log(colourPlayerIsStandingOn);
 	    if (colourPlayerIsStandingOn == "yellow")
 	    {
 	        moveSpeed = 6;
