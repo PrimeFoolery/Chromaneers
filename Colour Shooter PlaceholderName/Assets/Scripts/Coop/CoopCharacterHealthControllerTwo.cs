@@ -54,6 +54,8 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     void Update()
     {
+ //       Vector2 SliderPos = Camera.main.WorldToScreenPoint(this.transform.position);
+ //       ReviveSlider.transform.position = SliderPos;
         //HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
