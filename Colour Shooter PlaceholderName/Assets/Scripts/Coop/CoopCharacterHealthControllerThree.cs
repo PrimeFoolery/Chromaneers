@@ -65,8 +65,8 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         if (PlayerState == "Alive")
         {
             ReviveSlider.gameObject.SetActive(false);
-            Debug.Log(Vector3.Distance(gameObject.transform.position,
-                GameObject.FindGameObjectWithTag("RedPlayer").transform.position));
+            //Debug.Log(Vector3.Distance(gameObject.transform.position,
+                //GameObject.FindGameObjectWithTag("RedPlayer").transform.position));
             if (canBeDamaged == false)
             {
                 print("Getting HIT");
@@ -129,5 +129,10 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
                 canBeDamaged = false;
             }
         }
+    }
+
+    public void Die()
+    {
+        currentHealth = 0;
     }
 }

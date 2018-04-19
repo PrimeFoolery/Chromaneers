@@ -14,6 +14,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     public bool isShooting;
     public GameObject paintProjector;
 
+    private string tagUnderPlayer;
+    private Vector3 savedPosition;
+
     private EnemyManager listManager;
     public ColourPicker colourPicker;
     public bool canPlayerShoot = true;
@@ -202,7 +205,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
             if (Physics.Raycast(ray, out hit, 20f))
             {
-                Debug.Log(hit.collider.name);
+                
 				float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
 				float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
 				brush.Scale = neededBrushSize;
@@ -367,12 +370,13 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 		    if (Physics.Raycast(ray, out hit, 20f))
 		    {
-		        //Debug.Log(hit.collider.name);
-		        float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
+                //Debug.Log(hit.collider.name);
+                float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
 		        float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
 		        brush.Scale = neededBrushSize;
                 if (hit.collider)
 		        {
+                    
 
 
 
@@ -439,7 +443,38 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            poisonTimer = 3f;
 	        }
 	    }
-    }
+
+	    RaycastHit floorHit;
+	    Ray floorRay = new Ray(transform.position, Vector3.down);
+	    if(Physics.Raycast(floorRay, out floorHit, 20f))
+	    {
+	        
+	        if (floorHit.collider)
+	        {
+	            tagUnderPlayer = floorHit.collider.gameObject.tag;
+	            savedPosition = transform.position;
+	        }
+	        else
+	        {
+	            tagUnderPlayer = "null";
+	        }
+	    }
+	    else
+	    {
+	        tagUnderPlayer = "null";
+	    }
+	    if (tagUnderPlayer!="Floor")
+	    {
+	        transform.position = Vector3.MoveTowards(transform.position,
+	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.2f);
+	    }
+
+	    if (transform.position.y<=-5f)
+	    {
+	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
+            transform.position = savedPosition;
+	    }
+	}
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;

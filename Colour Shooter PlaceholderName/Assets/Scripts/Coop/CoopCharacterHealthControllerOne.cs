@@ -129,4 +129,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             }
         }
     }
+    public void Die()
+    {
+        currentHealth = 0;
+    }
 }
