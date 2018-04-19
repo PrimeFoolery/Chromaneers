@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,9 +55,11 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
     void Update()
     {
- //       Vector2 SliderPos = Camera.main.WorldToScreenPoint(this.transform.position);
- //       ReviveSlider.transform.position = SliderPos;
-        //HealthBarUI.sprite = HeartSprites[currentHealth];
+        Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        SliderPos.x =SliderPos.x- 960f;
+        SliderPos.y = SliderPos.y - 475f;
+        ReviveSlider.transform.localPosition = SliderPos;
+        HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
