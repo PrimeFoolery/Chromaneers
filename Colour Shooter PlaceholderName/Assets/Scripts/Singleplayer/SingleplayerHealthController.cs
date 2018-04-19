@@ -97,11 +97,14 @@ public class SingleplayerHealthController : MonoBehaviour {
    
     public void GetHit()
     {
-        if (canBeDamaged == true)
+        if (PlayerState == "Alive")
         {
-            currentHealth -= 1;
-            InvTimer = 2;
-            canBeDamaged = false;
+            if (canBeDamaged == true)
+            {
+                currentHealth -= 1;
+                InvTimer = 2;
+                canBeDamaged = false;
+            }
         }
     }
 
