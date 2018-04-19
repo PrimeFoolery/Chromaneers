@@ -14,10 +14,12 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     public bool canBeDamaged;
     public float InvTimer;
     private float reviveTimer = 15f;
+    public float maxRevive = 15;
 
     [Header("HealthBar")]
     public Image HealthBarUI;
     public Sprite[] HeartSprites;
+    public Slider ReviveSlider;
 
     [Header("Materials")]
     public Material matOne;
@@ -36,6 +38,8 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
 
     void Start()
     {
+        reviveTimer = maxRevive;
+        ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
         canBeDamaged = true;
         //Setting the current health to be the health variable
@@ -75,6 +79,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
+            ReviveSlider.value = CalculateRevive();
             coopCharacterControllerThree.moveSpeed = 0;
             coopCharacterControllerThree.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
@@ -95,9 +100,14 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
             currentHealth = 6;
             rend.material = matOne;
             PlayerState = "Alive";
-            reviveTimer = 15f;
+            reviveTimer = maxRevive;
 
         }
+    }
+
+    float CalculateRevive()
+    {
+        return reviveTimer / maxRevive;
     }
 
     public void GetHit()
