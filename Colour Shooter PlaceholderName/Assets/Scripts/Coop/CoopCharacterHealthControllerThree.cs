@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CoopCharacterHealthControllerThree : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
 
     void Start()
     {
-        reviveTimer = maxRevive;
+        ReviveSlider.gameObject.SetActive(false);
+        reviveTimer = maxRevive;        
         ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
         canBeDamaged = true;
@@ -54,12 +56,15 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
 
     void Update()
     {
- //       Vector2 SliderPos = Camera.main.WorldToScreenPoint(this.transform.position);
- //       ReviveSlider.transform.position = SliderPos;
-        //HealthBarUI.sprite = HeartSprites[currentHealth];
+        Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        SliderPos.x = SliderPos.x - 960f;
+        SliderPos.y = SliderPos.y - 475f;
+        ReviveSlider.transform.localPosition = SliderPos;
+        HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
+            ReviveSlider.gameObject.SetActive(false);
             Debug.Log(Vector3.Distance(gameObject.transform.position,
                 GameObject.FindGameObjectWithTag("RedPlayer").transform.position));
             if (canBeDamaged == false)
@@ -81,6 +86,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
+            ReviveSlider.gameObject.SetActive(true);
             ReviveSlider.value = CalculateRevive();
             coopCharacterControllerThree.moveSpeed = 0;
             coopCharacterControllerThree.canPlayerShoot = false;

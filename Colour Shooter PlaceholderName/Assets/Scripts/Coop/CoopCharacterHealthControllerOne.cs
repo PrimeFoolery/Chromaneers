@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CoopCharacterHealthControllerOne : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
     void Start()
     {
+        ReviveSlider.gameObject.SetActive(false);
         reviveTimer = maxRevive;
         ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -63,6 +65,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
         if (PlayerState == "Alive")
         {
+            ReviveSlider.gameObject.SetActive(false);
+
             if (canBeDamaged == false)
             {
                 print("Getting HIT");
@@ -83,6 +87,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
+            ReviveSlider.gameObject.SetActive(true);
             ReviveSlider.value = CalculateRevive();
             coopCharacterControllerOne.moveSpeed = 0;
             coopCharacterControllerOne.canPlayerShoot = false;

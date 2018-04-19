@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CoopCharacterHealthControllerTwo : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     void Start()
     {
+        ReviveSlider.gameObject.SetActive(false);
+
         reviveTimer = maxRevive;
         ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -54,12 +57,15 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     void Update()
     {
- //       Vector2 SliderPos = Camera.main.WorldToScreenPoint(this.transform.position);
- //       ReviveSlider.transform.position = SliderPos;
-        //HealthBarUI.sprite = HeartSprites[currentHealth];
+        Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        SliderPos.x = SliderPos.x - 960f;
+        SliderPos.y = SliderPos.y - 475f;
+        ReviveSlider.transform.localPosition = SliderPos;
+        HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
+            ReviveSlider.gameObject.SetActive(false);
             if (canBeDamaged == false)
             {
                 print("Getting HIT");
@@ -79,6 +85,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
+            ReviveSlider.gameObject.SetActive(true);
             ReviveSlider.value = CalculateRevive();
             coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
