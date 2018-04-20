@@ -21,6 +21,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public Image HealthBarUI;
     public Sprite[] HeartSprites;
     public Slider ReviveSlider;
+    public Image ReviveCircle;
 
     [Header("Materials")]
     public Material matOne;
@@ -40,7 +41,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     void Start()
     {
         ReviveSlider.gameObject.SetActive(false);
-
+        ReviveCircle.gameObject.SetActive(false);
         reviveTimer = maxRevive;
         ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -59,13 +60,15 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     {
         Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
         SliderPos.x = SliderPos.x - 960f;
-        SliderPos.y = SliderPos.y - 475f;
-        ReviveSlider.transform.localPosition = SliderPos;
+        SliderPos.y = SliderPos.y - 540f;
+        //ReviveSlider.transform.localPosition = SliderPos;
+        ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
             ReviveSlider.gameObject.SetActive(false);
+            ReviveCircle.gameObject.SetActive(false);
             if (canBeDamaged == false)
             {
                 print("Getting HIT");
@@ -85,8 +88,10 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
-            ReviveSlider.gameObject.SetActive(true);
-            ReviveSlider.value = CalculateRevive();
+            //ReviveSlider.gameObject.SetActive(true);
+            //ReviveSlider.value = CalculateRevive();
+            ReviveCircle.gameObject.SetActive(true);
+            ReviveCircle.fillAmount = CalculateRevive();
             coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
@@ -112,7 +117,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     float CalculateRevive()
     {
-        return reviveTimer / maxRevive;
+        return (1-reviveTimer / maxRevive);
     }
 
     public void GetHit()
