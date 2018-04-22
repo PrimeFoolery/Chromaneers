@@ -17,12 +17,12 @@ public class MainMenu : MonoBehaviour {
 
     public void SinglePlayer()
     {
-        SceneManager.LoadScene("DemoWorld");
+        SceneManager.LoadScene("DemoWorldSinglePlayer");
     }
 
     public void LocalCoop()
     {
-        SceneManager.LoadScene("DemoWorldTOO");
+        SceneManager.LoadScene("DemoWorldCOOP");
     }
     public void Options()
     {
