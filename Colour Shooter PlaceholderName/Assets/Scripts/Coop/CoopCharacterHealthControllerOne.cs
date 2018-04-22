@@ -22,6 +22,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     public Image HealthBarUI;
     public Sprite[] HeartSprites;
     public Slider ReviveSlider;
+    public Image ReviveCircle;
+
 
     [Header("Materials")]
     public Material matOne;
@@ -41,6 +43,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     void Start()
     {
         ReviveSlider.gameObject.SetActive(false);
+        ReviveCircle.gameObject.SetActive(false);
         reviveTimer = maxRevive;
         ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -59,13 +62,15 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     {
         Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
         SliderPos.x =SliderPos.x- 960f;
-        SliderPos.y = SliderPos.y - 475f;
-        ReviveSlider.transform.localPosition = SliderPos;
+        SliderPos.y = SliderPos.y - 540f;
+        //ReviveSlider.transform.localPosition = SliderPos;
+        ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
 
         if (PlayerState == "Alive")
         {
             ReviveSlider.gameObject.SetActive(false);
+            ReviveCircle.gameObject.SetActive(false);
 
             if (canBeDamaged == false)
             {
@@ -87,8 +92,10 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
-            ReviveSlider.gameObject.SetActive(true);
-            ReviveSlider.value = CalculateRevive();
+            //ReviveSlider.gameObject.SetActive(true);
+            //ReviveSlider.value = CalculateRevive();
+            ReviveCircle.gameObject.SetActive(true);
+            ReviveCircle.fillAmount = CalculateRevive();
             coopCharacterControllerOne.moveSpeed = 0;
             coopCharacterControllerOne.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
@@ -114,7 +121,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
     float CalculateRevive()
     {
-        return reviveTimer / maxRevive;
+        return (1-reviveTimer / maxRevive);
     }
 
     public void GetHit()
