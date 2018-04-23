@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
 
     private CameraState currentCameraState = CameraState.SixtyDegrees;
 
-    private float cameraMoveSpeed = 0.35f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed = 0.1f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Vector3 targetCameraRotation;
     private Camera cameraComponent;
