@@ -140,4 +140,9 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     {
         currentHealth = 0;
     }
+    
+    public void GetHeart()
+    {
+        currentHealth += 2;
+    }
 }

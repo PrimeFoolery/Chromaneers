@@ -136,4 +136,9 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     {
         currentHealth = 0;
     }
+    
+    public void GetHeart()
+    {
+        currentHealth += 2;
+    }
 }

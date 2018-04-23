@@ -60,6 +60,43 @@
             </e>
           </e>
         </e>
+        <e p="LowPolyWaterv2" t="Include">
+          <e p="Demos" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="DemoFreeFlyCamera.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Editor" t="Include">
+            <e p="LPWInspector.cs" t="Include" />
+            <e p="LPWShaderGUI.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="LowPolyWaterScript.cs" t="Include" />
+            <e p="src" t="Include">
+              <e p="LPWDepthEffect.cs" t="Include" />
+              <e p="LPWDisplace.cs" t="Include" />
+              <e p="LPWHiddenProps.cs" t="Include" />
+              <e p="LPWNoise.cs" t="Include" />
+              <e p="LPWNormalSolver.cs" t="Include" />
+              <e p="LPWReflection.cs" t="Include" />
+              <e p="LPWWaterChunk.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="LowPolyWaterAdvanced.shader" t="Include" />
+            <e p="LowPolyWaterLite.shader" t="Include" />
+            <e p="LPWCompatibility.cginc" t="Include" />
+            <e p="LPWLighting.cginc" t="Include" />
+            <e p="LPWLite.cginc" t="Include" />
+            <e p="LPWNoise.cginc" t="Include" />
+            <e p="LPWReflection.cginc" t="Include" />
+            <e p="LPWRenderDepth.shader" t="Include" />
+            <e p="LPWRipples.cginc" t="Include" />
+            <e p="LPWShoreBlend.cginc" t="Include" />
+            <e p="LPWStandard.cginc" t="Include" />
+            <e p="LPWWaves.cginc" t="Include" />
+          </e>
+        </e>
         <e p="Material" t="Include">
           <e p="Enemies" t="Include">
             <e p="Jelly" t="Include">
@@ -290,16 +327,20 @@
             </e>
           </e>
           <e p="Misc" t="Include">
+            <e p="BlueObelisk.cs" t="Include" />
             <e p="ColourPicker.cs" t="Include" />
             <e p="ColourSelectManager.cs" t="Include" />
             <e p="ColourSelectorLineController.cs" t="Include" />
             <e p="EnemyManager.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
+            <e p="heartScript.cs" t="Include" />
             <e p="PaintDetectionScript.cs" t="Include" />
             <e p="paintProjectorController.cs" t="Include" />
             <e p="paintSplatBlob.cs" t="Include" />
+            <e p="RedObelisk.cs" t="Include" />
             <e p="rotating3DModels.cs" t="Include" />
             <e p="SplatPainter.cs" t="Include" />
+            <e p="YellowObelisk.cs" t="Include" />
           </e>
           <e p="Singleplayer" t="Include">
             <e p="GunController.cs" t="Include" />
