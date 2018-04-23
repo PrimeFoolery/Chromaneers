@@ -233,6 +233,7 @@ public class EnemySpawner : MonoBehaviour {
             SpawnFastEnemy("G", "random");
             */
             hasSpawnGSpawned = true;
+
         }
     }
     public void SpawnGroupH()
@@ -240,19 +241,27 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnHSpawned == false)
         {
             //SPAWN POINT H ENEMIES
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "random");
-                SpawnFastEnemy("D", "red");
-                SpawnFastEnemy("D", "red");
-                SpawnFastEnemy("D", "red");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+            SpawnFastEnemy("H", "random");
+			SpawnFastEnemy("H", "random");
+			SpawnFastEnemy("H", "random");
+			SpawnFastEnemy("H", "random");
+			SpawnStandardPurpleEnemy("H");
+			SpawnStandardOrangeEnemy("H");
+			SpawnStandardBlueEnemy("H");
+			SpawnStandardRedEnemy("H");
+			SpawnStandardYellowEnemy("H");
+			SpawnStandardBlueEnemy("H");
+			SpawnStandardRedEnemy("H");
+			SpawnStandardYellowEnemy("H");
                 
 
             SpawnSnakeEnemy("H", "MAXRANDOM");

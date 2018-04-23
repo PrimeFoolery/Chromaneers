@@ -65,15 +65,15 @@ public class CharacterThreeGunController : MonoBehaviour {
 
     //Function that handles the bullets and which ones to instantiate
     void CurrentBulletFiring () {
-		Debug.Log ("Bullet Should be firing");
+		//Debug.Log ("Bullet Should be firing");
         if (!coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick3Button7)) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
-                    print("I am null! Check ColourSelectManager");
+                    //print("I am null! Check ColourSelectManager");
                     return;
                 }
-                print("Yellow bullet firing");
+                //print("Yellow bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
                 //adds camera shake when the bullet spawn
@@ -89,10 +89,10 @@ public class CharacterThreeGunController : MonoBehaviour {
             //When you left click, the gun fires
 			if (Input.GetButton("Fire3Right")) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
-                    print("I am null! Check ColourSelectManager");
+                    //print("I am null! Check ColourSelectManager");
                     return;
                 }
-                print("Yellow bullet firing");
+                //print("Yellow bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
 			    //adds camera shake when the bullet spawn

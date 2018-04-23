@@ -359,7 +359,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
 		        if (Input.GetButtonDown("Fire1Right")&&canPlayerShoot==true) {
-                    Debug.Log("this is happening");
+                    //Debug.Log("this is happening");
 		            coopCharacterControllerOne.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -489,6 +489,6 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     public void Knockback(Vector3 bulletPosition)
     {
-        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.3f);
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.6f);
     }
 }

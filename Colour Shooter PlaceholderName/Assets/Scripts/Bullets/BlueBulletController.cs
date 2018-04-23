@@ -18,6 +18,8 @@ public class BlueBulletController : MonoBehaviour {
     [Header("Misc")]
 	public GameObject paint;
 	public float paintLifeTime;
+	private GameObject bullet;
+	public ColourSelectManager colourSelectManager;
 
     enum bulletState
     {
@@ -108,10 +110,52 @@ public class BlueBulletController : MonoBehaviour {
                 Destroy(gameObject);
             }
 
-            if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("OrangeEnemy") || theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("GreenEnemy") || theCol.gameObject.CompareTag("PurpleEnemy"))
+            if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("OrangeEnemy") || theCol.gameObject.CompareTag("BlueEnemy") 
+				|| theCol.gameObject.CompareTag("GreenEnemy") || theCol.gameObject.CompareTag("PurpleEnemy"))
             {
                 theCol.gameObject.GetComponent<StandardEnemyBehaviour>().BulletKnockback(savedDirection);
             }
+			if(theCol.gameObject.GetComponent<FastEnemy>()!=null){
+				if(theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "red" || theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "yellow") {
+					theCol.gameObject.GetComponent<FastEnemy> ().BulletKnockback (savedDirection);
+				}
+			}
+			if(theCol.gameObject.GetComponent<SpiderEnemyController>()!=null){
+				if(theCol.gameObject.GetComponent<SpiderEnemyController>().bodyColour==1 || theCol.gameObject.GetComponent<SpiderEnemyController>().bodyColour==3){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
+			if(theCol.gameObject.GetComponent<SpiderLegScript>()!=null){
+				if(theCol.gameObject.GetComponent<SpiderLegScript>().legColour=="red" || theCol.gameObject.GetComponent<SpiderLegScript>().legColour=="yellow"){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
+			if(theCol.gameObject.GetComponent<SnakeEnemyScript>()!=null){
+				if(theCol.gameObject.GetComponent<SnakeEnemyScript>().colourOfSnake == "red" || theCol.gameObject.GetComponent<SnakeEnemyScript>().colourOfSnake == "yellow"){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
             if (theCol.gameObject.CompareTag("RedPlayer"))
             {
                 theCol.gameObject.GetComponent<CoopCharacterControllerTwo>().Knockback(savedDirection);
@@ -127,7 +171,8 @@ public class BlueBulletController : MonoBehaviour {
         
 
         //Check if it collides with the red enemy
-        if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("OrangeEnemy")|| theCol.gameObject.CompareTag("Wall") || theCol.gameObject.CompareTag("RedPlayer") || theCol.gameObject.CompareTag("YellowPlayer")) {
+        if (theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("YellowEnemy") || theCol.gameObject.CompareTag("OrangeEnemy")|| theCol.gameObject.CompareTag("Wall") 
+			|| theCol.gameObject.CompareTag("RedPlayer") || theCol.gameObject.CompareTag("YellowPlayer") || theCol.gameObject.CompareTag("RedBullet") || theCol.gameObject.CompareTag("YellowBullet")) {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
             //Randomly rotate the gameObject into the sky
@@ -138,6 +183,15 @@ public class BlueBulletController : MonoBehaviour {
             this.GetComponent<TrailRenderer>().startWidth = 0.3f;
         }
 
-        
+		if (theCol.gameObject.CompareTag("RedBullet")) {
+			//Setting bullet to shoot
+			GameObject bulletToShoot = colourSelectManager.GetBulletPurpleToShoot();
+			//Instantiate
+			bullet = (GameObject)Instantiate(bulletToShoot, transform.position, Quaternion.identity);
+			//Other bullet
+			Destroy(theCol.gameObject);
+			//This bullet
+			Destroy(gameObject);
+		}
     }
 }

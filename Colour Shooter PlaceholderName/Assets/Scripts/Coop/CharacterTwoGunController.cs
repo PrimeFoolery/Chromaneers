@@ -69,10 +69,10 @@ public class CharacterTwoGunController : MonoBehaviour {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick2Button7)) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
-                    print("I am null! Check ColourSelectManager");
+                    //print("I am null! Check ColourSelectManager");
                     return;
                 }
-                print("Red bullet firing");
+                //print("Red bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
                 //adds camera shake when the bullet spawn
@@ -88,10 +88,10 @@ public class CharacterTwoGunController : MonoBehaviour {
             //When you left click, the gun fires
 			if (Input.GetButton("Fire2Right")) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
-                    print("I am null! Check ColourSelectManager");
+                    //print("I am null! Check ColourSelectManager");
                     return;
                 }
-                print("Red bullet firing");
+                //print("Red bullet firing");
                 //Instantiate the bullet and set it as a gameObject
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
 			    //adds camera shake when the bullet spawn

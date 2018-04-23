@@ -168,8 +168,8 @@ public class CameraScript : MonoBehaviour
                 targetCameraPosition = new Vector3(averagePos.x, averagePos.y + 45f, averagePos.z - 10f);
                 targetCameraRotation = new Vector3(80, 0, 0);
             }
-            Debug.Log(targetCameraRotation);
-            Debug.Log(currentCameraState);
+            //Debug.Log(targetCameraRotation);
+            //Debug.Log(currentCameraState);
             Vector3 velocity = Vector3.zero;
             Vector3 tempCurrentRotation = transform.rotation.eulerAngles;
             Vector3 tempRotation = Vector3.SmoothDamp(tempCurrentRotation, targetCameraRotation, ref velocity, rotationTime);

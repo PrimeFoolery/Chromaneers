@@ -7,7 +7,7 @@ public class FastEnemy : MonoBehaviour {
 
     [Header("Singleplayer Variables")]
     public GameObject player;
-    private GameObject targetPlayer;
+    public GameObject targetPlayer;
     public bool isAggroPlayer = false;
     NavMeshAgent agent;
     private float poisonTimer = 4f;
@@ -31,9 +31,9 @@ public class FastEnemy : MonoBehaviour {
 
     //COOP PLAYER VARIABLES
     [Header("Coop Variables")]
-    private GameObject RedPlayer;
-    private GameObject BluePlayer;
-    private GameObject YellowPlayer;
+    public GameObject RedPlayer;
+    public GameObject BluePlayer;
+    public GameObject YellowPlayer;
     private float retargetingDelay = 3f;
     private bool readyToRetarget = true;
     bool redPaintLock = false;
@@ -388,4 +388,8 @@ public class FastEnemy : MonoBehaviour {
         }
         return finalPosition;
     }
+	public void BulletKnockback(Vector3 bulletPosition)
+	{
+		transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
+	}
 }

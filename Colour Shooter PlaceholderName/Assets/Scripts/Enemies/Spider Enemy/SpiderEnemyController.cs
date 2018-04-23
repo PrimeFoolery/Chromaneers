@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SpiderEnemyController : MonoBehaviour
 {
 	
-    private int bodyColour;
+    public int bodyColour;
     private Material bodyMaterial;
     private int legColour;
     private string legMaterial;
@@ -90,7 +90,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
-	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
+	            //Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
                 leg1.GetComponent<Renderer>().material = BlueLegMaterial;
 	            leg1.GetComponent<SpiderLegScript>().legColour = "blue";
 	            leg2.GetComponent<Renderer>().material = BlueLegMaterial;

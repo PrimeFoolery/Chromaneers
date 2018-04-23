@@ -203,7 +203,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
             if (Physics.Raycast(ray, out hit, 20f))
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
                 float groundSizeX = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.x;
                 float neededBrushSize = 4.8228f * (Mathf.Pow(groundSizeX, -0.982f));
                 brush.Scale = neededBrushSize;
@@ -477,6 +477,6 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     }
     public void Knockback(Vector3 bulletPosition)
     {
-        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.3f);
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.6f);
     }
 }

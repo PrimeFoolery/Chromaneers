@@ -111,7 +111,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         if (reviveTimer <= 0)
         {
             coopCharacterControllerOne.canPlayerShoot = true;
-            currentHealth = 6;
+            currentHealth = 3;
             rend.material = matOne;
             PlayerState = "Alive";
             reviveTimer = maxRevive;

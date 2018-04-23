@@ -110,7 +110,47 @@ public class YellowBulletController : MonoBehaviour {
             {
                 theCol.gameObject.GetComponent<StandardEnemyBehaviour>().BulletKnockback(savedDirection);
             }
-
+			if(theCol.gameObject.GetComponent<FastEnemy>()!=null){
+				if(theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "red" || theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "blue") {
+					theCol.gameObject.GetComponent<FastEnemy> ().BulletKnockback (savedDirection);
+				}
+			}
+			if(theCol.gameObject.GetComponent<SpiderEnemyController>()!=null){
+				if(theCol.gameObject.GetComponent<SpiderEnemyController>().bodyColour==1 || theCol.gameObject.GetComponent<SpiderEnemyController>().bodyColour==2){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
+			if(theCol.gameObject.GetComponent<SpiderLegScript>()!=null){
+				if(theCol.gameObject.GetComponent<SpiderLegScript>().legColour=="red" || theCol.gameObject.GetComponent<SpiderLegScript>().legColour=="blue"){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
+			if(theCol.gameObject.GetComponent<SnakeEnemyScript>()!=null){
+				if(theCol.gameObject.GetComponent<SnakeEnemyScript>().colourOfSnake == "red" || theCol.gameObject.GetComponent<SnakeEnemyScript>().colourOfSnake == "blue"){
+					//Change bullet state to rebound
+					stateOfBullet = bulletState.reboundBullet;
+					//Randomly rotate the gameObject into the sky
+					transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+					//Scaling the bullet down
+					transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+					//Change trail width
+					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+				}
+			}
             if (theCol.gameObject.CompareTag("BluePlayer"))
             {
                 theCol.gameObject.GetComponent<CoopCharacterControllerOne>().Knockback(savedDirection);
@@ -124,7 +164,8 @@ public class YellowBulletController : MonoBehaviour {
         
 
         //Check if it collides with the blue enemy
-        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("PurpleEnemy") || theCol.gameObject.CompareTag("Wall") || theCol.gameObject.CompareTag("RedPlayer") || theCol.gameObject.CompareTag("BluePlayer")) {
+        if (theCol.gameObject.CompareTag("BlueEnemy") || theCol.gameObject.CompareTag("RedEnemy") || theCol.gameObject.CompareTag("PurpleEnemy") || theCol.gameObject.CompareTag("Wall") 
+			|| theCol.gameObject.CompareTag("RedPlayer") || theCol.gameObject.CompareTag("BluePlayer") || theCol.gameObject.CompareTag("RedBullet") || theCol.gameObject.CompareTag("BlueBullet")) {
             //Change bullet state to rebound
             stateOfBullet = bulletState.reboundBullet;
             //Randomly rotate the gameObject into the sky

@@ -71,7 +71,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             ReviveCircle.gameObject.SetActive(false);
             if (canBeDamaged == false)
             {
-                print("Getting HIT");
+                //print("Getting HIT");
 
                 InvTimer -= Time.deltaTime;
                 rend.material.Lerp(matOne, matTwo, 2f);
@@ -95,7 +95,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 2f)
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 2f)
             {
                 reviveTimer -= Time.deltaTime;
             }
@@ -107,7 +107,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         if (reviveTimer <= 0)
         {
             coopCharacterControllerTwo.canPlayerShoot = true;
-            currentHealth = 6;
+            currentHealth = 3;
             rend.material = matOne;
             PlayerState = "Alive";
             reviveTimer = maxRevive;
