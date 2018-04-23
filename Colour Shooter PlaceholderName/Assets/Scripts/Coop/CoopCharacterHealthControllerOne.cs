@@ -143,6 +143,14 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
     public void GetHeart()
     {
-        currentHealth += 2;
+        if (currentHealth<=3)
+        {
+            currentHealth += 2;
+        }else if (currentHealth>3&&currentHealth<=6)
+        {
+            currentHealth = 6;
+        }
+        
     }
+    
 }

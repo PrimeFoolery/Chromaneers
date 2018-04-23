@@ -17,6 +17,12 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     private EnemyManager listManager;
     public ColourPicker colourPicker;
 
+    private bool currentlyDodging = false;
+    private Vector3 dodgeDirection;
+    private float dodgeDuration = 0.15f;
+    public float RollSpeed;
+    private float dodgeCooldown = 0f;
+
     [Header("Script References")]
     public CharacterThreeGunController coopCharacterControllerThree;
 
@@ -198,6 +204,27 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                 coopCharacterControllerThree.isFiring = false;
 	            isShooting = false;
             }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1) && currentlyDodging == false && dodgeCooldown <= 0f)
+            {
+                dodgeDirection = moveInput;
+                Roll(dodgeDirection);
+            }
+            else if (currentlyDodging == true && dodgeDuration >= 0f)
+            {
+                Roll(dodgeDirection);
+                dodgeDuration -= Time.deltaTime;
+            }
+            if (dodgeDuration < 0)
+            {
+                currentlyDodging = false;
+                dodgeDuration = 0.15f;
+                dodgeCooldown = 1f;
+            }
+
+            if (currentlyDodging == false)
+            {
+                dodgeCooldown -= Time.deltaTime;
+            }
             RaycastHit hit;
             Ray ray = new Ray(transform.position, Vector3.down);
             //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
@@ -361,7 +388,27 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				coopCharacterControllerThree.isFiring = false;
 			    isShooting = false;
             }
-		    RaycastHit hit;
+		    if (Input.GetButtonDown("Roll3") && currentlyDodging == false && dodgeCooldown <= 0f)
+		    {
+		        dodgeDirection = moveInput;
+		        Roll(dodgeDirection);
+		    }
+		    else if (currentlyDodging == true && dodgeDuration >= 0f)
+		    {
+		        Roll(dodgeDirection);
+		        dodgeDuration -= Time.deltaTime;
+		    }
+		    if (dodgeDuration < 0)
+		    {
+		        currentlyDodging = false;
+		        dodgeDuration = 0.15f;
+		        dodgeCooldown = 1f;
+		    }
+		    if (currentlyDodging == false)
+		    {
+		        dodgeCooldown -= Time.deltaTime;
+		    }
+            RaycastHit hit;
 		    Ray ray = new Ray(transform.position, Vector3.down);
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
 		    if (Physics.Raycast(ray, out hit, 20f))
@@ -478,5 +525,16 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public void Knockback(Vector3 bulletPosition)
     {
         transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.6f);
+    }
+    private void Roll(Vector3 currentDirection)
+    {
+        if (currentDirection != new Vector3(0, 0, 0))
+        {
+            moveSpeed = 0;
+            canPlayerShoot = false;
+            currentlyDodging = true;
+            transform.Translate(currentDirection);
+            moveVelocity = currentDirection * RollSpeed;
+        }
     }
 }
