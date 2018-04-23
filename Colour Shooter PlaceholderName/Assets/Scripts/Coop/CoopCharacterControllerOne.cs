@@ -147,14 +147,16 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 				}
             } else if (isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-                if (colourPlayerIsStandingOn == "orange")
-                {
-                    moveVelocity = moveInput * -1 * shootingSpeed;
-                }
-                else
-                {
-                    moveVelocity = moveInput * shootingSpeed;
-                }
+                
+				if (colourPlayerIsStandingOn == "orange")
+				{
+					moveVelocity = moveInput * -1 * shootingSpeed;
+				}
+				else
+				{
+					moveVelocity = moveInput * shootingSpeed;
+				}
+                
                 if (moveInput!= new Vector3(0,0,0)){
 					if(moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
@@ -165,7 +167,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					if(moveSpeed>=2.5f){
 						moveSpeed = moveSpeed * shootingDecceleration;
 					}
-					moveVelocity = moveInput * moveSpeed;
+					//moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
 					if(moveSpeed>=0.5f){
@@ -311,14 +313,17 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
 		    } else if (isShooting) {
                 //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-		        if (colourPlayerIsStandingOn == "orange")
-		        {
-		            moveVelocity = moveInput * -1 * shootingSpeed;
-		        }
-		        else
-		        {
-		            moveVelocity = moveInput * shootingSpeed;
-		        }
+		        
+		        
+				if (colourPlayerIsStandingOn == "orange")
+				{
+					moveVelocity = moveInput * -1 * shootingSpeed;
+				}
+				else
+				{
+					moveVelocity = moveInput * shootingSpeed;
+				}
+		        
                 if (moveInput!= new Vector3(0,0,0)){
 					if(moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
@@ -329,7 +334,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					if(moveSpeed>=2.5f){
 						moveSpeed = moveSpeed * shootingDecceleration;
 					}
-					moveVelocity = moveInput * moveSpeed;
+					//moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
 					if(moveSpeed>=0.5f){

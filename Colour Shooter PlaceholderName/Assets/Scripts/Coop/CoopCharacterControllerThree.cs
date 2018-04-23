@@ -163,7 +163,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 					if(moveSpeed>=2.5f){
 						moveSpeed = moveSpeed * shootingDecceleration;
 					}
-					moveVelocity = moveInput * moveSpeed;
+					//moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
 					if(moveSpeed>=0.5f){
@@ -325,7 +325,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 					if(moveSpeed>=2.5f){
 						moveSpeed = moveSpeed * shootingDecceleration;
 					}
-					moveVelocity = moveInput * moveSpeed;
+					//moveVelocity = moveInput * moveSpeed;
 				}
 				if(moveInput== new Vector3(0,0,0)){
 					if(moveSpeed>=0.5f){

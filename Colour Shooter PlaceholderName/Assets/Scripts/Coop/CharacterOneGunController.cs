@@ -20,6 +20,10 @@ public class CharacterOneGunController : MonoBehaviour {
     public ColourSelectManager colourSelectManager;
     public CoopCharacterControllerOne coopCharacterControllerOne;
 
+	private Vector3 startingPosition;
+	private Vector3 recoiledPosition;
+	private float gunRecoilSpeed = 1f;
+
     //Private variables
     private float shotCounter;
     private GameObject bullet;
@@ -29,6 +33,8 @@ public class CharacterOneGunController : MonoBehaviour {
 
     void Start () {
         //Calling the ColourSelectManager
+		startingPosition = transform.localPosition;
+		recoiledPosition = new Vector3(0,0,0.3f);
         colourSelectManager = ColourSelectManager.instance;
         //Getting the mainCamera from the current scene
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -45,9 +51,13 @@ public class CharacterOneGunController : MonoBehaviour {
                 shotCounter = timeBetweenShots;
                 //Calling function CurrentBulletFiring() which handles the bullets
                 CurrentBulletFiring();
-            }
+			}if (shotCounter > 0)
+			{
+				transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed*Time.deltaTime);
+			}
         } else {
             shotCounter = 0;
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, startingPosition, gunRecoilSpeed * Time.deltaTime);
         }
         //Giving the bullets a bit of spread
         bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
@@ -67,6 +77,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
                 //adds camera shake when the bullet spawn
                 //Finally gives a rotation to the bullet to give a bulletSpread affect
+				transform.localPosition = recoiledPosition;
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
                 mainCameraScript.SmallScreenShake();
@@ -85,6 +96,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 //additionally, give it a fireFrom position and rotation [Which is an empty object]
 			    //adds camera shake when the bullet spawn
                 //Finally gives a rotation to the bullet to give a bulletSpread affect
+				transform.localPosition = recoiledPosition;
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
 			    mainCameraScript.SmallScreenShake();
