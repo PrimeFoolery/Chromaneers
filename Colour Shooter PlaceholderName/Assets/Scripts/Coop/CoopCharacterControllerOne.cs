@@ -220,6 +220,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             }
             if(dodgeDuration<0)
             {
+                gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = true;
                 currentlyDodging = false;
                 dodgeDuration = 0.15f;
                 dodgeCooldown = 1f;
@@ -409,7 +410,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    }
 		    if (dodgeDuration < 0)
 		    {
-		        currentlyDodging = false;
+		        gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = true;
+                currentlyDodging = false;
 		        dodgeDuration = 0.15f;
 		        dodgeCooldown = 1f;
             }
@@ -543,6 +545,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     {
         if (currentDirection!= new  Vector3(0,0,0))
         {
+            gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = false;
+            gameObject.GetComponent<CoopCharacterHealthControllerOne>().InvTimer=1f;
             moveSpeed = 0;
             canPlayerShoot = false;
             currentlyDodging = true;
