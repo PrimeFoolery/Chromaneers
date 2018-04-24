@@ -71,6 +71,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	public float shootingDecceleration = 0.95f;
     private float poisonTimer = 3f;
 
+	public bool canPlayerMove = true;
+
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -121,70 +123,74 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                     moveInput.z = 0;
                 }
             }
-            if (!isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed whilst walking
-				if(moveInput!= new Vector3(0,0,0)){
-					if(colourPlayerIsStandingOn!="yellow"){
-						if(moveSpeed<=5f){
+			if(canPlayerMove == true){
+				if (!isShooting) {
+					Debug.Log ("player moving");
+					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
+					if(moveInput!= new Vector3(0,0,0)){
+						if(colourPlayerIsStandingOn!="yellow"){
+							if(moveSpeed<=5f){
+								moveSpeed = moveSpeed * movingAcceleration;
+							}
+							if(moveSpeed>=5f){
+								moveSpeed = 5f;
+							}
+						}else
+							if(colourPlayerIsStandingOn=="yellow"){
+								if(moveSpeed<=7f){
+									moveSpeed = moveSpeed * movingAcceleration;
+								}
+								if(moveSpeed>=7f){
+									moveSpeed = 7f;
+								}
+							}
+						moveVelocity = moveInput * moveSpeed;
+					}
+					if(moveInput== new Vector3(0,0,0)){
+						if(moveSpeed>=0.5f){
+							moveSpeed = moveSpeed * movingDecceleration;
+						}
+						if(moveSpeed<=0.5f){
+							moveSpeed = 0.5f;
+						}
+						moveVelocity = moveVelocity * movingDecceleration;
+					}
+				} else if (isShooting) {
+					//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+
+					if (colourPlayerIsStandingOn == "orange")
+					{
+						moveVelocity = moveInput * -1 * shootingSpeed;
+					}
+					else
+					{
+						moveVelocity = moveInput * shootingSpeed;
+					}
+
+					if (moveInput!= new Vector3(0,0,0)){
+						if(moveSpeed<=2f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
-						if(moveSpeed>=5f){
-							moveSpeed = 5f;
+						if(moveSpeed>=2f&&moveSpeed<=2.5f){
+							moveSpeed = 2f;
 						}
-					}else
-					if(colourPlayerIsStandingOn=="yellow"){
-						if(moveSpeed<=7f){
-							moveSpeed = moveSpeed * movingAcceleration;
+						if(moveSpeed>=2.5f){
+							moveSpeed = moveSpeed * shootingDecceleration;
 						}
-						if(moveSpeed>=7f){
-							moveSpeed = 7f;
+						//moveVelocity = moveInput * moveSpeed;
+					}
+					if(moveInput== new Vector3(0,0,0)){
+						if(moveSpeed>=0.5f){
+							moveSpeed = moveSpeed * movingDecceleration;
 						}
+						if(moveSpeed<=0.5f){
+							moveSpeed = 0.5f;
+						}
+						moveVelocity = moveVelocity * movingDecceleration;
 					}
-					moveVelocity = moveInput * moveSpeed;
 				}
-				if(moveInput== new Vector3(0,0,0)){
-					if(moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-            } else if (isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-                
-				if (colourPlayerIsStandingOn == "orange")
-				{
-					moveVelocity = moveInput * -1 * shootingSpeed;
-				}
-				else
-				{
-					moveVelocity = moveInput * shootingSpeed;
-				}
-                
-                if (moveInput!= new Vector3(0,0,0)){
-					if(moveSpeed<=2f){
-						moveSpeed = moveSpeed * movingAcceleration;
-					}
-					if(moveSpeed>=2f&&moveSpeed<=2.5f){
-						moveSpeed = 2f;
-					}
-					if(moveSpeed>=2.5f){
-						moveSpeed = moveSpeed * shootingDecceleration;
-					}
-					//moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-					if(moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-            }
+			}
+            
 
             //Making a new vector3 to do rotations with joystick
             Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1RVertical");
@@ -221,7 +227,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             if(dodgeDuration<0)
             {
                 gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = true;
+				gameObject.GetComponent<CoopCharacterHealthControllerOne>().ChangeToMatOne();
                 currentlyDodging = false;
+				canPlayerMove = true;
+				canPlayerShoot = true;
                 dodgeDuration = 0.15f;
                 dodgeCooldown = 1f;
             }
@@ -307,73 +316,76 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		            moveInput.z = 0;
 		        }
 		    }
-            if (!isShooting) {
-		        //Multiply the moveInput by the moveVelocity to give it speed whilst walking
-		        
-				if(moveInput!= new Vector3(0,0,0)){
-					if(colourPlayerIsStandingOn!="yellow"){
-						if(moveSpeed<=5f){
-							moveSpeed = moveSpeed * movingAcceleration;
-						}
-						if(moveSpeed>=5f){
-							moveSpeed = 5f;
-						}
-					}else
-						if(colourPlayerIsStandingOn=="yellow"){
-							if(moveSpeed<=7f){
+			if(canPlayerMove==true){
+				if (!isShooting) {
+					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
+					//Debug.Log ("player moving");
+					if(moveInput!= new Vector3(0,0,0)){
+						if(colourPlayerIsStandingOn!="yellow"){
+							if(moveSpeed<=5f){
 								moveSpeed = moveSpeed * movingAcceleration;
 							}
-							if(moveSpeed>=7f){
-								moveSpeed = 7f;
+							if(moveSpeed>=5f){
+								moveSpeed = 5f;
 							}
+						}else
+							if(colourPlayerIsStandingOn=="yellow"){
+								if(moveSpeed<=7f){
+									moveSpeed = moveSpeed * movingAcceleration;
+								}
+								if(moveSpeed>=7f){
+									moveSpeed = 7f;
+								}
+							}
+						moveVelocity = moveInput * moveSpeed;
+					}
+					if(moveInput== new Vector3(0,0,0)){
+						if(moveSpeed>=0.5f){
+							moveSpeed = moveSpeed * movingDecceleration;
 						}
-					moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-					if(moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
+						if(moveSpeed<=0.5f){
+							moveSpeed = 0.5f;
+						}
+						moveVelocity = moveVelocity * movingDecceleration;
 					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
 
-		    } else if (isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-		        
-		        
-				if (colourPlayerIsStandingOn == "orange")
-				{
-					moveVelocity = moveInput * -1 * shootingSpeed;
+				} else if (isShooting) {
+					//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+
+
+					if (colourPlayerIsStandingOn == "orange")
+					{
+						moveVelocity = moveInput * -1 * shootingSpeed;
+					}
+					else
+					{
+						moveVelocity = moveInput * shootingSpeed;
+					}
+
+					if (moveInput!= new Vector3(0,0,0)){
+						if(moveSpeed<=2f){
+							moveSpeed = moveSpeed * movingAcceleration;
+						}
+						if(moveSpeed>=2f&&moveSpeed<=2.5f){
+							moveSpeed = 2f;
+						}
+						if(moveSpeed>=2.5f){
+							moveSpeed = moveSpeed * shootingDecceleration;
+						}
+						//moveVelocity = moveInput * moveSpeed;
+					}
+					if(moveInput== new Vector3(0,0,0)){
+						if(moveSpeed>=0.5f){
+							moveSpeed = moveSpeed * movingDecceleration;
+						}
+						if(moveSpeed<=0.5f){
+							moveSpeed = 0.5f;
+						}
+						moveVelocity = moveVelocity * movingDecceleration;
+					}
 				}
-				else
-				{
-					moveVelocity = moveInput * shootingSpeed;
-				}
-		        
-                if (moveInput!= new Vector3(0,0,0)){
-					if(moveSpeed<=2f){
-						moveSpeed = moveSpeed * movingAcceleration;
-					}
-					if(moveSpeed>=2f&&moveSpeed<=2.5f){
-						moveSpeed = 2f;
-					}
-					if(moveSpeed>=2.5f){
-						moveSpeed = moveSpeed * shootingDecceleration;
-					}
-					//moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-					if(moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-		    }
+			}
+            
 
             //Making a new vector3 to do rotations with joystick
             Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick1RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick1RVertical");
@@ -398,9 +410,12 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 				coopCharacterControllerOne.isFiring = false;
 			    isShooting = false;
 			}
-		    if (Input.GetButtonDown("Roll1") && currentlyDodging == false && dodgeCooldown <= 0f)
+		    if (Input.GetButtonDown("Roll1") && currentlyDodging == false && dodgeCooldown <= 0f )
 		    {
+				Debug.Log ("move input:  "+moveInput);
+
 		        dodgeDirection = moveInput;
+				Debug.Log ("dodge direction:  "+dodgeDirection);
 		        Roll(dodgeDirection);
 		    }
 		    else if (currentlyDodging == true && dodgeDuration >= 0f)
@@ -411,7 +426,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    if (dodgeDuration < 0)
 		    {
 		        gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = true;
+				gameObject.GetComponent<CoopCharacterHealthControllerOne>().ChangeToMatOne();
                 currentlyDodging = false;
+				canPlayerShoot = true;
+				canPlayerMove = true;
 		        dodgeDuration = 0.15f;
 		        dodgeCooldown = 1f;
             }
@@ -522,16 +540,17 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.2f);
 	    }
-
 	    if (transform.position.y<=-5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
             transform.position = savedPosition;
 	    }
+
 	}
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
+		//Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
 
     }
@@ -543,15 +562,21 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     private void Roll(Vector3 currentDirection)
     {
+		//Debug.Log (currentDirection);
         if (currentDirection!= new  Vector3(0,0,0))
         {
+			moveVelocity = currentDirection * RollSpeed;
+			//Debug.Log ("move veloctioy: "+moveVelocity);
             gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = false;
             gameObject.GetComponent<CoopCharacterHealthControllerOne>().InvTimer=1f;
             moveSpeed = 0;
             canPlayerShoot = false;
+			canPlayerMove = false;
             currentlyDodging = true;
-            transform.Translate(currentDirection);
-            moveVelocity = currentDirection * RollSpeed;
+			transform.position = Vector3.MoveTowards(transform.position, transform.position+(currentDirection), 1f*RollSpeed*Time.deltaTime);
+			//Debug.Log(currentDirection);
+			//Debug.Log (RollSpeed);
+            
         }
     }
 }

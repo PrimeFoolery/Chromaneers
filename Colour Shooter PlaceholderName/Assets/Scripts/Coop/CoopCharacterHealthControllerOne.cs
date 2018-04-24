@@ -17,6 +17,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     public float InvTimer;
     private float reviveTimer;
     public float maxRevive = 15;
+	public GameObject ReviveParticle;
 
     [Header("HealthBar")]
     public Image HealthBarUI;
@@ -56,6 +57,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         //And setting the main material to its origin material
         rend = GetComponent<Renderer>();
         rend.material = matOne;
+
+		ps = GetComponent<ParticleSystem> ();
     }
 
     void Update()
@@ -69,12 +72,13 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
         if (PlayerState == "Alive")
         {
+			ReviveParticle.SetActive (false);
             ReviveSlider.gameObject.SetActive(false);
             ReviveCircle.gameObject.SetActive(false);
 
             if (canBeDamaged == false)
             {
-                print("Getting HIT");
+                //print("Getting HIT");
 
                 InvTimer -= Time.deltaTime;
                 rend.material.Lerp(matOne, matTwo, 2f);
@@ -99,13 +103,14 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             coopCharacterControllerOne.moveSpeed = 0;
             coopCharacterControllerOne.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
+			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 2f)
             {
                 reviveTimer -= Time.deltaTime;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 2f)
             {
-                reviveTimer -= Time.deltaTime;
+				reviveTimer -= Time.deltaTime;
             }
         }
         if (reviveTimer <= 0)
@@ -152,5 +157,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         }
         
     }
+	public void ChangeToMatOne(){
+		rend.material = matOne;
+	}
     
 }

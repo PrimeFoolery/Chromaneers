@@ -241,31 +241,9 @@ public class EnemySpawner : MonoBehaviour {
         if (hasSpawnHSpawned == false)
         {
             //SPAWN POINT H ENEMIES
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-            SpawnFastEnemy("H", "random");
-			SpawnFastEnemy("H", "random");
-			SpawnFastEnemy("H", "random");
-			SpawnFastEnemy("H", "random");
-			SpawnStandardPurpleEnemy("H");
-			SpawnStandardOrangeEnemy("H");
 			SpawnStandardBlueEnemy("H");
 			SpawnStandardRedEnemy("H");
 			SpawnStandardYellowEnemy("H");
-			SpawnStandardBlueEnemy("H");
-			SpawnStandardRedEnemy("H");
-			SpawnStandardYellowEnemy("H");
-                
-
-            SpawnSnakeEnemy("H", "MAXRANDOM");
-            SpawnSnakeEnemy("H", "MAXRANDOM");
 
             hasSpawnHSpawned = true;
         }

@@ -182,7 +182,7 @@ public class BlueBulletController : MonoBehaviour {
             //Change trail width
             this.GetComponent<TrailRenderer>().startWidth = 0.3f;
         }
-
+		/*
 		if (theCol.gameObject.CompareTag("RedBullet")) {
 			//Setting bullet to shoot
 			GameObject bulletToShoot = colourSelectManager.GetBulletPurpleToShoot();
@@ -193,5 +193,6 @@ public class BlueBulletController : MonoBehaviour {
 			//This bullet
 			Destroy(gameObject);
 		}
+		*/
     }
 }

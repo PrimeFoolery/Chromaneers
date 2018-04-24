@@ -217,7 +217,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             if (dodgeDuration < 0)
             {
                 gameObject.GetComponent<CoopCharacterHealthControllerThree>().canBeDamaged = true;
+				gameObject.GetComponent<CoopCharacterHealthControllerThree>().ChangeToMatOne();
                 currentlyDodging = false;
+				canPlayerShoot = true;
                 dodgeDuration = 0.15f;
                 dodgeCooldown = 1f;
             }
@@ -402,7 +404,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    if (dodgeDuration < 0)
 		    {
 		        gameObject.GetComponent<CoopCharacterHealthControllerThree>().canBeDamaged = true;
+				gameObject.GetComponent<CoopCharacterHealthControllerThree>().ChangeToMatOne();
                 currentlyDodging = false;
+				canPlayerShoot = true;
 		        dodgeDuration = 0.15f;
 		        dodgeCooldown = 1f;
 		    }
@@ -537,7 +541,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             moveSpeed = 0;
             canPlayerShoot = false;
             currentlyDodging = true;
-            transform.Translate(currentDirection);
+			transform.position = Vector3.MoveTowards(transform.position, transform.position+(currentDirection), 1f*RollSpeed*Time.deltaTime);
             moveVelocity = currentDirection * RollSpeed;
         }
     }

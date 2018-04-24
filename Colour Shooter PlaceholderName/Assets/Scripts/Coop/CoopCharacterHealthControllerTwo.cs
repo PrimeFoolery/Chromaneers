@@ -16,6 +16,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public float InvTimer;
     private float reviveTimer = 15f;
     public float maxRevive = 15;
+	public GameObject ReviveParticle;
 
     [Header("HealthBar")]
     public Image HealthBarUI;
@@ -67,6 +68,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
         if (PlayerState == "Alive")
         {
+			ReviveParticle.SetActive (false);
             ReviveSlider.gameObject.SetActive(false);
             ReviveCircle.gameObject.SetActive(false);
             if (canBeDamaged == false)
@@ -95,6 +97,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
             reviveTimer -= Time.deltaTime;
+			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 2f)
             {
                 reviveTimer -= Time.deltaTime;
@@ -149,4 +152,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         }
 
     }
+	public void ChangeToMatOne(){
+		rend.material = matOne;
+	}
 }

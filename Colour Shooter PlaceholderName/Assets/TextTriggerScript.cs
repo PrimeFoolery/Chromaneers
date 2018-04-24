@@ -11,6 +11,7 @@ public class TextTriggerScript : MonoBehaviour {
     private float Delay = 0.01f;
     private bool timeToType = false;
     private bool textTyped = false;
+	bool stopDeletingText = false;
 
     public TextMeshProUGUI textField;
     public string textToType;
@@ -20,6 +21,7 @@ public class TextTriggerScript : MonoBehaviour {
     private bool fadeTextIn = false;
     public float fadeTime = 2f;
     private bool hasTextFaded = false;
+	private bool hasTextHappened = false;
 
     private Color lerpedColour = new Color(0,0,0,0);
     private Color startingBoxColour = new Color(0,0,0,0);
@@ -38,26 +40,32 @@ public class TextTriggerScript : MonoBehaviour {
 	    {
 	        textFadeout -= Time.deltaTime;
 	    }
-        Debug.Log(textFadeout);
+        //Debug.Log(textFadeout);
+		//Debug.Log (hasTextFaded);
 	    if (textFadeout<=0&&hasTextFaded==false)
 	    {
-            Debug.Log("fading out");
+            //Debug.Log("fading out");
 	        lerpedColour = Color.Lerp(lerpedColour, startingBoxColour, (Time.deltaTime * fadeTime));
-	        textField.text = "";
+
+			if(stopDeletingText==false){
+				textField.text = "";
+				stopDeletingText = true;
+			}
 	        textBackdrop.GetComponent<Image>().color = lerpedColour;
-	        if (lerpedColour.a<0.5f)
+	        if (lerpedColour.a<0.05f)
 	        {
 	            hasTextFaded = true;
 	        }
 	    }
-	    if (fadeTextIn==true)
+		if (fadeTextIn==true&&hasTextHappened==false)
 	    {
-            Debug.Log("fade in");
+            //Debug.Log("fade in");
 	        lerpedColour = Color.Lerp(lerpedColour, endBoxColour, (Time.deltaTime * fadeTime));
 	        textBackdrop.GetComponent<Image>().color = lerpedColour;
 	        if (lerpedColour.a>0.45f)
 	        {
 	            fadeTextIn = false;
+				hasTextHappened = true;
 	        }
         }
 
@@ -66,8 +74,10 @@ public class TextTriggerScript : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("something in trigger");
-        if (other.CompareTag("BluePlayer")||other.CompareTag("RedPlayer")||other.CompareTag("YellowPlayer")&&timeToType==false)
+		if ((other.CompareTag("BluePlayer")||other.CompareTag("RedPlayer")||other.CompareTag("YellowPlayer"))&&timeToType==false)
         {
+			//Debug.Log ("STOP HAPPENING: "+ timeToType);
+			textField.text = "";
             StartText();
             fadeTextIn = true;
             timeToType = true;
