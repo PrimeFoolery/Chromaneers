@@ -58,7 +58,6 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         rend = GetComponent<Renderer>();
         rend.material = matOne;
 
-		ps = GetComponent<ParticleSystem> ();
     }
 
     void Update()

@@ -25,7 +25,7 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   fog:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       excludeSkybox: 1
   antialiasing:
@@ -124,7 +124,7 @@ MonoBehaviour:
         temperature: 10
         tint: 0
         hueShift: 0
-        saturation: 1.2
+        saturation: 1
         contrast: 1.1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 1, g: 0.995111, b: 0.937524, a: 0}
+          lift: {r: 0.65026927, g: 0.81304544, b: 1, a: 0}
           gamma: {r: 0.7312522, g: 1, b: 0.8144577, a: 0}
           gain: {r: 0.97309387, g: 0.73641443, b: 1, a: 0}
       curves:
