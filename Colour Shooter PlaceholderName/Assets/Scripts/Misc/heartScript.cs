@@ -13,7 +13,7 @@ public class heartScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		transform.Rotate(0,7,0);
 	}
 	void OnCollisionEnter (Collision other){
 		if(other.gameObject.CompareTag("BluePlayer")){

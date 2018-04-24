@@ -209,6 +209,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Joystick2Button1) && currentlyDodging == false && dodgeCooldown <= 0f)
             {
                 dodgeDirection = moveInput;
+                gameObject.GetComponent<ParticleSystem>().Play();
                 Roll(dodgeDirection);
             }
             else if (currentlyDodging == true && dodgeDuration >= 0f)
@@ -398,7 +399,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    if (Input.GetButtonDown("Roll2") && currentlyDodging == false && dodgeCooldown <= 0f)
 		    {
 		        dodgeDirection = moveInput;
-		        Roll(dodgeDirection);
+		        gameObject.GetComponent<ParticleSystem>().Play();
+                Roll(dodgeDirection);
 		    }
 		    else if (currentlyDodging == true && dodgeDuration >= 0f)
 		    {

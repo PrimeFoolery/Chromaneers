@@ -18,11 +18,14 @@ public class BlueObelisk : MonoBehaviour {
 		if(obeliskHealth<=0){
 			if(transform.localScale.z>-0.1f){
 				transform.localScale += new Vector3 (0, 0, -0.2f);
+			    gameObject.GetComponent<ParticleSystem>().Play();
 
-			}else if(transform.localScale.z<=-0.1f){
+            }
+            else if(transform.localScale.z<=-0.1f){
 				if(heartSpawned==false){
 					Instantiate (heart, new Vector3(transform.position.x,transform.position.y+1f,transform.position.z), Quaternion.identity);
 					gameObject.GetComponent<BoxCollider> ().enabled = false;
+                    //gameObject.GetComponent<ParticleSystem>().Play();
 					heartSpawned = true;
 				}
 				transform.localScale = new Vector3 (3f, 3f, -0.1f);
