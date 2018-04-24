@@ -17,6 +17,10 @@ public class SettingMenu : MonoBehaviour {
     {
         //
     }
+    public void SetWater(bool highResWater)
+    {
+        //
+    }
     public void BackToMenu()
     {
         OptionsPanel.SetActive(false);
