@@ -14,6 +14,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     public bool isShooting;
     public GameObject paintProjector;
 
+    public ParticleSystem walkingPuff;
     private string tagUnderPlayer;
     private Vector3 savedPosition;
 
@@ -128,6 +129,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					Debug.Log ("player moving");
 					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 					if(moveInput!= new Vector3(0,0,0)){
+                        walkingPuff.Play();
 						if(colourPlayerIsStandingOn!="yellow"){
 							if(moveSpeed<=5f){
 								moveSpeed = moveSpeed * movingAcceleration;
@@ -147,7 +149,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 						moveVelocity = moveInput * moveSpeed;
 					}
 					if(moveInput== new Vector3(0,0,0)){
-						if(moveSpeed>=0.5f){
+					    walkingPuff.Stop();
+                        if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
 						if(moveSpeed<=0.5f){
@@ -168,7 +171,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 
 					if (moveInput!= new Vector3(0,0,0)){
-						if(moveSpeed<=2f){
+					    walkingPuff.Play();
+                        if (moveSpeed<=2f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
 						if(moveSpeed>=2f&&moveSpeed<=2.5f){
@@ -180,7 +184,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 						//moveVelocity = moveInput * moveSpeed;
 					}
 					if(moveInput== new Vector3(0,0,0)){
-						if(moveSpeed>=0.5f){
+					    walkingPuff.Stop();
+                        if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
 						if(moveSpeed<=0.5f){
@@ -319,10 +324,11 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    }
 			if(canPlayerMove==true){
 				if (!isShooting) {
-					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
-					//Debug.Log ("player moving");
-					if(moveInput!= new Vector3(0,0,0)){
-						if(colourPlayerIsStandingOn!="yellow"){
+                    //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+                    //Debug.Log ("player moving");
+                    if (moveInput!= new Vector3(0,0,0)){
+                        walkingPuff.Play();
+                        if (colourPlayerIsStandingOn!="yellow"){
 							if(moveSpeed<=5f){
 								moveSpeed = moveSpeed * movingAcceleration;
 							}
@@ -341,7 +347,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 						moveVelocity = moveInput * moveSpeed;
 					}
 					if(moveInput== new Vector3(0,0,0)){
-						if(moveSpeed>=0.5f){
+					    walkingPuff.Stop();
+                        if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
 						if(moveSpeed<=0.5f){
@@ -351,10 +358,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 
 				} else if (isShooting) {
-					//Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+                    //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
 
-
-					if (colourPlayerIsStandingOn == "orange")
+				    
+                    if (colourPlayerIsStandingOn == "orange")
 					{
 						moveVelocity = moveInput * -1 * shootingSpeed;
 					}
@@ -364,7 +371,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 
 					if (moveInput!= new Vector3(0,0,0)){
-						if(moveSpeed<=2f){
+					    walkingPuff.Play();
+                        if (moveSpeed<=2f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
 						if(moveSpeed>=2f&&moveSpeed<=2.5f){
@@ -376,7 +384,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 						//moveVelocity = moveInput * moveSpeed;
 					}
 					if(moveInput== new Vector3(0,0,0)){
-						if(moveSpeed>=0.5f){
+					    walkingPuff.Stop();
+                        if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
 						if(moveSpeed<=0.5f){
