@@ -181,6 +181,8 @@ public class BlueBulletController : MonoBehaviour {
             transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
             //Change trail width
             this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+            //Play audio
+            this.GetComponent<AudioSource>().Play();
         }
 		/*
 		if (theCol.gameObject.CompareTag("RedBullet")) {
