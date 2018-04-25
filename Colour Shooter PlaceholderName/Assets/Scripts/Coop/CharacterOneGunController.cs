@@ -82,6 +82,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 bullet = (GameObject)Instantiate(bulletToShoot, fireFrom.position, fireFrom.rotation);
                 mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
+                this.GetComponent<AudioSource>().Play();
             }
         } 
 		if (coopCharacterControllerOne.usingXboxController) {
