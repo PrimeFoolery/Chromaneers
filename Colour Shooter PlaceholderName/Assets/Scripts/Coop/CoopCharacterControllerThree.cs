@@ -17,7 +17,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     private EnemyManager listManager;
     public ColourPicker colourPicker;
     public ParticleSystem walkingPuff;
-
+    private float walkingPuffCooldown = 0.2f;
     private bool currentlyDodging = false;
     private Vector3 dodgeDirection;
     private float dodgeDuration = 0.15f;
@@ -124,7 +124,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
 					if(colourPlayerIsStandingOn!="yellow"){
-					    walkingPuff.Play();
+					    if (walkingPuffCooldown <= 0)
+					    {
+					        walkingPuff.Play();
+					        walkingPuffCooldown = 0.2f;
+					    }
+
+					    walkingPuffCooldown -= Time.deltaTime;
                         if (moveSpeed<=5f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
@@ -163,7 +169,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 			        moveVelocity = moveInput * shootingSpeed;
 			    }
                 if (moveInput!= new Vector3(0,0,0)){
-                    walkingPuff.Play();
+                    if (walkingPuffCooldown <= 0)
+                    {
+                        walkingPuff.Play();
+                        walkingPuffCooldown = 0.2f;
+                    }
+
+                    walkingPuffCooldown -= Time.deltaTime;
                     if (moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
 					}
@@ -313,7 +325,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             if (!isShooting) {
 				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 				if(moveInput!= new Vector3(0,0,0)){
-				    walkingPuff.Play();
+				    if (walkingPuffCooldown <= 0)
+				    {
+				        walkingPuff.Play();
+				        walkingPuffCooldown = 0.2f;
+				    }
+
+				    walkingPuffCooldown -= Time.deltaTime;
                     if (colourPlayerIsStandingOn!="yellow"){
 						if(moveSpeed<=5f){
 							moveSpeed = moveSpeed * movingAcceleration;
@@ -354,7 +372,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 			        moveVelocity = moveInput * shootingSpeed;
 			    }
                 if (moveInput!= new Vector3(0,0,0)){
-                    walkingPuff.Play();
+                    if (walkingPuffCooldown <= 0)
+                    {
+                        walkingPuff.Play();
+                        walkingPuffCooldown = 0.2f;
+                    }
+
+                    walkingPuffCooldown -= Time.deltaTime;
                     if (moveSpeed<=2f){
 						moveSpeed = moveSpeed * movingAcceleration;
 					}
