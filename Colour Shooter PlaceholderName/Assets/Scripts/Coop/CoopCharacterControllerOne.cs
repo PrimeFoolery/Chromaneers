@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Es.InkPainter;
 
 public class CoopCharacterControllerOne : MonoBehaviour {
@@ -25,6 +26,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     private float dodgeCooldown = 0f;
 
     private float walkingPuffCooldown = 0.2f;
+    public Slider dodgeSlider;
 
     private EnemyManager listManager;
     public ColourPicker colourPicker;
@@ -89,9 +91,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    brush.Color = blueColor;
 	}
 	
-	void Update () {
-        
+	void Update ()
+	{
 
+	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             

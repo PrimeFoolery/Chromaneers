@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Es.InkPainter;
 
 public class CoopCharacterControllerThree : MonoBehaviour {
@@ -23,6 +24,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     private float dodgeDuration = 0.15f;
     public float RollSpeed;
     private float dodgeCooldown = 0f;
+    public Slider dodgeSlider;
 
     [Header("Script References")]
     public CharacterThreeGunController coopCharacterControllerThree;
@@ -86,8 +88,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     }
 	
 	void Update () {
-
-	    //Checking whether an Xbox or Playstation controller is being used
+	    dodgeSlider.value = (dodgeCooldown);
+        //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
 	        //Making a vector3 to store the characters inputs
 	        moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));

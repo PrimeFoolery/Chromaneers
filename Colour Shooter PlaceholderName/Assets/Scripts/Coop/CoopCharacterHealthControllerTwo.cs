@@ -41,10 +41,10 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     void Start()
     {
-        ReviveSlider.gameObject.SetActive(false);
+        //ReviveSlider.gameObject.SetActive(false);
         ReviveCircle.gameObject.SetActive(false);
         reviveTimer = maxRevive;
-        ReviveSlider.value = CalculateRevive();
+        //ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
         canBeDamaged = true;
         //Setting the current health to be the health variable
@@ -69,7 +69,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         if (PlayerState == "Alive")
         {
 			ReviveParticle.SetActive (false);
-            ReviveSlider.gameObject.SetActive(false);
+            //ReviveSlider.gameObject.SetActive(false);
             ReviveCircle.gameObject.SetActive(false);
             if (canBeDamaged == false)
             {
