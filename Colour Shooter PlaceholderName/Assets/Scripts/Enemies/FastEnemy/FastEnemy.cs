@@ -43,7 +43,7 @@ public class FastEnemy : MonoBehaviour {
     private ColourSelectManager gameManager;
     private EnemySpawner spawner;
     private EnemyManager enemyManagerScript;
-    public string thisEnemiesSpawnPoint;
+    public GameObject thisEnemiesSpawnPoint;
     public int enemyDamage;
 
     // Use this for initialization
@@ -120,7 +120,7 @@ public class FastEnemy : MonoBehaviour {
 	        {
 	            if (Vector3.Distance(transform.position, player.transform.position) < 25f && isAggroPlayer == false)
 	            {
-	                spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+	                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
 	            }
 
 	            if (isAggroPlayer == true)
@@ -135,8 +135,8 @@ public class FastEnemy : MonoBehaviour {
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
-	            spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
-	        }
+	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+            }
 	        if (isAggroPlayer == true)
 	        {
 	            if (retargetingDelay == 3f)

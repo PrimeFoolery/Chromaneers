@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
 
-	public float Timer;
+    public float Timer;
     private bool haveAllEnemiesSpawned = false;
     public Transform spawnPointATransform;
     public Transform spawnPointBTransform;
@@ -42,36 +43,38 @@ public class EnemySpawner : MonoBehaviour {
 
 
     public GameObject RedEnemy;
-	public GameObject YellowEnemy;
-	public GameObject BlueEnemy;
+    public GameObject YellowEnemy;
+    public GameObject BlueEnemy;
     public GameObject SpiderEnemy;
-	public GameObject RedShieldEnemy;
-	public GameObject BlueShieldEnemy;
-	public GameObject YellowShieldEnemy;
-	public GameObject OrangeEnemy;
-	public GameObject PurpleEnemy;
-	public GameObject GreenEnemy;
+    public GameObject RedShieldEnemy;
+    public GameObject BlueShieldEnemy;
+    public GameObject YellowShieldEnemy;
+    public GameObject OrangeEnemy;
+    public GameObject PurpleEnemy;
+    public GameObject GreenEnemy;
     public GameObject SnakeEnemy;
     public GameObject FastEnemy;
 
-	public GameObject tempEnemy;
+    public GameObject tempEnemy;
     private StandardEnemyBehaviour tempStandardEnemyBehaviour;
     private SpiderEnemyController tempSpiderEnemyController;
     private SnakeEnemyScript tempSnakeEnemyScript;
     private FastEnemy tempFastEnemyScript;
-	private EnemyManager enemyManagerScript;
+    private EnemyManager enemyManagerScript;
 
-	private int RanNumb;
-	private int ranShieldEnemy;
-	private int ranSecondaryEnemy;
+    private int RanNumb;
+    private int ranShieldEnemy;
+    private int ranSecondaryEnemy;
 
-	// Use this for initialization
-	void Start () {
-		enemyManagerScript = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<EnemyManager> ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         //DIFFERENT SPAWN CHOICES
 
         //SpawnStandardBlueEnemy("[SPAWNPOINTLETTER]");
@@ -90,14 +93,16 @@ public class EnemySpawner : MonoBehaviour {
 
         //PS SPAWNPOINTLETTER NEEDS TO BE A CAPITAL LETTER FROM A-J AS SO FAR ONLY 10 SPAWN POINTS ARE SUPPORTED
 
-        
-	    
-        
 
-        
-	}
 
-    public void SpawnGroupA()
+
+
+
+    }
+
+}/*
+
+public void SpawnGroupA()
     {
         if (hasSpawnASpawned==false)
         {
@@ -190,7 +195,7 @@ public class EnemySpawner : MonoBehaviour {
             SpawnStandardGreenEnemy("E");
             SpawnStandardOrangeEnemy("E");
             SpawnStandardPurpleEnemy("E");
-            */
+            
             hasSpawnESpawned = true;
         }
     }
@@ -209,7 +214,7 @@ public class EnemySpawner : MonoBehaviour {
 			SpawnStandardYellowEnemy("F");
 			/*
             SpawnSnakeEnemy("F", "MAXRANDOM");
-            */
+            
             hasSpawnFSpawned = true;
         }
     }
@@ -231,7 +236,7 @@ public class EnemySpawner : MonoBehaviour {
             SpawnFastEnemy("G", "random");
             SpawnFastEnemy("G", "random");
             SpawnFastEnemy("G", "random");
-            */
+            
             hasSpawnGSpawned = true;
 
         }
@@ -2440,7 +2445,7 @@ public class EnemySpawner : MonoBehaviour {
             tempFastEnemyScript = null;
         }
     }
-}
+}*/
     
 
 

@@ -42,7 +42,7 @@ public class SpiderEnemyController : MonoBehaviour
     private EnemyManager enemyManagerScript;
     private EnemySpawner spawner;
     public bool isAggroPlayer = false;
-    public string thisEnemiesSpawnPoint;
+    public GameObject thisEnemiesSpawnPoint;
 
     //COOP PLAYER VARIABLES
     private GameObject RedPlayer;
@@ -544,7 +544,7 @@ public class SpiderEnemyController : MonoBehaviour
 
     void ToggleAggro()
     {
-        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
     }
     public Vector3 RandomNavmeshLocation(float radius)
     {

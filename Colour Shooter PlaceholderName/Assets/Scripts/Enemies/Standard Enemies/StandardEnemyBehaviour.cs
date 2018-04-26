@@ -31,7 +31,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     public bool isItCoop;
     private ColourSelectManager gameManager;
     private EnemySpawner spawner;
-    public string thisEnemiesSpawnPoint;
+    public GameObject thisEnemiesSpawnPoint;
     public int enemyDamage;
 
     // Use this for initialization
@@ -337,7 +337,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
     public void AggroToggle()
     {
-        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
     }
 
     public void BulletKnockback(Vector3 bulletPosition)

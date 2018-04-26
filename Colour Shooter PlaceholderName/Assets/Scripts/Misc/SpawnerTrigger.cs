@@ -27,9 +27,10 @@ public class SpawnerTrigger : MonoBehaviour
 	void Update () {
 		
 	}
-
+    /*
     void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player")==true||other.CompareTag("RedPlayer")==true||other.CompareTag("BluePlayer")==true||other.CompareTag("YellowPlayer"))
         {
             if (IsTriggerForSpawnpointA == true)
@@ -75,5 +76,5 @@ public class SpawnerTrigger : MonoBehaviour
 
         }
         
-    }
+    }*/
 }

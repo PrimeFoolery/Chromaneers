@@ -23,7 +23,7 @@ public class SnakeEnemyScript : MonoBehaviour
     private float timer = 3f;
     private int segmentHealth = 3;
     public bool isAggroPlayer = false;
-    public string thisEnemiesSpawnPoint;
+    public GameObject thisEnemiesSpawnPoint;
     public string colourOfSnake;
     public int randomColour;
     public float headNormalSpeed = 3;
@@ -629,7 +629,7 @@ public class SnakeEnemyScript : MonoBehaviour
 
     void ToggleAggro()
     {
-        spawner.AggroGroupOfEnemies(thisEnemiesSpawnPoint);
+        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
     }
     public Vector3 RandomNavmeshLocation(float radius)
     {

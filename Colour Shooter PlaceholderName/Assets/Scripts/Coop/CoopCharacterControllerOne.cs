@@ -25,6 +25,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     public float RollSpeed;
     private float dodgeCooldown = 0f;
 
+    private float specialAttackCooldown = 0f;
+    private bool specialAttackOn = false;
+    private float specialAttackDuration = 5f;
+
     private float walkingPuffCooldown = 0.2f;
     public Slider dodgeSlider;
 
@@ -99,7 +103,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	void Update ()
 	{
 
-	    dodgeSlider.value = (dodgeCooldown);
+	    dodgeSlider.value = (specialAttackCooldown/45);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             
@@ -136,7 +140,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             }
 			if(canPlayerMove == true){
 				if (!isShooting) {
-					Debug.Log ("player moving");
+					//Debug.Log ("player moving");
 					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 					if(moveInput!= new Vector3(0,0,0)){
 					    if (walkingPuffCooldown<=0)
@@ -233,14 +237,14 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKey(KeyCode.Joystick1Button7)&&canPlayerShoot==true) {
+                if (Input.GetKey(KeyCode.Joystick1Button5)&&canPlayerShoot==true) {
                     coopCharacterControllerOne.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
             }
 	        //Not shootings the bullet
-	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
+	        if (Input.GetKeyUp(KeyCode.Joystick1Button5)) {
 	            coopCharacterControllerOne.isFiring = false;
 	            isShooting = false;
 	        }
@@ -271,7 +275,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             {
                 dodgeCooldown -= Time.deltaTime;
             }
-            RaycastHit hit;
+            /*RaycastHit hit;
             Ray ray = new Ray(transform.position, Vector3.down);
             //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
             if (Physics.Raycast(ray, out hit, 20f))
@@ -312,6 +316,30 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                         splatTimer -= Time.deltaTime;
                     }
                 }
+            }*/
+            if (Input.GetKey(KeyCode.Joystick1Button4) && specialAttackCooldown <= 0 && specialAttackOn == false)
+            {
+                Debug.Log("USE Blues SPECIAL ATTACK");
+                specialAttackDuration = 5f;
+                specialAttackOn = true;
+
+            }
+
+            if (specialAttackOn == true && specialAttackDuration >= 0)
+            {
+                Debug.Log("blues Special Attack being used");
+                specialAttackDuration -= Time.deltaTime;
+            }
+
+            if (specialAttackOn == true && specialAttackDuration < 0)
+            {
+
+                specialAttackCooldown = 45f;
+                specialAttackOn = false;
+            }
+            if (specialAttackCooldown >= 0)
+            {
+                specialAttackCooldown -= Time.deltaTime;
             }
         }
 
@@ -489,6 +517,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    {
 		        dodgeCooldown -= Time.deltaTime;
 		    }
+            /*
             RaycastHit hit;
 		    Ray ray = new Ray(transform.position, Vector3.down);
 		    //Debug.DrawRay(transform.position,Vector3.down, Color.yellow,20f);
@@ -532,6 +561,30 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		                splatTimer -= Time.deltaTime;
                     }
 		        }
+		    }*/
+		    if (Input.GetButton("Fire1Left") && specialAttackCooldown <= 0 && specialAttackOn == false)
+		    {
+		        Debug.Log("USE Yellows SPECIAL ATTACK");
+		        specialAttackDuration = 5f;
+		        specialAttackOn = true;
+
+		    }
+
+		    if (specialAttackOn == true && specialAttackDuration >= 0)
+		    {
+		        Debug.Log("yellows Special Attack being used");
+		        specialAttackDuration -= Time.deltaTime;
+		    }
+
+		    if (specialAttackOn == true && specialAttackDuration < 0)
+		    {
+
+		        specialAttackCooldown = 45f;
+		        specialAttackOn = false;
+		    }
+		    if (specialAttackCooldown >= 0)
+		    {
+		        specialAttackCooldown -= Time.deltaTime;
 		    }
         }
 	    
@@ -590,8 +643,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    if (tagUnderPlayer!="Floor")
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
-	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 0.2f);
-	    }
+	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
+        }
 	    if (transform.position.y<=-5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
