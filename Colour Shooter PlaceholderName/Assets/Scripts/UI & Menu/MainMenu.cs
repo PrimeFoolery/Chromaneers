@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
     {
         print(eventSys.currentSelectedGameObject);
         Vector3 menuInput1;
-        menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"),0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+        menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
         if(canInteract == false)
         {
             InteractTimer -= Time.deltaTime;
@@ -88,18 +88,22 @@ public class MainMenu : MonoBehaviour {
             if (eventSys.currentSelectedGameObject == null)
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[0])
+            if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[1]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[1])
+            if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[2]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[2])
+            if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
+                canInteract = false;
             }
         }
         if (Input.GetKeyDown(KeyCode.W))
@@ -107,18 +111,22 @@ public class MainMenu : MonoBehaviour {
             if (eventSys.currentSelectedGameObject == null)
             {
                 eventSys.SetSelectedGameObject(buttonList[2]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[0])
+            if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[2]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[1])
+            if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
+                canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[2])
+            if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
             {
                 eventSys.SetSelectedGameObject(buttonList[1]);
+                canInteract = false;
             }
         }
         /* if(eventSys.currentSelectedGameObject != storedSelected)
