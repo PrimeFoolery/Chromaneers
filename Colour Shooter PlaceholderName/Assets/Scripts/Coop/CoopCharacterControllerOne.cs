@@ -78,6 +78,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
 	public bool canPlayerMove = true;
 
+    public AudioClip playerWalking;
+    public AudioClip playerDashing;
+    AudioSource audio;
+
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -89,6 +93,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
 	    brush.Color = blueColor;
+        audio = GetComponent<AudioSource>();
 	}
 	
 	void Update ()
@@ -138,7 +143,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					    {
                             walkingPuff.Play();
 					        walkingPuffCooldown = 0.2f;
-					    }
+                            audio.Play();
+                        }
 
 					    walkingPuffCooldown -= Time.deltaTime;
 						if(colourPlayerIsStandingOn!="yellow"){
@@ -161,6 +167,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -202,6 +209,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -242,7 +250,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 dodgeDirection = moveInput;
                 Roll(dodgeDirection);
-            }else if (currentlyDodging==true&&dodgeDuration>=0f)
+                audio.PlayOneShot(playerDashing, 1f);
+            } else if (currentlyDodging==true&&dodgeDuration>=0f)
             {
                 Roll(dodgeDirection);
                 dodgeDuration -= Time.deltaTime;
@@ -348,6 +357,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                         {
                             walkingPuff.Play();
                             walkingPuffCooldown = 0.2f;
+                            audio.Play();
                         }
 
                         walkingPuffCooldown -= Time.deltaTime;
@@ -371,6 +381,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -414,6 +425,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -453,7 +465,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    {
 				//Debug.Log ("move input:  "+moveInput);
                 gameObject.GetComponent<ParticleSystem>().Play();
-		        dodgeDirection = moveInput;
+                audio.PlayOneShot(playerDashing, 1f);
+                dodgeDirection = moveInput;
 				//Debug.Log ("dodge direction:  "+dodgeDirection);
 		        Roll(dodgeDirection);
 		    }
@@ -591,7 +604,6 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         //Set the Rigidbody to retreieve the moveVelocity;
 		//Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
-
     }
 
     public void Knockback(Vector3 bulletPosition)
@@ -613,9 +625,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 			canPlayerMove = false;
             currentlyDodging = true;
 			transform.position = Vector3.MoveTowards(transform.position, transform.position+(currentDirection), 1f*RollSpeed*Time.deltaTime);
-			//Debug.Log(currentDirection);
-			//Debug.Log (RollSpeed);
-            
+            //Debug.Log(currentDirection);
+            //Debug.Log (RollSpeed);
         }
     }
 }

@@ -74,6 +74,10 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	public float shootingDecceleration = 0.95f;
     private float poisonTimer = 3f;
 
+    public AudioClip playerWalking;
+    public AudioClip playerDashing;
+    AudioSource audio;
+
     void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -85,6 +89,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
         brush.Color = redColor;
+        audio = GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -130,7 +135,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					    {
 					        walkingPuff.Play();
 					        walkingPuffCooldown = 0.2f;
-					    }
+                        }
 
 					    walkingPuffCooldown -= Time.deltaTime;
                         if (colourPlayerIsStandingOn!="yellow"){
@@ -153,6 +158,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -192,6 +198,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -229,6 +236,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             {
                 dodgeDirection = moveInput;
                 gameObject.GetComponent<ParticleSystem>().Play();
+                audio.PlayOneShot(playerDashing, 1f);
                 Roll(dodgeDirection);
             }
             else if (currentlyDodging == true && dodgeDuration >= 0f)
@@ -335,7 +343,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					    {
 					        walkingPuff.Play();
 					        walkingPuffCooldown = 0.2f;
-					    }
+                            audio.Play();
+                        }
 
 					    walkingPuffCooldown -= Time.deltaTime;
                         if (colourPlayerIsStandingOn!="yellow"){
@@ -358,6 +367,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -397,6 +407,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					}
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
+                        audio.Stop();
                         if (moveSpeed>=0.5f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
@@ -435,6 +446,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    {
 		        dodgeDirection = moveInput;
 		        gameObject.GetComponent<ParticleSystem>().Play();
+                audio.PlayOneShot(playerDashing, 1f);
                 Roll(dodgeDirection);
 		    }
 		    else if (currentlyDodging == true && dodgeDuration >= 0f)
