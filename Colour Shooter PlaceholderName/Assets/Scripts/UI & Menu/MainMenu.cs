@@ -15,7 +15,8 @@ public class MainMenu : MonoBehaviour {
 
     public GameObject[] buttonList;
     public bool canInteract = true;
-    public float InteractTimer;
+    private float InteractTimer;
+    public float maxIntTimer;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class MainMenu : MonoBehaviour {
             if(InteractTimer <= 0)
             {
                 canInteract = true;
-                InteractTimer = 0.5f;
+                InteractTimer = maxIntTimer;
             }
         }
         if(menuInput1.z < 0f)
@@ -156,6 +157,7 @@ public class MainMenu : MonoBehaviour {
     {
         MainMenuPanel.SetActive(false);
         OptionsPanel.SetActive(true);
+        eventSys.SetSelectedGameObject(OptionsPanel.GetComponent<SettingMenu>().buttonList[0]);
     }
     public void Exit()
     {

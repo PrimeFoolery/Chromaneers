@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingMenu : MonoBehaviour {
     public AudioMixer audioMixer;
@@ -15,6 +16,7 @@ public class SettingMenu : MonoBehaviour {
 
     [Header("Input Selection")]
     public GameObject[] buttonList;
+    public GameObject volumeText;
     public bool canInteract = true;
     public float InteractTimer;
     
@@ -25,6 +27,7 @@ public class SettingMenu : MonoBehaviour {
             if (eventSys.currentSelectedGameObject == null)
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
+                volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
             }
             if (eventSys.currentSelectedGameObject == buttonList[0])
             {
@@ -41,6 +44,7 @@ public class SettingMenu : MonoBehaviour {
             if (eventSys.currentSelectedGameObject == buttonList[3])
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
+                volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
             }
         }
         if (Input.GetKeyDown(KeyCode.W))
@@ -84,7 +88,8 @@ public class SettingMenu : MonoBehaviour {
     }
     public void BackToMenu()
     {
-        OptionsPanel.SetActive(false);
+        //eventSys.SetSelectedGameObject(MainMenuPanel.GetComponent<MainMenu>().buttonList[0]);
         MainMenuPanel.SetActive(true);
+        OptionsPanel.SetActive(false);
     }
 }
