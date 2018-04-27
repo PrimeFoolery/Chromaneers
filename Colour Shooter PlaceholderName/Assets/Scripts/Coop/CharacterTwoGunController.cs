@@ -67,7 +67,7 @@ public class CharacterTwoGunController : MonoBehaviour {
     void CurrentBulletFiring () {
         if (!coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick2Button7)) {
+            if (Input.GetKey(KeyCode.Joystick2Button5)) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;
