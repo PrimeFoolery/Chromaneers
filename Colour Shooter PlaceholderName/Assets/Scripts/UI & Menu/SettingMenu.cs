@@ -22,12 +22,19 @@ public class SettingMenu : MonoBehaviour {
     
     void Update()
     {
+        if(eventSys.currentSelectedGameObject == buttonList[0].gameObject)
+        {
+            volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
+        }
+        if(eventSys.currentSelectedGameObject != buttonList[0].gameObject)
+        {
+            volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
+        }
         if (Input.GetKeyDown(KeyCode.S))
         {
             if (eventSys.currentSelectedGameObject == null)
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
-                volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
             }
             if (eventSys.currentSelectedGameObject == buttonList[0])
             {
@@ -44,7 +51,6 @@ public class SettingMenu : MonoBehaviour {
             if (eventSys.currentSelectedGameObject == buttonList[3])
             {
                 eventSys.SetSelectedGameObject(buttonList[0]);
-                volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
             }
         }
         if (Input.GetKeyDown(KeyCode.W))
