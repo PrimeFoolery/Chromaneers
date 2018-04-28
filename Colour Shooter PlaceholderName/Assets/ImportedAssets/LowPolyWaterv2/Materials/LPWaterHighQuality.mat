@@ -9,7 +9,7 @@ Material:
   m_Name: LPWaterHighQuality
   m_Shader: {fileID: 4800000, guid: 8165be4dd0b12774d80426d906df9c38, type: 3}
   m_ShaderKeywords: LPW_HQFOAM WATER_REFLECTIVE _DISTORT_ON _EDGEBLEND_ON _EMISSION
-    _HQFOAM_ON _LIGHTABS_ON _SHADING_FLAT _WAVES_HIGHQUALITY _ZWRITE_ON
+    _HQFOAM_ON _SHADING_FLAT _WAVES_HIGHQUALITY
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -54,17 +54,17 @@ Material:
     - _Cull_: 2
     - _Diffuse: 0.5
     - _Direction: 180
-    - _Distort: 0
+    - _Distort: 1
     - _Distortion: 1
-    - _EdgeBlend: 0
+    - _EdgeBlend: 1
     - _EnableShadows: 0
     - _FoamScale: 20
     - _FoamSpeed: 0.3
     - _FoamSpread: 1
     - _FresPower: 1.5
-    - _HQFoam: 0
-    - _Height: 0.5
-    - _Height_: 4
+    - _HQFoam: 1
+    - _Height: 0.1
+    - _Height_: 0.8
     - _Length: 4
     - _LightAbs: 0
     - _NormalOffset: 1
@@ -80,7 +80,7 @@ Material:
     - _Scale_: 8
     - _Shading: 0
     - _Shadow: 0.7
-    - _ShoreDistance: 0.5
+    - _ShoreDistance: 0.8
     - _ShoreIntensity: 1
     - _Specular: 70
     - _Speed: 0.5
@@ -91,7 +91,7 @@ Material:
     - _Time_: 0
     - _TransformScale_: 8
     - _Waves: 2
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
     - <noninit>: {r: 0, g: 1.3360661e-33, b: 0, a: 1.3360603e-33}
     - _Color: {r: 0, g: 0.5, b: 0.7, a: 1}

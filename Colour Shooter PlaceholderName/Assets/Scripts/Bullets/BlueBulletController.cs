@@ -5,9 +5,11 @@ using UnityEngine.AI;
 
 public class BlueBulletController : MonoBehaviour {
 
-    [Header ("Bullet variables")]
-    public float speed;
-	public float deceleration;
+    [Header("Bullet variables")]
+    [Range(0, 50)] public float speedOriginal;
+    [Range(0, 50)] public float speedTri;
+    [Range(0, 50)] public float speedSniper;
+    public float deceleration;
     public float bulletLifeTime;
     public float reboundBulletLifeTime;
     public int bulletDamage;
@@ -16,10 +18,11 @@ public class BlueBulletController : MonoBehaviour {
     private Vector3 savedDirection;
 
     [Header("Misc")]
-	public GameObject paint;
-	public float paintLifeTime;
-	private GameObject bullet;
-	public ColourSelectManager colourSelectManager;
+    public GameObject paint;
+    public float paintLifeTime;
+    private GameObject bullet;
+    public ColourSelectManager colourSelectManager;
+    public CharacterOneGunController characterOneGunController;
 
     enum bulletState
     {
@@ -27,6 +30,8 @@ public class BlueBulletController : MonoBehaviour {
         reboundBullet
     }
     private bulletState stateOfBullet;
+
+    public CharacterOneGunController.currentWeapon currentWeapon;
 
 	//Private variables
 	Vector3 previousBulletPosition;
@@ -37,8 +42,10 @@ public class BlueBulletController : MonoBehaviour {
 	}
 	
 	void Update () {
-
-	    directionTimer -= Time.deltaTime;
+        Debug.Log("Original bullet speed = " + speedOriginal);
+        Debug.Log("Trishot bullet speed = " + speedTri);
+        Debug.Log("Sniper bullet speed = " + speedSniper);
+        directionTimer -= Time.deltaTime;
 	    if (directionTimer <= 0f)
 	    {
 	        savedDirection = transform.position;
@@ -47,11 +54,18 @@ public class BlueBulletController : MonoBehaviour {
 
         //Setting previous button position to the new updated position
         previousBulletPosition = transform.position;
-
         if (stateOfBullet == bulletState.normalBullet) {
             //Moving the bullet
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            speed = speed * deceleration;
+            if (currentWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
+                transform.Translate(Vector3.forward * speedOriginal * Time.deltaTime);
+                speedOriginal = speedOriginal * deceleration;
+            } else if (currentWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+                transform.Translate(Vector3.forward * speedTri * Time.deltaTime);
+                speedTri = speedTri * deceleration;
+            } else if (currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
+                transform.Translate(Vector3.forward * speedSniper * Time.deltaTime);
+                speedSniper = speedSniper * deceleration;
+            }
 
             //Bullets lifeTime
             bulletLifeTime -= Time.deltaTime;
@@ -63,9 +77,16 @@ public class BlueBulletController : MonoBehaviour {
 
         if (stateOfBullet == bulletState.reboundBullet) {
             //Rebound the bullet
-            transform.Translate(((Vector3.back * 0.8f * speed) + (Vector3.up * 0.2f * speed)) * Time.deltaTime);
-
-            speed = speed * deceleration;
+            if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
+                transform.Translate(((Vector3.back * 0.8f * speedOriginal) + (Vector3.up * 0.2f * speedOriginal)) * Time.deltaTime);
+                speedOriginal = speedOriginal * deceleration;
+            } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+                transform.Translate(((Vector3.back * 0.8f * speedTri) + (Vector3.up * 0.2f * speedTri)) * Time.deltaTime);
+                speedTri = speedTri * deceleration;
+            } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
+                transform.Translate(((Vector3.back * 0.8f * speedSniper) + (Vector3.up * 0.2f * speedSniper)) * Time.deltaTime);
+                speedSniper = speedSniper * deceleration;
+            }
 
             //Bullets lifeTime
             reboundBulletLifeTime -= Time.deltaTime;
@@ -184,17 +205,5 @@ public class BlueBulletController : MonoBehaviour {
             //Play audio
             this.GetComponent<AudioSource>().Play();
         }
-		/*
-		if (theCol.gameObject.CompareTag("RedBullet")) {
-			//Setting bullet to shoot
-			GameObject bulletToShoot = colourSelectManager.GetBulletPurpleToShoot();
-			//Instantiate
-			bullet = (GameObject)Instantiate(bulletToShoot, transform.position, Quaternion.identity);
-			//Other bullet
-			Destroy(theCol.gameObject);
-			//This bullet
-			Destroy(gameObject);
-		}
-		*/
     }
 }

@@ -282,7 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612ec9e79bc198b488e7e5b6447d72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 11
+  speedOriginal: 50
+  speedTri: 8
+  speedSniper: 50
   deceleration: 0.995
   bulletLifeTime: 2
   reboundBulletLifeTime: 0.4
@@ -290,6 +292,9 @@ MonoBehaviour:
   paint: {fileID: 1481389650309580, guid: a25c8d30977c5f44db758e9b0c6aa3ba, type: 2}
   paintLifeTime: 1
   colourSelectManager: {fileID: 0}
+  characterOneGunController: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
+    type: 2}
+  currentWeapon: 0
 --- !u!135 &135826065799090094
 SphereCollider:
   m_ObjectHideFlags: 1
