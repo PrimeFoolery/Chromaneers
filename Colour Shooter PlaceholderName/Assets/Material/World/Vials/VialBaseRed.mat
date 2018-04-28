@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Vial Liquid
-  m_Shader: {fileID: 4800000, guid: 6f900468e49b3e049b493e26c5ea634e, type: 3}
+  m_Name: VialBaseRed
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DepthRampTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -50,10 +46,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 35b2703aefda4f94e83fe4c170ff1ad6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,35 +57,20 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DepthFactor: 1
     - _DetailNormalMapScale: 1
-    - _DistortStrength: 1
     - _DstBlend: 0
-    - _ExtraHeight: 44.85
-    - _FillAmount: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.938
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.609
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rim: 0.0863
-    - _RimPower: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveAmp: 0.04
-    - _WaveSpeed: -0.04
-    - _WobbleX: 0
-    - _WobbleZ: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0.96530837, g: 0.6230536, b: 0.98529404, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0.5349391, g: 0, b: 0.5661765, a: 1}
-    - _TopColor: {r: 0.90204036, g: 0.33574829, b: 0.992647, a: 1}

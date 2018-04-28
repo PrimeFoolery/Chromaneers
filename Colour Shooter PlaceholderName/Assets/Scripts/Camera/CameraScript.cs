@@ -19,7 +19,7 @@ public class CameraScript : MonoBehaviour
         FiftyDegreesSlanted
     };
 
-    private CameraState currentCameraState = CameraState.SixtyDegrees;
+    private CameraState currentCameraState = CameraState.SixtyDegreesSlanted;
 
     private float cameraMoveSpeed = 0.1f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
