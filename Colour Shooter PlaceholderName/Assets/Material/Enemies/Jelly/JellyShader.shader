@@ -3,8 +3,19 @@
 Shader "Custom/Jelly" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
+		_BehindObjectColor ("BehindObjectColor", Color) = (0.66,0.66,0.66,1)
     }
     SubShader {
+
+		Tags { "Queue"="Overlay+1" }
+		Pass
+		{
+			ZWrite Off
+			ZTest Greater
+			Lighting Off
+			Color [_BehindObjectColor]
+		}
+
         Pass {
             Tags { "RenderType"="Opaque" }
        
@@ -37,5 +48,5 @@ Shader "Custom/Jelly" {
             ENDCG
         }
     }
-    FallBack "Diffuse"
+    FallBack "Specular", 1
 }

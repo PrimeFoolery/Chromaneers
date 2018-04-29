@@ -8,7 +8,7 @@ public class TextTriggerScript : MonoBehaviour {
 
     private int talkLine = 1;
     private bool nextLine = true;
-    private float Delay = 0.01f;
+    private float Delay = 0f;
     private bool timeToType = false;
     private bool textTyped = false;
 	bool stopDeletingText = false;
