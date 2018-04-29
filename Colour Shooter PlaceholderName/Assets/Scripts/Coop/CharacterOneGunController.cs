@@ -168,19 +168,22 @@ public class CharacterOneGunController : MonoBehaviour {
     }
 
     void OnTriggerStay (Collider theCol) {
-        if (theCol.gameObject.CompareTag("TrishotWeapon")) {
-            if (Input.GetKey(KeyCode.Joystick1Button0)) {
+        if (theCol.gameObject.CompareTag("TrishotWeapon"))
+        {
+            if (Input.GetKey(KeyCode.Joystick1Button0))
+            {
                 stateOfWeapon = currentWeapon.TrishotWeapon;
             }
-        } else if (!theCol.gameObject.CompareTag("TrishotWeapon") && Input.GetKey (KeyCode.Joystick1Button0)) {
-            stateOfWeapon = currentWeapon.OriginalWeapon;
         }
-
-        if (theCol.gameObject.CompareTag("SniperWeapon")) {
-            if (Input.GetKey(KeyCode.Joystick1Button0)) {
+        else if (theCol.gameObject.CompareTag("SniperWeapon"))
+        {
+            if (Input.GetKey(KeyCode.Joystick1Button0))
+            {
                 stateOfWeapon = currentWeapon.SniperWeapon;
             }
-        } else if (!theCol.gameObject.CompareTag("SniperWeapon") && Input.GetKey(KeyCode.Joystick1Button0)) {
+        }
+        else if (!theCol.gameObject.CompareTag("TrishotWeapon") && Input.GetKey(KeyCode.Joystick1Button0))
+        {
             stateOfWeapon = currentWeapon.OriginalWeapon;
         }
     }
