@@ -46,7 +46,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private float splatTimer = 0f;
     public GameObject paintBlob;
     public bool canPlayerShoot = true;
-	private bool canPlayerMove = true;
+	public bool canPlayerMove = true;
 
     private float specialAttackCooldown = 0f;
     private bool specialAttackOn = false;
@@ -100,8 +100,18 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	    dodgeSlider.value = (specialAttackCooldown / 45);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
-	        //Making a vector3 to store the characters inputs
-	        moveInput = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
+            //Making a vector3 to store the characters inputs
+            if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+            {
+                moveInput = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
+            }
+            else
+            {
+                moveInput = new Vector3(0, 0, 0);
+                moveVelocity = new Vector3(0, 0, 0);
+                audio.Stop();
+            }
+            
             if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
             {
                 if (moveInput.x <= 0)
@@ -236,7 +246,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	            coopCharacterControllerTwo.isFiring = false;
 	            isShooting = false;
 	        }
-            if (Input.GetKeyDown(KeyCode.Joystick2Button1) && currentlyDodging == false && dodgeCooldown <= 0f)
+            if (Input.GetKeyDown(KeyCode.Joystick2Button1) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
             {
                 dodgeDirection = moveInput;
                 gameObject.GetComponent<ParticleSystem>().Play();
@@ -332,9 +342,18 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         }
 
 		if (usingXboxController) {
-			//Making a vector3 to store the characters inputs
-			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick2LVertical"));
-		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+            //Making a vector3 to store the characters inputs
+		    if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+		    {
+		        moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick2LVertical"));
+		    }
+		    else
+		    {
+		        moveInput = new Vector3(0, 0, 0);
+		        moveVelocity = new Vector3(0, 0, 0);
+		        audio.Stop();
+            }
+            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
 		    {
 		        if (moveInput.x <= 0)
 		        {
@@ -470,7 +489,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 				coopCharacterControllerTwo.isFiring = false;
 			    isShooting = false;
 			}
-		    if (Input.GetButtonDown("Roll2") && currentlyDodging == false && dodgeCooldown <= 0f)
+		    if (Input.GetButtonDown("Roll2") && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
 		    {
 		        dodgeDirection = moveInput;
 		        gameObject.GetComponent<ParticleSystem>().Play();

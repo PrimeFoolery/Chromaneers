@@ -96,8 +96,10 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
             //ReviveSlider.value = CalculateRevive();
             ReviveCircle.gameObject.SetActive(true);
             ReviveCircle.fillAmount = CalculateRevive();
+            coopCharacterControllerThree.CanPlayerMove = false;
             coopCharacterControllerThree.moveSpeed = 0;
             coopCharacterControllerThree.canPlayerShoot = false;
+            coopCharacterControllerThree.coopCharacterControllerThree.isFiring = false;
             reviveTimer -= Time.deltaTime;
 			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
@@ -129,6 +131,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         if (reviveTimer <= 0)
         {
             coopCharacterControllerThree.canPlayerShoot = true;
+            coopCharacterControllerThree.CanPlayerMove = true;
             currentHealth = 3;
             rend.material = matOne;
             PlayerState = "Alive";
