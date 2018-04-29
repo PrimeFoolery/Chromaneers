@@ -12,13 +12,22 @@ public class AudioManager : MonoBehaviour {
     private float InteractTimer;
     public float maxIntTimer;
 
+    public bool usingXboxController;
+    public GameObject CanvasHolder;
+
     void Start () {
         audioSource = GetComponent<AudioSource>();
 	}
 	
 	void Update () {
-        Vector3 menuInput1;
-        menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+        if(CanvasHolder.GetComponent<MainMenu>().usingXboxController == true)
+        {
+            usingXboxController = true;
+        }
+        else
+        {
+            usingXboxController = false;
+        }
         if (canInteract == false)
         {
             InteractTimer -= Time.deltaTime;
@@ -28,12 +37,31 @@ public class AudioManager : MonoBehaviour {
                 InteractTimer = maxIntTimer;
             }
         }
-        if (menuInput1.z < 0 || menuInput1.z > 0)
-        {
-            if (canInteract == true)
+        if (usingXboxController == true) {
+            Vector3 menuInput1;
+            menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+           
+            if (menuInput1.z < 0 || menuInput1.z > 0)
             {
-                audioSource.PlayOneShot(menuScroll, 1f);
-                canInteract = false;
+                if (canInteract == true)
+                {
+                    audioSource.PlayOneShot(menuScroll, 1f);
+                    canInteract = false;
+                }
+            }
+        }
+        if (usingXboxController == false)
+        {
+            Vector3 menuInput1;
+            menuInput1 = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
+
+            if (menuInput1.z < 0 || menuInput1.z > 0)
+            {
+                if (canInteract == true)
+                {
+                    audioSource.PlayOneShot(menuScroll, 1f);
+                    canInteract = false;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) {

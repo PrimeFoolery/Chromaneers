@@ -7587,6 +7587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSys: {fileID: 857641266}
+  usingXboxController: 1
   OptionsPanel: {fileID: 1456558974}
   MainMenuPanel: {fileID: 2066019681}
   buttonList:
@@ -7931,6 +7932,8 @@ MonoBehaviour:
   menuScroll: {fileID: 8300000, guid: 544e4030778c85349b526575155c329e, type: 3}
   canInteract: 1
   maxIntTimer: 0.4
+  usingXboxController: 0
+  CanvasHolder: {fileID: 854368558}
 --- !u!4 &871841430
 Transform:
   m_ObjectHideFlags: 0
@@ -14061,6 +14064,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 7a6eadf823452dc45b7f27e1c79648ea, type: 2}
   MainMenuPanel: {fileID: 2066019681}
   OptionsPanel: {fileID: 1456558974}
+  usingXboxController: 0
   eventSys: {fileID: 857641266}
   buttonList:
   - {fileID: 1864171594}
