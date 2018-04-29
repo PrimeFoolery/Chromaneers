@@ -5421,6 +5421,31 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198682624788113728, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198682624788113728, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198682624788113728, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198682624788113728, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114138347575659052, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: reviveCircleScript
+      value: 
+      objectReference: {fileID: 1250910365}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -7750,6 +7775,31 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198414275362935562, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198414275362935562, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198414275362935562, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198414275362935562, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114627511303337698, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: reviveCircleScript
+      value: 
+      objectReference: {fileID: 818905020}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -8986,6 +9036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviveCircleRotationSpeedNormal: 10
+  peopleInCircle: 1
 --- !u!1001 &832654843
 Prefab:
   m_ObjectHideFlags: 0
@@ -11501,6 +11552,11 @@ Prefab:
       propertyPath: bulletSpeedSniper
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 114879534976830574, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: reviveCircleScript
+      value: 
+      objectReference: {fileID: 1410276288}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -12054,6 +12110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviveCircleRotationSpeedNormal: 10
+  peopleInCircle: 1
 --- !u!1001 &1255847512
 Prefab:
   m_ObjectHideFlags: 0
@@ -13637,6 +13694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviveCircleRotationSpeedNormal: 10
+  peopleInCircle: 1
 --- !u!1001 &1419074992
 Prefab:
   m_ObjectHideFlags: 0

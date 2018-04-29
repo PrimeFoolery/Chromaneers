@@ -23,6 +23,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public Sprite[] HeartSprites;
     public Slider ReviveSlider;
     public Image ReviveCircle;
+    public reviveCircleRotation reviveCircleScript;
 
     [Header("Materials")]
     public Material matOne;
@@ -105,6 +106,21 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 2f)
             {
                 reviveTimer -= Time.deltaTime;
+            }
+            if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) > 4f)
+            {
+                reviveCircleScript.peopleInCircle = 2;
+            }else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) > 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
+            {
+                reviveCircleScript.peopleInCircle = 2;
+            }
+            else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
+            {
+                reviveCircleScript.peopleInCircle = 3;
+            }
+            else
+            {
+                reviveCircleScript.peopleInCircle = 1;
             }
         }
         if (reviveTimer <= 0)
