@@ -23,6 +23,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public Sprite[] HeartSprites;
     public Slider ReviveSlider;
     public Image ReviveCircle;
+    public reviveCircleRotation reviveCircleScript;
 
     [Header("Materials")]
     public Material matOne;
@@ -96,6 +97,9 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             ReviveCircle.fillAmount = CalculateRevive();
             coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
+            coopCharacterControllerTwo.canPlayerMove = false;
+            coopCharacterControllerTwo.coopCharacterControllerTwo.isFiring = false;
+            
             reviveTimer -= Time.deltaTime;
 			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 2f)
@@ -106,10 +110,26 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             {
                 reviveTimer -= Time.deltaTime;
             }
+            if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) > 4f)
+            {
+                reviveCircleScript.peopleInCircle = 2;
+            }else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) > 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
+            {
+                reviveCircleScript.peopleInCircle = 2;
+            }
+            else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
+            {
+                reviveCircleScript.peopleInCircle = 3;
+            }
+            else
+            {
+                reviveCircleScript.peopleInCircle = 1;
+            }
         }
         if (reviveTimer <= 0)
         {
             coopCharacterControllerTwo.canPlayerShoot = true;
+            coopCharacterControllerTwo.canPlayerMove = true;
             currentHealth = 3;
             rend.material = matOne;
             PlayerState = "Alive";

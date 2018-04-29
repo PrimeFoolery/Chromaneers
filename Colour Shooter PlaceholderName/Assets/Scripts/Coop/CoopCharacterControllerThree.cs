@@ -14,6 +14,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public bool usingXboxController;
     public bool isShooting;
     public GameObject paintProjector;
+    public bool CanPlayerMove = true;
 
     private EnemyManager listManager;
     public ColourPicker colourPicker;
@@ -100,8 +101,17 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	    dodgeSlider.value = (specialAttackCooldown / 45);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
-	        //Making a vector3 to store the characters inputs
-	        moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
+            //Making a vector3 to store the characters inputs
+            if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+            {
+                moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
+            }
+            else
+            {
+                moveInput = new Vector3(0, 0, 0);
+                moveVelocity = new Vector3(0, 0, 0);
+                audio.Stop();
+            }
             if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
             {
                 if (moveInput.x <= 0)
@@ -131,87 +141,113 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                     moveInput.z = 0;
                 }
             }
-            if (!isShooting) {
-				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
-				if(moveInput!= new Vector3(0,0,0)){
-					if(colourPlayerIsStandingOn!="yellow"){
-					    if (walkingPuffCooldown <= 0)
-					    {
-					        walkingPuff.Play();
-					        walkingPuffCooldown = 0.2f;
-                            audio.Play();
+
+            if (CanPlayerMove==true)
+            {
+                if (!isShooting)
+                {
+                    //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+                    if (moveInput != new Vector3(0, 0, 0))
+                    {
+                        if (colourPlayerIsStandingOn != "yellow")
+                        {
+                            if (walkingPuffCooldown <= 0)
+                            {
+                                walkingPuff.Play();
+                                walkingPuffCooldown = 0.2f;
+                                audio.Play();
+                            }
+
+                            walkingPuffCooldown -= Time.deltaTime;
+                            if (moveSpeed <= 5f)
+                            {
+                                moveSpeed = moveSpeed * movingAcceleration;
+                            }
+                            if (moveSpeed >= 5f)
+                            {
+                                moveSpeed = 5f;
+                            }
+                        }
+                        else
+                            if (colourPlayerIsStandingOn == "yellow")
+                        {
+                            if (moveSpeed <= 7f)
+                            {
+                                moveSpeed = moveSpeed * movingAcceleration;
+                            }
+                            if (moveSpeed >= 7f)
+                            {
+                                moveSpeed = 7f;
+                            }
+                        }
+                        moveVelocity = moveInput * moveSpeed;
+                    }
+                    if (moveInput == new Vector3(0, 0, 0))
+                    {
+                        walkingPuff.Stop();
+                        audio.Stop();
+                        if (moveSpeed >= 0.5f)
+                        {
+                            moveSpeed = moveSpeed * movingDecceleration;
+                        }
+                        if (moveSpeed <= 0.5f)
+                        {
+                            moveSpeed = 0.5f;
+                        }
+                        moveVelocity = moveVelocity * movingDecceleration;
+                    }
+                }
+                else if (isShooting)
+                {
+                    //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+                    if (colourPlayerIsStandingOn == "orange")
+                    {
+                        moveVelocity = moveInput * -1 * shootingSpeed;
+                    }
+                    else
+                    {
+                        moveVelocity = moveInput * shootingSpeed;
+                    }
+                    if (moveInput != new Vector3(0, 0, 0))
+                    {
+                        if (walkingPuffCooldown <= 0)
+                        {
+                            walkingPuff.Play();
+                            walkingPuffCooldown = 0.2f;
                         }
 
-					    walkingPuffCooldown -= Time.deltaTime;
-                        if (moveSpeed<=5f){
-							moveSpeed = moveSpeed * movingAcceleration;
-						}
-						if(moveSpeed>=5f){
-							moveSpeed = 5f;
-						}
-					}else
-						if(colourPlayerIsStandingOn=="yellow"){
-							if(moveSpeed<=7f){
-								moveSpeed = moveSpeed * movingAcceleration;
-							}
-							if(moveSpeed>=7f){
-								moveSpeed = 7f;
-							}
-						}
-					moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-				    walkingPuff.Stop();
-                    audio.Stop();
-                    if (moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-			} else if (isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-			    if (colourPlayerIsStandingOn == "orange")
-			    {
-			        moveVelocity = moveInput * -1 * shootingSpeed;
-			    }
-			    else
-			    {
-			        moveVelocity = moveInput * shootingSpeed;
-			    }
-                if (moveInput!= new Vector3(0,0,0)){
-                    if (walkingPuffCooldown <= 0)
-                    {
-                        walkingPuff.Play();
-                        walkingPuffCooldown = 0.2f;
+                        walkingPuffCooldown -= Time.deltaTime;
+                        if (moveSpeed <= 2f)
+                        {
+                            moveSpeed = moveSpeed * movingAcceleration;
+                        }
+                        if (moveSpeed >= 2f && moveSpeed <= 2.5f)
+                        {
+                            moveSpeed = 2f;
+                        }
+                        if (moveSpeed >= 2.5f)
+                        {
+                            moveSpeed = moveSpeed * shootingDecceleration;
+                        }
+                        //moveVelocity = moveInput * moveSpeed;
                     }
-
-                    walkingPuffCooldown -= Time.deltaTime;
-                    if (moveSpeed<=2f){
-						moveSpeed = moveSpeed * movingAcceleration;
-					}
-					if(moveSpeed>=2f&&moveSpeed<=2.5f){
-						moveSpeed = 2f;
-					}
-					if(moveSpeed>=2.5f){
-						moveSpeed = moveSpeed * shootingDecceleration;
-					}
-					//moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-				    walkingPuff.Stop();
-                    audio.Stop();
-                    if (moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-			}
+                    if (moveInput == new Vector3(0, 0, 0))
+                    {
+                        walkingPuff.Stop();
+                        audio.Stop();
+                        if (moveSpeed >= 0.5f)
+                        {
+                            moveSpeed = moveSpeed * movingDecceleration;
+                        }
+                        if (moveSpeed <= 0.5f)
+                        {
+                            moveSpeed = 0.5f;
+                        }
+                        moveVelocity = moveVelocity * movingDecceleration;
+                    }
+                }
+            }
+            
 
             //Making a new vector3 to do rotations with joystick
             Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3RVertical");
@@ -235,7 +271,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                 coopCharacterControllerThree.isFiring = false;
 	            isShooting = false;
             }
-            if (Input.GetKeyDown(KeyCode.Joystick3Button1) && currentlyDodging == false && dodgeCooldown <= 0f)
+            if (Input.GetKeyDown(KeyCode.Joystick3Button1) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
             {
                 dodgeDirection = moveInput;
                 gameObject.GetComponent<ParticleSystem>().Play();
@@ -253,6 +289,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				gameObject.GetComponent<CoopCharacterHealthControllerThree>().ChangeToMatOne();
                 currentlyDodging = false;
 				canPlayerShoot = true;
+                CanPlayerMove = true;
                 dodgeDuration = 0.15f;
                 dodgeCooldown = 1f;
             }
@@ -332,9 +369,18 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         }
 
 		if (usingXboxController) {
-			//Making a vector3 to store the characters inputs
-			moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
-		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+            //Making a vector3 to store the characters inputs
+		    if (gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+		    {
+		        moveInput = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
+		    }
+		    else
+		    {
+		        moveInput = new Vector3(0, 0, 0);
+		        moveVelocity = new Vector3(0, 0, 0);
+		        audio.Stop();
+            }
+            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
 		    {
 		        if (moveInput.x <= 0)
 		        {
@@ -363,88 +409,114 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		            moveInput.z = 0;
 		        }
 		    }
-            if (!isShooting) {
-				//Multiply the moveInput by the moveVelocity to give it speed whilst walking
-				if(moveInput!= new Vector3(0,0,0)){
-				    if (walkingPuffCooldown <= 0)
-				    {
-				        walkingPuff.Play();
-				        walkingPuffCooldown = 0.2f;
-                        audio.Play();
-                    }
 
-				    walkingPuffCooldown -= Time.deltaTime;
-                    if (colourPlayerIsStandingOn!="yellow"){
-						if(moveSpeed<=5f){
-							moveSpeed = moveSpeed * movingAcceleration;
-						}
-						if(moveSpeed>=5f){
-							moveSpeed = 5f;
-						}
-					}else
-					if(colourPlayerIsStandingOn=="yellow"){
-						if(moveSpeed<=7f){
-							moveSpeed = moveSpeed * movingAcceleration;
-						}
-						if(moveSpeed>=7f){
-							moveSpeed = 7f;
-						}
-					}
-
-					moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-				    walkingPuff.Stop();
-                    audio.Stop();
-                    if (moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-			} else if (isShooting) {
-                //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
-			    if (colourPlayerIsStandingOn == "orange")
-			    {
-			        moveVelocity = moveInput * -1 * shootingSpeed;
-			    }
-			    else
-			    {
-			        moveVelocity = moveInput * shootingSpeed;
-			    }
-                if (moveInput!= new Vector3(0,0,0)){
-                    if (walkingPuffCooldown <= 0)
+		    if (CanPlayerMove==true)
+		    {
+                if (!isShooting)
+                {
+                    //Multiply the moveInput by the moveVelocity to give it speed whilst walking
+                    if (moveInput != new Vector3(0, 0, 0))
                     {
-                        walkingPuff.Play();
-                        walkingPuffCooldown = 0.2f;
-                    }
+                        if (walkingPuffCooldown <= 0)
+                        {
+                            walkingPuff.Play();
+                            walkingPuffCooldown = 0.2f;
+                            audio.Play();
+                        }
 
-                    walkingPuffCooldown -= Time.deltaTime;
-                    if (moveSpeed<=2f){
-						moveSpeed = moveSpeed * movingAcceleration;
-					}
-					if(moveSpeed>=2f&&moveSpeed<=2.5f){
-						moveSpeed = 2f;
-					}
-					if(moveSpeed>=2.5f){
-						moveSpeed = moveSpeed * shootingDecceleration;
-					}
-					//moveVelocity = moveInput * moveSpeed;
-				}
-				if(moveInput== new Vector3(0,0,0)){
-				    walkingPuff.Stop();
-                    audio.Stop();
-                    if (moveSpeed>=0.5f){
-						moveSpeed = moveSpeed * movingDecceleration;
-					}
-					if(moveSpeed<=0.5f){
-						moveSpeed = 0.5f;
-					}
-					moveVelocity = moveVelocity * movingDecceleration;
-				}
-			}
+                        walkingPuffCooldown -= Time.deltaTime;
+                        if (colourPlayerIsStandingOn != "yellow")
+                        {
+                            if (moveSpeed <= 5f)
+                            {
+                                moveSpeed = moveSpeed * movingAcceleration;
+                            }
+                            if (moveSpeed >= 5f)
+                            {
+                                moveSpeed = 5f;
+                            }
+                        }
+                        else
+                        if (colourPlayerIsStandingOn == "yellow")
+                        {
+                            if (moveSpeed <= 7f)
+                            {
+                                moveSpeed = moveSpeed * movingAcceleration;
+                            }
+                            if (moveSpeed >= 7f)
+                            {
+                                moveSpeed = 7f;
+                            }
+                        }
+
+                        moveVelocity = moveInput * moveSpeed;
+                    }
+                    if (moveInput == new Vector3(0, 0, 0))
+                    {
+                        walkingPuff.Stop();
+                        audio.Stop();
+                        if (moveSpeed >= 0.5f)
+                        {
+                            moveSpeed = moveSpeed * movingDecceleration;
+                        }
+                        if (moveSpeed <= 0.5f)
+                        {
+                            moveSpeed = 0.5f;
+                        }
+                        moveVelocity = moveVelocity * movingDecceleration;
+                    }
+                }
+                else if (isShooting)
+                {
+                    //Multiply the moveInput by the moveVelocity to give it speed and divide whilst shooting
+                    if (colourPlayerIsStandingOn == "orange")
+                    {
+                        moveVelocity = moveInput * -1 * shootingSpeed;
+                    }
+                    else
+                    {
+                        moveVelocity = moveInput * shootingSpeed;
+                    }
+                    if (moveInput != new Vector3(0, 0, 0))
+                    {
+                        if (walkingPuffCooldown <= 0)
+                        {
+                            walkingPuff.Play();
+                            walkingPuffCooldown = 0.2f;
+                        }
+
+                        walkingPuffCooldown -= Time.deltaTime;
+                        if (moveSpeed <= 2f)
+                        {
+                            moveSpeed = moveSpeed * movingAcceleration;
+                        }
+                        if (moveSpeed >= 2f && moveSpeed <= 2.5f)
+                        {
+                            moveSpeed = 2f;
+                        }
+                        if (moveSpeed >= 2.5f)
+                        {
+                            moveSpeed = moveSpeed * shootingDecceleration;
+                        }
+                        //moveVelocity = moveInput * moveSpeed;
+                    }
+                    if (moveInput == new Vector3(0, 0, 0))
+                    {
+                        walkingPuff.Stop();
+                        audio.Stop();
+                        if (moveSpeed >= 0.5f)
+                        {
+                            moveSpeed = moveSpeed * movingDecceleration;
+                        }
+                        if (moveSpeed <= 0.5f)
+                        {
+                            moveSpeed = 0.5f;
+                        }
+                        moveVelocity = moveVelocity * movingDecceleration;
+                    }
+                }
+            }
+            
 
             //Making a new vector3 to do rotations with joystick
             Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3RVertical");
@@ -469,7 +541,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				coopCharacterControllerThree.isFiring = false;
 			    isShooting = false;
             }
-		    if (Input.GetButtonDown("Roll3") && currentlyDodging == false && dodgeCooldown <= 0f)
+		    if (Input.GetButtonDown("Roll3") && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
 		    {
 		        dodgeDirection = moveInput;
 		        gameObject.GetComponent<ParticleSystem>().Play();
@@ -487,6 +559,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				gameObject.GetComponent<CoopCharacterHealthControllerThree>().ChangeToMatOne();
                 currentlyDodging = false;
 				canPlayerShoot = true;
+		        CanPlayerMove = true;
 		        dodgeDuration = 0.15f;
 		        dodgeCooldown = 1f;
 		    }
@@ -645,6 +718,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             gameObject.GetComponent<CoopCharacterHealthControllerThree>().InvTimer = 1f;
             moveSpeed = 0;
             canPlayerShoot = false;
+            CanPlayerMove = false;
             currentlyDodging = true;
             float step = RollSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + (currentDirection), step);
