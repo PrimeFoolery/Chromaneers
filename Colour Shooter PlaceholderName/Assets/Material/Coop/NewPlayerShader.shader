@@ -51,7 +51,7 @@
 
 	SubShader {
 		Tags { "RenderType"="Opaque" "PerformanceChecks"="False" }
-		Tags { "Queue"="Overlay+1" }
+		//Tags { "Queue"="Overlay+1" }
 		
 		Pass
 		{

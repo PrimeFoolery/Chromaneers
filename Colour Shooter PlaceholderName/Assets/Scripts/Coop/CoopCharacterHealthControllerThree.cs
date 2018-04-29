@@ -24,6 +24,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     public Slider ReviveSlider;
     public Image ReviveCircle;
     public reviveCircleRotation reviveCircleScript;
+    public GameObject Indicator;
 
     [Header("Materials")]
     public Material matOne;
@@ -66,6 +67,11 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         //ReviveSlider.transform.localPosition = SliderPos;
         ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
+
+        Vector2 indPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        indPos.x = indPos.x - 960f;
+        indPos.y = indPos.y - 540f;
+        Indicator.transform.localPosition = indPos;
 
         if (PlayerState == "Alive")
         {
