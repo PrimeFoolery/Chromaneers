@@ -52,6 +52,10 @@ public class VialController : MonoBehaviour {
     private float redFillLevel = 0;
     private float yellowFillLevel = 0;
 
+    private float blueDrainTimer = 4f;
+    private float redDrainTimer = 4f;
+    private float yellowDrainTimer = 4f;
+
     public bool VialCorrectlyFilled = false;
 
     // Use this for initialization
@@ -64,6 +68,7 @@ public class VialController : MonoBehaviour {
             VialLiquidMaterial.SetColor("_Tint",blueTintColor);
             VialLiquidMaterial.SetColor("_TopColor",blueTopColor);
             VialLiquidMaterial.SetColor("_FoamColor", blueFoamLineColor);
+	        blueFillLevel = 2;
 	    }
 	    else if (thisVialsColour == Colours.red)
 	    {
@@ -71,20 +76,24 @@ public class VialController : MonoBehaviour {
 	        VialLiquidMaterial.SetColor("_Tint", redTintColor);
 	        VialLiquidMaterial.SetColor("_TopColor", redTopColor);
 	        VialLiquidMaterial.SetColor("_FoamColor", redFoamLineColor);
-        }
+	        redFillLevel = 2;
+	    }
 	    else if (thisVialsColour == Colours.yellow)
 	    {
 	        gameObject.GetComponent<Renderer>().material = VialBaseYellow;
 	        VialLiquidMaterial.SetColor("_Tint", yellowTintColor);
 	        VialLiquidMaterial.SetColor("_TopColor", yellowTopColor);
 	        VialLiquidMaterial.SetColor("_FoamColor", yellowFoamLineColor);
-        }
+	        yellowFillLevel = 2;
+	    }
 	    else if (thisVialsColour == Colours.orange)
 	    {
 	        gameObject.GetComponent<Renderer>().material = VialBaseOrange;
 	        VialLiquidMaterial.SetColor("_Tint", orangeTintColor);
 	        VialLiquidMaterial.SetColor("_TopColor",orangeTopColor);
 	        VialLiquidMaterial.SetColor("_FoamColor", orangeFoamLineColor);
+	        yellowFillLevel = 1;
+	        redFillLevel = 1;
         }
 	    else if (thisVialsColour == Colours.green)
 	    {
@@ -92,6 +101,8 @@ public class VialController : MonoBehaviour {
 	        VialLiquidMaterial.SetColor("_Tint", greenTintColor);
 	        VialLiquidMaterial.SetColor("_TopColor", greenTopColor);
 	        VialLiquidMaterial.SetColor("_FoamColor", greenFoamLineColor);
+	        yellowFillLevel = 1;
+	        blueFillLevel = 1;
         }
 	    else if (thisVialsColour == Colours.purple)
 	    {
@@ -99,6 +110,8 @@ public class VialController : MonoBehaviour {
 	        VialLiquidMaterial.SetColor("_Tint", purpleTintColor);
 	        VialLiquidMaterial.SetColor("_TopColor", purpleTopColor);
 	        VialLiquidMaterial.SetColor("_FoamColor", purpleFoamLineColor);
+	        redFillLevel = 1;
+	        blueFillLevel = 1;
         }
     }
 	
@@ -216,7 +229,47 @@ public class VialController : MonoBehaviour {
                 VialCorrectlyFilled = true;
 	        }
         }
-    }
+
+	    if (blueFillLevel > 2 && VialCorrectlyFilled == false) 
+	    {
+	        blueDrainTimer -= Time.deltaTime;
+        }
+	    if (blueDrainTimer < 0)
+	    {
+	        if (blueFillLevel>2)
+	        {
+	            blueFillLevel -= 1;
+	        }
+
+	        blueDrainTimer = 4f;
+	    }
+	    if (redFillLevel >2 && VialCorrectlyFilled == false)
+	    {
+	        redDrainTimer -= Time.deltaTime;
+	    }
+	    if (redDrainTimer < 0)
+	    {
+	        if (redFillLevel > 2)
+	        {
+	            redFillLevel -= 1;
+	        }
+
+	        redDrainTimer = 4f;
+	    }
+	    if (yellowFillLevel > 2 && VialCorrectlyFilled == false)
+	    {
+	        yellowDrainTimer -= Time.deltaTime;
+	    }
+	    if (yellowDrainTimer < 0)
+	    {
+	        if (yellowFillLevel > 2)
+	        {
+	            yellowFillLevel -= 1;
+	        }
+
+	        yellowDrainTimer = 4f;
+	    }
+	}
 
     void OnCollisionEnter(Collision other)
     {
@@ -227,7 +280,9 @@ public class VialController : MonoBehaviour {
                 if (blueFillLevel<10)
                 {
                     blueFillLevel += 1;
+                    
                 }
+                blueDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
@@ -239,6 +294,7 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 }
+                redDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
@@ -250,6 +306,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
+                yellowDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
@@ -261,6 +318,7 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 };
+                redDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -269,6 +327,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
+                yellowDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
@@ -280,6 +339,7 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
+                blueDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -288,6 +348,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
+                yellowDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
@@ -299,6 +360,7 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
+                blueDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("RedBullet"))
@@ -307,6 +369,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
+                redDrainTimer = 4f;
                 Destroy(other.gameObject);
             }
         }
