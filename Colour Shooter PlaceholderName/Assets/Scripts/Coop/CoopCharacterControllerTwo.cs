@@ -149,6 +149,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 					    {
 					        walkingPuff.Play();
 					        walkingPuffCooldown = 0.2f;
+                            audio.Play();
                         }
 
 					    walkingPuffCooldown -= Time.deltaTime;
