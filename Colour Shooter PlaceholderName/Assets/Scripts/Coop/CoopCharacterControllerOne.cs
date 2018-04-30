@@ -17,7 +17,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     public ParticleSystem walkingPuff;
     private string tagUnderPlayer;
-    private Vector3 savedPosition;
+    private List<Vector3> savedPosition = new List<Vector3>();
+    private float floorSavingTimer = 1f;
 
     private bool currentlyDodging = false;
     private Vector3 dodgeDirection;
@@ -648,7 +649,16 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        if (floorHit.collider)
 	        {
 	            tagUnderPlayer = floorHit.collider.gameObject.tag;
-	            savedPosition = transform.position;
+	            floorSavingTimer -= Time.deltaTime;
+	            if (floorSavingTimer<0)
+	            {
+	                savedPosition.Add(transform.position);
+	                if (savedPosition.Count > 4)
+	                {
+	                    savedPosition.RemoveAt(0);
+	                }
+                    floorSavingTimer = 1;
+	            }
 	        }
 	        else
 	        {
@@ -667,7 +677,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    if (transform.position.y<=-5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
-            transform.position = savedPosition;
+            transform.position = savedPosition[0];
 	    }
 
 	}

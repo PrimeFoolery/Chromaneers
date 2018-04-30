@@ -33,7 +33,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private CoopCharacterControllerOne bluePlayer;
 
     private string tagUnderPlayer;
-    private Vector3 savedPosition;
+    private List<Vector3> savedPosition = new List<Vector3>();
+    private float floorSavingTimer = 1f;
 
     public Color redColor = Color.red;
     public Color orangeColor = new Color(1, 0.75f, 0, 1);
@@ -624,7 +625,16 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	        if (floorHit.collider)
 	        {
 	            tagUnderPlayer = floorHit.collider.gameObject.tag;
-	            savedPosition = transform.position;
+	            floorSavingTimer -= Time.deltaTime;
+	            if (floorSavingTimer < 0)
+	            {
+	                savedPosition.Add(transform.position);
+	                if (savedPosition.Count > 4)
+	                {
+	                    savedPosition.RemoveAt(0);
+	                }
+	                floorSavingTimer = 1;
+	            }
 	        }
 	        else
 	        {
@@ -639,12 +649,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
-        }
-
+	    }
 	    if (transform.position.y <= -5f)
 	    {
-            gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
-	        transform.position = savedPosition;
+	        gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
+	        transform.position = savedPosition[0];
 	    }
     }
 

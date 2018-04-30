@@ -44,7 +44,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public bool canPlayerShoot = true;
 
     private string tagUnderPlayer;
-    private Vector3 savedPosition;
+    private List<Vector3> savedPosition = new List<Vector3>();
+    private float floorSavingTimer = 1f;
 
     private float splatTimer = 0f;
     public GameObject paintBlob;
@@ -676,7 +677,16 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        if (floorHit.collider)
 	        {
 	            tagUnderPlayer = floorHit.collider.gameObject.tag;
-	            savedPosition = transform.position;
+	            floorSavingTimer -= Time.deltaTime;
+	            if (floorSavingTimer < 0)
+	            {
+	                savedPosition.Add(transform.position);
+	                if (savedPosition.Count > 4)
+	                {
+	                    savedPosition.RemoveAt(0);
+	                }
+	                floorSavingTimer = 1;
+	            }
 	        }
 	        else
 	        {
@@ -689,15 +699,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	    }
 	    if (tagUnderPlayer != "Floor")
 	    {
-            Debug.Log("Falling");
 	        transform.position = Vector3.MoveTowards(transform.position,
-	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f*Time.deltaTime);
+	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
 	    }
-
 	    if (transform.position.y <= -5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerThree>().Die();
-            transform.position = savedPosition;
+	        transform.position = savedPosition[0];
 	    }
     }
 
