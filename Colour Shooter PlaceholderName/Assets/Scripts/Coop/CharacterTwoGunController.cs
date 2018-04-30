@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterTwoGunController : MonoBehaviour {
 
@@ -39,6 +40,11 @@ public class CharacterTwoGunController : MonoBehaviour {
     public ColourSelectManager colourSelectManager;
     public CoopCharacterControllerTwo coopCharacterControllerTwo;
 
+    [Header("Controller Prompts")]
+    public Image controllerPrompt;
+    public Sprite[] controlSprite;
+    public string controlState;
+
 	private Vector3 startingPosition;
 	private Vector3 recoiledPosition;
 	private float gunRecoilSpeed = 1f;
@@ -58,9 +64,23 @@ public class CharacterTwoGunController : MonoBehaviour {
         //Getting the mainCamera from the current scene
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
+        controllerPrompt.enabled = false;
+        controlState = "Idle";
     }
 
     void Update () {
+        Vector2 ContPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        ContPos.x = ContPos.x - (Screen.width / 2);
+        ContPos.y = ContPos.y - (Screen.height / 2);
+        controllerPrompt.transform.localPosition = ContPos;
+        if(controlState == "Idle")
+        {
+            controllerPrompt.sprite = controlSprite[0];
+        }
+        if (controlState == "Blue")
+        {
+            controllerPrompt.sprite = controlSprite[1];
+        }
         //Checking whether or not the player is firing
         if (isFiring) {
             //We calculate when he shot
@@ -190,19 +210,36 @@ public class CharacterTwoGunController : MonoBehaviour {
     void OnTriggerStay (Collider theCol) {
         if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
             if (Input.GetKey(KeyCode.Joystick2Button0) || Input.GetButton("Pickup2"))
             {
                 stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                 weaponPickedUp = true;
             }
-        }
+        }        
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
             if (Input.GetKey(KeyCode.Joystick2Button0) || Input.GetButton("Pickup2"))
             {
                 stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                 weaponPickedUp = true;
             }
+        }
+    }
+    private void OnTriggerExit(Collider theCol)
+    {
+        if (theCol.gameObject.CompareTag("TrishotWeapon"))
+        {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
+        }
+        else if (theCol.gameObject.CompareTag("SniperWeapon"))
+        {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
         }
     }
 }
