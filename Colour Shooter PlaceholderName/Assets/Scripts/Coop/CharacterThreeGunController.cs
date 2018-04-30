@@ -191,8 +191,10 @@ public class CharacterThreeGunController : MonoBehaviour {
     void OnTriggerStay (Collider theCol) {
         if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
+            
             if (Input.GetKey(KeyCode.Joystick3Button0) || Input.GetButton("Pickup3"))
             {
+                
                 stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                 weaponPickedUp = true;
             }

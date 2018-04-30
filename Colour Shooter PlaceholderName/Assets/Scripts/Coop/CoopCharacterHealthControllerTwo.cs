@@ -67,15 +67,15 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     void Update()
     {
         Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
-        SliderPos.x = SliderPos.x - 960f;
-        SliderPos.y = SliderPos.y - 540f;
+        SliderPos.x = SliderPos.x - (Screen.width / 2);
+        SliderPos.y = SliderPos.y - (Screen.height / 2);
         //ReviveSlider.transform.localPosition = SliderPos;
         ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
 
         Vector2 indPos = Camera.main.WorldToScreenPoint((this.transform.position));
-        indPos.x = indPos.x - 960f;
-        indPos.y = indPos.y - 410;
+        indPos.x = indPos.x - (Screen.width / 2);
+        indPos.y = indPos.y - (Screen.height * 0.37963f);
         Indicator.transform.localPosition = indPos;
         if (IndicatorFadedOut == false)
         {
