@@ -26,6 +26,7 @@ public class CharacterThreeGunController : MonoBehaviour {
     [Range(0, 1)] public float timeBetweenShotsSniper;
     
     public CharacterOneGunController.currentWeapon stateOfWeapon;
+    private bool weaponPickedUp = false;
     
     [Header("Gun Variables")]
     public bool isFiring;
@@ -91,6 +92,18 @@ public class CharacterThreeGunController : MonoBehaviour {
             bulletSpreadWidth = Random.Range(-bulletSpreadTri, bulletSpreadTri);
         } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
+        }
+        
+        if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
+        {
+            if ((Input.GetKey(KeyCode.Joystick3Button0) || Input.GetButton("Pickup3")) && weaponPickedUp == false)
+            {
+                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+            }
+        }
+        if ((Input.GetKeyUp(KeyCode.Joystick3Button0) || Input.GetButtonUp("Pickup3")))
+        {
+            weaponPickedUp = false;
         }
     }
 
@@ -176,23 +189,21 @@ public class CharacterThreeGunController : MonoBehaviour {
     }
     
     void OnTriggerStay (Collider theCol) {
-        if (theCol.gameObject.CompareTag("TrishotWeapon") || Input.GetButton("Pickup3"))
+        if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            if (Input.GetKey(KeyCode.Joystick3Button0) || Input.GetButton("Pickup3"))
             {
                 stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                weaponPickedUp = true;
             }
         }
-        else if (theCol.gameObject.CompareTag("SniperWeapon") || Input.GetButton("Pickup3"))
+        else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            if (Input.GetKey(KeyCode.Joystick3Button0) || Input.GetButton("Pickup3"))
             {
                 stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                weaponPickedUp = true;
             }
-        }
-        else if (!theCol.gameObject.CompareTag("TrishotWeapon") && Input.GetKey(KeyCode.Joystick1Button0))
-        {
-            stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
         }
     }
 }

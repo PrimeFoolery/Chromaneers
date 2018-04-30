@@ -84,7 +84,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
                 IndicatorAlpha = Indicator.GetComponent<Image>().color.a;
                 IndicatorAlpha = Mathf.Lerp(IndicatorAlpha, 0, Time.deltaTime);
                 Indicator.GetComponent<Image>().color = new Color(1, 1, 1, IndicatorAlpha);
-                if (Indicator.GetComponent<Image>().color.a < 0.1f)
+                if (Indicator.GetComponent<Image>().color.a < 0.05f)
                 {
                     Indicator.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                     IndicatorFadedOut = true;
