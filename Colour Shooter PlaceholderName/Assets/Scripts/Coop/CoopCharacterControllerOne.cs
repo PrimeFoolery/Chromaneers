@@ -22,7 +22,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     private bool currentlyDodging = false;
     private Vector3 dodgeDirection;
-    private float dodgeDuration = 0.15f;
+    private float dodgeDuration = 0.225f;
     public float RollSpeed;
     private float dodgeCooldown = 0f;
 
@@ -278,7 +278,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerMove = true;
 				canPlayerShoot = true;
-                dodgeDuration = 0.15f;
+                dodgeDuration = 0.225f;
                 dodgeCooldown = 1f;
             }
 
@@ -530,7 +530,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerShoot = true;
 				canPlayerMove = true;
-		        dodgeDuration = 0.15f;
+		        dodgeDuration = 0.225f;
 		        dodgeCooldown = 1f;
             }
 		    if (currentlyDodging == false)
