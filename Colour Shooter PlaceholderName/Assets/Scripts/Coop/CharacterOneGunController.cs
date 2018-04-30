@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterOneGunController : MonoBehaviour {
 
@@ -41,6 +42,11 @@ public class CharacterOneGunController : MonoBehaviour {
     public ColourSelectManager colourSelectManager;
     public CoopCharacterControllerOne coopCharacterControllerOne;
 
+    [Header("Controller Prompts")]
+    public Image controllerPrompt;
+    public Sprite[] controlSprite;
+    public string controlState;
+
 
     private Vector3 startingPosition;
 	private Vector3 recoiledPosition;
@@ -61,10 +67,22 @@ public class CharacterOneGunController : MonoBehaviour {
         //Getting the mainCamera from the current scene
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
+        controllerPrompt.enabled = false;
     }
 
     void Update () {
-
+        Vector2 ContPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        ContPos.x = ContPos.x - (Screen.width / 2);
+        ContPos.y = ContPos.y - (Screen.height / 2);
+        controllerPrompt.transform.localPosition = ContPos;
+        if (controlState == "Idle")
+        {
+            controllerPrompt.sprite = controlSprite[0];
+        }
+        if (controlState == "Blue")
+        {
+            controllerPrompt.sprite = controlSprite[1];
+        }
         //Checking whether or not the player is firing
         if (isFiring) {
             //We calculate when he shot
@@ -193,6 +211,8 @@ public class CharacterOneGunController : MonoBehaviour {
     void OnTriggerStay (Collider theCol) {
         if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
             if (Input.GetKey(KeyCode.Joystick1Button0) || Input.GetButton("Pickup1"))
             {
                 stateOfWeapon = currentWeapon.TrishotWeapon;
@@ -201,11 +221,26 @@ public class CharacterOneGunController : MonoBehaviour {
         }
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
             if (Input.GetKey(KeyCode.Joystick1Button0) || Input.GetButton("Pickup1"))
             {
                 stateOfWeapon = currentWeapon.SniperWeapon;
                 weaponPickedUp = true;
             }
+        }
+    }
+    private void OnTriggerExit(Collider theCol)
+    {
+        if (theCol.gameObject.CompareTag("TrishotWeapon"))
+        {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
+        }
+        else if (theCol.gameObject.CompareTag("SniperWeapon"))
+        {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
         }
     }
 }
