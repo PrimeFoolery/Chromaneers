@@ -170,12 +170,12 @@ public class CharacterOneGunController : MonoBehaviour {
     void OnTriggerStay (Collider theCol) {
         if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            if (Input.GetKey(KeyCode.Joystick1Button0) || Input.GetButton("Pickup1"))
             {
                 stateOfWeapon = currentWeapon.TrishotWeapon;
             }
         }
-        else if (theCol.gameObject.CompareTag("SniperWeapon"))
+        else if (theCol.gameObject.CompareTag("SniperWeapon") || Input.GetButton("Pickup1"))
         {
             if (Input.GetKey(KeyCode.Joystick1Button0))
             {

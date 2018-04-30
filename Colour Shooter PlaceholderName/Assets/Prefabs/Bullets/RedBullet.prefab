@@ -55,6 +55,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -70,6 +71,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -204,6 +206,7 @@ TrailRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -219,6 +222,7 @@ TrailRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -296,10 +300,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d9c08c38af5e64f83b1475518d47ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 11
+  speedOriginal: 15
+  speedTri: 8
+  speedSniper: 50
   deceleration: 0.995
   bulletLifeTime: 2
   reboundBulletLifeTime: 0.4
   bulletDamage: 1
   paint: {fileID: 0}
   paintLifeTime: 0
+  colourSelectManager: {fileID: 0}
+  characterOneGunController: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
+    type: 2}
+  currentWeapon: 0
