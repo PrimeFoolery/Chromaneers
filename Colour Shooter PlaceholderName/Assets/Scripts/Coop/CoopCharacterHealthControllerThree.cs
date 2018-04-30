@@ -33,6 +33,11 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     public float duration;
     public Renderer rend;
 
+
+    private float IndicatorTimer = 3f;
+    private float IndicatorAlpha;
+    private bool IndicatorFadedOut = false;
+
     [Header("UI")]
     public Text currentHP;
 
@@ -67,11 +72,25 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
         //ReviveSlider.transform.localPosition = SliderPos;
         ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
-
         Vector2 indPos = Camera.main.WorldToScreenPoint((this.transform.position));
         indPos.x = indPos.x - 960f;
-        indPos.y = indPos.y - 540f;
+        indPos.y = indPos.y - 410;
         Indicator.transform.localPosition = indPos;
+        if (IndicatorFadedOut == false)
+        {
+            IndicatorTimer -= Time.deltaTime;
+            if (IndicatorTimer < 0)
+            {
+                IndicatorAlpha = Indicator.GetComponent<Image>().color.a;
+                IndicatorAlpha = Mathf.Lerp(IndicatorAlpha, 0, Time.deltaTime);
+                Indicator.GetComponent<Image>().color = new Color(1, 1, 1, IndicatorAlpha);
+                if (Indicator.GetComponent<Image>().color.a < 0.1f)
+                {
+                    Indicator.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    IndicatorFadedOut = true;
+                }
+            }
+        }
 
         if (PlayerState == "Alive")
         {

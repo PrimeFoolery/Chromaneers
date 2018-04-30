@@ -41,6 +41,11 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     //Private variables
     private int currentHealth;
 
+
+    private float IndicatorTimer = 3f;
+    private float IndicatorAlpha;
+    private bool IndicatorFadedOut = false;
+
     void Start()
     {
         //ReviveSlider.gameObject.SetActive(false);
@@ -70,8 +75,23 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
         Vector2 indPos = Camera.main.WorldToScreenPoint((this.transform.position));
         indPos.x = indPos.x - 960f;
-        indPos.y = indPos.y - 540f;
+        indPos.y = indPos.y - 410;
         Indicator.transform.localPosition = indPos;
+        if (IndicatorFadedOut == false)
+        {
+            IndicatorTimer -= Time.deltaTime;
+            if (IndicatorTimer < 0)
+            {
+                IndicatorAlpha = Indicator.GetComponent<Image>().color.a;
+                IndicatorAlpha = Mathf.Lerp(IndicatorAlpha, 0, Time.deltaTime);
+                Indicator.GetComponent<Image>().color = new Color(1, 1, 1, IndicatorAlpha);
+                if (Indicator.GetComponent<Image>().color.a < 0.1f)
+                {
+                    Indicator.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    IndicatorFadedOut = true;
+                }
+            }
+        }
 
         if (PlayerState == "Alive")
         {
