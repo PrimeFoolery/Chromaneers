@@ -37,11 +37,11 @@ public class chestController : MonoBehaviour
             
             if (thisChestsWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
             {
-                Instantiate(trishotPickup, new Vector3(chestLid.transform.position.x, chestLid.transform.position.y - 1f, chestLid.transform.position.z), Quaternion.identity);
+                Instantiate(trishotPickup, new Vector3(chestLid.transform.position.x, chestLid.transform.position.y - 2.5f, chestLid.transform.position.z), Quaternion.identity);
             } else
             if (thisChestsWeapon == CharacterOneGunController.currentWeapon.SniperWeapon)
             {
-                Instantiate(sniperPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-1f, chestLid.transform.position.z), Quaternion.identity);
+                Instantiate(sniperPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-2.5f, chestLid.transform.position.z), Quaternion.identity);
             }
             Destroy(chestBase.gameObject);
             Destroy(chestLid.gameObject);

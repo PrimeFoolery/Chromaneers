@@ -33,6 +33,11 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     public float duration;
     public Renderer rend;
 
+
+    private float IndicatorTimer = 3f;
+    private float IndicatorAlpha;
+    private bool IndicatorFadedOut = false;
+
     [Header("UI")]
     public Text currentHP;
 
@@ -62,16 +67,30 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     void Update()
     {
         Vector2 SliderPos = Camera.main.WorldToScreenPoint((this.transform.position));
-        SliderPos.x = SliderPos.x - 960f;
-        SliderPos.y = SliderPos.y - 540f;
+        SliderPos.x = SliderPos.x - (Screen.width / 2);
+        SliderPos.y = SliderPos.y - (Screen.height / 2);
         //ReviveSlider.transform.localPosition = SliderPos;
         ReviveCircle.transform.localPosition = SliderPos;
         HealthBarUI.sprite = HeartSprites[currentHealth];
-
         Vector2 indPos = Camera.main.WorldToScreenPoint((this.transform.position));
-        indPos.x = indPos.x - 960f;
-        indPos.y = indPos.y - 540f;
+        indPos.x = indPos.x - (Screen.width / 2);
+        indPos.y = indPos.y - (Screen.height * 0.37963f);
         Indicator.transform.localPosition = indPos;
+        if (IndicatorFadedOut == false)
+        {
+            IndicatorTimer -= Time.deltaTime;
+            if (IndicatorTimer < 0)
+            {
+                IndicatorAlpha = Indicator.GetComponent<Image>().color.a;
+                IndicatorAlpha = Mathf.Lerp(IndicatorAlpha, 0, Time.deltaTime);
+                Indicator.GetComponent<Image>().color = new Color(1, 1, 1, IndicatorAlpha);
+                if (Indicator.GetComponent<Image>().color.a < 0.05f)
+                {
+                    Indicator.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    IndicatorFadedOut = true;
+                }
+            }
+        }
 
         if (PlayerState == "Alive")
         {

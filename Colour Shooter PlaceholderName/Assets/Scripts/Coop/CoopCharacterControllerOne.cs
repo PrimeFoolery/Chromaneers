@@ -17,11 +17,12 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     public ParticleSystem walkingPuff;
     private string tagUnderPlayer;
-    private Vector3 savedPosition;
+    private List<Vector3> savedPosition = new List<Vector3>();
+    private float floorSavingTimer = 1f;
 
     private bool currentlyDodging = false;
     private Vector3 dodgeDirection;
-    private float dodgeDuration = 0.15f;
+    private float dodgeDuration = 0.325f;
     public float RollSpeed;
     private float dodgeCooldown = 0f;
 
@@ -277,7 +278,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerMove = true;
 				canPlayerShoot = true;
-                dodgeDuration = 0.15f;
+                dodgeDuration = 0.325f;
                 dodgeCooldown = 1f;
             }
 
@@ -529,7 +530,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerShoot = true;
 				canPlayerMove = true;
-		        dodgeDuration = 0.15f;
+		        dodgeDuration = 0.325f;
 		        dodgeCooldown = 1f;
             }
 		    if (currentlyDodging == false)
@@ -648,7 +649,16 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        if (floorHit.collider)
 	        {
 	            tagUnderPlayer = floorHit.collider.gameObject.tag;
-	            savedPosition = transform.position;
+	            floorSavingTimer -= Time.deltaTime;
+	            if (floorSavingTimer<0)
+	            {
+	                savedPosition.Add(transform.position);
+	                if (savedPosition.Count > 4)
+	                {
+	                    savedPosition.RemoveAt(0);
+	                }
+                    floorSavingTimer = 1;
+	            }
 	        }
 	        else
 	        {
@@ -667,15 +677,27 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    if (transform.position.y<=-5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
-            transform.position = savedPosition;
+            transform.position = savedPosition[0];
 	    }
 
 	}
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
-		//Debug.Log("Velocity before applying: "+moveVelocity);
+		Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
+	    if (moveVelocity.x <= 0.01f && moveVelocity.x >= -0.01f)
+	    {
+		    moveVelocity.x = 0f;
+	    }
+	    if (moveVelocity.y <= 0.01f && moveVelocity.y >= -0.01f)
+	    {
+		    moveVelocity.y = 0f;
+	    }
+	    if (moveVelocity.z <= 0.01f && moveVelocity.z >= -0.01f)
+	    {
+		    moveVelocity.z = 0f;
+	    }
     }
 
     public void Knockback(Vector3 bulletPosition)

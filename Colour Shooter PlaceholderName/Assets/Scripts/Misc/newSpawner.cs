@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class newSpawner : MonoBehaviour
@@ -65,295 +66,305 @@ public class newSpawner : MonoBehaviour
 
     public void SpawnEnemies(List<enemyTypes> EnemiesToSpawn)
     {
-        foreach (enemyTypes enemy in EnemiesToSpawn)
+        if (haveAllEnemiesSpawned==false)
         {
-            if (enemy == enemyTypes.StandardBlue)
+            foreach (enemyTypes enemy in EnemiesToSpawn)
             {
-                tempEnemy = Instantiate(BlueEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                if (enemy == enemyTypes.StandardBlue)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(BlueEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            } else if (enemy == enemyTypes.StandardRed)
-            {
-                tempEnemy = Instantiate(RedEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                else if (enemy == enemyTypes.StandardRed)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(RedEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            }
-            else if (enemy == enemyTypes.StandardYellow)
-            {
-                tempEnemy = Instantiate(YellowEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                else if (enemy == enemyTypes.StandardYellow)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(YellowEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            }
-            else if (enemy == enemyTypes.StandardPurple)
-            {
-                tempEnemy = Instantiate(PurpleEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                else if (enemy == enemyTypes.StandardPurple)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(PurpleEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            }
-            else if (enemy == enemyTypes.StandardOrange)
-            {
-                tempEnemy = Instantiate(OrangeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                else if (enemy == enemyTypes.StandardOrange)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(OrangeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            }
-            else if (enemy == enemyTypes.StandardGreen)
-            {
-                tempEnemy = Instantiate(GreenEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
-                if (tempStandardEnemyBehaviour != null)
+                else if (enemy == enemyTypes.StandardGreen)
                 {
-                    tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(GreenEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempStandardEnemyBehaviour = tempEnemy.GetComponent<StandardEnemyBehaviour>();
+                    if (tempStandardEnemyBehaviour != null)
+                    {
+                        tempStandardEnemyBehaviour.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempStandardEnemyBehaviour = null;
                 }
-                tempEnemy = null;
-                tempStandardEnemyBehaviour = null;
-            }
-            else if (enemy == enemyTypes.Spider)
-            {
-                tempEnemy = Instantiate(SpiderEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
-                if (tempSpiderEnemyController != null)
+                else if (enemy == enemyTypes.Spider)
                 {
-                    tempSpiderEnemyController.thisEnemiesSpawnPoint = this.gameObject;
+                    tempEnemy = Instantiate(SpiderEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempSpiderEnemyController = tempEnemy.GetComponentInChildren<SpiderEnemyController>();
+                    if (tempSpiderEnemyController != null)
+                    {
+                        tempSpiderEnemyController.thisEnemiesSpawnPoint = this.gameObject;
+                    }
+                    tempEnemy = null;
+                    tempSpiderEnemyController = null;
                 }
-                tempEnemy = null;
-                tempSpiderEnemyController = null;
-            }
-            else if (enemy == enemyTypes.SnakeRed)
-            {
-                tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempSnakeEnemyScript.ChangeToRed();
-                
-                if (tempSnakeEnemyScript != null)
+                else if (enemy == enemyTypes.SnakeRed)
                 {
-                    tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempSnakeEnemyScript.ChangeToRed();
+
+                    if (tempSnakeEnemyScript != null)
+                    {
+                        tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempSnakeEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempSnakeEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.SnakeBlue)
-            {
-                tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempSnakeEnemyScript.ChangeToBlue();
-                if (tempSnakeEnemyScript != null)
+                else if (enemy == enemyTypes.SnakeBlue)
                 {
-                    tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempSnakeEnemyScript.ChangeToBlue();
+                    if (tempSnakeEnemyScript != null)
+                    {
+                        tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempSnakeEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempSnakeEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.SnakeYellow)
-            {
-                tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempSnakeEnemyScript.ChangeToYellow();
-                tempEnemy = null;
-                tempSnakeEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.SnakeMAXRANDOM)
-            {
-                tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempEnemy.transform.GetChild(0).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                tempEnemy.transform.GetChild(1).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                tempEnemy.transform.GetChild(2).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                tempEnemy.transform.GetChild(3).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                tempEnemy.transform.GetChild(4).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                tempEnemy.transform.GetChild(5).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
-                if (tempSnakeEnemyScript != null)
+                else if (enemy == enemyTypes.SnakeYellow)
                 {
-                    tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempSnakeEnemyScript.ChangeToYellow();
+                    tempEnemy = null;
+                    tempSnakeEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempSnakeEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.SnakePartialRandom)
-            {
-                tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                tempSnakeEnemyScript.RandomAllSameColour();
-                if (tempSnakeEnemyScript != null)
+                else if (enemy == enemyTypes.SnakeMAXRANDOM)
                 {
-                    tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempEnemy.transform.GetChild(0).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    tempEnemy.transform.GetChild(1).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    tempEnemy.transform.GetChild(2).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    tempEnemy.transform.GetChild(3).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    tempEnemy.transform.GetChild(4).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    tempEnemy.transform.GetChild(5).gameObject.GetComponent<SnakeEnemyScript>().MaxRandom();
+                    if (tempSnakeEnemyScript != null)
+                    {
+                        tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempSnakeEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempSnakeEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.FastEnemyBlue)
-            {
-                tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
-                tempFastEnemyScript.colourOverride = true;
-                tempFastEnemyScript.randomColour = 1;
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                if (tempFastEnemyScript != null)
+                else if (enemy == enemyTypes.SnakePartialRandom)
                 {
-                    tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(SnakeEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempSnakeEnemyScript = tempEnemy.GetComponentInChildren<SnakeEnemyScript>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(0).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(1).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(2).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(3).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(4).gameObject);
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy.transform.GetChild(5).gameObject);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    tempSnakeEnemyScript.RandomAllSameColour();
+                    if (tempSnakeEnemyScript != null)
+                    {
+                        tempSnakeEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempSnakeEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempFastEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.FastEnemyRandom)
-            {
-                tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                if (tempFastEnemyScript != null)
+                else if (enemy == enemyTypes.FastEnemyBlue)
                 {
-                    tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                    tempFastEnemyScript.colourOverride = true;
+                    tempFastEnemyScript.randomColour = 1;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempFastEnemyScript != null)
+                    {
+                        tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempFastEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.FastEnemyRed)
-            {
-                tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
-                tempFastEnemyScript.colourOverride = true;
-                tempFastEnemyScript.randomColour = 2;
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                if (tempFastEnemyScript != null)
+                else if (enemy == enemyTypes.FastEnemyRandom)
                 {
-                    tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempFastEnemyScript != null)
+                    {
+                        tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempFastEnemyScript = null;
-            }
-            else if (enemy == enemyTypes.FastEnemyYellow)
-            {
-                tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
-                tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
-                tempFastEnemyScript.colourOverride = true;
-                tempFastEnemyScript.randomColour = 3;
-                enemyManagerScript.AddExtraBoolToProjectorsScript();
-                enemyManagerScript.enemyList.Add(tempEnemy);
-                ThisSpawnpointsEnemyList.Add(tempEnemy);
-                if (tempFastEnemyScript != null)
+                else if (enemy == enemyTypes.FastEnemyRed)
                 {
-                    tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                    tempFastEnemyScript.colourOverride = true;
+                    tempFastEnemyScript.randomColour = 2;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempFastEnemyScript != null)
+                    {
+                        tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
                 }
-                tempEnemy = null;
-                tempFastEnemyScript = null;
+                else if (enemy == enemyTypes.FastEnemyYellow)
+                {
+                    tempEnemy = Instantiate(FastEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempFastEnemyScript = tempEnemy.GetComponent<FastEnemy>();
+                    tempFastEnemyScript.colourOverride = true;
+                    tempFastEnemyScript.randomColour = 3;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempFastEnemyScript != null)
+                    {
+                        tempFastEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
+                }
             }
+
+            //haveAllEnemiesSpawned = true;
+        } else if (haveAllEnemiesSpawned==true)
+        {
+            //haveAllEnemiesSpawned = false;
         }
+        
     }
 
     public void ToggleAggro()
@@ -380,6 +391,43 @@ public class newSpawner : MonoBehaviour
             if (enemy.GetComponent<FastEnemy>() != null)
             {
                 enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
+            }
+
+        }
+    }
+
+    public void PurgeEnemies()
+    {
+        foreach (GameObject enemy in ThisSpawnpointsEnemyList.ToList())
+        {
+            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+
+            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+            if (enemy.GetComponentsInChildren<SnakeEnemyScript>() != null)
+            {
+                foreach (SnakeEnemyScript enemySnake in enemy.GetComponentsInChildren<SnakeEnemyScript>())
+                {
+                    enemyManagerScript.enemyList.Remove(enemySnake.gameObject);
+                    ThisSpawnpointsEnemyList.Remove(enemySnake.gameObject);
+                    Destroy(enemySnake.gameObject);
+                }
+            }
+
+            if (enemy.GetComponent<FastEnemy>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
             }
 
         }

@@ -22,6 +22,7 @@ public class TextTriggerScript : MonoBehaviour {
     public float fadeTime = 2f;
     private bool hasTextFaded = false;
 	private bool hasTextHappened = false;
+    private bool stop = false;
 
     private Color lerpedColour = new Color(0,0,0,0);
     private Color startingBoxColour = new Color(0,0,0,0);
@@ -54,8 +55,17 @@ public class TextTriggerScript : MonoBehaviour {
 	        textBackdrop.GetComponent<Image>().color = lerpedColour;
 	        if (lerpedColour.a<0.05f)
 	        {
+
 	            hasTextFaded = true;
+
 	        }
+	    }
+
+	    if (hasTextFaded == true&&stop==false)
+	    {
+
+            textBackdrop.GetComponent<Image>().color = new Color(lerpedColour.r, lerpedColour.g, lerpedColour.b, 0);
+	        stop = true;
 	    }
 		if (fadeTextIn==true&&hasTextHappened==false)
 	    {

@@ -21,7 +21,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 
     private bool currentlyDodging = false;
     private Vector3 dodgeDirection;
-    private float dodgeDuration = 0.15f;
+    private float dodgeDuration = 0.325f;
     public float RollSpeed;
     private float dodgeCooldown = 0f;
     public Slider dodgeSlider;
@@ -33,7 +33,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private CoopCharacterControllerOne bluePlayer;
 
     private string tagUnderPlayer;
-    private Vector3 savedPosition;
+    private List<Vector3> savedPosition = new List<Vector3>();
+    private float floorSavingTimer = 1f;
 
     public Color redColor = Color.red;
     public Color orangeColor = new Color(1, 0.75f, 0, 1);
@@ -266,7 +267,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerMove = true;
 				canPlayerShoot = true;
-                dodgeDuration = 0.15f;
+                dodgeDuration = 0.325f;
                 dodgeCooldown = 1f;
             }
 
@@ -509,7 +510,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                 currentlyDodging = false;
 				canPlayerMove = true;
 				canPlayerShoot = true;
-		        dodgeDuration = 0.15f;
+		        dodgeDuration = 0.325f;
 		        dodgeCooldown = 1f;
 		    }
 		    if (currentlyDodging == false)
@@ -624,7 +625,16 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	        if (floorHit.collider)
 	        {
 	            tagUnderPlayer = floorHit.collider.gameObject.tag;
-	            savedPosition = transform.position;
+	            floorSavingTimer -= Time.deltaTime;
+	            if (floorSavingTimer < 0)
+	            {
+	                savedPosition.Add(transform.position);
+	                if (savedPosition.Count > 4)
+	                {
+	                    savedPosition.RemoveAt(0);
+	                }
+	                floorSavingTimer = 1;
+	            }
 	        }
 	        else
 	        {
@@ -639,12 +649,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
-        }
-
+	    }
 	    if (transform.position.y <= -5f)
 	    {
-            gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
-	        transform.position = savedPosition;
+	        gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
+	        transform.position = savedPosition[0];
 	    }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterOneGunController : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class CharacterOneGunController : MonoBehaviour {
 
     public enum currentWeapon { OriginalWeapon, TrishotWeapon, SniperWeapon }
     public currentWeapon stateOfWeapon;
+    private bool weaponPickedUp = false;
 
     [Header("Gun Variables")]
     public bool isFiring;
@@ -39,6 +41,11 @@ public class CharacterOneGunController : MonoBehaviour {
     [Header("Script References")]
     public ColourSelectManager colourSelectManager;
     public CoopCharacterControllerOne coopCharacterControllerOne;
+
+    [Header("Controller Prompts")]
+    public Image controllerPrompt;
+    public Sprite[] controlSprite;
+    public string controlState;
 
 
     private Vector3 startingPosition;
@@ -60,10 +67,22 @@ public class CharacterOneGunController : MonoBehaviour {
         //Getting the mainCamera from the current scene
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
+        controllerPrompt.enabled = false;
     }
 
     void Update () {
-
+        Vector2 ContPos = Camera.main.WorldToScreenPoint((this.transform.position));
+        ContPos.x = ContPos.x - (Screen.width / 2);
+        ContPos.y = ContPos.y - (Screen.height * 0.37963f);
+        controllerPrompt.transform.localPosition = ContPos;
+        if (controlState == "Idle")
+        {
+            controllerPrompt.sprite = controlSprite[0];
+        }
+        if (controlState == "Blue")
+        {
+            controllerPrompt.sprite = controlSprite[1];
+        }
         //Checking whether or not the player is firing
         if (isFiring) {
             //We calculate when he shot
@@ -95,6 +114,41 @@ public class CharacterOneGunController : MonoBehaviour {
         } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
         }
+
+        if (stateOfWeapon == currentWeapon.SniperWeapon || stateOfWeapon == currentWeapon.TrishotWeapon)
+        {
+            if (coopCharacterControllerOne.usingXboxController ==false)
+            {
+                if ((Input.GetKey(KeyCode.Joystick1Button0)) && weaponPickedUp == false)
+                {
+                    stateOfWeapon = currentWeapon.OriginalWeapon;
+                }
+            } else
+            if (coopCharacterControllerOne.usingXboxController ==true)
+            {
+                if ((Input.GetButton("Pickup1")) && weaponPickedUp == false)
+                {
+                    stateOfWeapon = currentWeapon.OriginalWeapon;
+                }
+            }
+            
+        }
+
+        if (coopCharacterControllerOne.usingXboxController ==false)
+        {
+            if (( Input.GetButtonUp("Pickup1")))
+            {
+                weaponPickedUp = false;
+            }
+        } else
+        if (coopCharacterControllerOne.usingXboxController ==true)
+        {
+            if ((Input.GetKeyUp(KeyCode.Joystick1Button0)))
+            {
+                weaponPickedUp = false;
+            }
+        }
+        
     }
 
     //Function that handles the bullets and which ones to instantiate
@@ -151,15 +205,25 @@ public class CharacterOneGunController : MonoBehaviour {
                 //Finally gives a rotation to the bullet to give a bulletSpread affect
 				transform.localPosition = recoiledPosition;
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
-                if (stateOfWeapon == currentWeapon.OriginalWeapon) {
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
-                } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
-                } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
-                }
+			    if (stateOfWeapon == currentWeapon.OriginalWeapon) {
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.OriginalWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedOriginal = bulletSpeedOriginal;
+			    } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			    } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.SniperWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedSniper = bulletSpeedSniper;
+			    }
                 mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
                 this.GetComponent<AudioSource>().Play();
@@ -170,21 +234,58 @@ public class CharacterOneGunController : MonoBehaviour {
     void OnTriggerStay (Collider theCol) {
         if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
+            if (coopCharacterControllerOne.usingXboxController==false)
             {
-                stateOfWeapon = currentWeapon.TrishotWeapon;
+                if (Input.GetKey(KeyCode.Joystick1Button0))
+                {
+                    stateOfWeapon = currentWeapon.TrishotWeapon;
+                    weaponPickedUp = true;
+                }
+            } else 
+            if (coopCharacterControllerOne.usingXboxController==true)
+            {
+                if (Input.GetButton("Pickup1"))
+                {
+                    stateOfWeapon = currentWeapon.TrishotWeapon;
+                    weaponPickedUp = true;
+                }
             }
         }
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
+            if (coopCharacterControllerOne.usingXboxController==false)
             {
-                stateOfWeapon = currentWeapon.SniperWeapon;
+                if (Input.GetKey(KeyCode.Joystick1Button0))
+                {
+                    stateOfWeapon = currentWeapon.SniperWeapon;
+                    weaponPickedUp = true;
+                }
+            } else 
+            if (coopCharacterControllerOne.usingXboxController==true)
+            {
+                if (Input.GetButton("Pickup1"))
+                {
+                    stateOfWeapon = currentWeapon.SniperWeapon;
+                    weaponPickedUp = true;
+                }
             }
         }
-        else if (!theCol.gameObject.CompareTag("TrishotWeapon") && Input.GetKey(KeyCode.Joystick1Button0))
+    }
+    private void OnTriggerExit(Collider theCol)
+    {
+        if (theCol.gameObject.CompareTag("TrishotWeapon"))
         {
-            stateOfWeapon = currentWeapon.OriginalWeapon;
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
+        }
+        else if (theCol.gameObject.CompareTag("SniperWeapon"))
+        {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
         }
     }
 }

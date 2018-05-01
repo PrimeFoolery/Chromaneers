@@ -6,7 +6,9 @@ using UnityEngine;
 public class RedBulletController : MonoBehaviour {
 
     [Header("Bullet variables")]
-    public float speed;
+	[Range(0, 50)] public float speedOriginal;
+	[Range(0, 50)] public float speedTri;
+	[Range(0, 50)] public float speedSniper;
     public float deceleration;
     public float bulletLifeTime;
     public float reboundBulletLifeTime;
@@ -18,15 +20,19 @@ public class RedBulletController : MonoBehaviour {
     [Header("Misc")]
     public GameObject paint;
     public float paintLifeTime;
+	private GameObject bullet;
+	public ColourSelectManager colourSelectManager;
+	public CharacterOneGunController characterOneGunController;
 
     enum bulletState
     {
         normalBullet,
         reboundBullet
-    };
-
+    }
     private bulletState stateOfBullet;
     
+	public CharacterOneGunController.currentWeapon currentWeapon;
+	
     //Private variables
     Vector3 previousBulletPosition;
 
@@ -47,26 +53,40 @@ public class RedBulletController : MonoBehaviour {
         //Setting previous button position to the new updated position
         previousBulletPosition = transform.position;
 
-        if (stateOfBullet == bulletState.normalBullet)
-        {
-            //Moving the bullet
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            speed = speed * deceleration;
-            
-            //Bullets lifeTime
-            bulletLifeTime -= Time.deltaTime;
-            //Destroying the bullet after its time has reached 0
-            if (bulletLifeTime <= 0) {
-                Destroy(gameObject);
-            }
-        }
+	    if (stateOfBullet == bulletState.normalBullet) {
+		    //Moving the bullet
+		    if (currentWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
+			    transform.Translate(Vector3.forward * speedOriginal * Time.deltaTime);
+			    speedOriginal = speedOriginal * deceleration;
+		    } else if (currentWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+			    transform.Translate(Vector3.forward * speedTri * Time.deltaTime);
+			    speedTri = speedTri * deceleration;
+		    } else if (currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
+			    transform.Translate(Vector3.forward * speedSniper * Time.deltaTime);
+			    speedSniper = speedSniper * deceleration;
+		    }
+
+		    //Bullets lifeTime
+		    bulletLifeTime -= Time.deltaTime;
+		    //Destroying the bullet after its time has reached 0
+		    if (bulletLifeTime <= 0) {
+			    Destroy(gameObject);
+		    }
+	    }
 
         if (stateOfBullet == bulletState.reboundBullet)
         {
             //Rebound the bullet
-            transform.Translate(((Vector3.back * 0.8f * speed) + (Vector3.up * 0.2f * speed)) * Time.deltaTime);
-            
-            speed = speed * deceleration;
+	        if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
+		        transform.Translate(((Vector3.back * 0.8f * speedOriginal) + (Vector3.up * 0.2f * speedOriginal)) * Time.deltaTime);
+		        speedOriginal = speedOriginal * deceleration;
+	        } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+		        transform.Translate(((Vector3.back * 0.8f * speedTri) + (Vector3.up * 0.2f * speedTri)) * Time.deltaTime);
+		        speedTri = speedTri * deceleration;
+	        } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
+		        transform.Translate(((Vector3.back * 0.8f * speedSniper) + (Vector3.up * 0.2f * speedSniper)) * Time.deltaTime);
+		        speedSniper = speedSniper * deceleration;
+	        }
             
             //Bullets lifeTime
             reboundBulletLifeTime -= Time.deltaTime;
