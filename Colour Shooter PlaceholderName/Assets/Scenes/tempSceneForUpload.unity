@@ -325,6 +325,91 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f94abad98a5269e478c3ce6ad852550d, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &14350952 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1387481424639414, guid: 97a0c0879334eee468ffca584e17e832,
+    type: 2}
+  m_PrefabInternal: {fileID: 2120964171}
+--- !u!82 &14350953
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 14350952}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eb35349d06f1fe34a8bf6b46eb662c8b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &20820259
 GameObject:
   m_ObjectHideFlags: 0
@@ -10507,11 +10592,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -84.55675
@@ -10574,46 +10654,11 @@ Prefab:
       propertyPath: dodgeSlider
       value: 
       objectReference: {fileID: 1197544568}
-    - target: {fileID: 54031898343618478, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1e+9
-      objectReference: {fileID: 0}
     - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
         type: 2}
       propertyPath: controllerPrompt
       value: 
       objectReference: {fileID: 1139952632}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a5cfbc230a75ba45b66aae5a7c44fd7,
-        type: 3}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: bb9d8aec915b2a948b4503e7884e7601,
-        type: 3}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 30242570d74a8a4428ead1ece98c5fe5,
-        type: 3}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9ff4adb5cddede7468a329b94ac750c6,
-        type: 3}
-    - target: {fileID: 114688111762235096, guid: 91e46474f1e38d2429c7de4a09526859,
-        type: 2}
-      propertyPath: controlSprite.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: 395bdc342efe5c345b83e24097823947,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -13606,11 +13651,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -89.406746
@@ -13673,46 +13713,11 @@ Prefab:
       propertyPath: dodgeSlider
       value: 
       objectReference: {fileID: 1701256053}
-    - target: {fileID: 54031898343618478, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1e+9
-      objectReference: {fileID: 0}
     - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
         type: 2}
       propertyPath: controllerPrompt
       value: 
       objectReference: {fileID: 1643961676}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a5cfbc230a75ba45b66aae5a7c44fd7,
-        type: 3}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: bb9d8aec915b2a948b4503e7884e7601,
-        type: 3}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 30242570d74a8a4428ead1ece98c5fe5,
-        type: 3}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9ff4adb5cddede7468a329b94ac750c6,
-        type: 3}
-    - target: {fileID: 114684548014191590, guid: cc9082562e65e2140bac760c1e57fcc1,
-        type: 2}
-      propertyPath: controlSprite.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: 395bdc342efe5c345b83e24097823947,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -28864,11 +28869,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4567070725868736, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
       propertyPath: m_LocalPosition.x
       value: -94.546745
@@ -28931,51 +28931,11 @@ Prefab:
       propertyPath: Indicator
       value: 
       objectReference: {fileID: 1512128271}
-    - target: {fileID: 54031898343618478, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: m_Mass
-      value: 1e+9
-      objectReference: {fileID: 0}
-    - target: {fileID: 54031898343618478, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
         type: 2}
       propertyPath: controllerPrompt
       value: 
       objectReference: {fileID: 1789713800}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 0a5cfbc230a75ba45b66aae5a7c44fd7,
-        type: 3}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: bb9d8aec915b2a948b4503e7884e7601,
-        type: 3}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 30242570d74a8a4428ead1ece98c5fe5,
-        type: 3}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9ff4adb5cddede7468a329b94ac750c6,
-        type: 3}
-    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
-        type: 2}
-      propertyPath: controlSprite.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: 395bdc342efe5c345b83e24097823947,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
