@@ -140,7 +140,7 @@ MonoBehaviour:
         linear:
           lift: {r: 0.65026927, g: 0.81304544, b: 1, a: 0}
           gamma: {r: 0.7312522, g: 1, b: 0.8144577, a: 0}
-          gain: {r: 0.97309387, g: 0.73641443, b: 1, a: 0}
+          gain: {r: 0.9471855, g: 0.5911647, b: 1, a: 0}
       curves:
         master:
           curve:
@@ -293,13 +293,13 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.45
-      smoothness: 0.2
+      intensity: 0.3
+      smoothness: 0.4
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
