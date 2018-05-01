@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 23313288006142720}
   - component: {fileID: 114684548014191590}
   - component: {fileID: 82732855373899344}
+  - component: {fileID: 54098094232702478}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -249,7 +250,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -74.76, y: 1.367, z: -138}
+  m_LocalPosition: {x: -89.406746, y: 1.367, z: -152.76999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4972167239279580}
@@ -383,8 +384,23 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!54 &54098094232702478
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999543679534352}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &65212485958609286
 BoxCollider:
@@ -608,8 +624,8 @@ MonoBehaviour:
   movingAcceleration: 1.1
   movingDecceleration: 0.8
   shootingDecceleration: 0.85
-  playerWalking: {fileID: 0}
-  playerDashing: {fileID: 0}
+  playerWalking: {fileID: 8300000, guid: a0879de7e2af3c047b1f750cbfbd73a0, type: 3}
+  playerDashing: {fileID: 8300000, guid: 1099e8c74d9222a4b9dc8f362372a9cf, type: 3}
 --- !u!114 &114627511303337698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -680,6 +696,9 @@ MonoBehaviour:
   colourSelectManager: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
     type: 2}
   coopCharacterControllerTwo: {fileID: 114488731105616336}
+  controllerPrompt: {fileID: 0}
+  controlSprite: []
+  controlState: 
 --- !u!136 &136126592081602496
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4070,7 +4089,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -205173712
+  randomSeed: 234882311
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7432,7 +7451,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -968150434
+  randomSeed: -632918757
   InitialModule:
     serializedVersion: 3
     enabled: 1
