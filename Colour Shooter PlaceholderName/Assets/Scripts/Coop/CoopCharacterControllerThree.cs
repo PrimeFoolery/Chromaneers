@@ -20,7 +20,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public ColourPicker colourPicker;
     public ParticleSystem walkingPuff;
     private float walkingPuffCooldown = 0.2f;
-    private bool currentlyDodging = false;
+    public bool currentlyDodging = false;
     private Vector3 dodgeDirection;
     private float dodgeDuration = 0.325f;
     public float RollSpeed;
