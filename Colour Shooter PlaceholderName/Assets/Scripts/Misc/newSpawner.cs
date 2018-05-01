@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class newSpawner : MonoBehaviour
@@ -358,7 +359,7 @@ public class newSpawner : MonoBehaviour
                 }
             }
 
-            haveAllEnemiesSpawned = true;
+            //haveAllEnemiesSpawned = true;
         } else if (haveAllEnemiesSpawned==true)
         {
             //haveAllEnemiesSpawned = false;
@@ -390,6 +391,43 @@ public class newSpawner : MonoBehaviour
             if (enemy.GetComponent<FastEnemy>() != null)
             {
                 enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
+            }
+
+        }
+    }
+
+    public void PurgeEnemies()
+    {
+        foreach (GameObject enemy in ThisSpawnpointsEnemyList.ToList())
+        {
+            if (enemy.GetComponent<StandardEnemyBehaviour>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+
+            if (enemy.GetComponentInChildren<SpiderEnemyController>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+            if (enemy.GetComponentsInChildren<SnakeEnemyScript>() != null)
+            {
+                foreach (SnakeEnemyScript enemySnake in enemy.GetComponentsInChildren<SnakeEnemyScript>())
+                {
+                    enemyManagerScript.enemyList.Remove(enemySnake.gameObject);
+                    ThisSpawnpointsEnemyList.Remove(enemySnake.gameObject);
+                    Destroy(enemySnake.gameObject);
+                }
+            }
+
+            if (enemy.GetComponent<FastEnemy>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
             }
 
         }
