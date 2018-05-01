@@ -9,6 +9,7 @@ public class BlueBulletController : MonoBehaviour {
     [Range(0, 50)] public float speedOriginal;
     [Range(0, 50)] public float speedTri;
     [Range(0, 50)] public float speedSniper;
+    [Range(0, 50)] public float speedSMG;
     public float deceleration;
     public float bulletLifeTime;
     public float reboundBulletLifeTime;
@@ -42,9 +43,6 @@ public class BlueBulletController : MonoBehaviour {
 	}
 	
 	void Update () {
-        Debug.Log("Original bullet speed = " + speedOriginal);
-        Debug.Log("Trishot bullet speed = " + speedTri);
-        Debug.Log("Sniper bullet speed = " + speedSniper);
         directionTimer -= Time.deltaTime;
 	    if (directionTimer <= 0f)
 	    {
@@ -65,6 +63,9 @@ public class BlueBulletController : MonoBehaviour {
             } else if (currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                 transform.Translate(Vector3.forward * speedSniper * Time.deltaTime);
                 speedSniper = speedSniper * deceleration;
+            } else if (currentWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+                transform.Translate(Vector3.forward * speedSMG * Time.deltaTime);
+                speedSMG = speedSMG * deceleration;
             }
 
             //Bullets lifeTime
@@ -86,6 +87,9 @@ public class BlueBulletController : MonoBehaviour {
             } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                 transform.Translate(((Vector3.back * 0.8f * speedSniper) + (Vector3.up * 0.2f * speedSniper)) * Time.deltaTime);
                 speedSniper = speedSniper * deceleration;
+            } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+                transform.Translate(((Vector3.back * 0.8f * speedSMG) + (Vector3.up * 0.2f * speedSMG)) * Time.deltaTime);
+                speedSMG = speedSMG * deceleration;
             }
 
             //Bullets lifeTime
