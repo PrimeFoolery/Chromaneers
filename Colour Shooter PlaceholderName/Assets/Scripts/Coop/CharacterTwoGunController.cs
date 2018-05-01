@@ -236,7 +236,7 @@ public class CharacterTwoGunController : MonoBehaviour {
             controlState = "Blue";
             if (coopCharacterControllerTwo.usingXboxController==false)
             {
-                if (Input.GetKey(KeyCode.Joystick1Button0))
+                if (Input.GetKey(KeyCode.Joystick2Button0))
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
@@ -244,7 +244,7 @@ public class CharacterTwoGunController : MonoBehaviour {
             } else 
             if (coopCharacterControllerTwo.usingXboxController==true)
             {
-                if (Input.GetButton("Pickup1"))
+                if (Input.GetButton("Pickup2"))
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
@@ -257,7 +257,7 @@ public class CharacterTwoGunController : MonoBehaviour {
             controlState = "Blue";
             if (coopCharacterControllerTwo.usingXboxController==false)
             {
-                if (Input.GetKey(KeyCode.Joystick1Button0))
+                if (Input.GetKey(KeyCode.Joystick2Button0))
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
@@ -265,7 +265,7 @@ public class CharacterTwoGunController : MonoBehaviour {
             } else 
             if (coopCharacterControllerTwo.usingXboxController==true)
             {
-                if (Input.GetButton("Pickup1"))
+                if (Input.GetButton("Pickup2"))
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
