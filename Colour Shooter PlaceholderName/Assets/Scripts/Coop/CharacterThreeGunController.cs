@@ -70,7 +70,7 @@ public class CharacterThreeGunController : MonoBehaviour {
     void Update () {
         Vector2 ContPos = Camera.main.WorldToScreenPoint((this.transform.position));
         ContPos.x = ContPos.x - (Screen.width / 2);
-        ContPos.y = ContPos.y - (Screen.height / 2);
+        ContPos.y = ContPos.y - (Screen.height * 0.37963f);
         controllerPrompt.transform.localPosition = ContPos;
         if (controlState == "Idle")
         {
