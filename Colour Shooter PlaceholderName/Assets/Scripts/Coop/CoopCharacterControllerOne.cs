@@ -20,7 +20,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     private List<Vector3> savedPosition = new List<Vector3>();
     private float floorSavingTimer = 1f;
 
-    private bool currentlyDodging = false;
+    public bool currentlyDodging = false;
     private Vector3 dodgeDirection;
     private float dodgeDuration = 0.325f;
     public float RollSpeed;
