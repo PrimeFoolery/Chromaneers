@@ -116,14 +116,36 @@ public class CharacterTwoGunController : MonoBehaviour {
         
         if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
         {
-            if ((Input.GetKey(KeyCode.Joystick1Button0) || Input.GetButton("Pickup1")) && weaponPickedUp == false)
+            if (coopCharacterControllerTwo.usingXboxController ==false)
             {
-                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+                if ((Input.GetKey(KeyCode.Joystick2Button0)) && weaponPickedUp == false)
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+                }
+            } else
+            if (coopCharacterControllerTwo.usingXboxController ==true)
+            {
+                if ((Input.GetButton("Pickup2")) && weaponPickedUp == false)
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+                }
             }
+            
         }
-        if ((Input.GetKeyUp(KeyCode.Joystick1Button0) || Input.GetButtonUp("Pickup1")))
+
+        if (coopCharacterControllerTwo.usingXboxController == false)
         {
-            weaponPickedUp = false;
+            if (( Input.GetButtonUp("Pickup2")))
+            {
+                weaponPickedUp = false;
+            }
+        } else
+        if (coopCharacterControllerTwo.usingXboxController == true)
+        {
+            if ((Input.GetKeyUp(KeyCode.Joystick2Button0)))
+            {
+                weaponPickedUp = false;
+            }
         }
     }
 
@@ -212,20 +234,42 @@ public class CharacterTwoGunController : MonoBehaviour {
         {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (Input.GetKey(KeyCode.Joystick2Button0) || Input.GetButton("Pickup2"))
+            if (coopCharacterControllerTwo.usingXboxController==false)
             {
-                stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                weaponPickedUp = true;
+                if (Input.GetKey(KeyCode.Joystick1Button0))
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    weaponPickedUp = true;
+                }
+            } else 
+            if (coopCharacterControllerTwo.usingXboxController==true)
+            {
+                if (Input.GetButton("Pickup1"))
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    weaponPickedUp = true;
+                }
             }
-        }        
+        }
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (Input.GetKey(KeyCode.Joystick2Button0) || Input.GetButton("Pickup2"))
+            if (coopCharacterControllerTwo.usingXboxController==false)
             {
-                stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
-                weaponPickedUp = true;
+                if (Input.GetKey(KeyCode.Joystick1Button0))
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                    weaponPickedUp = true;
+                }
+            } else 
+            if (coopCharacterControllerTwo.usingXboxController==true)
+            {
+                if (Input.GetButton("Pickup1"))
+                {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                    weaponPickedUp = true;
+                }
             }
         }
     }
