@@ -684,8 +684,20 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
-		//Debug.Log("Velocity before applying: "+moveVelocity);
+		Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
+	    if (moveVelocity.x <= 0.01f && moveVelocity.x >= -0.01f)
+	    {
+		    moveVelocity.x = 0f;
+	    }
+	    if (moveVelocity.y <= 0.01f && moveVelocity.y >= -0.01f)
+	    {
+		    moveVelocity.y = 0f;
+	    }
+	    if (moveVelocity.z <= 0.01f && moveVelocity.z >= -0.01f)
+	    {
+		    moveVelocity.z = 0f;
+	    }
     }
 
     public void Knockback(Vector3 bulletPosition)
