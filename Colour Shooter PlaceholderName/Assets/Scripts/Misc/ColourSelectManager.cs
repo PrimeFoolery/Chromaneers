@@ -25,6 +25,7 @@ public class ColourSelectManager : MonoBehaviour {
     public GameObject purpleBulletPrefab;
     public GameObject greenBulletPrefab;
     public GameObject orangeBulletPrefab;
+    public GameObject rainbowBulletBluePrefab;
 
     void Start () {
         //If the game is played singleplayer
@@ -34,18 +35,13 @@ public class ColourSelectManager : MonoBehaviour {
         }
         //If the game is player coop
         if (isItSingleplayer == false) {
-            //Player one will have blue bullet
             blueBulletToShoot = blueBulletPrefab;
-            //Player two will have red bullet
             redBulletToShoot = redBulletPrefab;
-            //Player three will have yellow bullet
 			yellowBulletToShoot = yellowBulletPrefab;
-			//Player three will have purple bullet
 			purpleBulletToShoot = purpleBulletPrefab;
-			//Player three will have orange bullet
 			orangeBulletToShoot = orangeBulletPrefab;
-			//Player three will have green bullet
 			greenBulletToShoot = greenBulletPrefab;
+            rainbowBulletBlueToShoot = rainbowBulletBluePrefab;
         }
 	}
 
@@ -57,6 +53,7 @@ public class ColourSelectManager : MonoBehaviour {
 	private GameObject purpleBulletToShoot;
 	private GameObject orangeBulletToShoot;
 	private GameObject greenBulletToShoot;
+    private GameObject rainbowBulletBlueToShoot;
 
     //GameObject function to return which bullet to shoot in singleplayer
     public GameObject GetBulletToShoot () {
@@ -92,6 +89,12 @@ public class ColourSelectManager : MonoBehaviour {
 	public GameObject GetBulletGreenToShoot () {
 		return greenBulletToShoot;
 	}
+
+    //GameObject function to return which bullet to shoot for player one in coop
+    public GameObject GetBulletRainbowBlueToShoot()
+    {
+        return rainbowBulletBlueToShoot;
+    }
 
     //Setting the private gameObject to a certain bullet
     public void SetBulletToShoot (GameObject bullet) {

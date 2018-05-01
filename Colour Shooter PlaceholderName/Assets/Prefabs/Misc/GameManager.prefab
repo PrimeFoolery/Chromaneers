@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114813963058682294}
   - component: {fileID: 114642093904597446}
   - component: {fileID: 114432765349939506}
-  - component: {fileID: 114510570860899204}
+  - component: {fileID: 82347442415917328}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -43,6 +43,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82347442415917328
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387481424639414}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eb35349d06f1fe34a8bf6b46eb662c8b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114432765349939506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,55 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiElement: {fileID: 0}
---- !u!114 &114510570860899204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387481424639414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffaa7c0099496a84a9a329ced623ae26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timer: 0
-  spawnPointATransform: {fileID: 0}
-  spawnPointBTransform: {fileID: 0}
-  spawnPointCTransform: {fileID: 0}
-  spawnPointDTransform: {fileID: 0}
-  spawnPointETransform: {fileID: 0}
-  spawnPointFTransform: {fileID: 0}
-  spawnPointGTransform: {fileID: 0}
-  spawnPointHTransform: {fileID: 0}
-  spawnPointITransform: {fileID: 0}
-  spawnPointJTransform: {fileID: 0}
-  pointAEnemyList: []
-  pointBEnemyList: []
-  pointCEnemyList: []
-  pointDEnemyList: []
-  pointEEnemyList: []
-  pointFEnemyList: []
-  pointGEnemyList: []
-  pointHEnemyList: []
-  pointIEnemyList: []
-  pointJEnemyList: []
-  RedEnemy: {fileID: 1720677307034088, guid: a3c49dc3990f69945b26e3dbccc93e22, type: 2}
-  YellowEnemy: {fileID: 1611837554126876, guid: f62547fb5445cb44f8b54afcc9098daf,
-    type: 2}
-  BlueEnemy: {fileID: 1611837554126876, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
-  SpiderEnemy: {fileID: 1379227417053802, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
-    type: 2}
-  RedShieldEnemy: {fileID: 0}
-  BlueShieldEnemy: {fileID: 0}
-  YellowShieldEnemy: {fileID: 0}
-  OrangeEnemy: {fileID: 1802577390252536, guid: c73f1ccf836134c5baee143c26b6d6ff,
-    type: 2}
-  PurpleEnemy: {fileID: 1273066626558658, guid: 29b079932048a46239b84906d13ffe93,
-    type: 2}
-  GreenEnemy: {fileID: 1923391692171364, guid: bb584a80f71fa4975aaf7d9115c9dc24, type: 2}
-  SnakeEnemy: {fileID: 1351670481487472, guid: 790b956cf9618c648a63ca66ec6c6138, type: 2}
-  FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
-  tempEnemy: {fileID: 0}
 --- !u!114 &114642093904597446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,3 +179,4 @@ MonoBehaviour:
     type: 2}
   orangeBulletPrefab: {fileID: 1898138725490558, guid: 3c80db49d27846b4b94c71643e27865b,
     type: 2}
+  rainbowBulletBluePrefab: {fileID: 0}

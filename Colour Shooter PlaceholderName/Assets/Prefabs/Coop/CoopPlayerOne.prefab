@@ -56,6 +56,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1135930815888810
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4333794423312864}
+  m_Layer: 8
+  m_Name: fireFromSMG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1159455726761294
 GameObject:
   m_ObjectHideFlags: 1
@@ -125,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522937733245310}
   m_Layer: 8
-  m_Name: fireFromSMG
+  m_Name: fireFromRainbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,9 +236,23 @@ Transform:
   - {fileID: 4065704890277928}
   - {fileID: 4917914485626212}
   - {fileID: 4788354368134148}
+  - {fileID: 4333794423312864}
   - {fileID: 4522937733245310}
   m_Father: {fileID: 4567070725868736}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4333794423312864
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1135930815888810}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.66600424}
+  m_LocalScale: {x: 1.0000244, y: 1.0000246, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 4232551904641098}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4367448716286448
 Transform:
@@ -249,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1.0000244, y: 1.0000246, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 4232551904641098}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4567070725868736
 Transform:
@@ -713,15 +742,20 @@ MonoBehaviour:
   bulletSpeedSniper: 50
   bulletSpreadSniper: 0
   timeBetweenShotsSniper: 1
-  fireFromSMG: {fileID: 4522937733245310}
+  fireFromSMG: {fileID: 4333794423312864}
   bulletSpeedSMG: 15
-  bulletSpreadSMG: 10
+  bulletSpreadSMG: 20
   timeBetweenShotsSMG: 0.15
-  stateOfWeapon: 0
+  fireFromRainbow: {fileID: 4522937733245310}
+  bulletSpeedRainbow: 25
+  bulletSpreadRainbow: 10
+  timeBetweenShotsRainbow: 0.15
+  stateOfWeapon: 4
   isFiring: 0
   usingXboxController: 1
   currentBullet:
   - {fileID: 1755562306471582, guid: e35f7513009444c44a2ef97d0eb2db42, type: 2}
+  - {fileID: 1467364922367486, guid: c0dc9b31c6afea14eae1690d9b2c37ed, type: 2}
   colourSelectManager: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
     type: 2}
   coopCharacterControllerOne: {fileID: 114543723125740802}
@@ -805,7 +839,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1575909460
+  randomSeed: -1879587392
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7334,7 +7368,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 16386163
+  randomSeed: 311435089
   InitialModule:
     serializedVersion: 3
     enabled: 1
