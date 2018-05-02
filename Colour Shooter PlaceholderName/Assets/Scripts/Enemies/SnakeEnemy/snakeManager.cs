@@ -11,10 +11,13 @@ public class snakeManager : MonoBehaviour
     private EnemyManager enemyManagerScript;
     public List<SnakeEnemyScript> snakeSegments = new List<SnakeEnemyScript>();
 
+    private GameObject thisEnemiesSpawnPoint;
+
     // Use this for initialization
     void Start()
     {
         enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+        thisEnemiesSpawnPoint = snakeSegments[0].thisEnemiesSpawnPoint;
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class snakeManager : MonoBehaviour
     {
         if (amountOfSnakeSegments <= 0)
         {
+            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
             //enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(gameObject);
         }

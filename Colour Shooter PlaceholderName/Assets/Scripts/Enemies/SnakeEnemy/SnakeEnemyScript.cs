@@ -53,6 +53,8 @@ public class SnakeEnemyScript : MonoBehaviour
     public bool colourOverride = false;
     private float poisonTimer = 4f;
 
+    private GameObject mainCamera;
+
 
     // Use this for initialization
     void Start()
@@ -61,6 +63,7 @@ public class SnakeEnemyScript : MonoBehaviour
         spawner = gameManager.gameObject.GetComponent<EnemySpawner>();
         enemyManagerScript = gameManager.gameObject.GetComponent<EnemyManager>();
         agent = gameObject.GetComponent<NavMeshAgent>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
 
 
@@ -180,7 +183,7 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().CalculateClosestPlayer();
             }
 
-
+            mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             GetComponentInParent<snakeManager>().SegmentKilled();
             GetComponentInParent<snakeManager>().snakeSegments.Remove(gameObject.GetComponent<SnakeEnemyScript>());
             enemyManagerScript.enemyList.Remove(gameObject);

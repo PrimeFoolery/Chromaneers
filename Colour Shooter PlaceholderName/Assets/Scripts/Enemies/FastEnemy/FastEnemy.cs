@@ -46,12 +46,16 @@ public class FastEnemy : MonoBehaviour {
     public GameObject thisEnemiesSpawnPoint;
     public int enemyDamage;
 
+    private GameObject mainCamera;
+
+
     // Use this for initialization
     void Start () {
         
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
         spawner = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
         enemyManagerScript = gameManager.gameObject.GetComponent<EnemyManager>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         if (gameManager.isItSingleplayer == true)
         {
             isItCoop = false;
@@ -201,7 +205,9 @@ public class FastEnemy : MonoBehaviour {
 	            Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
 
-	        enemyManagerScript.enemyList.Remove(gameObject);
+	        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        mainCamera.GetComponent<CameraScript>().SmallScreenShake();
+            enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(this.gameObject);
 	    }
     }
