@@ -14,12 +14,16 @@ public class RedEnemyHealth : MonoBehaviour {
 	//Private variables
 	private int currentHealth;
     private EnemyManager enemyManagerScript;
+    private GameObject mainCamera;
+    private GameObject thisEnemiesSpawnPoint;
 
     void Start () {
 		//Setting the current health to be the health variable
 		//so that when we start the game, the enemy has full HP
 		currentHealth = health;
         enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        thisEnemiesSpawnPoint = gameObject.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint;
     }
 
 	void Update () {
@@ -29,7 +33,9 @@ public class RedEnemyHealth : MonoBehaviour {
 			deathTimer -= Time.deltaTime;
 			if (deathTimer >= 0) {
 				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
-			    enemyManagerScript.enemyList.Remove(gameObject);
+			    mainCamera.GetComponent<CameraScript>().SmallScreenShake();
+			    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+                enemyManagerScript.enemyList.Remove(gameObject);
                 Destroy (gameObject);
 			}
 		}

@@ -14,12 +14,18 @@ public class GreenEnemyHealth : MonoBehaviour {
 	public Material yellowJellyMaterial;
 	public Material greenJellyMaterial;
 
+    private GameObject mainCamera;
+
     private EnemyManager enemyManagerScript;
+
+    private GameObject thisEnemiesSpawnPoint;
 
     void Start () {
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
         enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        thisEnemiesSpawnPoint = gameObject.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint;
     }
 
 	void Update () {
@@ -40,6 +46,8 @@ public class GreenEnemyHealth : MonoBehaviour {
 		}
 		if(yellowHealth<=0&&blueHealth<=0){
 		    enemyManagerScript.enemyList.Remove(gameObject);
+		    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
