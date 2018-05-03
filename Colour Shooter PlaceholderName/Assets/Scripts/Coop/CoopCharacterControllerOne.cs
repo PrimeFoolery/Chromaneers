@@ -719,6 +719,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 			canPlayerMove = false;
             currentlyDodging = true;
             float step = RollSpeed * Time.deltaTime;
+            Debug.Log(step);
 			transform.position = Vector3.MoveTowards(transform.position, transform.position+(currentDirection), step);
             //Debug.Log(currentDirection);
             //Debug.Log (RollSpeed);
