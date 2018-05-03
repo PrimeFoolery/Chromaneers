@@ -670,16 +670,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     {
         if (currentDirection != new Vector3(0, 0, 0))
         {
-			moveVelocity = currentDirection * RollSpeed;
+			
             gameObject.GetComponent<CoopCharacterHealthControllerTwo>().canBeDamaged = false;
             gameObject.GetComponent<CoopCharacterHealthControllerTwo>().InvTimer=1f;
             moveSpeed = 0;
             canPlayerShoot = false;
 			canPlayerMove = false;
             currentlyDodging = true;
-            float step = RollSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + (currentDirection), step);
-
+            transform.Translate(currentDirection * RollSpeed * Time.deltaTime);
         }
     }
 }

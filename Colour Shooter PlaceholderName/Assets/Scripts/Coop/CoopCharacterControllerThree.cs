@@ -728,9 +728,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             canPlayerShoot = false;
             CanPlayerMove = false;
             currentlyDodging = true;
-            float step = RollSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + (currentDirection), step);
-            moveVelocity = currentDirection * RollSpeed;
+            transform.Translate(currentDirection * RollSpeed * Time.deltaTime);
         }
     }
 }
