@@ -25,7 +25,6 @@ public class newSpawnerTrigger : MonoBehaviour
 	void Update () {
 
 
-		Debug.Log(amountOfPlayersInTrigger);
 	    if (HasSpawnerBeenTriggered==false)
 	    {
 	        if (amountOfPlayersInTrigger>0)

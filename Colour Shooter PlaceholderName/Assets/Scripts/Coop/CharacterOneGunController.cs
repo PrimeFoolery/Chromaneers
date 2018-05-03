@@ -34,7 +34,7 @@ public class CharacterOneGunController : MonoBehaviour {
     [Header("Rainbow Weapon")]
     public Transform fireFromRainbow;
     [Range(0, 50)] public float bulletSpeedRainbow;
-    [Range(10, 20)] public float bulletSpreadRainbow;
+    [Range(0, 10)] public float bulletSpreadRainbow;
     [Range(0, 1)] public float timeBetweenShotsRainbow;
 
 
@@ -129,9 +129,9 @@ public class CharacterOneGunController : MonoBehaviour {
         } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
         } else if (stateOfWeapon == currentWeapon.SMGWeapon) {
-            bulletSpreadWidth = Random.Range(-bulletSpeedSMG, bulletSpeedSMG);
+            bulletSpreadWidth = Random.Range(-bulletSpreadSMG, bulletSpreadSMG);
         } else if (stateOfWeapon == currentWeapon.RainbowWeapon) {
-            bulletSpeedRainbow = Random.Range(-bulletSpeedRainbow, bulletSpeedRainbow);
+            bulletSpreadRainbow = Random.Range(-bulletSpreadRainbow, bulletSpreadRainbow);
         }
 
         if (stateOfWeapon == currentWeapon.SniperWeapon || stateOfWeapon == currentWeapon.TrishotWeapon 
@@ -176,8 +176,8 @@ public class CharacterOneGunController : MonoBehaviour {
 		if (!coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
             if (Input.GetKey(KeyCode.Joystick1Button5)) {
-                if (colourSelectManager.GetBulletBlueToShoot() == null) {
-                    //print("I am null! Check ColourSelectManager");
+                if (colourSelectManager.GetBulletBlueToShoot() == null || colourSelectManager.GetBulletRainbowBlueToShoot() == null) {
+                    print("I am null! Check ColourSelectManager");
                     return;
                 }
                 //print("Blue bullet firing");
@@ -235,11 +235,11 @@ public class CharacterOneGunController : MonoBehaviour {
 				transform.localPosition = recoiledPosition;
                 GameObject bulletToShoot = colourSelectManager.GetBulletBlueToShoot();
 			    if (stateOfWeapon == currentWeapon.OriginalWeapon) {
-			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.OriginalWeapon;
 			        bullet.GetComponent<BlueBulletController>().speedOriginal = bulletSpeedOriginal;
 			    } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
-			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
 			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
 			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
@@ -249,7 +249,7 @@ public class CharacterOneGunController : MonoBehaviour {
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
 			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
 			    } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
-			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.SniperWeapon;
 			        bullet.GetComponent<BlueBulletController>().speedSniper = bulletSpeedSniper;
 			    } else if (stateOfWeapon == currentWeapon.SMGWeapon) {

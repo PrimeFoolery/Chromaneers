@@ -26761,7 +26761,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010242649756, guid: 7a8a5bb6f2e71b143aff5818ec77dbcd, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a8a5bb6f2e71b143aff5818ec77dbcd, type: 2}
@@ -28393,7 +28393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 681.00024, y: -464.99994}
+  m_AnchoredPosition: {x: 681.0002, y: -464.99994}
   m_SizeDelta: {x: -1556.2001, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1204115297
@@ -28729,6 +28729,16 @@ Prefab:
       propertyPath: controllerPrompt
       value: 
       objectReference: {fileID: 1789713800}
+    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: stateOfWeapon
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114998027592461782, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: bulletSpreadRainbow
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -49894,12 +49904,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114813963058682294, guid: 97a0c0879334eee468ffca584e17e832,
-        type: 2}
-      propertyPath: rainbowBulletBluePrefab
-      value: 
-      objectReference: {fileID: 1467364922367486, guid: c0dc9b31c6afea14eae1690d9b2c37ed,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
   m_IsPrefabParent: 0
