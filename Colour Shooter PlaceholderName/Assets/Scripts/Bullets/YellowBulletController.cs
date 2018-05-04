@@ -8,6 +8,7 @@ public class YellowBulletController : MonoBehaviour {
 	[Range(0, 50)] public float speedOriginal;
 	[Range(0, 50)] public float speedTri;
 	[Range(0, 50)] public float speedSniper;
+	[Range(0, 50)] public float speedSMG;
     public float deceleration;
     public float bulletLifeTime;
     public float reboundBulletLifeTime;
@@ -64,7 +65,10 @@ public class YellowBulletController : MonoBehaviour {
 	        } else if (currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
 		        transform.Translate(Vector3.forward * speedSniper * Time.deltaTime);
 		        speedSniper = speedSniper * deceleration;
-	        }
+			} else if (currentWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+				transform.Translate(Vector3.forward * speedSMG * Time.deltaTime);
+				speedSMG = speedSMG * deceleration;
+			}
 
             //Bullets lifeTime
             bulletLifeTime -= Time.deltaTime;
@@ -85,7 +89,10 @@ public class YellowBulletController : MonoBehaviour {
 	        } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
 		        transform.Translate(((Vector3.back * 0.8f * speedSniper) + (Vector3.up * 0.2f * speedSniper)) * Time.deltaTime);
 		        speedSniper = speedSniper * deceleration;
-	        }
+			} else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+				transform.Translate(((Vector3.back * 0.8f * speedSMG) + (Vector3.up * 0.2f * speedSMG)) * Time.deltaTime);
+				speedSMG = speedSMG * deceleration;
+			}
 
             //Bullets lifeTime
             reboundBulletLifeTime -= Time.deltaTime;
