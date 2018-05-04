@@ -329,7 +329,7 @@ public class SpiderEnemyController : MonoBehaviour
             gameObject.GetComponent<ParticleSystem>().Play();
 	        enemyManagerScript.enemyList.Remove(transform.parent.gameObject);
 	        mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-	        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
 	    }

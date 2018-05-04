@@ -716,7 +716,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             canPlayerShoot = false;
 			canPlayerMove = false;
             currentlyDodging = true;
-            transform.Translate(currentDirection*RollSpeed*Time.deltaTime);
+            transform.Translate(currentDirection*RollSpeed*Time.deltaTime,Space.World);
         }
     }
 }
