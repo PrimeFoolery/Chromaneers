@@ -337,7 +337,14 @@ public class StandardEnemyBehaviour : MonoBehaviour {
 
     public void AggroToggle()
     {
-        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        }else if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+        }
+        
     }
 
     public void BulletKnockback(Vector3 bulletPosition)
