@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4180732553219082}
   - component: {fileID: 33271357113334244}
   - component: {fileID: 23614474328036922}
-  m_Layer: 0
-  m_Name: penWall
+  - component: {fileID: 65127976547754594}
+  m_Layer: 9
+  m_Name: penBottomWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +39,9 @@ GameObject:
   - component: {fileID: 4033077502606430}
   - component: {fileID: 33559008997297448}
   - component: {fileID: 23610894148093658}
-  m_Layer: 0
-  m_Name: penWall
+  - component: {fileID: 65183353061538064}
+  m_Layer: 9
+  m_Name: penLeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4544179372543776}
   - component: {fileID: 33570865605297834}
-  - component: {fileID: 64485873152731934}
   - component: {fileID: 23325322620742180}
   m_Layer: 0
   m_Name: penFloor
@@ -73,10 +74,10 @@ GameObject:
   - component: {fileID: 4144998150749092}
   - component: {fileID: 33332606568441092}
   - component: {fileID: 23576546849307480}
-  - component: {fileID: 95720276460998772}
+  - component: {fileID: 65171997590459672}
   m_Layer: 0
   m_Name: PenObelisk (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,10 +92,10 @@ GameObject:
   - component: {fileID: 4010024759828006}
   - component: {fileID: 33967826965836482}
   - component: {fileID: 23181936192927946}
-  - component: {fileID: 95789301559519434}
+  - component: {fileID: 65532983976206502}
   m_Layer: 0
   m_Name: PenObelisk
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +110,9 @@ GameObject:
   - component: {fileID: 4352507526780650}
   - component: {fileID: 33912911037486072}
   - component: {fileID: 23181541471589090}
-  m_Layer: 0
-  m_Name: penWall
+  - component: {fileID: 65866989446339744}
+  m_Layer: 9
+  m_Name: penRightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,10 +128,10 @@ GameObject:
   - component: {fileID: 4689267000268500}
   - component: {fileID: 33729748435705638}
   - component: {fileID: 23491419637413012}
-  - component: {fileID: 95206613365833588}
+  - component: {fileID: 65729301479970498}
   m_Layer: 0
   m_Name: PenObelisk (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +144,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4359578908409850}
+  - component: {fileID: 54716298300736036}
+  - component: {fileID: 65955551926737542}
+  - component: {fileID: 114935846663413636}
   m_Layer: 0
   m_Name: BlobPen
   m_TagString: Untagged
@@ -159,8 +164,9 @@ GameObject:
   - component: {fileID: 4437867792352214}
   - component: {fileID: 33490350053583874}
   - component: {fileID: 23320215037793470}
-  m_Layer: 0
-  m_Name: penWall
+  - component: {fileID: 65380317242016536}
+  m_Layer: 9
+  m_Name: penTopWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,10 +182,10 @@ GameObject:
   - component: {fileID: 4903811162970820}
   - component: {fileID: 33904352021276444}
   - component: {fileID: 23325954148680676}
-  - component: {fileID: 95856978827304622}
+  - component: {fileID: 65260449833108844}
   m_Layer: 0
   m_Name: PenObelisk (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +297,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1194634637830494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.12, y: 0.13999999, z: -0.4}
+  m_LocalPosition: {x: -2.12, y: 0, z: -0.4}
   m_LocalScale: {x: 1.19, y: 1, z: 1.24}
   m_Children: []
   m_Father: {fileID: 4359578908409850}
@@ -371,7 +377,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
+  - {fileID: 2100000, guid: c6648f5267e294e4ca959d215a466a8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -473,7 +479,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
+  - {fileID: 2100000, guid: c6648f5267e294e4ca959d215a466a8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -507,7 +513,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
+  - {fileID: 2100000, guid: c6648f5267e294e4ca959d215a466a8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -541,7 +547,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
+  - {fileID: 2100000, guid: c6648f5267e294e4ca959d215a466a8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -692,85 +698,168 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684931057240344}
   m_Mesh: {fileID: 4300000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
---- !u!64 &64485873152731934
-MeshCollider:
+--- !u!54 &54716298300736036
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1194634637830494}
+  m_GameObject: {fileID: 1875536190484734}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &65127976547754594
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031240537769742}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &95206613365833588
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1770634378880248}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95720276460998772
-Animator:
-  serializedVersion: 3
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000001}
+  m_Center: {x: -0.0000009536743, y: 0, z: 0}
+--- !u!65 &65171997590459672
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479060325208342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95789301559519434
-Animator:
-  serializedVersion: 3
+  serializedVersion: 2
+  m_Size: {x: 0.98389226, y: 0.9838925, z: 2.2338753}
+  m_Center: {x: -0.1370326, y: 0.003663511, z: 1.575553}
+--- !u!65 &65183353061538064
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1684931057240344}
+  m_GameObject: {fileID: 1193184728159350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95856978827304622
-Animator:
-  serializedVersion: 3
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0.000030517578}
+--- !u!65 &65260449833108844
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971661494969990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0401e24fd9292e2498249dec410f4b12, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98389226, y: 0.9838925, z: 2.2338753}
+  m_Center: {x: -0.1370345, y: 0.0036654184, z: 1.575553}
+--- !u!65 &65380317242016536
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913662201734702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.0000001}
+  m_Center: {x: -0.0000009536743, y: 0, z: 0}
+--- !u!65 &65532983976206502
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684931057240344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98389226, y: 0.9838925, z: 2.2338753}
+  m_Center: {x: -0.1370326, y: 0.0036654184, z: 1.575553}
+--- !u!65 &65729301479970498
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1770634378880248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98389226, y: 0.9838925, z: 2.2338753}
+  m_Center: {x: -0.1370345, y: 0.0036654184, z: 1.575553}
+--- !u!65 &65866989446339744
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1745239182722886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000002}
+  m_Center: {x: 0.00000047683716, y: 0, z: 0}
+--- !u!65 &65955551926737542
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1875536190484734}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.85, y: 19.99, z: 11.49}
+  m_Center: {x: -2.21, y: 0, z: -0.51}
+--- !u!114 &114935846663413636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1875536190484734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2412ad50397fe424dbfa3f73bae981db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colourOfThisPen: 0
+  thisPensInfiniteSpawnTrigger: {fileID: 0}
+  doorToOpen: {fileID: 0}
+  CorrectEnemiesInPen: []
+  penLeftWall: {fileID: 1193184728159350}
+  penRightWall: {fileID: 1745239182722886}
+  penTopWall: {fileID: 1913662201734702}
+  penBottomWall: {fileID: 1031240537769742}
+  penFloor: {fileID: 1194634637830494}
+  obelisk1: {fileID: 1684931057240344}
+  obelisk2: {fileID: 1770634378880248}
+  obelisk3: {fileID: 1479060325208342}
+  obelisk4: {fileID: 1971661494969990}
+  bluePenWall: {fileID: 2100000, guid: 9ccac4d85fcda45409993492823ef8f2, type: 2}
+  redPenWall: {fileID: 2100000, guid: c7ea0407ca81ca342970ce6c8b4c299d, type: 2}
+  yellowPenWall: {fileID: 2100000, guid: 5f6d49de3b5194546be749485970695a, type: 2}
+  bluePenFloor: {fileID: 2100000, guid: 1ab310fe34f5fac4da2814944b605335, type: 2}
+  redPenFloor: {fileID: 2100000, guid: 70c1469588e16274dbd5a471844ce9b9, type: 2}
+  yellowPenFloor: {fileID: 2100000, guid: 95489faabcb60b24bbeccbbcf937177d, type: 2}
+  penObeliskEmissionMap0: {fileID: 2800000, guid: b0c189b9e8b27fa498ec140f5f00fe85,
+    type: 3}
+  penObeliskEmissionMap1: {fileID: 2800000, guid: 2f190cc20b5f9bf43a7b2d256ea66ba2,
+    type: 3}
+  penObeliskEmissionMap2: {fileID: 2800000, guid: 0c29a3ce10261bd4987f45027626a572,
+    type: 3}
+  penObeliskEmissionMap3: {fileID: 2800000, guid: 7e7cfefdf502774498120d4462c8158e,
+    type: 3}
+  penObeliskEmissionMap4: {fileID: 2800000, guid: abcfe88c6449ffe4e9cc50546f09f46c,
+    type: 3}
+  penObeliskEmissionMap5: {fileID: 2800000, guid: 056822f89cf0cf542922c39363ec9ad9,
+    type: 3}

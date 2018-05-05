@@ -34,6 +34,14 @@ public class infiniteSpawner : MonoBehaviour {
             spawnerTimer += Time.deltaTime;
         }
 
+        if (amountOfPlayersInTrigger==0)
+        {
+            foreach (GameObject spawnPoint in thisTriggersSpawners)
+            {
+                spawnPoint.GetComponent<InfiniteSpawnPoint>().PurgeEnemies();
+            }
+        }
+
         
     }
 

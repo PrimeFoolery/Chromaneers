@@ -76,7 +76,7 @@
 
                 fixed4 col = tex2D(_MainTex, scrolledUV) + _TintColor;
                 col.a = _Transparency;
-                clip(col.r - _CutoutThresh);
+                clip(col - _CutoutThresh);
                 return col;
             }
 			ENDCG
