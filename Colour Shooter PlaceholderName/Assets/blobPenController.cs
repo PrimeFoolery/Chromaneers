@@ -49,7 +49,7 @@ public class blobPenController : MonoBehaviour
     public Texture2D penObeliskEmissionMap4;
     public Texture2D penObeliskEmissionMap5;
 
-
+    private bool enemySpawned = false;
 
 
     // Use this for initialization
@@ -65,9 +65,7 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
-            enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardBlue);
-            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
-            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+            
         }
 	    else if (colourOfThisPen == ColoursOfPen.red)
 	    {
@@ -103,6 +101,29 @@ public class blobPenController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+	    if (enemySpawned==false)
+	    {
+	        if (colourOfThisPen == ColoursOfPen.blue)
+	        {
+	            enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardBlue);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+            }
+            else if (colourOfThisPen == ColoursOfPen.red)
+	        {
+	            enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardRed);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        }
+	        else if (colourOfThisPen == ColoursOfPen.yellow)
+	        {
+	            enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardYellow);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+	            pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        }
+
+	        enemySpawned = true;
+	    }
 	    foreach (GameObject enemy in CorrectEnemiesInPen)
 	    {
 	        if (enemy.transform.position.x<penLeftWall.transform.position.x)
