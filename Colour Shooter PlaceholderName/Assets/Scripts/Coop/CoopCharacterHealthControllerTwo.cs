@@ -126,15 +126,15 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             coopCharacterControllerTwo.canPlayerMove = false;
             coopCharacterControllerTwo.coopCharacterControllerTwo.isFiring = false;
             
-            reviveTimer -= Time.deltaTime;
+            reviveTimer -= Time.deltaTime/5;
 			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 2f)
             {
-                reviveTimer -= Time.deltaTime;
+                reviveTimer -= Time.deltaTime*1.4f;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 2f)
             {
-                reviveTimer -= Time.deltaTime;
+                reviveTimer -= Time.deltaTime*1.4f;
             }
             if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) > 4f)
             {
