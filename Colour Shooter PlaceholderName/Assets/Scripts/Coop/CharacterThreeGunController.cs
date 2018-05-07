@@ -191,7 +191,7 @@ public class CharacterThreeGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire3Right")) {
+			if (Input.GetAxis("Fire3Right")>0.1f) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;

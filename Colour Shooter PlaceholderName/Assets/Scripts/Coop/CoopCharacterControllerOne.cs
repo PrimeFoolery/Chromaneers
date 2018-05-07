@@ -104,7 +104,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	void Update ()
 	{
 
-	    dodgeSlider.value = (specialAttackCooldown/45);
+	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
 
@@ -497,7 +497,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire1Right")&&canPlayerShoot==true) {
+		        if (Input.GetAxis("Fire1Right")>0.1f&&canPlayerShoot==true) {
                     //Debug.Log("this is happening");
 		            coopCharacterControllerOne.isFiring = true;
 		            isShooting = true;
@@ -505,7 +505,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 }
 		    }
 		    //Not shootings the bullet
-			if (Input.GetButtonUp("Fire1Right")) {
+			if (Input.GetAxis("Fire1Right")<0.1f) {
 				coopCharacterControllerOne.isFiring = false;
 			    isShooting = false;
 			}

@@ -46,7 +46,14 @@ public class GreenEnemyHealth : MonoBehaviour {
 		}
 		if(yellowHealth<=0&&blueHealth<=0){
 		    enemyManagerScript.enemyList.Remove(gameObject);
-		    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+		    if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+		    {
+		        thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+		    }
+		    else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+		    {
+		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+		    }
             mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             Destroy (this.gameObject);
 		}

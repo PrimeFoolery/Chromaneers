@@ -54,6 +54,8 @@ public class InfiniteSpawnPoint : MonoBehaviour {
 
     public List<GameObject> ThisSpawnpointsEnemyList = new List<GameObject>();
 
+    public infiniteSpawner thisSpawnpointsTrigger;
+
     // Use this for initialization
     void Start()
     {
@@ -434,5 +436,17 @@ public class InfiniteSpawnPoint : MonoBehaviour {
             }
 
         }
+    }
+
+    void OnBecameVisible()
+    {
+        //Debug.Log("take self off spawnpoint list");
+        thisSpawnpointsTrigger.thisTriggersSpawners.Remove(gameObject);
+    }
+
+    void OnBecameInvisible()
+    {
+        //Debug.Log("put self off spawnpoint list");
+        thisSpawnpointsTrigger.thisTriggersSpawners.Add(gameObject);
     }
 }

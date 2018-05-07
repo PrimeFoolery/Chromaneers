@@ -34,7 +34,14 @@ public class RedEnemyHealth : MonoBehaviour {
 			if (deathTimer >= 0) {
 				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 			    mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-			    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+			    if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+			    {
+			        thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+			    }
+			    else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+			    {
+			        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+			    }
                 enemyManagerScript.enemyList.Remove(gameObject);
                 Destroy (gameObject);
 			}

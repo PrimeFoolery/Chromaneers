@@ -124,8 +124,15 @@ public class FastEnemy : MonoBehaviour {
 	        {
 	            if (Vector3.Distance(transform.position, player.transform.position) < 25f && isAggroPlayer == false)
 	            {
-	                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
-	            }
+	                if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	                {
+	                    thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	                }
+	                else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+	                {
+	                    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+	                }
+                }
 
 	            if (isAggroPlayer == true)
 	            {
@@ -139,7 +146,14 @@ public class FastEnemy : MonoBehaviour {
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
-	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+	            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	            {
+	                thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	            }
+	            else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+	            {
+	                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+	            }
             }
 	        if (isAggroPlayer == true)
 	        {
@@ -205,8 +219,16 @@ public class FastEnemy : MonoBehaviour {
 	            Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
 
-	        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
-	        mainCamera.GetComponent<CameraScript>().SmallScreenShake();
+	        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        }
+	        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        }
+
+            mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(this.gameObject);
 	    }

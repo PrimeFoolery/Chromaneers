@@ -98,7 +98,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     }
 	
 	void Update () {
-	    dodgeSlider.value = (specialAttackCooldown / 45);
+	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             //Making a vector3 to store the characters inputs
@@ -480,14 +480,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire2Right") && canPlayerShoot == true) {
+		        if (Input.GetAxis("Fire2Right")>0.1f && canPlayerShoot == true) {
 		            coopCharacterControllerTwo.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
                 }
             }
 			//Not shootings the bullet
-			if (Input.GetButtonUp("Fire2Right")) {
+			if (Input.GetAxis("Fire2Right")<0.1f) {
 				coopCharacterControllerTwo.isFiring = false;
 			    isShooting = false;
 			}

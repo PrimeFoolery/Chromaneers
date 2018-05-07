@@ -99,7 +99,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     }
 	
 	void Update () {
-	    dodgeSlider.value = (specialAttackCooldown / 45);
+	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             //Making a vector3 to store the characters inputs
@@ -530,7 +530,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire3Right") && canPlayerShoot == true) {
+		        if (Input.GetAxis("Fire3Right")>0.1f && canPlayerShoot == true) {
 		            coopCharacterControllerThree.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -538,7 +538,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             }
 			
 			//Not shootings the bullet
-			if (Input.GetButtonUp("Fire3Right")) {
+			if (Input.GetAxis("Fire3Right")<0.1f) {
 				coopCharacterControllerThree.isFiring = false;
 			    isShooting = false;
             }

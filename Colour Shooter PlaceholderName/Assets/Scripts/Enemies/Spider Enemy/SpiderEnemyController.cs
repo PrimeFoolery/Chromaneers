@@ -329,7 +329,14 @@ public class SpiderEnemyController : MonoBehaviour
             gameObject.GetComponent<ParticleSystem>().Play();
 	        enemyManagerScript.enemyList.Remove(transform.parent.gameObject);
 	        mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-	        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
+	        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
+	        }
+	        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
+	        }
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
 	    }
@@ -548,7 +555,14 @@ public class SpiderEnemyController : MonoBehaviour
 
     void ToggleAggro()
     {
-        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+        }
+        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        }
     }
     public Vector3 RandomNavmeshLocation(float radius)
     {
