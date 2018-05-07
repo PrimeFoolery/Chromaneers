@@ -261,14 +261,14 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKeyDown(KeyCode.Joystick3Button5)&&canPlayerShoot==true) {
+                if (Input.GetKeyDown(KeyCode.Joystick3Button7)&&canPlayerShoot==true) {
                     coopCharacterControllerThree.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
             }
 	        //Not shootings the bullet
-	        if (Input.GetKeyUp(KeyCode.Joystick3Button5)) {
+	        if (Input.GetKeyUp(KeyCode.Joystick3Button7)) {
                 coopCharacterControllerThree.isFiring = false;
 	            isShooting = false;
             }
