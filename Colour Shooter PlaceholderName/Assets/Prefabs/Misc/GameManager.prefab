@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114432765349939506}
   - component: {fileID: 82347442415917328}
   - component: {fileID: 82948308344511786}
+  - component: {fileID: 114699277792676758}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -111,7 +112,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -191,7 +192,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -236,6 +237,18 @@ MonoBehaviour:
   coopBluePlayer: {fileID: 0}
   coopRedPlayer: {fileID: 0}
   coopYellowPlayer: {fileID: 0}
+--- !u!114 &114699277792676758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387481424639414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf4347e2247e924bbe3b8bbbd2b1005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfKeys: 0
 --- !u!114 &114813963058682294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,8 +274,4 @@ MonoBehaviour:
   orangeBulletPrefab: {fileID: 1898138725490558, guid: 3c80db49d27846b4b94c71643e27865b,
     type: 2}
   rainbowBulletBluePrefab: {fileID: 1467364922367486, guid: c0dc9b31c6afea14eae1690d9b2c37ed,
-    type: 2}
-  rainbowBulletRedPrefab: {fileID: 1812695505407690, guid: db80c869d270e104488c46ac4e757db1,
-    type: 2}
-  rainbowBulletYellowPrefab: {fileID: 1938205138733558, guid: 7fd1d64f2588fa341ace7f78cf900600,
     type: 2}
