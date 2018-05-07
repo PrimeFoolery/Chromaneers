@@ -99,7 +99,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     }
 	
 	void Update () {
-	    dodgeSlider.value = (specialAttackCooldown / 45);
+	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             //Making a vector3 to store the characters inputs

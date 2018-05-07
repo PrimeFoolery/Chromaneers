@@ -632,7 +632,14 @@ public class SnakeEnemyScript : MonoBehaviour
 
     void ToggleAggro()
     {
-        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+        }
+        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+        {
+            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+        }
     }
     public Vector3 RandomNavmeshLocation(float radius)
     {

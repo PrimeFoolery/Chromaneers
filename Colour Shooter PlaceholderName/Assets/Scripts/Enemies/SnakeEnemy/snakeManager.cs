@@ -25,7 +25,14 @@ public class snakeManager : MonoBehaviour
     {
         if (amountOfSnakeSegments <= 0)
         {
-            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+            {
+                thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            }
+            else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+            {
+                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            }
             //enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(gameObject);
         }

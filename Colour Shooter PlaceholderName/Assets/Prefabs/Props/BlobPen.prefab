@@ -118,6 +118,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1769451493603312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4917295581827810}
+  - component: {fileID: 114711046021093122}
+  m_Layer: 0
+  m_Name: PenSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1770634378880248
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +277,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1875536190484734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -99.28, y: 0.44, z: 90.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -274,6 +290,7 @@ Transform:
   - {fileID: 4437867792352214}
   - {fileID: 4033077502606430}
   - {fileID: 4352507526780650}
+  - {fileID: 4917295581827810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -328,6 +345,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4359578908409850}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4917295581827810
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769451493603312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.08, y: -0.21, z: -0.22999573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4359578908409850}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23181541471589090
 MeshRenderer:
@@ -821,6 +851,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.85, y: 19.99, z: 11.49}
   m_Center: {x: -2.21, y: 0, z: -0.51}
+--- !u!114 &114711046021093122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769451493603312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3862933f09f8041899cb265c398142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RedEnemy: {fileID: 1720677307034088, guid: a3c49dc3990f69945b26e3dbccc93e22, type: 2}
+  YellowEnemy: {fileID: 1611837554126876, guid: f62547fb5445cb44f8b54afcc9098daf,
+    type: 2}
+  BlueEnemy: {fileID: 1611837554126876, guid: fcebc68200d3fd642b76a689ce68a0c2, type: 2}
+  SpiderEnemy: {fileID: 1379227417053802, guid: ea4eb0179b2c5f24a992eb238e48b2ad,
+    type: 2}
+  RedShieldEnemy: {fileID: 0}
+  BlueShieldEnemy: {fileID: 0}
+  YellowShieldEnemy: {fileID: 0}
+  OrangeEnemy: {fileID: 1802577390252536, guid: c73f1ccf836134c5baee143c26b6d6ff,
+    type: 2}
+  PurpleEnemy: {fileID: 1273066626558658, guid: 29b079932048a46239b84906d13ffe93,
+    type: 2}
+  GreenEnemy: {fileID: 1923391692171364, guid: bb584a80f71fa4975aaf7d9115c9dc24, type: 2}
+  SnakeEnemy: {fileID: 1351670481487472, guid: 790b956cf9618c648a63ca66ec6c6138, type: 2}
+  FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
+  tempEnemy: {fileID: 0}
+  ThisSpawnpointsEnemyList: []
 --- !u!114 &114935846663413636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -836,6 +895,7 @@ MonoBehaviour:
   thisPensInfiniteSpawnTrigger: {fileID: 0}
   doorToOpen: {fileID: 0}
   CorrectEnemiesInPen: []
+  pensSpawnPoint: {fileID: 1769451493603312}
   penLeftWall: {fileID: 1193184728159350}
   penRightWall: {fileID: 1745239182722886}
   penTopWall: {fileID: 1913662201734702}
