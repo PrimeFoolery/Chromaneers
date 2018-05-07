@@ -37,6 +37,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     public ColourPicker colourPicker;
     public bool canPlayerShoot = true;
 
+    public GameObject playerModel;
+
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
 
@@ -80,6 +82,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	public float movingDecceleration = 0.9f;
 	public float shootingDecceleration = 0.95f;
     private float poisonTimer = 3f;
+    private Animator modelAnim;
 
 	public bool canPlayerMove = true;
 
@@ -99,6 +102,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
 	    brush.Color = blueColor;
         audio = GetComponent<AudioSource>();
+        modelAnim = playerModel.GetComponent<Animator>();
 	}
 	
 	void Update ()
@@ -112,6 +116,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             if (gameObject.GetComponent<CoopCharacterHealthControllerOne>().PlayerState=="Alive")
             {
                 moveInput = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
+                
             }
             else
             {
@@ -179,7 +184,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 								}
 							}
 						moveVelocity = moveInput * moveSpeed;
-					}
+                        modelAnim.SetInteger("CharacterYellowState", 1);
+                    }
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
                         audio.Stop();
@@ -248,14 +254,14 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKey(KeyCode.Joystick1Button5)&&canPlayerShoot==true) {
+                if (Input.GetKey(KeyCode.Joystick1Button7)&&canPlayerShoot==true) {
                     coopCharacterControllerOne.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
             }
 	        //Not shootings the bullet
-	        if (Input.GetKeyUp(KeyCode.Joystick1Button5)) {
+	        if (Input.GetKeyUp(KeyCode.Joystick1Button7)) {
 	            coopCharacterControllerOne.isFiring = false;
 	            isShooting = false;
 	        }

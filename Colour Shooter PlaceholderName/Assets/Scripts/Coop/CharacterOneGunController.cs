@@ -175,7 +175,7 @@ public class CharacterOneGunController : MonoBehaviour {
     void CurrentBulletFiring () {
 		if (!coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick1Button5)) {
+            if (Input.GetKey(KeyCode.Joystick1Button7)) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null || colourSelectManager.GetBulletRainbowBlueToShoot() == null) {
                     print("I am null! Check ColourSelectManager");
                     return;
