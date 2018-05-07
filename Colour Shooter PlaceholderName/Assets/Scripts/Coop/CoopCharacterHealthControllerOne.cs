@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class CoopCharacterHealthControllerOne : MonoBehaviour
 {
@@ -41,6 +42,10 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
     [Header("UI")]
     public Text currentHP;
+
+    [Header("Controller Vibrations")]
+    public float testA;
+    public float testB;
 
     public CoopCharacterControllerOne coopCharacterControllerOne;
 
@@ -184,6 +189,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 canBeDamaged = false;
+                GamePad.SetVibration(0, testA, testB);
             }
         }
     }
