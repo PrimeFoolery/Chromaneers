@@ -222,7 +222,7 @@ public class CharacterOneGunController : MonoBehaviour {
         } 
 		if (coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire1Right")) {
+			if (Input.GetAxis("Fire1Right")>0.1f) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;

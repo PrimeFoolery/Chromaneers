@@ -191,7 +191,7 @@ public class CharacterTwoGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire2Right")) {
+			if (Input.GetAxis("Fire2Right")>0.1f) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;
