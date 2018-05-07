@@ -260,7 +260,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	            isShooting = false;
 	        }
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1)&&currentlyDodging==false&&dodgeCooldown<=0f&&gameObject.GetComponent<CoopCharacterHealthControllerOne>().PlayerState=="Alive")
+            if (Input.GetKeyDown(KeyCode.Joystick1Button4)&&currentlyDodging==false&&dodgeCooldown<=0f&&gameObject.GetComponent<CoopCharacterHealthControllerOne>().PlayerState=="Alive")
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 dodgeDirection = moveInput;
@@ -330,9 +330,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
             }*/
             if (Input.GetKey(KeyCode.Joystick1Button4) && specialAttackCooldown <= 0 && specialAttackOn == false)
             {
-                Debug.Log("USE Blues SPECIAL ATTACK");
-                specialAttackDuration = 5f;
-                specialAttackOn = true;
+               // Debug.Log("USE Blues SPECIAL ATTACK");
+                //specialAttackDuration = 5f;
+               // specialAttackOn = true;
 
             }
 
@@ -584,9 +584,9 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		    }*/
 		    if (Input.GetButton("Fire1Left") && specialAttackCooldown <= 0 && specialAttackOn == false)
 		    {
-		        Debug.Log("USE Yellows SPECIAL ATTACK");
-		        specialAttackDuration = 5f;
-		        specialAttackOn = true;
+		        //Debug.Log("USE Yellows SPECIAL ATTACK");
+		        //specialAttackDuration = 5f;
+		        //specialAttackOn = true;
 
 		    }
 
