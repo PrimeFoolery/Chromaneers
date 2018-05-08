@@ -254,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85.05, y: 1.367, z: -152.07}
+  m_LocalPosition: {x: -84.55675, y: 1.367, z: -152.76999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4804866171820920}
@@ -664,10 +664,6 @@ MonoBehaviour:
   duration: 0.5
   rend: {fileID: 23568887262767628}
   currentHP: {fileID: 0}
-  leftShakeOn: 1
-  rightShakeOn: 1
-  leftShakeOff: 0
-  rightShakeOff: 0
   coopCharacterControllerThree: {fileID: 114889375755103684}
 --- !u!114 &114688111762235096
 MonoBehaviour:
@@ -690,10 +686,23 @@ MonoBehaviour:
   bulletSpeedTrishot: 8
   bulletSpreadTri: 8
   timeBetweenShotsTri: 0.8
+  trishotPickUp: {fileID: 0}
   fireFromSniper: {fileID: 4572565152264774}
   bulletSpeedSniper: 50
   bulletSpreadSniper: 0
   timeBetweenShotsSniper: 1
+  sniperPickUp: {fileID: 0}
+  fireFromSMG: {fileID: 4855700241975610}
+  bulletSpeedSMG: 15
+  bulletSpreadSMG: 20
+  timeBetweenShotsSMG: 0.15
+  smgPickUp: {fileID: 0}
+  fireFromRainbow: {fileID: 4727731473848350}
+  bulletSpeedRainbow: 20
+  bulletSpreadRainbow: 5
+  timeBetweenShotsRainbow: 0.15
+  rainbowBullets: 100
+  rainbowBluePickUp: {fileID: 0}
   stateOfWeapon: 0
   isFiring: 0
   usingXboxController: 1
@@ -835,7 +844,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1240834801
+  randomSeed: -640879128
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7364,7 +7373,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -44592126
+  randomSeed: -1196263801
   InitialModule:
     serializedVersion: 3
     enabled: 1
