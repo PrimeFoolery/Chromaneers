@@ -11,7 +11,7 @@ public class infiniteSpawner : MonoBehaviour {
 
     private int amountOfPlayersInTrigger = 0;
 
-    private float spawnerTimer = 5f;
+    private float spawnerTimer = 15f;
 
     public int randomSpawnPoint;
     // Use this for initialization
@@ -25,7 +25,7 @@ public class infiniteSpawner : MonoBehaviour {
     {
         if (amountOfPlayersInTrigger>0)
         {
-            if (spawnerTimer>5f)
+            if (spawnerTimer>15f)
             {
                 randomSpawnPoint = Random.Range(0, thisTriggersSpawners.Count-1);
                 thisTriggersSpawners[randomSpawnPoint].GetComponent<InfiniteSpawnPoint>().SpawnEnemies(SpawnPoint1Enemies);

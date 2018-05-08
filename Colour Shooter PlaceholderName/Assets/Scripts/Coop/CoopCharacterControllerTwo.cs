@@ -480,14 +480,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetAxis("Fire2Right")>0.1f && canPlayerShoot == true) {
+		        if (Input.GetButtonDown("Fire2Right") && canPlayerShoot == true) {
 		            coopCharacterControllerTwo.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
                 }
             }
 			//Not shootings the bullet
-			if (Input.GetAxis("Fire2Right")<0.1f) {
+			if (Input.GetButtonUp("Fire2Right")) {
 				coopCharacterControllerTwo.isFiring = false;
 			    isShooting = false;
 			}

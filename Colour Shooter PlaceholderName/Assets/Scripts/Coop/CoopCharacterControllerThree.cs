@@ -530,7 +530,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetAxis("Fire3Right")>0.1f && canPlayerShoot == true) {
+		        if (Input.GetButtonDown("Fire3Right") && canPlayerShoot == true) {
 		            coopCharacterControllerThree.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -538,7 +538,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             }
 			
 			//Not shootings the bullet
-			if (Input.GetAxis("Fire3Right")<0.1f) {
+			if (Input.GetButtonUp("Fire3Right")) {
 				coopCharacterControllerThree.isFiring = false;
 			    isShooting = false;
             }
