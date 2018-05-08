@@ -278,19 +278,19 @@ public class SpiderEnemyController : MonoBehaviour
 	    {
 	        if (howManyLegsAreAlive == 4)
 	        {
-	            agent.speed = 4f;
+	            agent.speed = 2.5f;
 	        }
 	        if (howManyLegsAreAlive == 3)
 	        {
-	            agent.speed = 3.5f;
+	            agent.speed = 2f;
 	        }
 	        if (howManyLegsAreAlive == 2)
 	        {
-	            agent.speed = 3f;
+	            agent.speed = 1.5f;
 	        }
 	        if (howManyLegsAreAlive == 1)
 	        {
-	            agent.speed = 2.5f;
+	            agent.speed = 1f;
 	        }
         }
         
