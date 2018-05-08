@@ -39,7 +39,7 @@ public class CameraScript : MonoBehaviour
 
     public Vector3 averagePos;
     private float sizeNeeded;
-    private float minimumSize = 7f;
+    private float minimumSize = 10f;
     private float maximumSize = 11f;
     private float screenEdgeBuffer = 4f;
     private float aspectRatio;
