@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using XInputDotNetPure;
 
 public class CoopCharacterHealthControllerTwo : MonoBehaviour
 {
@@ -36,13 +35,6 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
     [Header("UI")]
     public Text currentHP;
-
-	[Header("Controller Vibrations")]
-	public float leftShakeOn;
-	public float rightShakeOn;
-	public float leftShakeOff;
-	public float rightShakeOff;
-	private float shakeTimer;
 
     public CoopCharacterControllerTwo coopCharacterControllerTwo;
 
@@ -101,11 +93,6 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             }
         }
 
-		shakeTimer -= Time.deltaTime;
-		if (shakeTimer <= 0) {
-			GamePad.SetVibration (0, leftShakeOff, rightShakeOff);
-		}
-
         if (PlayerState == "Alive")
         {
 			ReviveParticle.SetActive (false);
@@ -119,7 +106,6 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
                 rend.material.Lerp(matOne, matTwo, 2f);
                 if (InvTimer <= 0)
                 {
-					shakeTimer = 0.35f;
                     rend.material = matOne;
                     canBeDamaged = true;
                 }
@@ -190,9 +176,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             if (canBeDamaged == true)
             {
                 currentHealth -= 1;
-				InvTimer = 2;
-				shakeTimer = 0.35f;
-				GamePad.SetVibration(0, leftShakeOn, rightShakeOn);
+                InvTimer = 2;
                 canBeDamaged = false;
             }
         }

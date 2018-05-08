@@ -44,11 +44,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     public Text currentHP;
 
     [Header("Controller Vibrations")]
-	public float leftShakeOn;
-	public float rightShakeOn;
-	public float leftShakeOff;
-	public float rightShakeOff;
-	private float shakeTimer;
+    public float testA;
+    public float testB;
 
     public CoopCharacterControllerOne coopCharacterControllerOne;
 
@@ -104,10 +101,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         }
        
         
-		shakeTimer -= Time.deltaTime;
-		if (shakeTimer <= 0) {
-			GamePad.SetVibration (0, leftShakeOff, rightShakeOff);
-		}
+        
 
         if (PlayerState == "Alive")
         {
@@ -120,13 +114,11 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 //print("Getting HIT");
 
                 InvTimer -= Time.deltaTime;
-				rend.material.Lerp(matOne, matTwo, 2f);
-
+                rend.material.Lerp(matOne, matTwo, 2f);
                 if (InvTimer <= 0)
                 {
-					shakeTimer = 0.35f;
                     rend.material = matOne;
-					canBeDamaged = true;
+                    canBeDamaged = true;
 
                 }
             }
@@ -195,11 +187,9 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             if (canBeDamaged == true)
             {
                 currentHealth -= 1;
-				InvTimer = 2;
-				shakeTimer = 0.35f;
-				GamePad.SetVibration(0, leftShakeOn, rightShakeOn);
+                InvTimer = 2;
                 canBeDamaged = false;
-
+                GamePad.SetVibration(0, testA, testB);
             }
         }
     }
