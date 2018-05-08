@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757956546276824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.66600424}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1.0000244, y: 1.0000246, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 4972167239279580}
@@ -280,7 +280,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -89.406746, y: 1.367, z: -152.76999}
+  m_LocalPosition: {x: -89.9, y: 1.367, z: -152.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4972167239279580}
@@ -642,7 +642,7 @@ MonoBehaviour:
   moveSpeed: 5
   shootingSpeed: 2
   timeToShoot: 0.2
-  usingXboxController: 1
+  usingXboxController: 0
   isShooting: 0
   paintProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
     type: 2}
@@ -717,6 +717,10 @@ MonoBehaviour:
   duration: 0.5
   rend: {fileID: 23568887262767628}
   currentHP: {fileID: 0}
+  leftShakeOn: 1
+  rightShakeOn: 1
+  leftShakeOff: 0
+  rightShakeOff: 0
   coopCharacterControllerTwo: {fileID: 114488731105616336}
 --- !u!114 &114684548014191590
 MonoBehaviour:
@@ -739,26 +743,10 @@ MonoBehaviour:
   bulletSpeedTrishot: 8
   bulletSpreadTri: 8
   timeBetweenShotsTri: 0.8
-  trishotPickUp: {fileID: 1485571174516368, guid: b8e3b70e19a0811479b02585b6125aad,
-    type: 2}
   fireFromSniper: {fileID: 4585398350491870}
   bulletSpeedSniper: 50
   bulletSpreadSniper: 0
   timeBetweenShotsSniper: 1
-  sniperPickUp: {fileID: 1110269974663312, guid: e02a5856fd4f6bd42aca5a6ab0bdfd91,
-    type: 2}
-  fireFromSMG: {fileID: 4669219028285686}
-  bulletSpeedSMG: 15
-  bulletSpreadSMG: 20
-  timeBetweenShotsSMG: 0.15
-  smgPickUp: {fileID: 1924704110170872, guid: 15f0944676e412f4cab0b18cecb4056e, type: 2}
-  fireFromRainbow: {fileID: 4225784867127288}
-  bulletSpeedRainbow: 20
-  bulletSpreadRainbow: 5
-  timeBetweenShotsRainbow: 0.15
-  rainbowBullets: 100
-  rainbowBluePickUp: {fileID: 1539320590144180, guid: 66a17c4c1ec2dc045afc6f8958d3196c,
-    type: 2}
   stateOfWeapon: 0
   isFiring: 0
   usingXboxController: 1
@@ -4109,7 +4097,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -642702856
+  randomSeed: 192983381
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7376,7 +7364,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1817031334
+  randomSeed: 417729299
   InitialModule:
     serializedVersion: 3
     enabled: 1
