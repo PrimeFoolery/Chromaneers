@@ -7,7 +7,7 @@ public class GreenEnemyHealth : MonoBehaviour {
 	//Private variables
 	public int blueHealth=3;
 	public int yellowHealth=3;
-	private float recoveryTimer = 2f;
+	private float recoveryTimer = 5f;
 	public GameObject sphere;
 
 	public Material blueJellyMaterial;
@@ -79,18 +79,18 @@ public class GreenEnemyHealth : MonoBehaviour {
         if (blueHealth>0)
         {
             blueHealth -= 1;
-            recoveryTimer = 2f;
+            recoveryTimer = 5f;
         }
         else
         {
             yellowHealth -= 1;
-            recoveryTimer = 2f;
+            recoveryTimer = 5f;
         }
     }
 	public void OnCollisionEnter (Collision other){
 		if(other.gameObject.CompareTag("BlueBullet")){
 			blueHealth -= 1;
-			recoveryTimer = 2f;
+			recoveryTimer = 5f;
 		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
@@ -98,7 +98,7 @@ public class GreenEnemyHealth : MonoBehaviour {
         }
 		if(other.gameObject.CompareTag("YellowBullet")){
 			yellowHealth -= 1;
-			recoveryTimer = 2f;
+			recoveryTimer = 5f;
 		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
