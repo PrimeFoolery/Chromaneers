@@ -25,7 +25,18 @@ public class CharacterTwoGunController : MonoBehaviour {
     [Range(0, 50)] public float bulletSpeedSniper;
     [Range(0, 10)] public float bulletSpreadSniper;
     [Range(0, 1)] public float timeBetweenShotsSniper;
-    
+    [Space(5)]
+    [Header("SMG Weapon")]
+    public Transform fireFromSMG;
+    [Range(0, 50)] public float bulletSpeedSMG;
+    [Range(10, 20)] public float bulletSpreadSMG;
+    [Range(0, 1)] public float timeBetweenShotsSMG;
+    [Header("Rainbow Weapon")]
+    public Transform fireFromRainbow;
+    [Range(0, 50)] public float bulletSpeedRainbow;
+    [Range(0, 10)] public float bulletSpreadRainbow;
+    [Range(0, 1)] public float timeBetweenShotsRainbow;
+
     public CharacterOneGunController.currentWeapon stateOfWeapon;
     private bool weaponPickedUp = false;
      
@@ -93,6 +104,10 @@ public class CharacterTwoGunController : MonoBehaviour {
                     shotCounter = timeBetweenShotsTri;
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                     shotCounter = timeBetweenShotsSniper;
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+                    shotCounter = timeBetweenShotsSMG;
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
+                    shotCounter = timeBetweenShotsRainbow;
                 }
                 //Calling function CurrentBulletFiring() which handles the bullets
                 CurrentBulletFiring();
@@ -112,9 +127,14 @@ public class CharacterTwoGunController : MonoBehaviour {
             bulletSpreadWidth = Random.Range(-bulletSpreadTri, bulletSpreadTri);
         } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
+        } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+            bulletSpreadWidth = Random.Range(-bulletSpreadSMG, bulletSpreadSMG);
+        } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
+            bulletSpreadWidth = Random.Range(-bulletSpreadRainbow, bulletSpreadRainbow);
         }
         
-        if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
+        if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon
+            || stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon)
         {
             if (coopCharacterControllerTwo.usingXboxController ==false)
             {
@@ -135,16 +155,20 @@ public class CharacterTwoGunController : MonoBehaviour {
 
         if (coopCharacterControllerTwo.usingXboxController == false)
         {
-            if (( Input.GetButtonUp("Pickup2")))
+            if (Input.GetKeyUp(KeyCode.Joystick2Button0))
             {
                 weaponPickedUp = false;
+                controllerPrompt.enabled = false;
+                controlState = "Idle";
             }
         } else
         if (coopCharacterControllerTwo.usingXboxController == true)
         {
-            if ((Input.GetKeyUp(KeyCode.Joystick2Button0)))
+            if (Input.GetButtonUp("Pickup2"))
             {
                 weaponPickedUp = false;
+                controllerPrompt.enabled = false;
+                controlState = "Idle";
             }
         }
     }
@@ -183,6 +207,15 @@ public class CharacterTwoGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<RedBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     bullet.GetComponent<RedBulletController>().speedSniper = bulletSpeedSniper;
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromSMG.position, fireFromSMG.rotation);
+                    bullet.GetComponent<RedBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                    bullet.GetComponent<RedBulletController>().speedSMG = bulletSpeedSMG;
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
+                    GameObject rainbowBulletToShoot = colourSelectManager.GetBulletRainbowRedToShoot();
+                    bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
+                    bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
                 }
                 mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
@@ -221,8 +254,17 @@ public class CharacterTwoGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<RedBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     bullet.GetComponent<RedBulletController>().speedSniper = bulletSpeedSniper;
-                }			    
-			    mainCameraScript.SmallScreenShake();
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromSMG.position, fireFromSMG.rotation);
+                    bullet.GetComponent<RedBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                    bullet.GetComponent<RedBulletController>().speedSMG = bulletSpeedSMG;
+                } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
+                    GameObject rainbowBulletToShoot = colourSelectManager.GetBulletRainbowRedToShoot();
+                    bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
+                    bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
+                }
+                mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
                 this.GetComponent<AudioSource>().Play();
             }
@@ -240,6 +282,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else 
             if (coopCharacterControllerTwo.usingXboxController==true)
@@ -248,6 +291,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         }
@@ -261,6 +305,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else 
             if (coopCharacterControllerTwo.usingXboxController==true)
@@ -269,6 +314,43 @@ public class CharacterTwoGunController : MonoBehaviour {
                 {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
+                }
+            }
+        } 
+        else if (theCol.gameObject.CompareTag("SMGWeapon")) {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
+            if (coopCharacterControllerTwo.usingXboxController == false) {
+                if (Input.GetKey(KeyCode.Joystick2Button0)) {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                    weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
+                }
+            } else
+            if (coopCharacterControllerTwo.usingXboxController == true) {
+                if (Input.GetButton("Pickup2")) {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                    weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
+                }
+            }
+        } 
+        else if (theCol.gameObject.CompareTag("RainbowWeapon")) {
+            controllerPrompt.enabled = true;
+            controlState = "Blue";
+            if (coopCharacterControllerTwo.usingXboxController == false) {
+                if (Input.GetKey(KeyCode.Joystick2Button0)) {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
+                }
+            } else
+            if (coopCharacterControllerTwo.usingXboxController == true) {
+                if (Input.GetButton("Pickup2")) {
+                    stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         }
@@ -282,6 +364,14 @@ public class CharacterTwoGunController : MonoBehaviour {
         }
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
+        } 
+        else if (theCol.gameObject.CompareTag("SMGWeapon")) {
+            controllerPrompt.enabled = false;
+            controlState = "Idle";
+        } 
+        else if (theCol.gameObject.CompareTag("RainbowWeapon")) {
             controllerPrompt.enabled = false;
             controlState = "Idle";
         }

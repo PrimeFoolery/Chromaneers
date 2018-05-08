@@ -103,7 +103,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             //Making a vector3 to store the characters inputs
-            if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+            if (gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
             {
                 moveInput = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
             }

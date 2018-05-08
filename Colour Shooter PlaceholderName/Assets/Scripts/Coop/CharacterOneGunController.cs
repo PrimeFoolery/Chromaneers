@@ -156,16 +156,20 @@ public class CharacterOneGunController : MonoBehaviour {
 
         if (coopCharacterControllerOne.usingXboxController == false)
         {
-            if (( Input.GetButtonUp("Pickup1")))
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0))
             {
                 weaponPickedUp = false;
+                controllerPrompt.enabled = false;
+                controlState = "Idle";
             }
         } else
         if (coopCharacterControllerOne.usingXboxController == true)
         {
-            if ((Input.GetKeyUp(KeyCode.Joystick1Button0)))
+            if (Input.GetButtonUp("Pickup1"))
             {
                 weaponPickedUp = false;
+                controllerPrompt.enabled = false;
+                controlState = "Idle";
             }
         }
         
@@ -280,6 +284,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 {
                     stateOfWeapon = currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else 
             if (coopCharacterControllerOne.usingXboxController==true)
@@ -288,6 +293,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 {
                     stateOfWeapon = currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         }
@@ -301,6 +307,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 {
                     stateOfWeapon = currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else 
             if (coopCharacterControllerOne.usingXboxController==true)
@@ -309,6 +316,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 {
                     stateOfWeapon = currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         }
@@ -319,11 +327,13 @@ public class CharacterOneGunController : MonoBehaviour {
                 if (Input.GetKey(KeyCode.Joystick1Button0)) {
                     stateOfWeapon = currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else if (coopCharacterControllerOne.usingXboxController == true) {
                 if (Input.GetButton("Pickup1")) {
                     stateOfWeapon = currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         } 
@@ -334,11 +344,13 @@ public class CharacterOneGunController : MonoBehaviour {
                 if (Input.GetKey(KeyCode.Joystick1Button0)) {
                     stateOfWeapon = currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             } else if (coopCharacterControllerOne.usingXboxController == true) {
                 if (Input.GetButton("Pickup1")) {
                     stateOfWeapon = currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
+                    Destroy(theCol.gameObject);
                 }
             }
         }

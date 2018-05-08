@@ -80,16 +80,16 @@ public class YellowBulletController : MonoBehaviour {
 
         if (stateOfBullet == bulletState.reboundBullet) {
             //Rebound the bullet
-	        if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
+	        if (currentWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
 		        transform.Translate(((Vector3.back * 0.8f * speedOriginal) + (Vector3.up * 0.2f * speedOriginal)) * Time.deltaTime);
 		        speedOriginal = speedOriginal * deceleration;
-	        } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+	        } else if (currentWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
 		        transform.Translate(((Vector3.back * 0.8f * speedTri) + (Vector3.up * 0.2f * speedTri)) * Time.deltaTime);
 		        speedTri = speedTri * deceleration;
-	        } else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
+	        } else if (currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
 		        transform.Translate(((Vector3.back * 0.8f * speedSniper) + (Vector3.up * 0.2f * speedSniper)) * Time.deltaTime);
 		        speedSniper = speedSniper * deceleration;
-			} else if (characterOneGunController.stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+			} else if (currentWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
 				transform.Translate(((Vector3.back * 0.8f * speedSMG) + (Vector3.up * 0.2f * speedSMG)) * Time.deltaTime);
 				speedSMG = speedSMG * deceleration;
 			}

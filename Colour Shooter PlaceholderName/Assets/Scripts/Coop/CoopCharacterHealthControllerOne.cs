@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class CoopCharacterHealthControllerOne : MonoBehaviour
 {
@@ -38,6 +39,13 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     public Material deadMat;
     public float duration;
     public Renderer rend;
+
+    [Header("Controller Vibration")]
+    public float vibrationRightOn;
+    public float vibrationLeftOn;
+    public float vibrationRightOff;
+    public float vibrationLeftOff;
+    public float vibrationTimer;
 
     [Header("UI")]
     public Text currentHP;
@@ -94,8 +102,11 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 }
             }
         }
-       
-        
+
+        vibrationTimer -= Time.deltaTime;
+        if (vibrationTimer <= 0) {
+            GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
+        }
         
 
         if (PlayerState == "Alive")
@@ -112,6 +123,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 rend.material.Lerp(matOne, matTwo, 2f);
                 if (InvTimer <= 0)
                 {
+                    vibrationTimer = 0.35f;
                     rend.material = matOne;
                     canBeDamaged = true;
 
@@ -183,6 +195,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             {
                 currentHealth -= 1;
                 InvTimer = 2;
+                vibrationTimer = 0.35f;
+                GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }
         }

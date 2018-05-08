@@ -34,7 +34,8 @@ public class chestController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("BlueBullet")||other.collider.CompareTag("RedBullet")||other.collider.CompareTag("YellowBullet")&&hasChestBeenOpened==false)
+        if (other.collider.CompareTag("BlueBullet")||other.collider.CompareTag("RedBullet")||other.collider.CompareTag("YellowBullet") 
+            || other.collider.CompareTag("RainbowBullet") &&hasChestBeenOpened==false)
         {
             
             if (thisChestsWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
