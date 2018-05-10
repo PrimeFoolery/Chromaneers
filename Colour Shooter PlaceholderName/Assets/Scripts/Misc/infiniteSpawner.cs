@@ -7,7 +7,12 @@ public class infiniteSpawner : MonoBehaviour {
     private bool HasSpawnerBeenTriggered = false;
 
     public List<GameObject> thisTriggersSpawners = new List<GameObject>();
-    public List<InfiniteSpawnPoint.enemyTypes> SpawnPoint1Enemies = new List<InfiniteSpawnPoint.enemyTypes>();
+    public List<InfiniteSpawnPoint.enemyTypes> EveryEnemySpawnEnemies = new List<InfiniteSpawnPoint.enemyTypes>();
+    public List<InfiniteSpawnPoint.enemyTypes> RandomExtraEnemiesPool = new List<InfiniteSpawnPoint.enemyTypes>();
+    
+    private List<InfiniteSpawnPoint.enemyTypes> ExtraEnemiesToSpawn = new List<InfiniteSpawnPoint.enemyTypes>(); 
+
+    public int howManyExtraEnemies = 1;
 
     private int amountOfPlayersInTrigger = 0;
 
@@ -27,8 +32,35 @@ public class infiniteSpawner : MonoBehaviour {
         {
             if (spawnerTimer>15f)
             {
+                if (howManyExtraEnemies == 1)
+                {
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                }
+                else if (howManyExtraEnemies == 2)
+                {
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                }
+                else if (howManyExtraEnemies == 3)
+                {
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                }else if (howManyExtraEnemies == 4)
+                {
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                    ExtraEnemiesToSpawn.Add(RandomExtraEnemiesPool[Random.Range(0, RandomExtraEnemiesPool.Count)]);
+                }
                 randomSpawnPoint = Random.Range(0, thisTriggersSpawners.Count-1);
-                thisTriggersSpawners[randomSpawnPoint].GetComponent<InfiniteSpawnPoint>().SpawnEnemies(SpawnPoint1Enemies);
+                thisTriggersSpawners[randomSpawnPoint].GetComponent<InfiniteSpawnPoint>().SpawnEnemies(EveryEnemySpawnEnemies);
+                thisTriggersSpawners[randomSpawnPoint].GetComponent<InfiniteSpawnPoint>().SpawnEnemies(ExtraEnemiesToSpawn);
+                ExtraEnemiesToSpawn.Clear();
+                foreach (GameObject spawnPoint in thisTriggersSpawners)
+                {
+                    spawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+                }
                 spawnerTimer = 0f;
             }
             spawnerTimer += Time.deltaTime;
