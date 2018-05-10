@@ -78,9 +78,9 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
-	        enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardRed);
-	        pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
-	        pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardRed);
+	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
         }
 	    else if (colourOfThisPen == ColoursOfPen.yellow)
 	    {
@@ -93,9 +93,9 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
-	        enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardYellow);
-	        pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
-	        pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardYellow);
+	       // pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
         }
     }
 	

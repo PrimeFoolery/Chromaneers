@@ -15,6 +15,8 @@ public class passwordPuzzleController : MonoBehaviour
 
     public bool hasKeySpawned = false;
 
+    public GameObject dustExplosion;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -40,7 +42,9 @@ public class passwordPuzzleController : MonoBehaviour
         {
             if (hasKeySpawned==false)
             {
-                Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
+                Instantiate(dustExplosion, transform.position, Quaternion.identity);
+                //Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
                 hasKeySpawned = true;
             }
         }
