@@ -16,7 +16,7 @@ public class SettingMenu : MonoBehaviour {
     private GameObject storedSelected;
 
     [Header("Input Selection")]
-    public GameObject[] buttonList;
+    public GameObject[] buttonListOpt;
     public GameObject volumeText;
     public bool canInteract = true;
     private float InteractTimer;
@@ -41,11 +41,11 @@ public class SettingMenu : MonoBehaviour {
                  InteractTimer = maxIntTimer;
              }
          }
-        /*if(eventSys.currentSelectedGameObject == buttonList[0].gameObject)
+        /*if(eventSys.currentSelectedGameObject == buttonListOpt[0].gameObject)
           {
               volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
           }
-          if(eventSys.currentSelectedGameObject != buttonList[0].gameObject)
+          if(eventSys.currentSelectedGameObject != buttonListOpt[0].gameObject)
           {
               volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
           }*/
@@ -57,31 +57,31 @@ public class SettingMenu : MonoBehaviour {
             {
                 if (eventSys.currentSelectedGameObject == null)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[1]);
                     // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[2]);
                     // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                     canInteract = false;
                 }
@@ -90,27 +90,27 @@ public class SettingMenu : MonoBehaviour {
             {
                 if (eventSys.currentSelectedGameObject == null)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[1]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     canInteract = false;
                 }
             }
@@ -123,31 +123,31 @@ public class SettingMenu : MonoBehaviour {
             {
                 if (eventSys.currentSelectedGameObject == null)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[1]);
                     // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[2]);
                     // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                     canInteract = false;
                 }
@@ -156,27 +156,27 @@ public class SettingMenu : MonoBehaviour {
             {
                 if (eventSys.currentSelectedGameObject == null)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[1]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
                 {
-                    eventSys.SetSelectedGameObject(buttonList[3]);
+                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
                     canInteract = false;
                 }
             }
@@ -185,31 +185,31 @@ public class SettingMenu : MonoBehaviour {
         {
             if (eventSys.currentSelectedGameObject == null)
             {
-                eventSys.SetSelectedGameObject(buttonList[0]);
+                eventSys.SetSelectedGameObject(buttonListOpt[0]);
                 //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[1]);
+                eventSys.SetSelectedGameObject(buttonListOpt[1]);
                 // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[2]);
+                eventSys.SetSelectedGameObject(buttonListOpt[2]);
                 // volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[3]);
+                eventSys.SetSelectedGameObject(buttonListOpt[3]);
                 //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 160f);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[0]);
+                eventSys.SetSelectedGameObject(buttonListOpt[0]);
                 //volumeText.GetComponent<Image>().color = new Color(0, 0, 0, 230f);
                 canInteract = false;
             }
@@ -218,27 +218,27 @@ public class SettingMenu : MonoBehaviour {
         {
             if (eventSys.currentSelectedGameObject == null)
             {
-                eventSys.SetSelectedGameObject(buttonList[3]);
+                eventSys.SetSelectedGameObject(buttonListOpt[3]);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[3] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[2]);
+                eventSys.SetSelectedGameObject(buttonListOpt[2]);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[1]);
+                eventSys.SetSelectedGameObject(buttonListOpt[1]);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[0]);
+                eventSys.SetSelectedGameObject(buttonListOpt[0]);
                 canInteract = false;
             }
-            if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
             {
-                eventSys.SetSelectedGameObject(buttonList[3]);
+                eventSys.SetSelectedGameObject(buttonListOpt[3]);
                 canInteract = false;
             }
         }
@@ -260,7 +260,7 @@ public class SettingMenu : MonoBehaviour {
     }
     public void BackToMenu()
     {
-        //eventSys.SetSelectedGameObject(MainMenuPanel.GetComponent<MainMenu>().buttonList[0]);
+        
         MainMenuPanel.SetActive(true);
         OptionsPanel.SetActive(false);
     }
