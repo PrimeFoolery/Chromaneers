@@ -76,7 +76,7 @@ public class infiniteSpawner : MonoBehaviour {
                     spawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
                 }
 
-                spawnRate += 3f;
+                spawnRate += 4f;
                 spawnerTimer = 0f;
             }
             spawnerTimer += Time.deltaTime;

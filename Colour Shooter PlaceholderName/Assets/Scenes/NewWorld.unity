@@ -14048,7 +14048,7 @@ Prefab:
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
       propertyPath: EveryEnemySpawnEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
@@ -14065,7 +14065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 360.7
+      value: 357.8
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -14089,7 +14089,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalScale.x
-      value: 23.230045
+      value: 19.1
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalScale.z
@@ -14142,7 +14142,7 @@ Prefab:
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
       propertyPath: EveryEnemySpawnEnemies.Array.data[0]
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
@@ -34187,6 +34187,11 @@ Prefab:
       propertyPath: RandomExtraEnemiesPool.Array.data[14]
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
+        type: 2}
+      propertyPath: EveryEnemySpawnEnemies.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b2039882f4fd314f81465953995201b, type: 2}
   m_IsPrefabParent: 0
@@ -35466,7 +35471,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 251
+      value: 259.8
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -35490,7 +35495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalScale.x
-      value: 23.230034
+      value: 13.9
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalScale.z
