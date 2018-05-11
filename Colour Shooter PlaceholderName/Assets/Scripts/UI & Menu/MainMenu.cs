@@ -301,7 +301,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Play()
     {
-        SceneManager.LoadScene("MainLevelOne");
+        SceneManager.LoadScene("NewWorld");
     }
     public void Options()
     {
