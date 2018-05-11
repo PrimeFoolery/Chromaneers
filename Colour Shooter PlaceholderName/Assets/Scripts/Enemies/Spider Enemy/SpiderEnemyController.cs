@@ -314,7 +314,7 @@ public class SpiderEnemyController : MonoBehaviour
 	        }
 	        else
 	        {
-	            agent.speed = 6f; 
+	            agent.speed = 7f; 
 	        }
             
 	        if (bodyDropped==false)

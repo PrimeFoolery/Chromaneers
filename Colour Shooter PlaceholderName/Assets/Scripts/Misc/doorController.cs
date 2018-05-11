@@ -11,6 +11,8 @@ public class doorController : MonoBehaviour
 
     [Range(0.0f, 10.0f)] public float doorSpeed = 5f;
 
+    public int amountOfInputsBeforeOpening = 1;
+
 	// Use this for initialization
 	void Start () {
 		targetMovement =new Vector3(transform.localPosition.x,transform.localPosition.y, transform.localPosition.z+20);
@@ -26,6 +28,11 @@ public class doorController : MonoBehaviour
 
     public void OpenSesame()
     {
-        doorOpen = true;
+        amountOfInputsBeforeOpening -= 1;
+        if (amountOfInputsBeforeOpening<1)
+        {
+            doorOpen = true;
+
+        }
     }
 }

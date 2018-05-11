@@ -17,7 +17,7 @@ public class blobPenController : MonoBehaviour
     private bool doorOpened = false;
 
     public GameObject thisPensInfiniteSpawnTrigger;
-    public GameObject doorToOpen;
+    public GameObject ObjectToTrigger;
 
     public List<GameObject> CorrectEnemiesInPen = new List<GameObject>();
 
@@ -188,7 +188,25 @@ public class blobPenController : MonoBehaviour
 	    }
         if (amountOfCorrectEnemies>=5&&doorOpened==false)
 	    {
-            doorToOpen.GetComponent<doorController>().OpenSesame();
+	        if (ObjectToTrigger.GetComponent<doorController>()!=null)
+	        {
+                ObjectToTrigger.GetComponent<doorController>().OpenSesame();
+	        }
+
+	        if (ObjectToTrigger.GetComponent<cableController>()!=null)
+	        {
+	            if (colourOfThisPen== ColoursOfPen.blue)
+	            {
+	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.blue);
+                }else if (colourOfThisPen == ColoursOfPen.red)
+	            {
+	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.red);
+	            }else if (colourOfThisPen == ColoursOfPen.yellow)
+	            {
+	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.yellow);
+	            }
+
+            }
 	        doorOpened = true;
 	    }
 	}

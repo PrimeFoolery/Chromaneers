@@ -509,7 +509,7 @@ public class MainMenu : MonoBehaviour {
     //main menu stuff
     public void Play()
     {
-        SceneManager.LoadScene("MainLevelOne");
+        SceneManager.LoadScene("NewWorld");
     }
     public void Options()
     {
