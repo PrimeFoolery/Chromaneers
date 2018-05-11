@@ -407,9 +407,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  targetPlayer: {fileID: 0}
   isAggroPlayer: 0
+  SphereRenderer: {fileID: 23683359011796362}
   isItCoop: 1
-  thisEnemiesSpawnPoint: 
+  thisEnemiesSpawnPoint: {fileID: 0}
   enemyDamage: 1
 --- !u!136 &136996010345690640
 CapsuleCollider:

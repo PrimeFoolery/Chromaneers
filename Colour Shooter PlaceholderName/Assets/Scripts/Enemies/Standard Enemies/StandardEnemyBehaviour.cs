@@ -18,6 +18,8 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     private RedEnemyHealth redHealth;
     private float poisonTimer = 4f;
 
+    public Renderer SphereRenderer;
+
     //COOP PLAYER VARIABLES
     [Header("Coop Variables")]
     private GameObject RedPlayer;
