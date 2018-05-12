@@ -235,8 +235,142 @@ public class FastEnemy : MonoBehaviour {
     }
     void FindClosestPlayer()
     {
-
-
+        if (colourOfEnemy == "blue")
+        {
+            readyToRetarget = false;
+            float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
+            float distanceBetweenEnemyAndYellowPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+            if (closestDistance == distanceBetweenEnemyAndRedPlayer)
+            {
+                if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+            else if (closestDistance == distanceBetweenEnemyAndYellowPlayer)
+            {
+                if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+        }
+        else if (colourOfEnemy == "red")
+        {
+            readyToRetarget = false;
+            float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
+            float distanceBetweenEnemyAndYellowPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+            if (closestDistance == distanceBetweenEnemyAndBluePlayer)
+            {
+                if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+            else if (closestDistance == distanceBetweenEnemyAndYellowPlayer)
+            {
+                if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+        }
+        else if (colourOfEnemy == "yellow")
+        {
+            readyToRetarget = false;
+            float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
+            float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer), Mathf.Abs(distanceBetweenEnemyAndRedPlayer));
+            if (closestDistance == distanceBetweenEnemyAndBluePlayer)
+            {
+                if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+            else if (closestDistance == distanceBetweenEnemyAndRedPlayer)
+            {
+                if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    targetPlayer = RedPlayer;
+                }
+                else if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
+                {
+                    targetPlayer = BluePlayer;
+                }
+                else if (YellowPlayer.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    targetPlayer = YellowPlayer;
+                }
+                else
+                {
+                    targetPlayer = Instantiate(new GameObject(), RandomNavmeshLocation(10f), Quaternion.identity);
+                }
+            }
+        }
+        /*
         readyToRetarget = false;
         //THIS CALCULATES THE DISTANCE BETWEEN THE ENEMY AND ALL OF THE PLAYERS AND THEN FINDS THE LOWEST AND SETS THE TARGETED PLAYER TO THAT
         float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
@@ -339,6 +473,7 @@ public class FastEnemy : MonoBehaviour {
                 agent.SetDestination(RandomNavmeshLocation(10f));
             }
         }
+        */
 
     }
     void OnCollisionEnter(Collision theCol)
