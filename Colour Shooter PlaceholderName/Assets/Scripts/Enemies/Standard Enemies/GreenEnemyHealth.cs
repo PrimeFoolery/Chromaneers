@@ -20,6 +20,11 @@ public class GreenEnemyHealth : MonoBehaviour {
 
     private GameObject thisEnemiesSpawnPoint;
 
+    [Header("Splat")]
+    public GameObject GreenSplat;
+    public GameObject enemyEmpty;
+
+
     void Start () {
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
@@ -54,6 +59,7 @@ public class GreenEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
+            Instantiate(GreenSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             Destroy (this.gameObject);
 		}

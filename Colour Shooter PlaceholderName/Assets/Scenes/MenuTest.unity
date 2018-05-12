@@ -3555,7 +3555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 56258a01a6eecd94aac50c0053887231, type: 2}
+  profile: {fileID: 0}
 --- !u!1 &167579936 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: 451f98594c3e4e4419218603a60c56b9, type: 3}
@@ -15790,7 +15790,7 @@ MonoBehaviour:
   buttonListOpt:
   - {fileID: 1864171594}
   - {fileID: 1403662235}
-  - {fileID: 1403662235}
+  - {fileID: 1778865259}
   - {fileID: 1761923597}
   canInteract: 1
   maxIntTimer: 0.4
@@ -16183,10 +16183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee82fe7c1c3d164aad1266f42502752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuClick: {fileID: 8300000, guid: 7ef631a61e89a934c8ac946f67c8077a, type: 3}
-  menuScroll: {fileID: 8300000, guid: 544e4030778c85349b526575155c329e, type: 3}
+  menuClick: {fileID: 0}
+  menuScroll: {fileID: 0}
   canInteract: 1
-  maxIntTimer: 0.4
+  maxIntTimer: 0
   usingXboxController: 0
   CanvasHolder: {fileID: 854368558}
 --- !u!4 &871841430

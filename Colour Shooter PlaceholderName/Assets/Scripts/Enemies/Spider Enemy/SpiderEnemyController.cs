@@ -30,7 +30,14 @@ public class SpiderEnemyController : MonoBehaviour
     public Material BlueParticleMaterial;
     public Material YellowParticleMaterial;
 
-	[Header("Player and Misc")]
+    [Header ("Paint Splat")]
+    public GameObject blueSplat;
+    public GameObject redSplat;
+    public GameObject yellowSplat;
+    public string BodyColourHolder;
+    public GameObject enemyEmpty;
+
+    [Header("Player and Misc")]
     public GameObject player;
     private GameObject targetPlayer;
     NavMeshAgent agent;
@@ -89,6 +96,7 @@ public class SpiderEnemyController : MonoBehaviour
 	    {
 	        gameObject.GetComponent<ParticleSystemRenderer>().material = RedParticleMaterial;
             bodyMaterial = RedJellyMaterial;
+            BodyColourHolder = "Red";
 	        legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
@@ -118,7 +126,8 @@ public class SpiderEnemyController : MonoBehaviour
 	    {
 	        gameObject.GetComponent<ParticleSystemRenderer>().material = BlueParticleMaterial;
             bodyMaterial = BlueJellyMaterial;
-	        legColour = Random.Range(1, 3);
+            BodyColourHolder = "Blue";
+            legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
 	           // Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
@@ -148,7 +157,8 @@ public class SpiderEnemyController : MonoBehaviour
 	    {
 	        gameObject.GetComponent<ParticleSystemRenderer>().material = YellowParticleMaterial;
             bodyMaterial = YellowJellyMaterial;
-	        legColour = Random.Range(1, 3);
+            BodyColourHolder = "Yellow";
+            legColour = Random.Range(1, 3);
 	        if (legColour == 1)
 	        {
 	            Debug.Log("leg colour:  " + legColour + "  body colour:  " + bodyColour);
@@ -337,6 +347,18 @@ public class SpiderEnemyController : MonoBehaviour
 	        {
 	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
 	        }
+            if(BodyColourHolder == "Red")
+            {
+                Instantiate(redSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+            }
+            if (BodyColourHolder == "Blue")
+            {
+                Instantiate(blueSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+            }
+            if (BodyColourHolder == "Yellow")
+            {
+                Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+            }
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
 	    }
