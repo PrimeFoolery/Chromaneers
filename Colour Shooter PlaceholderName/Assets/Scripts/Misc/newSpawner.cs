@@ -29,7 +29,12 @@ public class newSpawner : MonoBehaviour
         FastEnemyRandom,
         FastEnemyBlue,
         FastEnemyRed,
-        FastEnemyYellow
+        FastEnemyYellow,
+
+        MotherRandom,
+        MotherBlue,
+        MotherRed,
+        MotherYellow
     }
 
     public GameObject RedEnemy;
@@ -44,12 +49,14 @@ public class newSpawner : MonoBehaviour
     public GameObject GreenEnemy;
     public GameObject SnakeEnemy;
     public GameObject FastEnemy;
+    public GameObject MotherEnemy;
 
     public GameObject tempEnemy;
     private StandardEnemyBehaviour tempStandardEnemyBehaviour;
     private SpiderEnemyController tempSpiderEnemyController;
     private SnakeEnemyScript tempSnakeEnemyScript;
     private FastEnemy tempFastEnemyScript;
+    private MotherController tempMotherEnemyScript;
     private EnemyManager enemyManagerScript;
 
     public List<GameObject> ThisSpawnpointsEnemyList = new List<GameObject>();
@@ -357,6 +364,72 @@ public class newSpawner : MonoBehaviour
                     tempEnemy = null;
                     tempFastEnemyScript = null;
                 }
+                else if (enemy == enemyTypes.MotherBlue)
+                {
+                    tempEnemy = Instantiate(MotherEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempMotherEnemyScript = tempEnemy.GetComponent<MotherController>();
+                    tempMotherEnemyScript.colourOverride = true;
+                    tempMotherEnemyScript.randomColour = 1;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempMotherEnemyScript != null)
+                    {
+                        tempMotherEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
+                }
+                else if (enemy == enemyTypes.MotherRed)
+                {
+                    tempEnemy = Instantiate(MotherEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempMotherEnemyScript = tempEnemy.GetComponent<MotherController>();
+                    tempMotherEnemyScript.colourOverride = true;
+                    tempMotherEnemyScript.randomColour = 2;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempMotherEnemyScript != null)
+                    {
+                        tempMotherEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
+                }
+                else if (enemy == enemyTypes.MotherYellow)
+                {
+                    tempEnemy = Instantiate(MotherEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempMotherEnemyScript = tempEnemy.GetComponent<MotherController>();
+                    tempMotherEnemyScript.colourOverride = true;
+                    tempMotherEnemyScript.randomColour = 3;
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempMotherEnemyScript != null)
+                    {
+                        tempMotherEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
+                }
+                else if (enemy == enemyTypes.MotherRandom)
+                {
+                    tempEnemy = Instantiate(MotherEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempMotherEnemyScript = tempEnemy.GetComponent<MotherController>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempMotherEnemyScript != null)
+                    {
+                        tempMotherEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+
+                    tempEnemy = null;
+                    tempFastEnemyScript = null;
+                }
             }
 
             //haveAllEnemiesSpawned = true;
@@ -393,6 +466,11 @@ public class newSpawner : MonoBehaviour
                 enemy.GetComponent<FastEnemy>().isAggroPlayer = true;
             }
 
+            if (enemy.GetComponent<MotherController>() != null)
+            {
+                enemy.GetComponent<MotherController>().isAggroPlayer = true;
+            }
+
         }
     }
 
@@ -424,6 +502,13 @@ public class newSpawner : MonoBehaviour
             }
 
             if (enemy.GetComponent<FastEnemy>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+
+            if (enemy.GetComponent<MotherController>() != null)
             {
                 enemyManagerScript.enemyList.Remove(enemy);
                 ThisSpawnpointsEnemyList.Remove(enemy);

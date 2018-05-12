@@ -465,9 +465,18 @@ public class SnakeEnemyScript : MonoBehaviour
 
             thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
@@ -499,10 +508,19 @@ public class SnakeEnemyScript : MonoBehaviour
 
             thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = redParticle;
             SegmentBehind.GetComponent<ParticleSystemRenderer>().material = redParticle;
@@ -532,10 +550,19 @@ public class SnakeEnemyScript : MonoBehaviour
 
             thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
             SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+            SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
             SegmentBehind.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
@@ -567,12 +594,21 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "blue";
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "blue";
 
-                SphereRenderer.material = blueMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = blueMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = blueMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = blueMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = blueMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = blueMaterial;
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
 
                 gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
                 SegmentBehind.GetComponent<ParticleSystemRenderer>().material = blueParticle;
@@ -580,6 +616,13 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = blueParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = blueParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = blueParticle;
+
+                sphereIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().sphereIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().sphereIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().sphereIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().sphereIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().sphereIndicatorRenderer.enabled = true;
 
             }
             else if (randomColour == 2)
@@ -591,12 +634,21 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "red";
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "red";
 
-                SphereRenderer.material = redMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = redMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = redMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = redMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = redMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = redMaterial;
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
 
                 gameObject.GetComponent<ParticleSystemRenderer>().material = redParticle;
                 SegmentBehind.GetComponent<ParticleSystemRenderer>().material = redParticle;
@@ -604,6 +656,13 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = redParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = redParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = redParticle;
+
+                triangleIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().triangleIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().triangleIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().triangleIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().triangleIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().triangleIndicatorRenderer.enabled = true;
 
             }
             else if (randomColour == 3)
@@ -615,12 +674,21 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "yellow";
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().colourOfSnake = "yellow";
 
-                SphereRenderer.material = yellowMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = yellowMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = yellowMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = yellowMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = yellowMaterial;
-                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SphereRenderer.material = yellowMaterial;
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
 
                 gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
                 SegmentBehind.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
@@ -628,6 +696,13 @@ public class SnakeEnemyScript : MonoBehaviour
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
                 SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
+
+                squareIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().squareIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().squareIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().squareIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().squareIndicatorRenderer.enabled = true;
+                SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().SegmentBehind.GetComponent<SnakeEnemyScript>().squareIndicatorRenderer.enabled = true;
 
             }
         }
@@ -639,8 +714,23 @@ public class SnakeEnemyScript : MonoBehaviour
         if (randomColour == 1)
         {
             colourOfSnake = "blue";
+            if (name == "SnakeHead")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+            }
+            else if (name == "SnakeTail")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+            }
+            else
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = blueMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = blueMaterial;
+                thisSegmentsSnakeBody.GetComponent<Renderer>().material = blueMaterial;
+            }
 
-            SphereRenderer.material = blueMaterial;
+            sphereIndicatorRenderer.enabled = true;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
 
@@ -649,7 +739,23 @@ public class SnakeEnemyScript : MonoBehaviour
         {
             colourOfSnake = "red";
 
-            SphereRenderer.material = redMaterial;
+            if (name == "SnakeHead")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+            }
+            else if (name == "SnakeTail")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+            }
+            else
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = redMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = redMaterial;
+                thisSegmentsSnakeBody.GetComponent<Renderer>().material = redMaterial;
+            }
+
+            triangleIndicatorRenderer.enabled = true;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = redParticle;
 
@@ -658,7 +764,23 @@ public class SnakeEnemyScript : MonoBehaviour
         {
             colourOfSnake = "yellow";
 
-            SphereRenderer.material = yellowMaterial;
+            if (name == "SnakeHead")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+            }
+            else if (name == "SnakeTail")
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+            }
+            else
+            {
+                thisSegmentsSnakeHead.GetComponent<Renderer>().material = yellowMaterial;
+                thisSegmentsSnakeTail.GetComponent<Renderer>().material = yellowMaterial;
+                thisSegmentsSnakeBody.GetComponent<Renderer>().material = yellowMaterial;
+            }
+
+            squareIndicatorRenderer.enabled = true;
 
             gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
 
