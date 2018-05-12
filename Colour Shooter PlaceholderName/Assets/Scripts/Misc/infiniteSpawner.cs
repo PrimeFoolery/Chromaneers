@@ -18,12 +18,14 @@ public class infiniteSpawner : MonoBehaviour {
 
     private float spawnerTimer = 15f;
 
+    private float startSpawnRate;
     public float spawnRate = 5f;
+    public float spawnRateIncrease = 4f;
     public int randomSpawnPoint;
     // Use this for initialization
     void Start()
     {
-
+        startSpawnRate = spawnRate;
     }
 
     // Update is called once per frame
@@ -76,7 +78,7 @@ public class infiniteSpawner : MonoBehaviour {
                     spawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
                 }
 
-                spawnRate += 4f;
+                spawnRate += spawnRateIncrease;
                 spawnerTimer = 0f;
             }
             spawnerTimer += Time.deltaTime;
@@ -88,6 +90,8 @@ public class infiniteSpawner : MonoBehaviour {
             {
                 spawnPoint.GetComponent<InfiniteSpawnPoint>().PurgeEnemies();
             }
+
+            spawnRate = startSpawnRate;
         }
 
         

@@ -52,9 +52,9 @@ public class VialController : MonoBehaviour {
     private float redFillLevel = 0;
     private float yellowFillLevel = 0;
 
-    private float blueDrainTimer = 2f;
-    private float redDrainTimer = 2f;
-    private float yellowDrainTimer = 2f;
+    private float blueDrainTimer = 1f;
+    private float redDrainTimer = 1f;
+    private float yellowDrainTimer = 1f;
 
     public bool VialCorrectlyFilled = false;
 
@@ -241,7 +241,7 @@ public class VialController : MonoBehaviour {
 	            blueFillLevel -= 1;
 	        }
 
-	        blueDrainTimer = 2f;
+	        blueDrainTimer = 1f;
 	    }
 	    if (redFillLevel >2 && VialCorrectlyFilled == false)
 	    {
@@ -254,7 +254,7 @@ public class VialController : MonoBehaviour {
 	            redFillLevel -= 1;
 	        }
 
-	        redDrainTimer = 2f;
+	        redDrainTimer = 1f;
 	    }
 	    if (yellowFillLevel > 2 && VialCorrectlyFilled == false)
 	    {
@@ -267,7 +267,7 @@ public class VialController : MonoBehaviour {
 	            yellowFillLevel -= 1;
 	        }
 
-	        yellowDrainTimer = 2f;
+	        yellowDrainTimer = 1f;
 	    }
 	}
 
@@ -282,7 +282,7 @@ public class VialController : MonoBehaviour {
                     blueFillLevel += 1;
                     
                 }
-                blueDrainTimer = 2f;
+                blueDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }
@@ -294,7 +294,7 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 }
-                redDrainTimer = 2f;
+                redDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }
@@ -306,7 +306,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 2f;
+                yellowDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }
@@ -318,7 +318,7 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 };
-                redDrainTimer = 2f;
+                redDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -327,7 +327,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 2f;
+                yellowDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }
@@ -339,7 +339,7 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
-                blueDrainTimer = 2f;
+                blueDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -348,7 +348,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 2f;
+                yellowDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }
@@ -360,7 +360,7 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
-                blueDrainTimer = 2f;
+                blueDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("RedBullet"))
@@ -369,7 +369,7 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                redDrainTimer = 2f;
+                redDrainTimer = 1f;
                 Destroy(other.gameObject);
             }
         }

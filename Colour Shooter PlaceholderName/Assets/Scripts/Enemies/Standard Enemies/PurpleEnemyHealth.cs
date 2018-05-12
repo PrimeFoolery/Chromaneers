@@ -9,7 +9,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
     //Private variables
     public int redHealth=3;
 	public int blueHealth=3;
-	private float recoveryTimer = 5f;
+	private float recoveryTimer = 1f;
 	public GameObject sphere;
 
 	public Material redJellyMaterial;
@@ -20,6 +20,10 @@ public class PurpleEnemyHealth : MonoBehaviour {
     private EnemyManager enemyManagerScript;
 
     private GameObject thisEnemiesSpawnPoint;
+
+    [Header("Splat")]
+    public GameObject PurpleSplat;
+    public GameObject enemyEmpty;
 
     void Start () {
         //Setting the current health to be the health variable
@@ -56,6 +60,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
+            Instantiate(PurpleSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
@@ -79,12 +84,12 @@ public class PurpleEnemyHealth : MonoBehaviour {
         if (blueHealth > 0)
         {
             blueHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
         else
         {
             redHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
         if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
         {
@@ -98,7 +103,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
 		}
 		if(other.gameObject.CompareTag("BlueBullet")){
 			blueHealth -= 1;
@@ -106,7 +111,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
 		}
 	}
 }

@@ -51,7 +51,7 @@ public class blobPenController : MonoBehaviour
 
     private bool enemySpawned = false;
 
-
+    public Material whiteEnemyMat;
     // Use this for initialization
     void Start () {
 	    if (colourOfThisPen == ColoursOfPen.blue)
@@ -227,6 +227,8 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+
+                other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
                 amountOfCorrectEnemies += 1;
@@ -247,6 +249,7 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
                 amountOfCorrectEnemies += 1;
@@ -267,6 +270,7 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
                 amountOfCorrectEnemies += 1;

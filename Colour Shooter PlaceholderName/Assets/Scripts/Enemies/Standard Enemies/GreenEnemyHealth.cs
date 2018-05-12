@@ -7,7 +7,7 @@ public class GreenEnemyHealth : MonoBehaviour {
 	//Private variables
 	public int blueHealth=3;
 	public int yellowHealth=3;
-	private float recoveryTimer = 5f;
+	private float recoveryTimer = 1f;
 	public GameObject sphere;
 
 	public Material blueJellyMaterial;
@@ -19,6 +19,11 @@ public class GreenEnemyHealth : MonoBehaviour {
     private EnemyManager enemyManagerScript;
 
     private GameObject thisEnemiesSpawnPoint;
+
+    [Header("Splat")]
+    public GameObject GreenSplat;
+    public GameObject enemyEmpty;
+
 
     void Start () {
         //Setting the current health to be the health variable
@@ -54,6 +59,7 @@ public class GreenEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
+            Instantiate(GreenSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             Destroy (this.gameObject);
 		}
@@ -79,18 +85,18 @@ public class GreenEnemyHealth : MonoBehaviour {
         if (blueHealth>0)
         {
             blueHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
         else
         {
             yellowHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
     }
 	public void OnCollisionEnter (Collision other){
 		if(other.gameObject.CompareTag("BlueBullet")){
 			blueHealth -= 1;
-			recoveryTimer = 5f;
+			recoveryTimer = 1f;
 		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
@@ -98,7 +104,7 @@ public class GreenEnemyHealth : MonoBehaviour {
         }
 		if(other.gameObject.CompareTag("YellowBullet")){
 			yellowHealth -= 1;
-			recoveryTimer = 5f;
+			recoveryTimer = 1f;
 		    if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();

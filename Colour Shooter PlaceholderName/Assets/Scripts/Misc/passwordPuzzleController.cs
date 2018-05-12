@@ -42,10 +42,19 @@ public class passwordPuzzleController : MonoBehaviour
         {
             if (hasKeySpawned==false)
             {
-                Instantiate(dustExplosion, transform.position, Quaternion.identity);
+                //Instantiate(dustExplosion, transform.position, Quaternion.identity);
                 //Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
-                hasKeySpawned = true;
+                if (transform.localScale.z > -0.1f)
+                {
+                    transform.localScale += new Vector3(-0f, -0f, -3f);
+                    gameObject.GetComponent<ParticleSystem>().Play();
+
+                }
+                else if (transform.localScale.z <= -0.1f)
+                {
+                    Destroy(this.gameObject);
+                }
+                //hasKeySpawned = true;
             }
         }
 	}

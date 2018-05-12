@@ -7,7 +7,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 	//Private variables
 	public int redHealth=3;
 	public int yellowHealth=3;
-	private float recoveryTimer = 5f;
+	private float recoveryTimer = 1f;
 	public GameObject sphere;
 
 	public Material redJellyMaterial;
@@ -18,6 +18,10 @@ public class OrangeEnemyHealth : MonoBehaviour {
     private EnemyManager enemyManagerScript;
 
     private GameObject thisEnemiesSpawnPoint;
+
+    [Header("Splat")]
+    public GameObject OrangeSplat;
+    public GameObject enemyEmpty;
 
     void Start () {
         //Setting the current health to be the health variable
@@ -54,6 +58,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
+            Instantiate(OrangeSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
@@ -77,12 +82,12 @@ public class OrangeEnemyHealth : MonoBehaviour {
         if (redHealth > 0)
         {
             redHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
         else
         {
             yellowHealth -= 1;
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
         }
     }
     public void OnCollisionEnter (Collision other){
@@ -92,7 +97,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
 		}
 		if(other.gameObject.CompareTag("YellowBullet")){
 			yellowHealth -= 1;
@@ -100,7 +105,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 5f;
+            recoveryTimer = 1f;
 		}
 	}
 }

@@ -30,7 +30,6 @@ public class MainMenu : MonoBehaviour {
         MenuState = "MainMenu";
         //storedSelected = eventSys.firstSelectedGameObject;
     }
-
     void Update()
     {
         if (canInteract == false)
@@ -243,7 +242,6 @@ public class MainMenu : MonoBehaviour {
                     }
                 }
             }
-
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if (eventSys.currentSelectedGameObject == null)
@@ -503,9 +501,7 @@ public class MainMenu : MonoBehaviour {
     /*    public void SinglePlayer()
         {
             SceneManager.LoadScene("DemoWorldSinglePlayer");
-        }*/
-
-    
+        }*/    
     //main menu stuff
     public void Play()
     {
@@ -527,7 +523,6 @@ public class MainMenu : MonoBehaviour {
     {
         audioMixer.SetFloat("Volume", volume);
     }
-
     public void SetGrass(bool highResGrass)
     {
         //
