@@ -142,7 +142,16 @@ public class BlueBulletController : MonoBehaviour {
             }
 			if(theCol.gameObject.GetComponent<FastEnemy>()!=null){
 				if(theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "red" || theCol.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "yellow") {
-					theCol.gameObject.GetComponent<FastEnemy> ().BulletKnockback (savedDirection);
+				    //Change bullet state to rebound
+				    stateOfBullet = bulletState.reboundBullet;
+				    //Randomly rotate the gameObject into the sky
+				    transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+				    //Scaling the bullet down
+				    transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+				    //Change trail width
+				    this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+
+                    theCol.gameObject.GetComponent<FastEnemy> ().BulletKnockback (savedDirection);
 				}
 			}
 			if(theCol.gameObject.GetComponent<SpiderEnemyController>()!=null){

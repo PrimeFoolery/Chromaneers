@@ -88,6 +88,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     public AudioClip playerWalking;
     public AudioClip playerDashing;
+
+    private bool isFalling = false;
     AudioSource audio;
 
 	void Start () {
@@ -675,7 +677,13 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    {
 	        tagUnderPlayer = "null";
 	    }
-	    if (tagUnderPlayer!="Floor")
+	    if (tagUnderPlayer == "FallingArea" && currentlyDodging == false)
+	    {
+	        isFalling = true;
+	        
+        }
+
+	    if (isFalling == true)
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
@@ -683,6 +691,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    if (transform.position.y<=-5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
+	        isFalling = false;
             transform.position = savedPosition[0];
 	    }
 
