@@ -179,7 +179,7 @@ public class CameraScript : MonoBehaviour
             //transform.LookAt(new Vector3(averagePos.x, 0, averagePos.z));//HAVING THE CAMERA LOOK AT THE TARGET POS
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, sizeNeeded, ref zoomSpeed, dampTime);//CHANGING THE SIZE TO THE NEEDED ONE TO FIT ALL PLAYERS ON SCREEN
         }
-        if (shakeDuration > 0&&currentGameState==GameState.SinglePlayer)
+        if (shakeDuration > 0)
         {
             transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime * decreaseFactor;
@@ -187,15 +187,15 @@ public class CameraScript : MonoBehaviour
         else
         {
             shakeDuration = 0f;
-            //transform.localPosition = targetCameraPosition;
+            transform.localPosition = targetCameraPosition;
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            //SmallScreenShake();
+            SmallScreenShake();
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            //BigScreenShake();
+            BigScreenShake();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -287,12 +287,12 @@ public class CameraScript : MonoBehaviour
     }
     public void SmallScreenShake()
     {
-        shakeDuration = 0.03f;
+        shakeDuration = 0.01f;
         shakeAmount = 0.1f;
     }
     public void BigScreenShake()
     {
-        shakeDuration = 0.1f;
+        shakeDuration = 0.5f;
         shakeAmount = 0.75f;
     }
 }

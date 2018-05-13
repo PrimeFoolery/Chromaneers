@@ -26,6 +26,9 @@ public class MotherController : MonoBehaviour
     private float retargetingDelay = 3f;
     private bool readyToRetarget = true;
 
+    public bool isNearCliff = false;
+    public List<MotherSpawnPoint> spawnPointList = new List<MotherSpawnPoint>();
+    private float spawningTimer = 15f;
 
     public bool isItCoop;
     private ColourSelectManager gameManager;
@@ -34,6 +37,7 @@ public class MotherController : MonoBehaviour
     public int enemyDamage;
 
     
+
     public string colourOfEnemy;
 
 
@@ -47,11 +51,13 @@ public class MotherController : MonoBehaviour
     public GameObject yellowSplat;
     public Material yellowParticle;
 
+    private GameObject mainCamera;
+
     // Use this for initialization
     void Start () {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
         spawner = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
-        
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         if (gameManager.isItSingleplayer == true)
         {
             isItCoop = false;
@@ -115,7 +121,19 @@ public class MotherController : MonoBehaviour
 	            }
 	            agent.SetDestination(targetPlayer.transform.position);
 	            transform.position = Vector3.MoveTowards(transform.position, moveTowardsPoint.transform.position,
-	                enemyRunningAwaySpeed * Time.deltaTime);
+	            enemyRunningAwaySpeed * Time.deltaTime);
+	            if (spawningTimer>12)
+	            {
+	                foreach (MotherSpawnPoint spawnPoint in spawnPointList)
+	                {
+	                    if (spawnPoint.isSpawnerAboveGround==true)
+	                    {
+	                        spawnPoint.SpawnMeatShield(colourOfEnemy);
+	                        spawningTimer = 0f;
+                        }
+	                }
+	            }
+	            spawningTimer += Time.deltaTime;
 	        }
 
 
@@ -129,9 +147,40 @@ public class MotherController : MonoBehaviour
 	        readyToRetarget = true;
 	        retargetingDelay = 3f;
 	    }
+
+	    foreach (MotherSpawnPoint spawnPoint in spawnPointList)
+	    {
+	        if (spawnPoint.isSpawnerAboveGround==false)
+	        {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(spawnPoint.transform.position.x, transform.position.y, spawnPoint.transform.position.z), -enemyRunningAwaySpeed * Time.deltaTime);
+	        }
+	    }
 	    transform.LookAt(targetPlayer.transform);
-        //SphereRenderer.gameObject.transform.LookAt(targetPlayer.transform);
-        //transform.rotation.eulerAngles = new Vector3(-90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+	    if (enemyHealth<=0)
+	    {
+	        gameObject.GetComponent<ParticleSystem>().Play();
+            foreach (MotherSpawnPoint spawnPoint in spawnPointList)
+	        {
+	            if (spawnPoint.isSpawnerAboveGround == true)
+	            {
+	                spawnPoint.SpawnMeatShield(colourOfEnemy);
+	            }
+	        }
+            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        }
+	        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+	        {
+	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+	        }
+
+	        mainCamera.GetComponent<CameraScript>().BigScreenShake();
+	        gameManager.GetComponent<EnemyManager>().enemyList.Remove(gameObject);
+	        Destroy(this.gameObject);
+        }
+
 	    agent.speed = enemySpeed;
 	}
     void FindClosestPlayer()

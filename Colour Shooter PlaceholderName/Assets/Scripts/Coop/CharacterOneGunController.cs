@@ -219,7 +219,7 @@ public class CharacterOneGunController : MonoBehaviour {
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
                 }
-                mainCameraScript.SmallScreenShake();
+                //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
                 this.GetComponent<AudioSource>().Play();
             }
@@ -266,7 +266,7 @@ public class CharacterOneGunController : MonoBehaviour {
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
                 }
-                mainCameraScript.SmallScreenShake();
+                //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
                 this.GetComponent<AudioSource>().Play();
             }
