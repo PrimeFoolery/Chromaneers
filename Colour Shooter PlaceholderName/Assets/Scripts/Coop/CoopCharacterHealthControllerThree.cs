@@ -15,7 +15,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
     public int health;
     public bool canBeDamaged;
     public float InvTimer;
-    private float reviveTimer = 15f;
+    public float reviveTimer = 15f;
     public float maxRevive = 15;
 	public GameObject ReviveParticle;
 
@@ -139,16 +139,16 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
             coopCharacterControllerThree.moveSpeed = 0;
             coopCharacterControllerThree.canPlayerShoot = false;
             coopCharacterControllerThree.coopCharacterControllerThree.isFiring = false;
-            reviveTimer -= Time.deltaTime;
+            reviveTimer -= Time.deltaTime/3;
 			ReviveParticle.SetActive (true);
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
             {
 
-                reviveTimer -= Time.deltaTime;
+                reviveTimer -= Time.deltaTime*1.5f;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
             {
-                reviveTimer -= Time.deltaTime;
+                reviveTimer -= Time.deltaTime*1.5f;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) > 4f)
             {

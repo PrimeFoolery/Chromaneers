@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class reviveCircleRotation : MonoBehaviour
 {
-
+    public Transform outlineCircle;
     public float reviveCircleRotationSpeedNormal = 10f;
     public float reviveCircleRotationSpeedFaster = 20f;
     public float reviveCircleRotationSpeedFastest = 30f;
@@ -21,7 +22,8 @@ public class reviveCircleRotation : MonoBehaviour
 	    if (peopleInCircle==1)
 	    {
 	        transform.Rotate(0, 0, reviveCircleRotationSpeedNormal * Time.deltaTime);
-        }else if(peopleInCircle==2)
+        }
+	    else if(peopleInCircle==2)
 	    {
 	        transform.Rotate(0, 0, reviveCircleRotationSpeedFaster * Time.deltaTime);
         }
@@ -29,6 +31,16 @@ public class reviveCircleRotation : MonoBehaviour
 	    {
 	        transform.Rotate(0, 0, reviveCircleRotationSpeedFastest * Time.deltaTime);
         }
-		
+
+	    if (outlineCircle.gameObject.activeSelf==true)
+	    {
+	        gameObject.GetComponent<Image>().enabled = true;
+        }
+	    else
+	    {
+	        gameObject.GetComponent<Image>().enabled = false;
+        }
+
+	    gameObject.transform.position = outlineCircle.position;
 	}
 }

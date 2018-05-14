@@ -44,12 +44,12 @@ public class MotherSpawnPoint : MonoBehaviour
             tagUnderSpawner = "null";
         }
 
-        if (tagUnderSpawner!="Floor"&&tagUnderSpawner!="FastEnemy" && tagUnderSpawner != "RedEnemy" && tagUnderSpawner != "YellowEnemy" && tagUnderSpawner != "BlueEnemy" && tagUnderSpawner != "SnakeEnemy")
+        if (tagUnderSpawner=="FallingArea")
         {
             isSpawnerAboveGround = false;
         }
 
-        if (tagUnderSpawner=="Floor" || tagUnderSpawner == "FastEnemy" || tagUnderSpawner == "RedEnemy" || tagUnderSpawner == "YellowEnemy" || tagUnderSpawner == "BlueEnemy" || tagUnderSpawner == "SnakeEnemy")
+        if (tagUnderSpawner!="FallingArea")
         {
             isSpawnerAboveGround = true;
         }

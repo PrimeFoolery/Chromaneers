@@ -110,11 +110,11 @@ public class SnakeEnemyScript : MonoBehaviour
 
         if (colourOfPaintBelow != "yellow" && colourOfPaintBelow != "blue")
         {
-            if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) > 3f)
+            if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) > 5f)
             {
                 agent.speed = bodyYellowSpeed;
             }
-            else if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) < 3f)
+            else if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) < 5f)
             {
                 agent.speed = headYellowSpeed;
             }
