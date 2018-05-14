@@ -80,6 +80,8 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	public float shootingDecceleration = 0.95f;
     private float poisonTimer = 3f;
 
+    private bool isFalling = false;
+
     public AudioClip playerWalking;
     public AudioClip playerDashing;
     AudioSource audio;
@@ -697,7 +699,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	    {
 	        tagUnderPlayer = "null";
 	    }
-	    if (tagUnderPlayer != "Floor")
+
+	    if (tagUnderPlayer == "FallingArea" && currentlyDodging == false)
+	    {
+	        isFalling = true;
+	    }
+
+	    if (isFalling == true)
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
@@ -705,6 +713,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	    if (transform.position.y <= -5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerThree>().Die();
+	        isFalling = false;
 	        transform.position = savedPosition[0];
 	    }
     }

@@ -25,6 +25,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     public float RollSpeed;
     private float dodgeCooldown = 0f;
     public Slider dodgeSlider;
+    private bool isFalling = false;
 
     [Header("Script References")]
     public CharacterTwoGunController coopCharacterControllerTwo;
@@ -645,14 +646,20 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	    {
 	        tagUnderPlayer = "null";
 	    }
-	    if (tagUnderPlayer != "Floor")
+
+	    if (isFalling ==true)
 	    {
 	        transform.position = Vector3.MoveTowards(transform.position,
 	            new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z), 5f * Time.deltaTime);
+        }
+	    if (tagUnderPlayer == "FallingArea" && currentlyDodging == false)
+	    {
+	        isFalling = true;
 	    }
 	    if (transform.position.y <= -5f)
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
+	        isFalling = false;
 	        transform.position = savedPosition[0];
 	    }
     }
