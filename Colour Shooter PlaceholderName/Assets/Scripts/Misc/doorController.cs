@@ -13,6 +13,8 @@ public class doorController : MonoBehaviour
 
     public int amountOfInputsBeforeOpening = 1;
 
+    public bool doorOnScreen = false;
+
 	// Use this for initialization
 	void Start () {
 		targetMovement =new Vector3(transform.localPosition.x,transform.localPosition.y, transform.localPosition.z+20);
@@ -20,11 +22,11 @@ public class doorController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    if (doorOpen == true && Vector3.Distance(transform.position, targetMovement)>0.5f)
+	    if (doorOpen == true && Vector3.Distance(transform.position, targetMovement)>0.5f && doorOnScreen == true)
 	    {
 	        if (transform.localScale.z > -0.1f)
 	        {
-	            transform.localScale += new Vector3(-0f, -0f, -3f);
+	            transform.localScale += new Vector3(-0f, -0f, -1f);
 	            gameObject.GetComponent<ParticleSystem>().Play();
 
 	        }
@@ -43,5 +45,15 @@ public class doorController : MonoBehaviour
             doorOpen = true;
 
         }
+    }
+
+    public void OnBecameInvisible()
+    {
+        doorOnScreen = false;
+    }
+
+    public void OnBecameVisible()
+    {
+        doorOnScreen = true;
     }
 }

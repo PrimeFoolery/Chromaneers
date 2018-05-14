@@ -6,96 +6,104 @@ using UnityEngine.UI;
 
 public class areaCompleteText : MonoBehaviour {
 
-    private int talkLine = 1;
-    private bool nextLine = true;
-    private float Delay = 0f;
-    private bool timeToType = false;
-    private bool textTyped = false;
-    bool stopDeletingText = false;
+  
 
     public TextMeshProUGUI textField;
     public string textToType;
-    public int lettersToType;
-    public Image textBackdrop;
-    private float textFadeout = 3f;
-    private bool fadeTextIn = false;
-    public float fadeTime = 2f;
-    private bool hasTextFaded = false;
-    private bool hasTextHappened = false;
-    private bool stop = false;
+    
+    
 
-    private Color lerpedColour = new Color(0, 0, 0, 0);
-    private Color startingBoxColour = new Color(0, 0, 0, 0);
-    private Color endBoxColour = new Color(0, 0, 0, 0.5f);
+    enum TextStates
+    {
+        na,
+        start,
+        shrink,
+        savour,
+        fade,
+        complete
+    }
 
-    private IEnumerator currentCoroutine;
+    private TextStates thisTriggersState = TextStates.na;
+    private int amountOfPlayersInArea;
+    public float textGrowSpeed;
+    private float savourTime = 4f;
+    private Vector3 velocity;
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (textTyped == true)
+        if (amountOfPlayersInArea==3 && thisTriggersState == TextStates.na)
         {
-            textFadeout -= Time.deltaTime;
+            thisTriggersState = TextStates.start;
+            textField.text = textToType;
         }
-        //Debug.Log(textFadeout);
-        //Debug.Log (hasTextFaded);
-        if (textFadeout <= 0 && hasTextFaded == false)
+
+        if (thisTriggersState == TextStates.start)
         {
-            //Debug.Log("fading out");
-            lerpedColour = Color.Lerp(lerpedColour, startingBoxColour, (Time.deltaTime * fadeTime));
 
-            if (stopDeletingText == false)
+            textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
+                ref velocity, textGrowSpeed*Time.deltaTime);
+            if (textField.gameObject.GetComponent<RectTransform>().localScale.x > 1.2f)
             {
-                textField.text = "";
-                stopDeletingText = true;
-            }
-            textBackdrop.GetComponent<Image>().color = lerpedColour;
-            if (lerpedColour.a < 0.05f)
-            {
-
-                hasTextFaded = true;
-
+                thisTriggersState = TextStates.shrink;
             }
         }
 
-        if (hasTextFaded == true && stop == false)
+        if (thisTriggersState == TextStates.shrink)
         {
-
-            textBackdrop.GetComponent<Image>().color = new Color(lerpedColour.r, lerpedColour.g, lerpedColour.b, 0);
-            stop = true;
-        }
-        if (fadeTextIn == true && hasTextHappened == false)
-        {
-            //Debug.Log("fade in");
-            lerpedColour = Color.Lerp(lerpedColour, endBoxColour, (Time.deltaTime * fadeTime));
-            textBackdrop.GetComponent<Image>().color = lerpedColour;
-            if (lerpedColour.a > 0.45f)
+            textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.05f, 1.05f, 1.05f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            if (textField.gameObject.GetComponent<RectTransform>().localScale.x<=1.1f)
             {
-                fadeTextIn = false;
-                hasTextHappened = true;
+                thisTriggersState = TextStates.savour;
             }
         }
 
+        if (thisTriggersState == TextStates.savour)
+        {
+            savourTime -= Time.deltaTime;
+            if (savourTime<0)
+            {
+                thisTriggersState = TextStates.fade;
+            }
+        }
+
+        if (thisTriggersState== TextStates.fade)
+        {
+            textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            if (textField.gameObject.GetComponent<RectTransform>().localScale.x <= 0f)
+            {
+                textField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0,0,0);
+                thisTriggersState = TextStates.complete;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("something in trigger");
-        if ((other.CompareTag("BluePlayer") || other.CompareTag("RedPlayer") || other.CompareTag("YellowPlayer")) && timeToType == false)
+        if ((other.CompareTag("BluePlayer") || other.CompareTag("RedPlayer") || other.CompareTag("YellowPlayer")))
         {
-            //Debug.Log ("STOP HAPPENING: "+ timeToType);
-            textField.text = textToType;
-            
-
-            fadeTextIn = true;
-            timeToType = true;
+            amountOfPlayersInArea += 1;
         }
 
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if ((other.CompareTag("BluePlayer") || other.CompareTag("RedPlayer") || other.CompareTag("YellowPlayer")))
+        {
+            amountOfPlayersInArea -= 1;
+        }
     }
 }
