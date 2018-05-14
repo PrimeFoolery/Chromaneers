@@ -177,7 +177,7 @@ public class CharacterTwoGunController : MonoBehaviour {
     void CurrentBulletFiring () {
         if (!coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick2Button7)) {
+            if (coopCharacterControllerTwo.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;
@@ -224,7 +224,7 @@ public class CharacterTwoGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerTwo.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetAxis("Fire2Right")>0.1f) {
+			if (coopCharacterControllerTwo.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletRedToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;

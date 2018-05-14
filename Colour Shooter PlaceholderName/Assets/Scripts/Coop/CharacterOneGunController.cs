@@ -179,7 +179,7 @@ public class CharacterOneGunController : MonoBehaviour {
     void CurrentBulletFiring () {
 		if (!coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick1Button7)) {
+            if (coopCharacterControllerOne.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null || colourSelectManager.GetBulletRainbowBlueToShoot() == null) {
                     print("I am null! Check ColourSelectManager");
                     return;
@@ -226,7 +226,7 @@ public class CharacterOneGunController : MonoBehaviour {
         } 
 		if (coopCharacterControllerOne.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire1Right")) {
+			if (coopCharacterControllerOne.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletBlueToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;

@@ -177,7 +177,7 @@ public class CharacterThreeGunController : MonoBehaviour {
 		//Debug.Log ("Bullet Should be firing");
         if (!coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
-            if (Input.GetKey(KeyCode.Joystick3Button7)) {
+            if (coopCharacterControllerThree.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;
@@ -224,7 +224,7 @@ public class CharacterThreeGunController : MonoBehaviour {
         } 
         if (coopCharacterControllerThree.usingXboxController) {
             //When you left click, the gun fires
-			if (Input.GetButton("Fire3Right")) {
+			if (coopCharacterControllerThree.playerDirection != new Vector3(0, 0, 0)) {
                 if (colourSelectManager.GetBulletYellowToShoot() == null) {
                     //print("I am null! Check ColourSelectManager");
                     return;

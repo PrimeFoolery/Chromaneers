@@ -10,6 +10,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
     public float moveSpeed;
     public float shootingSpeed;
     public float timeToShoot;
+    public Vector3 playerDirection;
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
@@ -253,7 +254,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             
 
             //Making a new vector3 to do rotations with joystick
-            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Joystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3RVertical");
+            playerDirection = Vector3.right * Input.GetAxisRaw("Joystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3RVertical");
 	        //Checking if the vector3 has got a value inputed
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
@@ -263,14 +264,14 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
                 //Shooting the bullet
-                if (Input.GetKeyDown(KeyCode.Joystick3Button7)&&canPlayerShoot==true) {
+                if (playerDirection != new Vector3(0, 0, 0) && canPlayerShoot==true) {
                     coopCharacterControllerThree.isFiring = true;
                     isShooting = true;
                     timeToShoot = 0.5f;
                 }
             }
 	        //Not shootings the bullet
-	        if (Input.GetKeyUp(KeyCode.Joystick3Button7)) {
+	        if (playerDirection == new Vector3(0, 0, 0)) {
                 coopCharacterControllerThree.isFiring = false;
 	            isShooting = false;
             }
@@ -522,7 +523,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             
 
             //Making a new vector3 to do rotations with joystick
-            Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3RVertical");
+            playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick3RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3RVertical");
 			//Checking if the vector3 has got a value inputed
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
@@ -532,7 +533,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		    timeToShoot -= Time.deltaTime;
 		    if (timeToShoot <= 0) {
 		        //Shooting the bullet
-		        if (Input.GetButtonDown("Fire3Right") && canPlayerShoot == true) {
+		        if (playerDirection != new Vector3(0, 0, 0) && canPlayerShoot == true) {
 		            coopCharacterControllerThree.isFiring = true;
 		            isShooting = true;
 		            timeToShoot = 0.5f;
@@ -540,7 +541,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             }
 			
 			//Not shootings the bullet
-			if (Input.GetButtonUp("Fire3Right")) {
+			if (playerDirection == new Vector3(0, 0, 0)) {
 				coopCharacterControllerThree.isFiring = false;
 			    isShooting = false;
             }
