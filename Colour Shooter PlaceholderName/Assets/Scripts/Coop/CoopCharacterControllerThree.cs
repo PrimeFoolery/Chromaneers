@@ -275,7 +275,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                 coopCharacterControllerThree.isFiring = false;
 	            isShooting = false;
             }
-            if (Input.GetKeyDown(KeyCode.Joystick3Button4) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+            if (Input.GetKeyDown(KeyCode.Joystick3Button5) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
             {
                 dodgeDirection = moveInput;
                 gameObject.GetComponent<ParticleSystem>().Play();

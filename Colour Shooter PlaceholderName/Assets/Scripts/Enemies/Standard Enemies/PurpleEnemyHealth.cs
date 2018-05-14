@@ -9,7 +9,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
     //Private variables
     public int redHealth=3;
 	public int blueHealth=3;
-	private float recoveryTimer = 1f;
+	private float recoveryTimer = 2f;
 	public GameObject sphere;
 
 	public Material redJellyMaterial;
@@ -84,12 +84,12 @@ public class PurpleEnemyHealth : MonoBehaviour {
         if (blueHealth > 0)
         {
             blueHealth -= 1;
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
         }
         else
         {
             redHealth -= 1;
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
         }
         if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
         {
@@ -103,7 +103,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
 		}
 		if(other.gameObject.CompareTag("BlueBullet")){
 			blueHealth -= 1;
@@ -111,7 +111,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
 		}
 	}
 }

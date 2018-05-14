@@ -7,7 +7,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 	//Private variables
 	public int redHealth=3;
 	public int yellowHealth=3;
-	private float recoveryTimer = 1f;
+	private float recoveryTimer = 2f;
 	public GameObject sphere;
 
 	public Material redJellyMaterial;
@@ -82,12 +82,12 @@ public class OrangeEnemyHealth : MonoBehaviour {
         if (redHealth > 0)
         {
             redHealth -= 1;
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
         }
         else
         {
             yellowHealth -= 1;
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
         }
     }
     public void OnCollisionEnter (Collision other){
@@ -97,7 +97,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
 		}
 		if(other.gameObject.CompareTag("YellowBullet")){
 			yellowHealth -= 1;
@@ -105,7 +105,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
 		    }
-            recoveryTimer = 1f;
+            recoveryTimer = 2f;
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
 
     private CameraState currentCameraState = CameraState.SixtyDegreesSlanted;
 
-    private float cameraMoveSpeed = 0.1f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
+    private float cameraMoveSpeed =3f;//SPEED THAT CAMERA MOVES TOWARDS TARGET POSITION
     private Vector3 targetCameraPosition;// THE POSITION OF THE CAMERA
     private Vector3 targetCameraRotation;
     private Camera cameraComponent;
@@ -174,20 +174,20 @@ public class CameraScript : MonoBehaviour
             Vector3 tempCurrentRotation = transform.rotation.eulerAngles;
             Vector3 tempRotation = Vector3.SmoothDamp(tempCurrentRotation, targetCameraRotation, ref velocity, rotationTime);
             transform.rotation = Quaternion.Euler(tempRotation);
-            transform.position = Vector3.SmoothDamp(transform.position, targetCameraPosition, ref velocity, cameraMoveSpeed);
+            transform.position = Vector3.SmoothDamp(transform.position, targetCameraPosition, ref velocity, cameraMoveSpeed*Time.deltaTime);
             //transform.position = Vector3.MoveTowards(transform.position, targetCameraPosition, cameraMoveSpeed);//MOVING THE CAMERA TOWARDS THE TARGET POS FOR IT
             //transform.LookAt(new Vector3(averagePos.x, 0, averagePos.z));//HAVING THE CAMERA LOOK AT THE TARGET POS
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, sizeNeeded, ref zoomSpeed, dampTime);//CHANGING THE SIZE TO THE NEEDED ONE TO FIT ALL PLAYERS ON SCREEN
         }
-        if (shakeDuration > 0)
+        if (shakeDuration > 0 && currentGameState == GameState.SinglePlayer)
         {
-            transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
+            //transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
         {
             shakeDuration = 0f;
-            transform.localPosition = targetCameraPosition;
+            //transform.localPosition = targetCameraPosition;
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {

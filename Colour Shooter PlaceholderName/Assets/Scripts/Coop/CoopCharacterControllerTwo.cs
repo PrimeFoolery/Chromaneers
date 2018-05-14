@@ -250,7 +250,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	            coopCharacterControllerTwo.isFiring = false;
 	            isShooting = false;
 	        }
-            if (Input.GetKeyDown(KeyCode.Joystick2Button4) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+            if (Input.GetKeyDown(KeyCode.Joystick2Button5) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
             {
                 dodgeDirection = moveInput;
                 gameObject.GetComponent<ParticleSystem>().Play();
