@@ -175,9 +175,14 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             coopCharacterControllerOne.canPlayerShoot = true;
             coopCharacterControllerOne.canPlayerMove = true;
             currentHealth = 3;
+            
             rend.material = matOne;
+            InvTimer = 2;
+            canBeDamaged = false;
             PlayerState = "Alive";
             reviveTimer = maxRevive;
+
+            
 
         }
     }

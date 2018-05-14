@@ -171,7 +171,10 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             coopCharacterControllerTwo.canPlayerShoot = true;
             coopCharacterControllerTwo.canPlayerMove = true;
             currentHealth = 3;
+            
             rend.material = matOne;
+            InvTimer = 2;
+            canBeDamaged = false;
             PlayerState = "Alive";
             reviveTimer = maxRevive;
 

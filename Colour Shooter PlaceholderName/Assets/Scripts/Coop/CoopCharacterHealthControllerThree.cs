@@ -172,7 +172,10 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
             coopCharacterControllerThree.canPlayerShoot = true;
             coopCharacterControllerThree.CanPlayerMove = true;
             currentHealth = 3;
+            
             rend.material = matOne;
+            InvTimer = 2;
+            canBeDamaged = false;
             PlayerState = "Alive";
             reviveTimer = maxRevive;
 
