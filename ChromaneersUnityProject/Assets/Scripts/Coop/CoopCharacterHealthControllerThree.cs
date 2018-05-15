@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 public class CoopCharacterHealthControllerThree : MonoBehaviour
 {
@@ -102,7 +102,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
 
         vibrationTimer -= Time.deltaTime;
         if (vibrationTimer <= 0) {
-            GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
+            //GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
         }
 
         if (PlayerState == "Alive")
@@ -196,7 +196,7 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 vibrationTimer = 0.35f;
-                GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
+                //GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }
         }

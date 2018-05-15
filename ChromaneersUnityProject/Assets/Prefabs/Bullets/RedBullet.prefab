@@ -111,9 +111,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 1
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: d292b10909125f6489b4458b99704f17, type: 3}
 --- !u!82 &82290883011536062
@@ -306,6 +306,7 @@ MonoBehaviour:
   speedSMG: 0
   deceleration: 0.995
   bulletLifeTime: 2
+  trishotLifeTime: 0.5
   reboundBulletLifeTime: 0.4
   bulletDamage: 1
   paint: {fileID: 0}

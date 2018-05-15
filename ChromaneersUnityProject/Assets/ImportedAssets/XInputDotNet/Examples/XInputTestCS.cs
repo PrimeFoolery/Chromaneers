@@ -1,8 +1,9 @@
 using UnityEngine;
-using XInputDotNetPure; // Required in C#
+//using XInputDotNetPure; // Required in C#
 
 public class XInputTestCS : MonoBehaviour
 {
+    /*
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
     GamePadState state;
@@ -18,7 +19,7 @@ public class XInputTestCS : MonoBehaviour
     {
         // SetVibration should be sent in a slower rate.
         // Set vibration according to triggers
-        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+       // GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
     }
 
     // Update is called once per frame
@@ -71,4 +72,5 @@ public class XInputTestCS : MonoBehaviour
         text += string.Format("\tSticks Left {0} {1} Right {2} {3}\n", state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         GUI.Label(new Rect(0, 0, Screen.width, Screen.height), text);
     }
+    */
 }

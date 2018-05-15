@@ -14,7 +14,9 @@ public class CharacterThreeGunController : MonoBehaviour {
     [Space(5)]
     [Header("Trishot Weapon")]
     public Transform fireFromL;
+    public Transform fireFromLM;
     public Transform fireFromM;
+    public Transform fireFromRM;
     public Transform fireFromR;
     [Range(0, 50)] public float bulletSpeedTrishot;
     [Range(0, 10)] public float bulletSpreadTri;
@@ -123,7 +125,7 @@ public class CharacterThreeGunController : MonoBehaviour {
         if (stateOfWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
         } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
-            bulletSpreadWidth = Random.Range(-bulletSpreadTri, bulletSpreadTri);
+            bulletSpreadWidth = Random.Range(1f, bulletSpreadTri);
         } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
         } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
@@ -196,13 +198,19 @@ public class CharacterThreeGunController : MonoBehaviour {
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromLM.position, fireFromLM.rotation);
+                    bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromRM.position, fireFromRM.rotation);
+                    bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
@@ -243,13 +251,19 @@ public class CharacterThreeGunController : MonoBehaviour {
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromLM.position, fireFromLM.rotation);
+                    bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromRM.position, fireFromRM.rotation);
+                    bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<YellowBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;

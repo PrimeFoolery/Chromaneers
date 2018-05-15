@@ -14,6 +14,7 @@ public class BlueBulletController : MonoBehaviour {
     public float bulletLifeTime;
     public float reboundBulletLifeTime;
     public int bulletDamage;
+	public float trishotLifeTime;
 
     private float directionTimer = 0f;
     private Vector3 savedDirection;
@@ -68,12 +69,27 @@ public class BlueBulletController : MonoBehaviour {
                 speedSMG = speedSMG * deceleration;
             }
 
-            //Bullets lifeTime
-            bulletLifeTime -= Time.deltaTime;
-            //Destroying the bullet after its time has reached 0
-            if (bulletLifeTime <= 0) {
-                Destroy(gameObject);
-            }
+	        
+	        if (currentWeapon == CharacterOneGunController.currentWeapon.OriginalWeapon ||
+	            currentWeapon == CharacterOneGunController.currentWeapon.SniperWeapon ||
+	            currentWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
+		        //Bullets lifeTime
+		        bulletLifeTime -= Time.deltaTime;
+		        //Destroying the bullet after its time has reached 0
+		        if (bulletLifeTime <= 0) {
+			        Destroy(gameObject);
+		        } 
+	        } else if (currentWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
+		        //Bullets lifeTime
+		        trishotLifeTime -= Time.deltaTime;
+		        //Destroying the bullet after its time has reached 0
+		        if (trishotLifeTime <= 0) {
+			        Destroy(gameObject);
+		        } 
+	        }
+	        
+            
+            
         }
 
         if (stateOfBullet == bulletState.reboundBullet) {

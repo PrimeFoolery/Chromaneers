@@ -14,10 +14,12 @@ public class CharacterOneGunController : MonoBehaviour {
     [Space(5)]
     [Header("Trishot Weapon")]
     public Transform fireFromL;
+    public Transform fireFromLM;
     public Transform fireFromM;
+    public Transform fireFromRM;
     public Transform fireFromR;
     [Range(0, 50)] public float bulletSpeedTrishot;
-    [Range(0, 10)] public float bulletSpreadTri;
+    [Range(20, 50)] public float bulletSpreadTri;
     [Range(0, 1)] public float timeBetweenShotsTri;
     [Space(5)]
     [Header("Sniper Weapon")]
@@ -125,7 +127,7 @@ public class CharacterOneGunController : MonoBehaviour {
         if (stateOfWeapon == currentWeapon.OriginalWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpread, bulletSpread);
         } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
-            bulletSpreadWidth = Random.Range(-bulletSpreadTri, bulletSpreadTri);
+            bulletSpreadWidth = Random.Range(1f, bulletSpreadTri);
         } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
             bulletSpreadWidth = Random.Range(-bulletSpreadSniper, bulletSpreadSniper);
         } else if (stateOfWeapon == currentWeapon.SMGWeapon) {
@@ -198,13 +200,19 @@ public class CharacterOneGunController : MonoBehaviour {
                 } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
                     bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromLM.position, fireFromLM.rotation);
+                    bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
                     bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
+                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromRM.position, fireFromRM.rotation);
+                    bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+                    bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
                     bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-                    bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+                    bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
                 } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.SniperWeapon;
@@ -243,15 +251,21 @@ public class CharacterOneGunController : MonoBehaviour {
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.OriginalWeapon;
 			        bullet.GetComponent<BlueBulletController>().speedOriginal = bulletSpeedOriginal;
 			    } else if (stateOfWeapon == currentWeapon.TrishotWeapon) {
-                    bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			        bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromLM.position, fireFromLM.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
 			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromM.position, fireFromM.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			        bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
+			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromRM.position, fireFromRM.rotation);
+			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
+			        bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
 			        bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.TrishotWeapon;
-			        bullet.GetComponent<BlueBulletController>().speedTri = bulletSpreadTri;
+			        bullet.GetComponent<BlueBulletController>().speedTri = Random.Range(10f, 20f);
 			    } else if (stateOfWeapon == currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
 			        bullet.GetComponent<BlueBulletController>().currentWeapon = currentWeapon.SniperWeapon;
