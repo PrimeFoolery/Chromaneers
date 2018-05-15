@@ -163,13 +163,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                             }
 
                             walkingPuffCooldown -= Time.deltaTime;
-                            if (moveSpeed <= 5f)
+                            if (moveSpeed <= 6f)
                             {
                                 moveSpeed = moveSpeed * movingAcceleration;
                             }
-                            if (moveSpeed >= 5f)
+                            if (moveSpeed >= 6f)
                             {
-                                moveSpeed = 5f;
+                                moveSpeed = 6f;
                             }
                         }
                         else
@@ -221,13 +221,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                         }
 
                         walkingPuffCooldown -= Time.deltaTime;
-                        if (moveSpeed <= 2f)
+                        if (moveSpeed <= 4f)
                         {
                             moveSpeed = moveSpeed * movingAcceleration;
                         }
-                        if (moveSpeed >= 2f && moveSpeed <= 2.5f)
+                        if (moveSpeed >= 4f && moveSpeed <= 2.5f)
                         {
-                            moveSpeed = 2f;
+                            moveSpeed = 4f;
                         }
                         if (moveSpeed >= 2.5f)
                         {
@@ -431,13 +431,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                         walkingPuffCooldown -= Time.deltaTime;
                         if (colourPlayerIsStandingOn != "yellow")
                         {
-                            if (moveSpeed <= 5f)
+                            if (moveSpeed <= 6f)
                             {
                                 moveSpeed = moveSpeed * movingAcceleration;
                             }
-                            if (moveSpeed >= 5f)
+                            if (moveSpeed >= 6f)
                             {
-                                moveSpeed = 5f;
+                                moveSpeed = 6f;
                             }
                         }
                         else
@@ -490,13 +490,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                         }
 
                         walkingPuffCooldown -= Time.deltaTime;
-                        if (moveSpeed <= 2f)
+                        if (moveSpeed <= 4f)
                         {
                             moveSpeed = moveSpeed * movingAcceleration;
                         }
-                        if (moveSpeed >= 2f && moveSpeed <= 2.5f)
+                        if (moveSpeed >= 4f && moveSpeed <= 2.5f)
                         {
-                            moveSpeed = 2f;
+                            moveSpeed = 4f;
                         }
                         if (moveSpeed >= 2.5f)
                         {
@@ -639,39 +639,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		        specialAttackCooldown -= Time.deltaTime;
 		    }
         }
-	   
-	    //Debug.Log(colourPlayerIsStandingOn);
-	    if (colourPlayerIsStandingOn == "yellow")
-	    {
-	        moveSpeed = 6;
-	    }
-	    else
-	    if (colourPlayerIsStandingOn == "blue")
-	    {
-	        moveSpeed = 2;
-	    }
-	    else
-	    {
-	        moveSpeed = 4;
-	    }
-	    if (colourPlayerIsStandingOn == "orange")
-	    {
-	        moveSpeed = -Mathf.Abs(moveSpeed);
-	    }
-	    if (colourPlayerIsStandingOn == "null")
-	    {
-	        moveSpeed = Mathf.Abs(moveSpeed);
-	    }
-	    if (colourPlayerIsStandingOn == "red")
-	    {
-	        Debug.Log("onRed:  " + poisonTimer);
-	        poisonTimer -= Time.deltaTime;
-	        if (poisonTimer <= 0)
-	        {
-	            gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
-	            poisonTimer = 3f;
-	        }
-	    }
+	
 	    RaycastHit floorHit;
 	    Ray floorRay = new Ray(transform.position, Vector3.down);
 	    if (Physics.Raycast(floorRay, out floorHit, 20f))

@@ -254,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1117249399534128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85.05, y: 1.367, z: -147.42}
+  m_LocalPosition: {x: -38.02, y: 1.367, z: -156.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4804866171820920}
@@ -679,6 +679,7 @@ MonoBehaviour:
   health: 6
   canBeDamaged: 0
   InvTimer: 0
+  reviveTimer: 15
   maxRevive: 15
   ReviveParticle: {fileID: 1421905213392028}
   HealthBarUI: {fileID: 0}
@@ -766,9 +767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ea5bfd642d4f64c8033fea371d5e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  shootingSpeed: 2
+  moveSpeed: 6
+  shootingSpeed: 4
   timeToShoot: 0.2
+  playerDirection: {x: 0, y: 0, z: 0}
   usingXboxController: 1
   isShooting: 0
   paintProjector: {fileID: 1240175364592992, guid: 50fd021b5391ba744b14f1b4588235fd,
