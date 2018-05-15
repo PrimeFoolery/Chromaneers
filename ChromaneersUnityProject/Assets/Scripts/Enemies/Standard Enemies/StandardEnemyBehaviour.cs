@@ -29,6 +29,9 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     private bool readyToRetarget = true;
     bool redPaintLock = false;
 
+    [Header("Enemy Animators")]
+    public Animator blueAnim;
+
     [Header("Misc")]
     public bool isItCoop;
     private ColourSelectManager gameManager;
@@ -102,11 +105,13 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             }
 		    if (isAggroPlayer == true)
 		    {
-		        if (retargetingDelay == 3f)
+                blueAnim.SetBool("isIdle", false);
+                if (retargetingDelay == 3f)
 		        {
 		            FindClosestPlayer();
 		        }
 		        agent.SetDestination(targetPlayer.transform.position);
+                
             }
             
 
