@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using XInputDotNetPure;
+using XInputDotNetPure;
 
 public class CoopCharacterHealthControllerOne : MonoBehaviour
 {
@@ -105,7 +105,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
 
         vibrationTimer -= Time.deltaTime;
         if (vibrationTimer <= 0) {
-            //GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
+            GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
         }
         
 
@@ -201,7 +201,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 vibrationTimer = 0.35f;
-                //GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
+                GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }
         }
