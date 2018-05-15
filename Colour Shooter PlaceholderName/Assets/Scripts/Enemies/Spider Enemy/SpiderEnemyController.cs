@@ -60,6 +60,8 @@ public class SpiderEnemyController : MonoBehaviour
 
     private GameObject mainCamera;
 
+    public GameObject coin;
+
     // Use this for initialization
     void Start ()
     {
@@ -339,7 +341,10 @@ public class SpiderEnemyController : MonoBehaviour
             gameObject.GetComponent<ParticleSystem>().Play();
 	        enemyManagerScript.enemyList.Remove(transform.parent.gameObject);
 	        mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-	        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+	        Instantiate(coin, transform.position, Quaternion.identity);
+	        Instantiate(coin, transform.position, Quaternion.identity);
+	        Instantiate(coin, transform.position, Quaternion.identity);
+            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
 	        {
 	            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject.transform.parent.gameObject);
 	        }

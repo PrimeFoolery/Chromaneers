@@ -190,13 +190,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                     {
                         walkingPuff.Stop();
                         audio.Stop();
-                        if (moveSpeed >= 0.5f)
+                        if (moveSpeed >= 2f)
                         {
                             moveSpeed = moveSpeed * movingDecceleration;
                         }
-                        if (moveSpeed <= 0.5f)
+                        if (moveSpeed <= 2f)
                         {
-                            moveSpeed = 0.5f;
+                            moveSpeed = 2f;
                         }
                         moveVelocity = moveVelocity * movingDecceleration;
                     }
@@ -239,13 +239,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                     {
                         walkingPuff.Stop();
                         audio.Stop();
-                        if (moveSpeed >= 0.5f)
+                        if (moveSpeed >= 2f)
                         {
                             moveSpeed = moveSpeed * movingDecceleration;
                         }
-                        if (moveSpeed <= 0.5f)
+                        if (moveSpeed <= 2f)
                         {
-                            moveSpeed = 0.5f;
+                            moveSpeed = 2f;
                         }
                         moveVelocity = moveVelocity * movingDecceleration;
                     }
@@ -459,13 +459,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                     {
                         walkingPuff.Stop();
                         audio.Stop();
-                        if (moveSpeed >= 0.5f)
+                        if (moveSpeed >= 2f)
                         {
                             moveSpeed = moveSpeed * movingDecceleration;
                         }
-                        if (moveSpeed <= 0.5f)
+                        if (moveSpeed <= 2f)
                         {
-                            moveSpeed = 0.5f;
+                            moveSpeed = 2f;
                         }
                         moveVelocity = moveVelocity * movingDecceleration;
                     }
@@ -508,13 +508,13 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                     {
                         walkingPuff.Stop();
                         audio.Stop();
-                        if (moveSpeed >= 0.5f)
+                        if (moveSpeed >= 2f)
                         {
                             moveSpeed = moveSpeed * movingDecceleration;
                         }
-                        if (moveSpeed <= 0.5f)
+                        if (moveSpeed <= 2f)
                         {
-                            moveSpeed = 0.5f;
+                            moveSpeed = 2f;
                         }
                         moveVelocity = moveVelocity * movingDecceleration;
                     }

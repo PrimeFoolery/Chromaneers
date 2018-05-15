@@ -10,9 +10,10 @@ public class RedEnemyHealth : MonoBehaviour {
 	public int health;
 	public float deathTimer = 1;
 
+    public GameObject coin;
 
-	//Private variables
-	private int currentHealth;
+    //Private variables
+    private int currentHealth;
     private EnemyManager enemyManagerScript;
     private GameObject mainCamera;
     private GameObject thisEnemiesSpawnPoint;
@@ -34,7 +35,8 @@ public class RedEnemyHealth : MonoBehaviour {
 			if (deathTimer >= 0) {
 				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 			    mainCamera.GetComponent<CameraScript>().SmallScreenShake();
-			    if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+			    Instantiate(coin, transform.position, Quaternion.identity);
+                if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
 			    {
 			        thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
 			    }

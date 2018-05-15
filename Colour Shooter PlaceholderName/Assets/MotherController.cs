@@ -53,6 +53,8 @@ public class MotherController : MonoBehaviour
 
     private GameObject mainCamera;
 
+    public GameObject coin;
+
     // Use this for initialization
     void Start () {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
@@ -160,6 +162,11 @@ public class MotherController : MonoBehaviour
 	    if (enemyHealth<=0)
 	    {
 	        gameObject.GetComponent<ParticleSystem>().Play();
+	        Instantiate(coin, transform.position, Quaternion.identity);
+	        Instantiate(coin, transform.position, Quaternion.identity);
+	        Instantiate(coin, transform.position, Quaternion.identity);
+	        Instantiate(coin, transform.position, Quaternion.identity);
+            Instantiate(coin, transform.position, Quaternion.identity);
             foreach (MotherSpawnPoint spawnPoint in spawnPointList)
 	        {
 	            if (spawnPoint.isSpawnerAboveGround == true)

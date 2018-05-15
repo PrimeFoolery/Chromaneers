@@ -10,7 +10,9 @@ public class OrangeEnemyHealth : MonoBehaviour {
 	private float recoveryTimer = 2f;
 	public GameObject sphere;
 
-	public Material redJellyMaterial;
+    public GameObject coin;
+
+    public Material redJellyMaterial;
 	public Material yellowJellyMaterial;
 	public Material orangeJellyMaterial;
 
@@ -59,6 +61,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
             Instantiate(OrangeSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+		    Instantiate(coin, transform.position, Quaternion.identity);
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;

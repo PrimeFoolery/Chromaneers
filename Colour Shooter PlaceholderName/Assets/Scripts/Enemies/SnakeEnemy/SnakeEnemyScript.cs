@@ -63,6 +63,8 @@ public class SnakeEnemyScript : MonoBehaviour
 
     private GameObject mainCamera;
 
+    public GameObject coin;
+
 
     // Use this for initialization
     void Start()
@@ -162,7 +164,7 @@ public class SnakeEnemyScript : MonoBehaviour
             {
                 Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
-
+            Instantiate(coin, transform.position, Quaternion.identity);
             if (name != "SnakeHead")
             {
                 Target_Or_SegmentAhead.GetComponent<SnakeEnemyScript>().SegmentBehind = null;

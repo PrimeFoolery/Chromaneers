@@ -12,7 +12,9 @@ public class PurpleEnemyHealth : MonoBehaviour {
 	private float recoveryTimer = 2f;
 	public GameObject sphere;
 
-	public Material redJellyMaterial;
+    public GameObject coin;
+
+    public Material redJellyMaterial;
 	public Material blueJellyMaterial;
 	public Material purpleJellyMaterial;
 
@@ -61,6 +63,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
             Instantiate(PurpleSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+		    Instantiate(coin, transform.position, Quaternion.identity);
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
