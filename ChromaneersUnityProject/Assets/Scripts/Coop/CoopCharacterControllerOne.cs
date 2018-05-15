@@ -696,7 +696,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         {
             gameObject.GetComponent<CoopCharacterHealthControllerOne>().canBeDamaged = false;
             gameObject.GetComponent<CoopCharacterHealthControllerOne>().InvTimer=1f;
-            moveSpeed = 0;
+            //moveSpeed = 0;
             canPlayerShoot = false;
 			canPlayerMove = false;
             currentlyDodging = true;

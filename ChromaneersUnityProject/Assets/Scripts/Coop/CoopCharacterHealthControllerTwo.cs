@@ -142,13 +142,13 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             
             reviveTimer -= Time.deltaTime/3f;
 			ReviveParticle.SetActive (true);
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 2f)
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
             {
-                reviveTimer -= Time.deltaTime*1.5f;
+                reviveTimer -= Time.deltaTime*2.25f;
             }
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 2f)
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f)
             {
-                reviveTimer -= Time.deltaTime*1.5f;
+                reviveTimer -= Time.deltaTime*2.25f;
             }
             if(Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) > 4f)
             {

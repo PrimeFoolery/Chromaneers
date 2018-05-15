@@ -144,11 +144,11 @@ public class CoopCharacterHealthControllerThree : MonoBehaviour
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
             {
 
-                reviveTimer -= Time.deltaTime*1.5f;
+                reviveTimer -= Time.deltaTime*2.25f;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f)
             {
-                reviveTimer -= Time.deltaTime*1.5f;
+                reviveTimer -= Time.deltaTime*2.25f;
             }
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) > 4f)
             {
