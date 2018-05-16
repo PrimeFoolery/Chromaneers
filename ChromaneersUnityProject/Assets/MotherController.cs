@@ -157,7 +157,7 @@ public class MotherController : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(spawnPoint.transform.position.x, transform.position.y, spawnPoint.transform.position.z), -enemyRunningAwaySpeed * Time.deltaTime);
 	        }
 	    }
-	    transform.LookAt(targetPlayer.transform);
+	    transform.LookAt(new Vector3 (targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
 
 	    if (enemyHealth<=0)
 	    {
