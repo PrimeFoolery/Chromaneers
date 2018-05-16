@@ -211,11 +211,11 @@ public class blobPenController : MonoBehaviour
 	    }
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (colourOfThisPen==ColoursOfPen.blue)
         {
-            if (other.gameObject.CompareTag("BlueEnemy"))
+            if (other.gameObject.CompareTag("BlueEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
                 {
@@ -233,7 +233,7 @@ public class blobPenController : MonoBehaviour
                 other.gameObject.layer = 10;
                 amountOfCorrectEnemies += 1;
 
-            }else if (other.gameObject.CompareTag("PurpleEnemy"))
+            }else if (other.gameObject.CompareTag("PurpleEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if(other.gameObject.GetComponent<PurpleEnemyHealth>().blueHealth>0&& other.gameObject.GetComponent<PurpleEnemyHealth>().redHealth<=0)
                 {
@@ -247,13 +247,14 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    other.gameObject.GetComponent<PurpleEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
                     amountOfCorrectEnemies += 1;
                 }
             }
-            else if (other.gameObject.CompareTag("GreenEnemy"))
+            else if (other.gameObject.CompareTag("GreenEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.gameObject.GetComponent<GreenEnemyHealth>().blueHealth > 0 && other.gameObject.GetComponent<GreenEnemyHealth>().yellowHealth <= 0)
                 {
@@ -267,6 +268,7 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    other.gameObject.GetComponent<GreenEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
@@ -277,7 +279,7 @@ public class blobPenController : MonoBehaviour
         else
         if (colourOfThisPen == ColoursOfPen.red)
         {
-            if (other.gameObject.CompareTag("RedEnemy"))
+            if (other.gameObject.CompareTag("RedEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
                 {
@@ -295,7 +297,7 @@ public class blobPenController : MonoBehaviour
                 amountOfCorrectEnemies += 1;
 
             }
-            else if (other.gameObject.CompareTag("PurpleEnemy"))
+            else if (other.gameObject.CompareTag("PurpleEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.gameObject.GetComponent<PurpleEnemyHealth>().redHealth > 0 && other.gameObject.GetComponent<PurpleEnemyHealth>().blueHealth <= 0)
                 {
@@ -309,13 +311,14 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    other.gameObject.GetComponent<PurpleEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
                     amountOfCorrectEnemies += 1;
                 }
             }
-            else if (other.gameObject.CompareTag("OrangeEnemy"))
+            else if (other.gameObject.CompareTag("OrangeEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.gameObject.GetComponent<OrangeEnemyHealth>().redHealth > 0 && other.gameObject.GetComponent<OrangeEnemyHealth>().yellowHealth <= 0)
                 {
@@ -329,6 +332,7 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    other.gameObject.GetComponent<OrangeEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
@@ -338,7 +342,7 @@ public class blobPenController : MonoBehaviour
         }
         else if (colourOfThisPen == ColoursOfPen.yellow)
         {
-            if (other.gameObject.CompareTag("YellowEnemy"))
+            if (other.gameObject.CompareTag("YellowEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
                 {
@@ -356,7 +360,7 @@ public class blobPenController : MonoBehaviour
                 amountOfCorrectEnemies += 1;
 
             }
-            else if (other.gameObject.CompareTag("GreenEnemy"))
+            else if (other.gameObject.CompareTag("GreenEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.gameObject.GetComponent<GreenEnemyHealth>().yellowHealth > 0 && other.gameObject.GetComponent<GreenEnemyHealth>().blueHealth <= 0)
                 {
@@ -370,13 +374,15 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+
+                    other.gameObject.GetComponent<GreenEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
                     amountOfCorrectEnemies += 1;
                 }
             }
-            else if (other.gameObject.CompareTag("OrangeEnemy"))
+            else if (other.gameObject.CompareTag("OrangeEnemy") && other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material != whiteEnemyMat)
             {
                 if (other.gameObject.GetComponent<OrangeEnemyHealth>().yellowHealth > 0 && other.gameObject.GetComponent<OrangeEnemyHealth>().redHealth <= 0)
                 {
@@ -390,6 +396,7 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    other.gameObject.GetComponent<OrangeEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;

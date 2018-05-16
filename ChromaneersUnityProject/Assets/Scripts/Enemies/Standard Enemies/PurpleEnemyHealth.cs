@@ -27,6 +27,8 @@ public class PurpleEnemyHealth : MonoBehaviour {
     public GameObject PurpleSplat;
     public GameObject enemyEmpty;
 
+    public bool isWhite = false;
+
     void Start () {
         //Setting the current health to be the health variable
         //so that when we start the game, the enemy has full HP
@@ -37,14 +39,16 @@ public class PurpleEnemyHealth : MonoBehaviour {
 
     void Update () {
         //If the enemy reaches 0 HP, destroy the enemy
-		if(redHealth<=0&&blueHealth>0){
+		if(redHealth<=0&&blueHealth>0 && isWhite == false)
+        {
 			GetComponent<Renderer> ().material = blueJellyMaterial;
 			sphere.GetComponent<Renderer> ().material = blueJellyMaterial;
 		}
 		if(redHealth<0){
 			redHealth=0;
 		}
-		if(blueHealth<=0&&redHealth>0){
+		if(blueHealth<=0&&redHealth>0 && isWhite == false)
+        {
 			GetComponent<Renderer> ().material = redJellyMaterial;
 			sphere.GetComponent<Renderer> ().material = redJellyMaterial;
 		}
@@ -67,7 +71,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
             Destroy (this.gameObject);
 		}
 		recoveryTimer -= Time.deltaTime;
-		if(recoveryTimer<=0){
+		if(recoveryTimer<=0&&isWhite==false){
 			redHealth = 3;
 			blueHealth = 3;
 			GetComponent<Renderer> ().material = purpleJellyMaterial;
