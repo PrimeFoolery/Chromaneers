@@ -125,7 +125,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             readyToRetarget = true;
             retargetingDelay = 3f;
         }
-        transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+        transform.LookAt(targetPlayer.transform);
 	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint=="yellow")
 	    {
 	        agent.speed = 4;

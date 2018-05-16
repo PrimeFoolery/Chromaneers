@@ -11,24 +11,17 @@ public class MainMenu : MonoBehaviour {
     public EventSystem eventSys;
     private GameObject storedSelected;
     public bool usingXboxController = true;
-    
+
+    public GameObject OptionsPanel;
     public GameObject MainMenuPanel;
     public AudioMixer audioMixer;
 
     public GameObject[] buttonList;
+    public GameObject[] buttonListOpt;
     public bool canInteract = true;
     private float InteractTimer;
     public float maxIntTimer;
 	public GameObject volumeText;
-
-    [Header ("Options Stuff")]
-    public GameObject OptionsPanel;
-    public GameObject[] buttonListOpt;
-    public Image tickBoxImage;
-    public Sprite[] tickBox;
-    public bool highResWater = true;
-    public GameObject highWater;
-    public GameObject lowWater;
 
     [Header("State")]
     public string MenuState;
@@ -299,27 +292,7 @@ public class MainMenu : MonoBehaviour {
         }
         if(MenuState == "OptionsMenu")
         {
-            if(highResWater == true)
-            {
-                tickBoxImage.sprite = tickBox[0];
-                highWater.SetActive(true);
-                lowWater.SetActive(false);
-            }
-            if(highResWater == false)
-            {
-                tickBoxImage.sprite = tickBox[1];
-                highWater.SetActive(false);
-                lowWater.SetActive(true);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[1].gameObject)
-            {
-                tickBoxImage.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
-            }
-            else {
-                tickBoxImage.GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
-            }
-
-            if (eventSys.currentSelectedGameObject == buttonListOpt [0].gameObject) {
+			if (eventSys.currentSelectedGameObject == buttonListOpt [0].gameObject) {
 				volumeText.GetComponent<Image> ().color = new Color (0, 0, 0, 1f);
 			} else {
 				volumeText.GetComponent<Image> ().color = new Color (0, 0, 0, 0.5f);
@@ -559,16 +532,13 @@ public class MainMenu : MonoBehaviour {
     {
         audioMixer.SetFloat("Volume", volume);
     }
-    public void SetWater()
+    public void SetGrass(bool highResGrass)
     {
-        if(highResWater == true)
-        {
-            highResWater = false;            
-        }
-        else if(highResWater == false)
-        {
-            highResWater = true;            
-        }
+        //
+    }
+    public void SetWater(bool highResWater)
+    {
+        //
     }
     public void BackToMenu()
     {
