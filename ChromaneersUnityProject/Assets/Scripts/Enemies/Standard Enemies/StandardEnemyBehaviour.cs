@@ -30,7 +30,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     bool redPaintLock = false;
 
     [Header("Enemy Animators")]
-    public Animator blueAnim;
+    public Animator anim;
 
     [Header("Misc")]
     public bool isItCoop;
@@ -105,7 +105,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             }
 		    if (isAggroPlayer == true)
 		    {
-                blueAnim.SetBool("isIdle", false);
+                anim.SetBool("isIdle", false);
                 if (retargetingDelay == 3f)
 		        {
 		            FindClosestPlayer();
