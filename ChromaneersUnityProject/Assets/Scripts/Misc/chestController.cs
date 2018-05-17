@@ -40,19 +40,19 @@ public class chestController : MonoBehaviour
             
             if (thisChestsWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon)
             {
-                Instantiate(trishotPickup, new Vector3(chestLid.transform.position.x, chestLid.transform.position.y - 2.5f, chestLid.transform.position.z), Quaternion.identity);
+                Instantiate(trishotPickup, new Vector3(chestLid.transform.position.x, chestLid.transform.position.y - 1.5f, chestLid.transform.position.z), Quaternion.identity);
             } else
             if (thisChestsWeapon == CharacterOneGunController.currentWeapon.SniperWeapon)
             {
-                Instantiate(sniperPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-2.5f, chestLid.transform.position.z), Quaternion.identity);
+                Instantiate(sniperPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-1.5f, chestLid.transform.position.z), Quaternion.identity);
             } else
 			if (thisChestsWeapon == CharacterOneGunController.currentWeapon.SMGWeapon)
 			{
-				Instantiate(smgPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-2.5f, chestLid.transform.position.z), Quaternion.identity);
+				Instantiate(smgPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-1.5f, chestLid.transform.position.z), Quaternion.identity);
 			}else
 			if (thisChestsWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon)
 			{
-				Instantiate(rainbowPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-2.5f, chestLid.transform.position.z), Quaternion.identity);
+				Instantiate(rainbowPickup, new Vector3(chestLid.transform.position.x,chestLid.transform.position.y-1.5f, chestLid.transform.position.z), Quaternion.identity);
 			}
 						
             Destroy(chestBase.gameObject);
