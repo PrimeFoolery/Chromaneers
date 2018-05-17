@@ -409,7 +409,10 @@ public class MainMenu : MonoBehaviour {
             highResWater = true;
         }
     }
-
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
     public void BackToMenu()
     {
         MenuState = "MainMenu";

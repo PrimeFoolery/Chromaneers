@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoNotDestroy : MonoBehaviour {
 
     public GameObject canvasHolder;
     public bool highResWaterHolder;
+    public float volumeHolder;
+    public GameObject volumeSliderHolder;
 
     private void Awake()
     {
@@ -20,6 +23,6 @@ public class DoNotDestroy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         highResWaterHolder = canvasHolder.GetComponent<MainMenu>().highResWater;
-
+        volumeHolder = volumeSliderHolder.GetComponent<Slider>().value; 
 	}
 }
