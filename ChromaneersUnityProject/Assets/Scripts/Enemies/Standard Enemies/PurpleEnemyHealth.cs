@@ -120,5 +120,15 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    }
             recoveryTimer = 2f;
 		}
-	}
+        if (other.gameObject.CompareTag("RainbowBullet"))
+        {
+            redHealth -= 1;
+            blueHealth -= 1;
+            recoveryTimer = 2f;
+            if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
+            {
+                gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
+            }
+        }
+    }
 }

@@ -48,14 +48,14 @@ public class purpleObelisk : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("RedBullet"))
+        if (other.collider.CompareTag("RedBullet") || other.collider.CompareTag("RainbowBullet"))
         {
 
             DamageRed();
             Destroy(other.gameObject);
         }
 
-        if (other.collider.CompareTag("BlueBullet"))
+        if (other.collider.CompareTag("BlueBullet") || other.collider.CompareTag("RainbowBullet"))
         {
             DamageBlue();
             Destroy(other.gameObject);

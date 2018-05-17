@@ -115,5 +115,15 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    }
             recoveryTimer = 2f;
 		}
-	}
+        if (other.gameObject.CompareTag("RainbowBullet"))
+        {
+            yellowHealth -= 1;
+            redHealth -= 1;
+            recoveryTimer = 2f;
+            if (gameObject.GetComponent<StandardEnemyBehaviour>().isAggroPlayer == false)
+            {
+                gameObject.GetComponent<StandardEnemyBehaviour>().AggroToggle();
+            }
+        }
+    }
 }

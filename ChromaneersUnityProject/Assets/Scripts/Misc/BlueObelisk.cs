@@ -33,7 +33,7 @@ public class BlueObelisk : MonoBehaviour {
 		}
 	}
 	void OnCollisionEnter (Collision other){
-		if(other.collider.CompareTag("BlueBullet")){
+		if(other.collider.CompareTag("BlueBullet")||other.collider.CompareTag("RainbowBullet")){
 			
 			DamageBlue ();
 			Destroy (other.gameObject);

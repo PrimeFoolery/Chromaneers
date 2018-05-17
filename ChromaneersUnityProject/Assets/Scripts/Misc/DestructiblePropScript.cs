@@ -88,7 +88,7 @@ public class DestructiblePropScript : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         //Debug.Log("somethingColliding");
-        if (other.gameObject.CompareTag("BlueBullet")|| other.gameObject.CompareTag("RedBullet")|| other.gameObject.CompareTag("YellowBullet"))
+        if (other.gameObject.CompareTag("BlueBullet")|| other.gameObject.CompareTag("RedBullet")|| other.gameObject.CompareTag("YellowBullet")||other.gameObject.CompareTag("RainbowBullet"))
         {
             //Debug.Log("bulletColliding");
             if (thisPropsMaterialType==DestructiblePropType.dust)
@@ -196,16 +196,20 @@ public class DestructiblePropScript : MonoBehaviour
     void DestroyDestructible()
     {
         int randomNumber = Random.Range(0, 100);
-        if (randomNumber>10&&randomNumber<=60)
+        if (randomNumber>0&&randomNumber<=40)
         {
             //Spawn candy
             Instantiate(Candy, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        else if (randomNumber>60 && randomNumber <= 65 )
+        else if (randomNumber>40 && randomNumber <= 45 )
         {
             //Spawn Heart
             Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        else
+        {
             Destroy(this.gameObject);
         }
         
