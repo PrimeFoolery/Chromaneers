@@ -69,6 +69,8 @@ public class CharacterTwoGunController : MonoBehaviour {
     private GameObject mainCamera;
     private CameraScript mainCameraScript;
 
+    public int amountOfRainbowAmmo = 100;
+
     void Start () {
         //Calling the ColourSelectManager
 		startingPosition = transform.localPosition;
@@ -173,6 +175,12 @@ public class CharacterTwoGunController : MonoBehaviour {
                 controlState = "Idle";
             }
         }
+
+        if (amountOfRainbowAmmo <= 0)
+        {
+            stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+            amountOfRainbowAmmo = 100;
+        }
     }
 
     //Function that handles the bullets and which ones to instantiate
@@ -224,6 +232,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
+                    amountOfRainbowAmmo -= 1;
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
@@ -277,6 +286,7 @@ public class CharacterTwoGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
+                    amountOfRainbowAmmo -= 1;
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);

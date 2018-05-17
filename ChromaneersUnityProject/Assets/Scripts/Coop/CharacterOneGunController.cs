@@ -39,6 +39,8 @@ public class CharacterOneGunController : MonoBehaviour {
     [Range(0, 10)] public float bulletSpreadRainbow;
     [Range(0, 1)] public float timeBetweenShotsRainbow;
 
+    public int amountOfRainbowAmmo = 100;
+
 
     public enum currentWeapon { OriginalWeapon, TrishotWeapon, SniperWeapon, SMGWeapon, RainbowWeapon }
     public currentWeapon stateOfWeapon;
@@ -174,6 +176,12 @@ public class CharacterOneGunController : MonoBehaviour {
                 controlState = "Idle";
             }
         }
+
+        if (amountOfRainbowAmmo<=0)
+        {
+            stateOfWeapon = currentWeapon.OriginalWeapon;
+            amountOfRainbowAmmo = 100;
+        }
         
     }
 
@@ -226,6 +234,7 @@ public class CharacterOneGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
+                    amountOfRainbowAmmo -= 1;
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
@@ -279,6 +288,7 @@ public class CharacterOneGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
+			        amountOfRainbowAmmo -= 1;
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
