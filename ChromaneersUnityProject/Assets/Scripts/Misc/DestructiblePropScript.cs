@@ -21,15 +21,69 @@ public class DestructiblePropScript : MonoBehaviour
 
     public GameObject Candy;
     public GameObject Heart;
+    public GameObject newSpawnPoint;
+    private GameObject justSpawnedSpawnPoint;
 
-	// Use this for initialization
-	void Start () {
-		
+    public string spawnEnemy;
+
+    public List<newSpawner.enemyTypes> blueEnemy = new List<newSpawner.enemyTypes>();
+    public List<newSpawner.enemyTypes> redEnemy = new List<newSpawner.enemyTypes>();
+    public List<newSpawner.enemyTypes> yellowEnemy = new List<newSpawner.enemyTypes>();
+
+    public List<newSpawner.enemyTypes> fastEnemy = new List<newSpawner.enemyTypes>();
+
+    // Use this for initialization
+    void Start () {
+        //FIND NEAREST SPAWNPOINT 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	}
+	    if (spawnEnemy == "blue")
+	    {
+            Debug.Log("spawning blie");
+	        float waitTime = 0.5f;
+	        waitTime -= Time.deltaTime;
+	        if (waitTime < 0)
+	        {
+	            justSpawnedSpawnPoint.GetComponent<newSpawner>().SpawnEnemies(blueEnemy);
+	        }
+            Destroy(this.gameObject);
+        }
+        else if (spawnEnemy == "red")
+	    {
+	        Debug.Log("spawningred");
+            float waitTime = 0.5f;
+	        waitTime -= Time.deltaTime;
+	        if (waitTime < 0)
+	        {
+	            justSpawnedSpawnPoint.GetComponent<newSpawner>().SpawnEnemies(redEnemy);
+	        }
+	        Destroy(this.gameObject);
+        }
+        else if (spawnEnemy == "yellow")
+	    {
+	        Debug.Log("spawning yelloq");
+            float waitTime = 0.5f;
+	        waitTime -= Time.deltaTime;
+	        if (waitTime < 0)
+	        {
+	            justSpawnedSpawnPoint.GetComponent<newSpawner>().SpawnEnemies(yellowEnemy);
+	        }
+	        Destroy(this.gameObject);
+        }
+	    else if (spawnEnemy == "fast")
+	    {
+	        Debug.Log("spawning fast");
+	        float waitTime = 0.5f;
+	        waitTime -= Time.deltaTime;
+	        if (waitTime < 0)
+	        {
+	            justSpawnedSpawnPoint.GetComponent<newSpawner>().SpawnEnemies(fastEnemy);
+	        }
+	        Destroy(this.gameObject);
+	    }
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -142,25 +196,18 @@ public class DestructiblePropScript : MonoBehaviour
     void DestroyDestructible()
     {
         int randomNumber = Random.Range(0, 100);
-        if (randomNumber>0 && randomNumber<=20)
-        {
-            //Spawn standard enemy
-
-        }else if (randomNumber>20 && randomNumber<=40)
-        {
-            //Spawn fast enemy
-
-        }
-        else if (randomNumber>40&&randomNumber<=60)
+        if (randomNumber>10&&randomNumber<=60)
         {
             //Spawn candy
             Instantiate(Candy, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
         else if (randomNumber>60 && randomNumber <= 65 )
         {
             //Spawn Heart
             Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        
     }
 }

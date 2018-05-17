@@ -185,6 +185,7 @@ public class areaCompleteText : MonoBehaviour {
             coinCountDelay -= Time.deltaTime;
             if (blueCoinsCounter == blueCoinsCollected && redCoinsCounter == redCoinsCollected && yellowCoinsCounter == yellowCoinsCollected)
             {
+                coinManager.SpawnRainbow();
                 thisCoinState = CoinStates.savour;
             }
 
