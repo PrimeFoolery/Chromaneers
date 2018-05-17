@@ -127,7 +127,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 moveVelocity = new Vector3(0,0,0);
                 audio.Stop();
             }
-            
+            Debug.Log(moveInput);
             if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
             {
                 if (moveInput.x <= 0)
@@ -162,6 +162,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					//Debug.Log ("player moving");
 					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 					if(moveInput!= new Vector3(0,0,0)){
+                        Debug.Log("should be moving");
 					    if (walkingPuffCooldown<=0)
 					    {
                             walkingPuff.Play();
@@ -238,7 +239,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
 						if(moveSpeed<=2f){
-							moveSpeed = 0.5f;
+							moveSpeed = 2f;
 						}
 						moveVelocity = moveVelocity * movingDecceleration;
 					}
@@ -376,7 +377,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 moveVelocity = new Vector3(0, 0, 0);
                 audio.Stop();
             }
-		    if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
+		    Debug.Log(moveInput);
+            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
 		    {
 		        if (moveInput.x <= 0)
 		        {
@@ -405,7 +407,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 		            moveInput.z = 0;
 		        }
 		    }
-			if(canPlayerMove==true){
+		    Debug.Log(moveInput);
+            if (canPlayerMove==true){
 				if (!isShooting) {
                     //Multiply the moveInput by the moveVelocity to give it speed whilst walking
                     //Debug.Log ("player moving");
@@ -668,7 +671,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     void FixedUpdate () {
         //Set the Rigidbody to retreieve the moveVelocity;
-		//Debug.Log("Velocity before applying: "+moveVelocity);
+		Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
 	    if (moveVelocity.x <= 0.01f && moveVelocity.x >= -0.01f)
 	    {

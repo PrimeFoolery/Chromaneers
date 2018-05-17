@@ -55,10 +55,15 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     //Private variables
     private int currentHealth;
 
+    public GameObject Coin;
+    public coinController coinManager;
+    public bool HasCoinSpawned = false;
+
     void Start()
     {
         //ReviveSlider.gameObject.SetActive(false);
         ReviveCircle.gameObject.SetActive(false);
+        coinManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<coinController>();
         reviveTimer = maxRevive;
         //ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -131,6 +136,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             }
             if (currentHealth <= 0)
             {
+
                 PlayerState = "Dead";
             }
         }
@@ -138,9 +144,67 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         {
             //ReviveSlider.gameObject.SetActive(true);
             //ReviveSlider.value = CalculateRevive();
+            if (HasCoinSpawned==false)
+            {
+                Vector2 tempVector;
+                if (coinManager.bluesCoins>4)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized)*3f;
+                    Instantiate(Coin, new Vector3(transform.position.x,transform.position.y,transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized)*3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized)*3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized)*3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized)*3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    
+                    coinManager.bluesCoins -= 5;
+                    //Debug.Log("Spawn the damn coins game plz");
+                    HasCoinSpawned = true;
+                }else if (coinManager.bluesCoins == 4)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.bluesCoins -= 4;
+                    HasCoinSpawned = true;
+                }else if (coinManager.bluesCoins == 3)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.bluesCoins -= 3;
+                    HasCoinSpawned = true;
+                }
+                else if (coinManager.bluesCoins == 2)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.bluesCoins -= 2;
+                    HasCoinSpawned = true;
+                }else if (coinManager.bluesCoins == 1)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.bluesCoins -= 1;
+                    HasCoinSpawned = true;
+                }
+            }
             ReviveCircle.gameObject.SetActive(true);
             ReviveCircle.fillAmount = CalculateRevive();
-            coopCharacterControllerOne.moveSpeed = 0;
+            //coopCharacterControllerOne.moveSpeed = 0;
             coopCharacterControllerOne.canPlayerMove = false;
             coopCharacterControllerOne.canPlayerShoot = false;
             coopCharacterControllerOne.coopCharacterControllerOne.isFiring = false;
@@ -175,7 +239,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             coopCharacterControllerOne.canPlayerShoot = true;
             coopCharacterControllerOne.canPlayerMove = true;
             currentHealth = 3;
-            
+            HasCoinSpawned = false;
             rend.material = matOne;
             InvTimer = 2;
             canBeDamaged = false;

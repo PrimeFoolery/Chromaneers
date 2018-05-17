@@ -19,6 +19,9 @@ public class DestructiblePropScript : MonoBehaviour
     public GameObject woodExplosion;
     public GameObject glassExplosion;
 
+    public GameObject Candy;
+    public GameObject Heart;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -53,7 +56,7 @@ public class DestructiblePropScript : MonoBehaviour
                 Instantiate(dustExplosion, transform.position, Quaternion.identity);
             }
 
-            Destroy(this.gameObject);
+            DestroyDestructible();
         }
 
         if (other.gameObject.CompareTag("BluePlayer"))
@@ -79,7 +82,7 @@ public class DestructiblePropScript : MonoBehaviour
                     Instantiate(woodExplosion, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
                     Instantiate(dustExplosion, transform.position, Quaternion.identity);
                 }
-                Destroy(this.gameObject);
+                DestroyDestructible();
             }
         }
         if (other.gameObject.CompareTag("RedPlayer"))
@@ -105,7 +108,7 @@ public class DestructiblePropScript : MonoBehaviour
                     Instantiate(woodExplosion, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
                     Instantiate(dustExplosion, transform.position, Quaternion.identity);
                 }
-                Destroy(this.gameObject);
+                DestroyDestructible();
             }
         }
         if (other.gameObject.CompareTag("YellowPlayer"))
@@ -131,8 +134,33 @@ public class DestructiblePropScript : MonoBehaviour
                     Instantiate(woodExplosion, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
                     Instantiate(dustExplosion, transform.position, Quaternion.identity);
                 }
-                Destroy(this.gameObject);
+                DestroyDestructible();
             }
         }
+    }
+
+    void DestroyDestructible()
+    {
+        int randomNumber = Random.Range(0, 100);
+        if (randomNumber>0 && randomNumber<=20)
+        {
+            //Spawn standard enemy
+
+        }else if (randomNumber>20 && randomNumber<=40)
+        {
+            //Spawn fast enemy
+
+        }
+        else if (randomNumber>40&&randomNumber<=60)
+        {
+            //Spawn candy
+            Instantiate(Candy, transform.position, Quaternion.identity);
+        }
+        else if (randomNumber>60 && randomNumber <= 65 )
+        {
+            //Spawn Heart
+            Instantiate(Heart, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
+        }
+        Destroy(this.gameObject);
     }
 }

@@ -54,10 +54,15 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     private float IndicatorAlpha;
     private bool IndicatorFadedOut = false;
 
+    public GameObject Coin;
+    public coinController coinManager;
+    private bool HasCandySpawned = false;
+
     void Start()
     {
         //ReviveSlider.gameObject.SetActive(false);
         ReviveCircle.gameObject.SetActive(false);
+        coinManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<coinController>();
         reviveTimer = maxRevive;
         //ReviveSlider.value = CalculateRevive();
         PlayerState = "Alive";
@@ -131,11 +136,70 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
+            if (HasCandySpawned == false)
+            {
+                Vector2 tempVector;
+                if (coinManager.redsCoins > 4)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.redsCoins -= 5;
+                    HasCandySpawned = true;
+                }
+                else if (coinManager.redsCoins == 4)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.redsCoins -= 4;
+                    HasCandySpawned = true;
+                }
+                else if (coinManager.redsCoins == 3)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.redsCoins -= 3;
+                    HasCandySpawned = true;
+                }
+                else if (coinManager.redsCoins == 2)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.redsCoins -= 2;
+                    HasCandySpawned = true;
+                }
+                else if (coinManager.redsCoins == 1)
+                {
+                    tempVector = (UnityEngine.Random.insideUnitCircle.normalized) * 3f;
+                    Instantiate(Coin, new Vector3(transform.position.x, transform.position.y, transform.position.z) + (new Vector3(tempVector.x, 0, tempVector.y)), transform.rotation);
+                    coinManager.redsCoins -= 1;
+                    HasCandySpawned = true;
+                }
+            }
             //ReviveSlider.gameObject.SetActive(true);
             //ReviveSlider.value = CalculateRevive();
             ReviveCircle.gameObject.SetActive(true);
             ReviveCircle.fillAmount = CalculateRevive();
-            coopCharacterControllerTwo.moveSpeed = 0;
+            //coopCharacterControllerTwo.moveSpeed = 0;
             coopCharacterControllerTwo.canPlayerShoot = false;
             coopCharacterControllerTwo.canPlayerMove = false;
             coopCharacterControllerTwo.coopCharacterControllerTwo.isFiring = false;
@@ -171,7 +235,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             coopCharacterControllerTwo.canPlayerShoot = true;
             coopCharacterControllerTwo.canPlayerMove = true;
             currentHealth = 3;
-            
+            HasCandySpawned = false;
             rend.material = matOne;
             InvTimer = 2;
             canBeDamaged = false;

@@ -14,7 +14,7 @@ public class coinPickupScript : MonoBehaviour {
     private CoinState thisCoinsState = CoinState.up;
     private float jumpSpeed = 8;
     private float rotationSpeed = 20f;
-    private Vector3 randomDirection;
+    public Vector3 randomDirection;
 
     private float upTime = 0.25f;
 
@@ -71,5 +71,10 @@ public class coinPickupScript : MonoBehaviour {
             gamesCoinController.yellowsCoins += 1;
             Destroy(this.gameObject);
         }
+    }
+
+    public void ForceDirection(Vector3 directionInput)
+    {
+        randomDirection = directionInput;
     }
 }
