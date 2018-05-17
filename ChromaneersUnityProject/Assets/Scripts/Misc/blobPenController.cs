@@ -48,6 +48,11 @@ public class blobPenController : MonoBehaviour
     public Texture2D penObeliskEmissionMap3;
     public Texture2D penObeliskEmissionMap4;
     public Texture2D penObeliskEmissionMap5;
+    public Texture2D penObeliskEmissionMap6;
+    public Texture2D penObeliskEmissionMap7;
+    public Texture2D penObeliskEmissionMap8;
+    public Texture2D penObeliskEmissionMap9;
+    public Texture2D penObeliskEmissionMap10;
 
     private bool enemySpawned = false;
 
@@ -186,7 +191,42 @@ public class blobPenController : MonoBehaviour
 	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap5);
 	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap5);
 	    }
-        if (amountOfCorrectEnemies>=5&&doorOpened==false)
+	    else if (amountOfCorrectEnemies == 6)
+	    {
+	        obelisk1.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap6);
+	        obelisk2.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap6);
+	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap6);
+	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap6);
+	    }
+	    else if (amountOfCorrectEnemies == 7)
+	    {
+	        obelisk1.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap7);
+	        obelisk2.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap7);
+	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap7);
+	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap7);
+	    }
+	    else if (amountOfCorrectEnemies == 8)
+	    {
+	        obelisk1.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap8);
+	        obelisk2.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap8);
+	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap8);
+	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap8);
+	    }
+	    else if (amountOfCorrectEnemies == 9)
+	    {
+	        obelisk1.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap9);
+	        obelisk2.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap9);
+	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap9);
+	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap9);
+	    }
+	    else if (amountOfCorrectEnemies == 10)
+	    {
+	        obelisk1.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap10);
+	        obelisk2.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap10);
+	        obelisk3.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap10);
+	        obelisk4.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap10);
+	    }
+        if (amountOfCorrectEnemies>=10&&doorOpened==false)
 	    {
 	        if (ObjectToTrigger.GetComponent<doorController>()!=null)
 	        {
@@ -274,6 +314,46 @@ public class blobPenController : MonoBehaviour
                     other.gameObject.layer = 10;
                     amountOfCorrectEnemies += 1;
                 }
+            } else if (other.gameObject.CompareTag("SpiderEnemy") && other.gameObject.GetComponentInChildren<Renderer>().material != whiteEnemyMat)
+            {
+                if (other.gameObject.GetComponentInChildren<SpiderEnemyController>().bodyColour==2&& other.gameObject.GetComponentInChildren<SpiderEnemyController>().howManyLegsAreAlive == 0)
+                {
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>()!=null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+
+                    other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
+                    CorrectEnemiesInPen.Add(other.gameObject);
+                    other.gameObject.layer = 10;
+                    amountOfCorrectEnemies += 1;    
+                }
+            }
+            else if (other.gameObject.CompareTag("FastEnemy") && other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material != whiteEnemyMat && other.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "blue")
+            {
+                
+                if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                {
+                   other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint
+                    .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                else if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                {
+                   other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
+                    .ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
+                CorrectEnemiesInPen.Add(other.gameObject);
+                other.gameObject.layer = 10;
+                amountOfCorrectEnemies += 1;
             }
         }
         else
@@ -339,6 +419,47 @@ public class blobPenController : MonoBehaviour
                     amountOfCorrectEnemies += 1;
                 }
             }
+            else if (other.gameObject.CompareTag("SpiderEnemy") && other.gameObject.GetComponentInChildren<Renderer>().material != whiteEnemyMat)
+            {
+                if (other.gameObject.GetComponentInChildren<SpiderEnemyController>().bodyColour == 1 && other.gameObject.GetComponentInChildren<SpiderEnemyController>().howManyLegsAreAlive == 0)
+                {
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+
+                    other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
+                    CorrectEnemiesInPen.Add(other.gameObject);
+                    other.gameObject.layer = 10;
+                    amountOfCorrectEnemies += 1;
+                }
+            }
+            else if (other.gameObject.CompareTag("FastEnemy") && other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material != whiteEnemyMat && other.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "red")
+            {
+
+                if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                {
+                    other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint
+                        .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                else if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                {
+                    other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
+                        .ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
+                CorrectEnemiesInPen.Add(other.gameObject);
+                other.gameObject.layer = 10;
+                amountOfCorrectEnemies += 1;
+            }
         }
         else if (colourOfThisPen == ColoursOfPen.yellow)
         {
@@ -402,6 +523,47 @@ public class blobPenController : MonoBehaviour
                     other.gameObject.layer = 10;
                     amountOfCorrectEnemies += 1;
                 }
+            }
+            else if (other.gameObject.CompareTag("SpiderEnemy") && other.gameObject.GetComponentInChildren<Renderer>().material != whiteEnemyMat)
+            {
+                if (other.gameObject.GetComponentInChildren<SpiderEnemyController>().bodyColour == 3 && other.gameObject.GetComponentInChildren<SpiderEnemyController>().howManyLegsAreAlive == 0)
+                {
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+                    if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                    {
+                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                            .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
+                            .Remove(other.gameObject.transform.parent.gameObject);
+                    }
+
+                    other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
+                    CorrectEnemiesInPen.Add(other.gameObject);
+                    other.gameObject.layer = 10;
+                    amountOfCorrectEnemies += 1;
+                }
+            }
+            else if (other.gameObject.CompareTag("FastEnemy") && other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material != whiteEnemyMat && other.gameObject.GetComponent<FastEnemy>().colourOfEnemy == "yellow")
+            {
+
+                if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                {
+                    other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint
+                        .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                else if (other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                {
+                    other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
+                        .ThisSpawnpointsEnemyList.Remove(other.gameObject);
+                }
+                other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
+                CorrectEnemiesInPen.Add(other.gameObject);
+                other.gameObject.layer = 10;
+                amountOfCorrectEnemies += 1;
             }
         }
     }

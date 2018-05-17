@@ -7,7 +7,7 @@ public class SpiderEnemyController : MonoBehaviour
 {
 	
     public int bodyColour;
-    private Material bodyMaterial;
+    public Material bodyMaterial;
     private int legColour;
     private string legMaterial;
 	[Header("Spider Variables")]

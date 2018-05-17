@@ -9,6 +9,7 @@ public class areaCompleteText : MonoBehaviour {
   
 
     public TextMeshProUGUI textField;
+    public TextMeshProUGUI textField2;
 
     public TextMeshProUGUI blueCoinCounter;
     public TextMeshProUGUI yellowCoinCounter;
@@ -54,6 +55,10 @@ public class areaCompleteText : MonoBehaviour {
     private int yellowCoinsCounter;
     private int redCoinsCounter;
 
+    public Image blueCandy;
+    public Image redCandy;
+    public Image yellowCandy;
+
     private float coinCountDelay = 0.005f;
 
     public coinController coinManager;
@@ -74,15 +79,29 @@ public class areaCompleteText : MonoBehaviour {
             redCoinsCollected = coinManager.redsCoins;
             yellowCoinsCollected = coinManager.yellowsCoins;
             textField.text = textToType;
+            textField2.text = "Complete";
         }
 
         if (thisTriggersState == TextStates.start)
         {
-
+            /*
             textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
                 textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
-                ref velocity, textGrowSpeed*Time.deltaTime);
-            if (textField.gameObject.GetComponent<RectTransform>().localScale.x > 1.2f)
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            textField2.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField2.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.95f, 1.95f, 1.95f),
+                ref velocity, textGrowSpeed*Time.deltaTime * 1.4f);
+            */
+
+            textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1f, 1f, 1f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            
+            textField2.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField2.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.95f, 1.95f, 1.95f),
+                ref velocity, textGrowSpeed * Time.deltaTime * 1.5f);
+                
+            if (textField.gameObject.GetComponent<RectTransform>().localScale.x > 0.95f)
             {
                 thisTriggersState = TextStates.shrink;
             }
@@ -90,15 +109,21 @@ public class areaCompleteText : MonoBehaviour {
 
         if (thisTriggersState == TextStates.shrink)
         {
+            
             textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
-                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.05f, 1.05f, 1.05f),
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.8f, 0.8f, 0.8f),
                 ref velocity, textGrowSpeed * Time.deltaTime);
-            if (textField.gameObject.GetComponent<RectTransform>().localScale.x<=1.1f)
+            
+            textField2.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField2.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.7f, 1.7f, 1.7f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            
+            if (textField.gameObject.GetComponent<RectTransform>().localScale.x<=0.85f)
             {
                 thisCoinState = CoinStates.start;
-                blueCoinCounter.text = "X    ";
-                redCoinCounter.text = "X    ";
-                yellowCoinCounter.text = "X    ";
+                blueCoinCounter.text = "x ";
+                redCoinCounter.text = "x ";
+                yellowCoinCounter.text = "x ";
                 thisTriggersState = TextStates.savour;
             }
         }
@@ -115,8 +140,12 @@ public class areaCompleteText : MonoBehaviour {
         if (thisTriggersState== TextStates.fade)
         {
             textField.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
-                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f),
+                textField2.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f),
                 ref velocity, textGrowSpeed * Time.deltaTime);
+            /*textField2.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                textField.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f),
+                ref velocity, textGrowSpeed * Time.deltaTime*1.4f);
+            */
             if (textField.gameObject.GetComponent<RectTransform>().localScale.x <= 0f)
             {
                 textField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0,0,0);
@@ -127,22 +156,6 @@ public class areaCompleteText : MonoBehaviour {
         if (thisCoinState == CoinStates.start)
         {
             blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
-                blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
-                ref velocity, textGrowSpeed * Time.deltaTime);
-            redCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
-                redCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
-                ref velocity, textGrowSpeed * Time.deltaTime);
-            yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
-                yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
-                ref velocity, textGrowSpeed * Time.deltaTime);
-            if (blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale.x > 1.2f)
-            {
-                thisCoinState = CoinStates.shrink;
-            }
-        }
-        if (thisCoinState == CoinStates.shrink)
-        {
-            blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
                 blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.05f, 1.05f, 1.05f),
                 ref velocity, textGrowSpeed * Time.deltaTime);
             redCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
@@ -151,7 +164,41 @@ public class areaCompleteText : MonoBehaviour {
             yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
                 yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.05f, 1.05f, 1.05f),
                 ref velocity, textGrowSpeed * Time.deltaTime);
-            if (blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale.x <= 1.1f)
+            blueCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                blueCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            redCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                redCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            yellowCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                yellowCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(1.25f, 1.25f, 1.25f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            if (blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale.x > 1f)
+            {
+                thisCoinState = CoinStates.shrink;
+            }
+        }
+        if (thisCoinState == CoinStates.shrink)
+        {
+            blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.55f, 0.55f, 0.55f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            redCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                redCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.55f, 0.55f, 0.55f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                yellowCoinCounter.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.55f, 0.55f, 0.55f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            blueCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                blueCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.95f, 0.95f, 0.95f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            redCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                redCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.95f, 0.95f, 0.95f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            yellowCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                yellowCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(0.95f, 0.95f, 0.95f),
+                ref velocity, textGrowSpeed * Time.deltaTime);
+            if (blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale.x <= 0.6f)
             {
                 thisCoinState = CoinStates.countingUp;
             }
@@ -166,18 +213,18 @@ public class areaCompleteText : MonoBehaviour {
                     blueCoinsCounter += 1;
                 }
 
-                blueCoinCounter.text = "X " + blueCoinsCounter.ToString();
+                blueCoinCounter.text = "x " + blueCoinsCounter.ToString();
                 if (redCoinsCounter < redCoinsCollected)
                 {
                     redCoinsCounter += 1;
                 }
 
-                redCoinCounter.text = "X " + redCoinsCounter.ToString();
+                redCoinCounter.text = "x " + redCoinsCounter.ToString();
                 if (yellowCoinsCounter < yellowCoinsCollected)
                 {
                     yellowCoinsCounter += 1;
                 }
-                yellowCoinCounter.text = "X " + yellowCoinsCounter.ToString();
+                yellowCoinCounter.text = "x " + yellowCoinsCounter.ToString();
 
                 coinCountDelay = 0.005f;
             }

@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 114128625064671214}
   m_Layer: 0
   m_Name: Spider Boi
-  m_TagString: Untagged
+  m_TagString: SpiderEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -637,6 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyColour: 0
+  bodyMaterial: {fileID: 0}
   leg1: {fileID: 1786558955166394}
   leg2: {fileID: 1639603371828496}
   leg3: {fileID: 1751855696532334}

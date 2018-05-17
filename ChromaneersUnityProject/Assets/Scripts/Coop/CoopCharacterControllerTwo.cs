@@ -252,10 +252,13 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	        }
             if (Input.GetKeyDown(KeyCode.Joystick2Button5) && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
             {
-                dodgeDirection = moveInput;
-                gameObject.GetComponent<ParticleSystem>().Play();
-                audio.PlayOneShot(playerDashing, 1f);
-                Roll(dodgeDirection);
+                if (moveInput != new Vector3(0, 0, 0))
+                {
+                    gameObject.GetComponent<ParticleSystem>().Play();
+                    dodgeDirection = moveInput;
+                    Roll(dodgeDirection);
+                    audio.PlayOneShot(playerDashing, 1f);
+                }
             }
             else if (currentlyDodging == true && dodgeDuration >= 0f)
             {
@@ -495,11 +498,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			}
 		    if (Input.GetButtonDown("Roll2") && currentlyDodging == false && dodgeCooldown <= 0f && gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
 		    {
-		        dodgeDirection = moveInput;
-		        gameObject.GetComponent<ParticleSystem>().Play();
-                audio.PlayOneShot(playerDashing, 1f);
-                Roll(dodgeDirection);
-		    }
+		        if (moveInput != new Vector3(0, 0, 0))
+		        {
+		            gameObject.GetComponent<ParticleSystem>().Play();
+		            dodgeDirection = moveInput;
+		            Roll(dodgeDirection);
+		            audio.PlayOneShot(playerDashing, 1f);
+		        }
+            }
 		    else if (currentlyDodging == true && dodgeDuration >= 0f)
 		    {
 		        Roll(dodgeDirection);
