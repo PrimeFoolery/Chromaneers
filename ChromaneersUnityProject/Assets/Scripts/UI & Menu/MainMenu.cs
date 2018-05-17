@@ -62,24 +62,24 @@ public class MainMenu : MonoBehaviour {
         if (MenuState == "MainMenu")
         {
 			if (eventSys.currentSelectedGameObject == buttonList [0]) {
-				playText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				playText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
 			} else {
-				playText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+				playText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
 			if (eventSys.currentSelectedGameObject == buttonList [1]) {
-				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
 			} else {
-				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
 			if (eventSys.currentSelectedGameObject == buttonList [2]) {
-				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
 			} else {
-				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
 			if (eventSys.currentSelectedGameObject == buttonList [3]) {
-				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
 			} else {
-				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
             if (usingXboxController == true)
             {
