@@ -108,7 +108,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
 
         vibrationTimer -= Time.deltaTime;
         if (vibrationTimer <= 0) {
-            GamePad.SetVibration(0, vibrationLeftOff, vibrationRightOff);
+            GamePad.SetVibration(PlayerIndex.Two, vibrationLeftOff, vibrationRightOff);
         }
 
         if (PlayerState == "Alive")
@@ -259,7 +259,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 vibrationTimer = 0.35f;
-                GamePad.SetVibration(0, vibrationLeftOn, vibrationRightOn);
+                GamePad.SetVibration(PlayerIndex.Two, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }
         }
