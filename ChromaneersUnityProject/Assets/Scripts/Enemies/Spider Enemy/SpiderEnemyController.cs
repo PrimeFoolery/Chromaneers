@@ -410,7 +410,7 @@ public class SpiderEnemyController : MonoBehaviour
     {
         if (bodyColour==1)
         {
-            if (other.gameObject.tag == "RedBullet")
+            if (other.gameObject.tag == "RedBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;
@@ -423,7 +423,7 @@ public class SpiderEnemyController : MonoBehaviour
         }
         if (bodyColour == 2)
         {
-            if (other.gameObject.tag == "BlueBullet")
+            if (other.gameObject.tag == "BlueBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;
@@ -436,7 +436,7 @@ public class SpiderEnemyController : MonoBehaviour
         }
         if (bodyColour == 3)
         {
-            if (other.gameObject.tag == "YellowBullet")
+            if (other.gameObject.tag == "YellowBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 bodyHealth -= 1;

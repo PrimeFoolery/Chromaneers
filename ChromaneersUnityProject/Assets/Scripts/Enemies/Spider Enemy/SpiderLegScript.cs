@@ -46,7 +46,7 @@ public class SpiderLegScript : MonoBehaviour
     {
         if (legColour=="blue")
         {
-            if (other.gameObject.tag == "BlueBullet")
+            if (other.gameObject.tag == "BlueBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 //Debug.Log("hit with blue bullet");
                 legHealth -= 1;
@@ -56,7 +56,7 @@ public class SpiderLegScript : MonoBehaviour
         }
         if (legColour == "red")
         {
-            if (other.gameObject.tag == "RedBullet")
+            if (other.gameObject.tag == "RedBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 //Debug.Log("hit with red bullet");
                 legHealth -= 1;
@@ -66,7 +66,7 @@ public class SpiderLegScript : MonoBehaviour
         }
         if (legColour == "yellow")
         {
-            if (other.gameObject.tag == "YellowBullet")
+            if (other.gameObject.tag == "YellowBullet" || other.gameObject.CompareTag("RainbowBullet"))
             {
                 //Debug.Log("hit with yellow bullet");
                 legHealth -= 1;

@@ -599,7 +599,7 @@ public class MotherController : MonoBehaviour
         }
         if (colourOfEnemy == "blue")
         {
-            if (theCol.gameObject.CompareTag("BlueBullet"))
+            if (theCol.gameObject.CompareTag("BlueBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 enemyHealth -= 1;
@@ -608,7 +608,7 @@ public class MotherController : MonoBehaviour
         }
         if (colourOfEnemy == "red")
         {
-            if (theCol.gameObject.CompareTag("RedBullet"))
+            if (theCol.gameObject.CompareTag("RedBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 enemyHealth -= 1;
@@ -617,7 +617,7 @@ public class MotherController : MonoBehaviour
         }
         if (colourOfEnemy == "yellow")
         {
-            if (theCol.gameObject.CompareTag("YellowBullet"))
+            if (theCol.gameObject.CompareTag("YellowBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 enemyHealth -= 1;
