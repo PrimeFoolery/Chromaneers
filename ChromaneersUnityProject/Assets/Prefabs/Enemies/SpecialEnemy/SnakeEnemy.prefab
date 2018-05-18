@@ -1364,8 +1364,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351670481487472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.19, y: 0.41458178, z: -112.737656}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 80.862976, y: 0.38599682, z: 443.0761}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4126361535867280}
@@ -1376,7 +1376,7 @@ Transform:
   - {fileID: 4262330009050806}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4330663879209914
 Transform:
   m_ObjectHideFlags: 1
@@ -4647,7 +4647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa2f17615b51d4aad2f7fdbf6f9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Or_SegmentAhead: {fileID: 4126361535867280}
+  Target_Or_SegmentAhead: {fileID: 1919816408830918}
   SegmentBehind: {fileID: 1281247341203190}
   SphereRenderer: {fileID: 23397652447948536}
   enemyEmpty: {fileID: 1224660642498246}
@@ -4734,7 +4734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa2f17615b51d4aad2f7fdbf6f9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Or_SegmentAhead: {fileID: 4842292157025222}
+  Target_Or_SegmentAhead: {fileID: 1652060603965756}
   SegmentBehind: {fileID: 1704335635113118}
   SphereRenderer: {fileID: 23565761051475920}
   enemyEmpty: {fileID: 1758033010563766}
@@ -4782,7 +4782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa2f17615b51d4aad2f7fdbf6f9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Or_SegmentAhead: {fileID: 4373429107128754}
+  Target_Or_SegmentAhead: {fileID: 1281247341203190}
   SegmentBehind: {fileID: 1737088146238344}
   SphereRenderer: {fileID: 23721167730025086}
   enemyEmpty: {fileID: 1652831923796340}
@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa2f17615b51d4aad2f7fdbf6f9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Or_SegmentAhead: {fileID: 4344385347877668}
+  Target_Or_SegmentAhead: {fileID: 1262094308690358}
   SegmentBehind: {fileID: 1652060603965756}
   SphereRenderer: {fileID: 23252429654987052}
   enemyEmpty: {fileID: 1619007824853368}
@@ -4917,7 +4917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa2f17615b51d4aad2f7fdbf6f9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target_Or_SegmentAhead: {fileID: 4774351246172526}
+  Target_Or_SegmentAhead: {fileID: 1737088146238344}
   SegmentBehind: {fileID: 0}
   SphereRenderer: {fileID: 23032218713911510}
   enemyEmpty: {fileID: 1572537930761662}
@@ -5357,7 +5357,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2017923524
+  randomSeed: -155843854
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8763,7 +8763,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -236255544
+  randomSeed: -1386597504
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12169,7 +12169,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2046982146
+  randomSeed: -197588837
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15575,7 +15575,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1049558900
+  randomSeed: 1581702896
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18981,7 +18981,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1160807026
+  randomSeed: -1662978903
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22387,7 +22387,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1118746304
+  randomSeed: -637018999
   InitialModule:
     serializedVersion: 3
     enabled: 1

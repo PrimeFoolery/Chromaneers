@@ -175,7 +175,13 @@ public class FastEnemy : MonoBehaviour {
 	        readyToRetarget = true;
 	        retargetingDelay = 3f;
 	    }
-	    transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+
+	    if (isAggroPlayer==true)
+	    {
+	        transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+	        agent.SetDestination(targetPlayer.transform.position);
+        }
+	    
 	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "yellow")
 	    {
 	        agent.speed = 5;

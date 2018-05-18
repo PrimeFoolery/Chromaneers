@@ -57,13 +57,13 @@ public class newSpawner : MonoBehaviour
     private SnakeEnemyScript tempSnakeEnemyScript;
     private FastEnemy tempFastEnemyScript;
     private MotherController tempMotherEnemyScript;
-    private EnemyManager enemyManagerScript;
+    public EnemyManager enemyManagerScript;
 
     public List<GameObject> ThisSpawnpointsEnemyList = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-        enemyManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
+        enemyManagerScript = UnityEngine.GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>();
     }
 	
 	// Update is called once per frame

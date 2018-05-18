@@ -28,7 +28,7 @@ public class MotherController : MonoBehaviour
 
     public bool isNearCliff = false;
     public List<MotherSpawnPoint> spawnPointList = new List<MotherSpawnPoint>();
-    private float spawningTimer = 15f;
+    private float spawningTimer = 6f;
 
     public bool isItCoop;
     private ColourSelectManager gameManager;
@@ -124,7 +124,7 @@ public class MotherController : MonoBehaviour
 	            agent.SetDestination(targetPlayer.transform.position);
 	            transform.position = Vector3.MoveTowards(transform.position, moveTowardsPoint.transform.position,
 	            enemyRunningAwaySpeed * Time.deltaTime);
-	            if (spawningTimer>12)
+	            if (spawningTimer>6)
 	            {
 	                foreach (MotherSpawnPoint spawnPoint in spawnPointList)
 	                {

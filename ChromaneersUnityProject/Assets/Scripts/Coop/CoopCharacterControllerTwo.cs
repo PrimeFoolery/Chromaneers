@@ -85,6 +85,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     public AudioClip playerDashing;
     AudioSource audio;
 
+    public Vector3 thisPlayersReviveSpot;
+
     void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -636,7 +638,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerTwo>().Die();
 	        isFalling = false;
-	        transform.position = savedPosition[0];
+	        transform.position = thisPlayersReviveSpot;
 	    }
     }
 
@@ -661,6 +663,13 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			canPlayerMove = false;
             currentlyDodging = true;
             transform.Translate(currentDirection * RollSpeed * Time.deltaTime, Space.World);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ReviveArea")
+        {
+            thisPlayersReviveSpot = other.transform.position;
         }
     }
 }

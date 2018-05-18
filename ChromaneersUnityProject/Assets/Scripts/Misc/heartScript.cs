@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class heartScript : MonoBehaviour
 {
-    private int heartHealth = 3;
+    private int heartHealth = 5;
     private float YPosition;
     public GameObject dustExplosion;
 
@@ -42,6 +42,7 @@ public class heartScript : MonoBehaviour
 		} else if (other.gameObject.CompareTag("BlueBullet")||other.gameObject.CompareTag("RedBullet")||other.gameObject.CompareTag("YellowBullet")||other.gameObject.CompareTag("RainbowBullet"))
 		{
 		    heartHealth -= 1;
+            gameObject.transform.localScale -= new Vector3(0.1f,0.1f,0.1f);
             Destroy(other.gameObject);
 		}
 		
