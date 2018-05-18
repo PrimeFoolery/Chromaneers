@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class deathTracker : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class deathTracker : MonoBehaviour
     public float vignetteScaleSpeed = 1;
 
     private Vector3 velocity;
+
+
 
     private float startTime;
 
@@ -112,6 +115,42 @@ public class deathTracker : MonoBehaviour
 	    {
             //vignetteImage.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(76800f, 43200f, 1f), ref velocity, vignetteScaleSpeed * Time.deltaTime );
             vignetteImage.GetComponent<RectTransform>().localScale = Vector3.Lerp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(76800f, 43200f, 1f), vignetteScaleSpeed*(Time.time-startTime) * Time.deltaTime);
+	        if (vignetteImage.GetComponent<RectTransform>().localScale.x> 74000f)
+	        {
+	            currentVignetteState = VignetteState.idle;
+	        }
 	    }
+
+	    if (currentVignetteState == VignetteState.shrink)
+	    {
+	        vignetteImage.GetComponent<RectTransform>().localScale = Vector3.Lerp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(1942.2f, 1165.8f, 1f), vignetteScaleSpeed * (Time.time - startTime) * Time.deltaTime);
+	        if (vignetteImage.GetComponent<RectTransform>().localScale.x< 1960)
+	        {
+                reloadScene();
+                
+	        }
+        }
+    }
+
+    void reloadScene()
+    {
+        currentVignetteState = VignetteState.widen;
+        
+            if (howManyAreasComplete == 0)
+            {
+                SceneManager.LoadScene("NewWorld", LoadSceneMode.Single);
+            }
+            else if (howManyAreasComplete == 1)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint1", LoadSceneMode.Single);
+            }
+            else if (howManyAreasComplete == 2)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
+            }
+        
+        
+        
+
     }
 }

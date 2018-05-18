@@ -71,11 +71,13 @@ public class areaCompleteText : MonoBehaviour {
     private float coinCountDelay = 0.005f;
 
     public coinController coinManager;
+    private deathTracker deathTrackerScript;
 
     // Use this for initialization
     void Start()
     {
         coinManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<coinController>();
+        deathTrackerScript = GameObject.FindGameObjectWithTag("DeathTracker").GetComponent<deathTracker>();
     }
 
     // Update is called once per frame
@@ -112,7 +114,7 @@ public class areaCompleteText : MonoBehaviour {
              
             if (textField.gameObject.GetComponent<RectTransform>().localScale.x > 0.95f)
             {
-                coinManager.gameObject.GetComponent<deathTracker>().howManyAreasComplete += 1;
+                deathTrackerScript.howManyAreasComplete += 1;
                 thisTriggersState = TextStates.shrink;
             }
         }
