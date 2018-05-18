@@ -93,6 +93,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
     private bool isFalling = false;
     AudioSource audio;
 
+    public Vector3 thisPlayersReviveSpot;
+
 	void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -127,7 +129,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                 moveVelocity = new Vector3(0,0,0);
                 audio.Stop();
             }
-            Debug.Log(moveInput);
+            //Debug.Log(moveInput);
             if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -35f)
             {
                 if (moveInput.x <= 0)
@@ -668,7 +670,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    {
 	        gameObject.GetComponent<CoopCharacterHealthControllerOne>().Die();
 	        isFalling = false;
-            transform.position = savedPosition[0];
+	        transform.position = thisPlayersReviveSpot;
 	    }
 
 	}
@@ -696,6 +698,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.6f);
     }
 
+
     private void Roll(Vector3 currentDirection)
     {
 		//Debug.Log (currentDirection);
@@ -708,6 +711,14 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 			canPlayerMove = false;
             currentlyDodging = true;
             transform.Translate(currentDirection*RollSpeed*Time.deltaTime,Space.World);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="ReviveArea")
+        {
+            thisPlayersReviveSpot = other.transform.position;
         }
     }
 }

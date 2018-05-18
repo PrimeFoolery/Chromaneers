@@ -48,6 +48,9 @@ public class areaCompleteText : MonoBehaviour {
     private Vector3 velocity;
     private Vector3 velocity2;
     private Vector3 velocity3;
+    private Vector3 velocity4;
+
+    private int rainbowRotationSpeed = 20;
 
     private int blueCoinsCollected;
     private int redCoinsCollected;
@@ -60,6 +63,10 @@ public class areaCompleteText : MonoBehaviour {
     public Image blueCandy;
     public Image redCandy;
     public Image yellowCandy;
+
+    public Image blueRainbow;
+    public Image redRainbow;
+    public Image yellowRainbow;
 
     private float coinCountDelay = 0.005f;
 
@@ -105,6 +112,7 @@ public class areaCompleteText : MonoBehaviour {
              
             if (textField.gameObject.GetComponent<RectTransform>().localScale.x > 0.95f)
             {
+                coinManager.gameObject.GetComponent<deathTracker>().howManyAreasComplete += 1;
                 thisTriggersState = TextStates.shrink;
             }
         }
@@ -243,6 +251,26 @@ public class areaCompleteText : MonoBehaviour {
         }
         if (thisCoinState == CoinStates.savour)
         {
+            if (Mathf.Max(blueCoinsCollected,redCoinsCollected,yellowCoinsCollected)== blueCoinsCollected)
+            {
+                blueRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    blueRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(4.05f, 4.05f, 4.05f),ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.5f);
+                blueRainbow.gameObject.GetComponent<RectTransform>().Rotate(0,0,rainbowRotationSpeed*Time.deltaTime);
+            }else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == redCoinsCollected)
+            {
+                redRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    redRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(4.05f, 4.05f, 4.05f), ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.5f);
+                redRainbow.gameObject.GetComponent<RectTransform>().Rotate(0, 0, rainbowRotationSpeed * Time.deltaTime);
+            }
+            else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == yellowCoinsCollected)
+            {
+                yellowRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    yellowRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(4.05f, 4.05f, 4.05f), ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.5f);
+                yellowRainbow.gameObject.GetComponent<RectTransform>().Rotate(0, 0, rainbowRotationSpeed * Time.deltaTime);
+            }
             CoinSavourTime -= Time.deltaTime;
             if (CoinSavourTime < 0)
             {
@@ -270,12 +298,34 @@ public class areaCompleteText : MonoBehaviour {
             yellowCandy.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
                 yellowCandy.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f),
                 ref velocity3, textGrowSpeed * Time.deltaTime*0.8f);
+            if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == blueCoinsCollected)
+            {
+                blueRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    blueRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f), ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.4f);
+            }else
+            if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == redCoinsCollected)
+            {
+                redRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    redRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f), ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.4f);
+            }else
+            if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == yellowCoinsCollected)
+            {
+                yellowRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
+                    yellowRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(-0.05f, -0.05f, -0.05f), ref velocity4,
+                    textGrowSpeed * Time.deltaTime * 0.4f);
+            }
+
             if (blueCoinCounter.gameObject.GetComponent<RectTransform>().localScale.x <= 0f)
             {
                 coinManager.SpawnRainbow();
                 blueCandy.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0,0,0);
                 redCandy.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
                 yellowCandy.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+                blueRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+                redRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+                yellowRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
                 coinManager.bluesCoins = 0;
                 coinManager.redsCoins = 0;
                 coinManager.yellowsCoins = 0;

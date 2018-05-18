@@ -273,6 +273,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
     public void Die()
     {
         currentHealth = 0;
+        vibrationTimer = 0.35f;
+        GamePad.SetVibration(PlayerIndex.Three, vibrationLeftOn, vibrationRightOn);
     }
 
     public void GetHeart()

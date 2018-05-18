@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SnakeEnemyScript : MonoBehaviour
 {
 
-    public Transform Target_Or_SegmentAhead;
+    public GameObject Target_Or_SegmentAhead;
     public GameObject SegmentBehind;
     public Renderer SphereRenderer;
     public GameObject enemyEmpty;
@@ -20,7 +20,7 @@ public class SnakeEnemyScript : MonoBehaviour
     private GameObject targetPlayer;
     private bool targetLock = false;
     private NavMeshAgent agent;
-    private float timer = 3f;
+    private float timer = 0.2f;
     private int segmentHealth = 3;
     public bool isAggroPlayer = false;
     public GameObject thisEnemiesSpawnPoint;
@@ -105,18 +105,24 @@ public class SnakeEnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAggroPlayer == true)
+        if (name == "SnakeHead")
         {
-            agent.SetDestination(Target_Or_SegmentAhead.position);
+            Debug.Log(agent.destination);
+        }
+        
+        if (isAggroPlayer == true&& Target_Or_SegmentAhead!=null)
+        {
+            agent.SetDestination(Target_Or_SegmentAhead.transform.position);
+            //agent.isStopped = false;
         }
 
         if (colourOfPaintBelow != "yellow" && colourOfPaintBelow != "blue")
         {
-            if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) > 5f)
+            if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.transform.position) > 5f)
             {
                 agent.speed = bodyYellowSpeed;
             }
-            else if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.position) < 5f)
+            else if (name != "SnakeHead" && Vector3.Distance(transform.position, Target_Or_SegmentAhead.transform.position) < 5f)
             {
                 agent.speed = headYellowSpeed;
             }
@@ -146,8 +152,10 @@ public class SnakeEnemyScript : MonoBehaviour
             if (timer <= 0)
             {
                 CalculateClosestPlayer();
-                timer = 3f;
+                timer = 0.2f;
+                //agent.SetDestination(Target_Or_SegmentAhead.position);
             }
+            //
         }
 
         if (segmentHealth <= 0)
@@ -375,7 +383,7 @@ public class SnakeEnemyScript : MonoBehaviour
         {
             targetPlayer = singlePlayerChar;
         }
-        Target_Or_SegmentAhead = targetPlayer.transform;
+        Target_Or_SegmentAhead = targetPlayer;
     }
 
     void OnCollisionEnter(Collision theCol)

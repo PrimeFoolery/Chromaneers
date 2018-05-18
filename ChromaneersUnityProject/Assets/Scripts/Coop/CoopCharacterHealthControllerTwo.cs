@@ -115,6 +115,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
         {
 			ReviveParticle.SetActive (false);
             //ReviveSlider.gameObject.SetActive(false);
+            reviveTimer = maxRevive;
             ReviveCircle.gameObject.SetActive(false);
             if (canBeDamaged == false)
             {
@@ -240,7 +241,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
             InvTimer = 2;
             canBeDamaged = false;
             PlayerState = "Alive";
-            reviveTimer = maxRevive;
+            
 
         }
     }
@@ -267,6 +268,8 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public void Die()
     {
         currentHealth = 0;
+        vibrationTimer = 0.35f;
+        GamePad.SetVibration(PlayerIndex.Three, vibrationLeftOn, vibrationRightOn);
     }
     
     public void GetHeart()
