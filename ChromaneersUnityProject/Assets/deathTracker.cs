@@ -28,7 +28,7 @@ public class deathTracker : MonoBehaviour
 
     private static bool created = false;
 
-    public int vignetteScaleSpeed = 1;
+    public float vignetteScaleSpeed = 1;
 
     private Vector3 velocity;
 
@@ -111,7 +111,7 @@ public class deathTracker : MonoBehaviour
         if(currentVignetteState == VignetteState.widen)
 	    {
             //vignetteImage.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(76800f, 43200f, 1f), ref velocity, vignetteScaleSpeed * Time.deltaTime );
-            vignetteImage.GetComponent<RectTransform>().localScale = Vector3.Lerp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(76800f, 43200f, 1f), vignetteScaleSpeed*(Time.time-startTime));
+            vignetteImage.GetComponent<RectTransform>().localScale = Vector3.Lerp(vignetteImage.GetComponent<RectTransform>().localScale, new Vector3(76800f, 43200f, 1f), vignetteScaleSpeed*(Time.time-startTime) * Time.deltaTime);
 	    }
     }
 }
