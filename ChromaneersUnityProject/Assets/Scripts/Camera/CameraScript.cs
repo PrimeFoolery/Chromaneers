@@ -179,9 +179,9 @@ public class CameraScript : MonoBehaviour
             //transform.LookAt(new Vector3(averagePos.x, 0, averagePos.z));//HAVING THE CAMERA LOOK AT THE TARGET POS
             cameraComponent.orthographicSize = Mathf.SmoothDamp(cameraComponent.orthographicSize, sizeNeeded, ref zoomSpeed, dampTime);//CHANGING THE SIZE TO THE NEEDED ONE TO FIT ALL PLAYERS ON SCREEN
         }
-        if (shakeDuration > 0 && currentGameState == GameState.SinglePlayer)
+        if (shakeDuration > 0 )
         {
-            //transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
+            transform.localPosition = transform.localPosition + Random.insideUnitSphere * shakeAmount;
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
@@ -191,32 +191,32 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            SmallScreenShake();
+            //SmallScreenShake();
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            BigScreenShake();
+            //BigScreenShake();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            currentCameraState = CameraState.SixtyDegrees;
+            //currentCameraState = CameraState.SixtyDegrees;
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            currentCameraState = CameraState.SixtyDegreesSlanted;
+            //currentCameraState = CameraState.SixtyDegreesSlanted;
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            currentCameraState = CameraState.FiftyDegrees;
+            //currentCameraState = CameraState.FiftyDegrees;
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            currentCameraState = CameraState.FiftyDegreesSlanted;
+           // currentCameraState = CameraState.FiftyDegreesSlanted;
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            currentCameraState = CameraState.TopDown;
+            //currentCameraState = CameraState.TopDown;
         }
     }
     private void CalculateAveragePosInCoOp()
