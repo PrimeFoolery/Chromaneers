@@ -38,6 +38,10 @@ public class MainMenu : MonoBehaviour {
 	public GameObject volumeText;
 	public GameObject hiResWaterText;
 	public GameObject backText;
+    public GameObject qualityText;
+    public GameObject highText;
+    public GameObject mediumText;
+    public GameObject lowText;
 
 
     [Header("State")]
@@ -244,8 +248,41 @@ public class MainMenu : MonoBehaviour {
 			} else {
 				backText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
 			}
+            if (eventSys.currentSelectedGameObject == buttonListOpt[3])
+            {
+                qualityText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                qualityText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
 
-            if(highResWater == true)
+            if (eventSys.currentSelectedGameObject == buttonListOpt[4])
+            {
+                highText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                highText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[5])
+            {
+                mediumText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                mediumText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[6])
+            {
+                lowText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                lowText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+
+            if (highResWater == true)
             {
                 TickBoxImage.sprite = TickBoxSprites[0];
             }
@@ -412,6 +449,18 @@ public class MainMenu : MonoBehaviour {
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    public void SetQualityHigh()
+    {
+        QualitySettings.SetQualityLevel(0);
+    }
+    public void SetQualityMedium()
+    {
+        QualitySettings.SetQualityLevel(1);
+    }
+    public void SetQualityLow()
+    {
+        QualitySettings.SetQualityLevel(2);
     }
     public void BackToMenu()
     {
