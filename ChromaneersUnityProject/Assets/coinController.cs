@@ -26,7 +26,7 @@ public class coinController : MonoBehaviour
     }
 
     public int rainbowGrowSpeed = 8;
-    private float rainbowTimer = 1f;
+    private float rainbowTimer = 1.4f;
     public RainbowState CurrentRainbowState = RainbowState.preStart;
 
 	// Use this for initialization
@@ -93,7 +93,7 @@ public class coinController : MonoBehaviour
 	    if (CurrentRainbowState == RainbowState.stop)
 	    {
             Destroy(tempRainbow.gameObject);
-	        rainbowTimer = 1f;
+	        rainbowTimer = 1.4f;
 	        CurrentRainbowState = RainbowState.preStart;
 	    }
 	}
