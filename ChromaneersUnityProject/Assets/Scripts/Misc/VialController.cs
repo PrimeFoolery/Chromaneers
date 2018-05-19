@@ -374,4 +374,105 @@ public class VialController : MonoBehaviour {
             }
         }
     }
+
+    public void ResetToBlue()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBaseBlue;
+        VialLiquidMaterial.SetColor("_Tint", blueTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", blueTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", blueFoamLineColor);
+        blueFillLevel = 2;
+    }
+    public void ResetToRed()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBaseRed;
+        VialLiquidMaterial.SetColor("_Tint", redTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", redTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", redFoamLineColor);
+        redFillLevel = 2;
+    }
+    public void ResetToYellow()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBaseYellow;
+        VialLiquidMaterial.SetColor("_Tint", yellowTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", yellowTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", yellowFoamLineColor);
+        yellowFillLevel = 2;
+    }
+
+    public void ResetToPurple()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBasePurple;
+        VialLiquidMaterial.SetColor("_Tint", purpleTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", purpleTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", purpleFoamLineColor);
+        redFillLevel = 1;
+        blueFillLevel = 1;
+    }
+    public void ResetToOrange()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBaseOrange;
+        VialLiquidMaterial.SetColor("_Tint", orangeTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", orangeTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", orangeFoamLineColor);
+        redFillLevel = 1;
+        yellowFillLevel = 1;
+    }
+    public void ResetToGreen()
+    {
+        blueFillLevel = 0;
+        redFillLevel = 0;
+        yellowFillLevel = 0;
+        totalFillLevel = 0;
+        blueDrainTimer = 1f;
+        redDrainTimer = 1f;
+        yellowDrainTimer = 1f;
+        VialCorrectlyFilled = false;
+        gameObject.GetComponent<Renderer>().material = VialBaseGreen;
+        VialLiquidMaterial.SetColor("_Tint", greenTintColor);
+        VialLiquidMaterial.SetColor("_TopColor", greenTopColor);
+        VialLiquidMaterial.SetColor("_FoamColor", greenFoamLineColor);
+        yellowFillLevel = 1;
+        blueFillLevel = 1;
+    }
 }

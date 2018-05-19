@@ -164,7 +164,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					//Debug.Log ("player moving");
 					//Multiply the moveInput by the moveVelocity to give it speed whilst walking
 					if(moveInput!= new Vector3(0,0,0)){
-                        Debug.Log("should be moving");
+                        //Debug.Log("should be moving");
 					    if (walkingPuffCooldown<=0)
 					    {
                             walkingPuff.Play();

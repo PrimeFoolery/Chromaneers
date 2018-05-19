@@ -201,6 +201,46 @@ public class YellowBulletController : MonoBehaviour {
 					this.GetComponent<TrailRenderer>().startWidth = 0.3f;
 				}
 			}
+            if (theCol.collider.name == "RightDoor")
+            {
+                // Debug.Log("hitting right wall");
+                //Change bullet state to rebound
+                stateOfBullet = bulletState.reboundBullet;
+                //Randomly rotate the gameObject into the sky
+                transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+                //Scaling the bullet down
+                transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+                //Change trail width
+                this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+            }
+            else if (theCol.collider.name == "LeftDoor")
+            {
+                // Debug.Log("hitting left wall");
+                //Change bullet state to rebound
+                stateOfBullet = bulletState.reboundBullet;
+                //Randomly rotate the gameObject into the sky
+                transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+                //Scaling the bullet down
+                transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+                //Change trail width
+                this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+
+            }
+            else if (theCol.collider.name == "Boss")
+            {
+                if (theCol.gameObject.transform.parent.GetComponent<BossController>().colourOfEnemy != "yellow")
+                {
+                    //Change bullet state to rebound
+                    stateOfBullet = bulletState.reboundBullet;
+                    //Randomly rotate the gameObject into the sky
+                    transform.Rotate(new Vector3(UnityEngine.Random.Range(-15f, 15f), UnityEngine.Random.Range(5f, 15f), UnityEngine.Random.Range(-15f, 15f)));
+                    //Scaling the bullet down
+                    transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+                    //Change trail width
+                    this.GetComponent<TrailRenderer>().startWidth = 0.3f;
+                    theCol.gameObject.transform.parent.GetComponent<BossController>().BulletKnockback(savedDirection);
+                }
+            }
             if (theCol.gameObject.CompareTag("BluePlayer"))
             {
                 theCol.gameObject.GetComponent<CoopCharacterControllerOne>().Knockback(savedDirection);
