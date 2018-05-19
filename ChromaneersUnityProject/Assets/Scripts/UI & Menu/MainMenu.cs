@@ -27,6 +27,8 @@ public class MainMenu : MonoBehaviour {
     public Image TickBoxImage;
     public Sprite[] TickBoxSprites;
     public bool highResWater = true;
+    public bool isFullScreen = true;
+    public Image TickBoxImage2;
     public GameObject hiWater;
     public GameObject loWater;
 
@@ -228,67 +230,135 @@ public class MainMenu : MonoBehaviour {
         }
         if(MenuState == "OptionsMenu")
         {
+            //text alpha changes
 			if (eventSys.currentSelectedGameObject == buttonListOpt [0].gameObject) {
-				volumeText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				buttonListOpt[0].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+                TickBoxImage2.color = new Color(0, 0, 0, 1f);
 			} else {
-				volumeText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
-			}
+                buttonListOpt[0].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+                TickBoxImage2.color = new Color(0, 0, 0, 0.5f);
+            }
             if(eventSys.currentSelectedGameObject == buttonListOpt [1])
             {
-                TickBoxImage.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
-				hiResWaterText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
             }
             else
             {
-                TickBoxImage.GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
-				hiResWaterText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
             }
 			if (eventSys.currentSelectedGameObject == buttonListOpt [2]) {
-				backText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
 			} else {
-				backText.GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
 			}
             if (eventSys.currentSelectedGameObject == buttonListOpt[3])
             {
-                qualityText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
             }
             else
             {
-                qualityText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
             }
 
             if (eventSys.currentSelectedGameObject == buttonListOpt[4])
             {
-                highText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
             }
             else
             {
-                highText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[5])
             {
-                mediumText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
             }
             else
             {
-                mediumText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[6])
             {
-                lowText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
             }
             else
             {
-                lowText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[7])
+            {
+                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[8])
+            {
+                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[9])
+            {
+                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[10])
+            {
+                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[11])
+            {
+                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[12])
+            {
+                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[13])
+            {
+                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListOpt[14])
+            {
+                buttonListOpt[14].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+            }
+            else
+            {
+                buttonListOpt[14].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
             }
 
-            if (highResWater == true)
+            //toggles
+            if (isFullScreen == true)
             {
-                TickBoxImage.sprite = TickBoxSprites[0];
+                Screen.fullScreen = true;
+                TickBoxImage2.sprite = TickBoxSprites[0];
             }
-            if (highResWater == false)
+            if(isFullScreen == false)
             {
-                TickBoxImage.sprite = TickBoxSprites[1];
+                Screen.fullScreen = false;
+                TickBoxImage2.sprite = TickBoxSprites[1];
             }
            
 			
@@ -435,21 +505,20 @@ public class MainMenu : MonoBehaviour {
     {
         audioMixer.SetFloat("Volume", volume);
     }   
-    public void SetWater()
+    public void SetWaterHigh()
     {
-        if(highResWater == true)
-        {
-            highResWater = false;
-        }
-        else if(highResWater == false)
-        {
-            highResWater = true;
-        }
+        
+        highResWater = true;
+        
     }
-    public void SetQuality(int qualityIndex)
+    public void SetWaterLow()
+    {
+        highResWater = false;
+    }
+/*    public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
-    }
+    }*/
     public void SetQualityHigh()
     {
         QualitySettings.SetQualityLevel(0);
@@ -461,6 +530,33 @@ public class MainMenu : MonoBehaviour {
     public void SetQualityLow()
     {
         QualitySettings.SetQualityLevel(2);
+    }
+    public void SetFullScreen()
+    {
+        if (isFullScreen == true)
+        {
+            isFullScreen = false;
+        }
+        else if (isFullScreen == false)
+        {
+            isFullScreen = true;
+        }        
+    }
+    public void set1920()
+    {
+        Screen.SetResolution(1920, 1080, true);
+    }
+    public void set1600()
+    {
+        Screen.SetResolution(1600, 900, true);
+    }
+    public void set1440()
+    {
+        Screen.SetResolution(1440, 900, true);
+    }
+    public void set1280()
+    {
+        Screen.SetResolution(1280, 800, true);
     }
     public void BackToMenu()
     {
