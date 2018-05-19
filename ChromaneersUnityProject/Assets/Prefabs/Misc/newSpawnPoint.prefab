@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301396439466204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -80.8, y: 4.3, z: -132.8}
+  m_LocalPosition: {x: 74.1, y: 139, z: 772.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,5 +69,7 @@ MonoBehaviour:
   FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
   MotherEnemy: {fileID: 1055367829994100, guid: d6861f67cf1068e4aa683bc7a7b404d8,
     type: 2}
+  BossEnemy: {fileID: 1218682762989226, guid: 9ada615a0effb2b4d9f3a0692675f265, type: 2}
   tempEnemy: {fileID: 0}
+  enemyManagerScript: {fileID: 0}
   ThisSpawnpointsEnemyList: []

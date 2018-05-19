@@ -34,7 +34,9 @@ public class newSpawner : MonoBehaviour
         MotherRandom,
         MotherBlue,
         MotherRed,
-        MotherYellow
+        MotherYellow,
+
+        BossEnemy
     }
 
     public GameObject RedEnemy;
@@ -50,6 +52,7 @@ public class newSpawner : MonoBehaviour
     public GameObject SnakeEnemy;
     public GameObject FastEnemy;
     public GameObject MotherEnemy;
+    public GameObject BossEnemy;
 
     public GameObject tempEnemy;
     private StandardEnemyBehaviour tempStandardEnemyBehaviour;
@@ -57,6 +60,7 @@ public class newSpawner : MonoBehaviour
     private SnakeEnemyScript tempSnakeEnemyScript;
     private FastEnemy tempFastEnemyScript;
     private MotherController tempMotherEnemyScript;
+    private BossController tempBossEnemyScript;
     public EnemyManager enemyManagerScript;
 
     public List<GameObject> ThisSpawnpointsEnemyList = new List<GameObject>();
@@ -379,7 +383,7 @@ public class newSpawner : MonoBehaviour
                     }
 
                     tempEnemy = null;
-                    tempFastEnemyScript = null;
+                    tempMotherEnemyScript = null;
                 }
                 else if (enemy == enemyTypes.MotherRed)
                 {
@@ -396,7 +400,7 @@ public class newSpawner : MonoBehaviour
                     }
 
                     tempEnemy = null;
-                    tempFastEnemyScript = null;
+                    tempMotherEnemyScript = null;
                 }
                 else if (enemy == enemyTypes.MotherYellow)
                 {
@@ -413,7 +417,7 @@ public class newSpawner : MonoBehaviour
                     }
 
                     tempEnemy = null;
-                    tempFastEnemyScript = null;
+                    tempMotherEnemyScript = null;
                 }
                 else if (enemy == enemyTypes.MotherRandom)
                 {
@@ -428,7 +432,22 @@ public class newSpawner : MonoBehaviour
                     }
 
                     tempEnemy = null;
-                    tempFastEnemyScript = null;
+                    tempMotherEnemyScript = null;
+                }
+                else if (enemy == enemyTypes.BossEnemy)
+                {
+                    tempEnemy = Instantiate(BossEnemy, transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity);
+                    tempBossEnemyScript = tempEnemy.GetComponent<BossController>();
+                    enemyManagerScript.AddExtraBoolToProjectorsScript();
+                    enemyManagerScript.enemyList.Add(tempEnemy);
+                    ThisSpawnpointsEnemyList.Add(tempEnemy);
+                    if (tempBossEnemyScript != null)
+                    {
+                        tempBossEnemyScript.thisEnemiesSpawnPoint = gameObject;
+                    }
+
+                    tempEnemy = null;
+                    tempBossEnemyScript = null;
                 }
             }
 
@@ -471,6 +490,10 @@ public class newSpawner : MonoBehaviour
                 enemy.GetComponent<MotherController>().isAggroPlayer = true;
             }
 
+            if(enemy.GetComponent<BossController>()!=null)
+            {
+                enemy.GetComponent<BossController>().isAggroPlayer = true;
+            }
         }
     }
 
