@@ -5,7 +5,22 @@ using UnityEngine.AI;
 
 public class BossController : MonoBehaviour {
 
+    public enum BossPhases
+    {
+        vials,
+        pens,
+        panic,
+        death
+    }
+
+    public BossPhases currentBossPhase;
+
+    private bool openDoors = false;
+    public float rotateSpeed = 1000f;
+
     public int enemyHealth;
+
+    public string colourOfWeakSpot;
 
     public GameObject targetPlayer;
     public bool isAggroPlayer = false;
@@ -31,20 +46,20 @@ public class BossController : MonoBehaviour {
     public GameObject thisEnemiesSpawnPoint;
     public int enemyDamage;
 
-
+    public GameObject backVial;
+    public GameObject leftDoorHolder;
+    public GameObject rightDoorHolder;
 
     public string colourOfEnemy;
 
+    public Material blueEnemyMat;
+    public Material redEnemyMat;
+    public Material yellowEnemyMat;
+    public Material orangeEnemyMat;
+    public Material purpleEnemyMat;
+    public Material greenEnemyMat;
 
-    public Material blueJellyMaterial;
-    public GameObject blueSplat;
-    public Material blueParticle;
-    public Material redJellyMaterial;
-    public GameObject redSplat;
-    public Material redParticle;
-    public Material yellowJellyMaterial;
-    public GameObject yellowSplat;
-    public Material yellowParticle;
+    public GameObject WeakSpot;
 
     private GameObject mainCamera;
 
@@ -71,6 +86,26 @@ public class BossController : MonoBehaviour {
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
             FindClosestPlayer();
         }
+
+        randomColour = Random.Range(1, 4);
+        if (randomColour == 1)
+        {
+            colourOfWeakSpot = "blue";
+            WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
+            backVial.GetComponent<VialController>().ResetToOrange();
+        }else if (randomColour == 2)
+        {
+            colourOfWeakSpot = "red";
+            WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
+            backVial.GetComponent<VialController>().ResetToGreen();
+        }else if (randomColour == 3)
+        {
+            colourOfWeakSpot = "yellow";
+            WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
+            backVial.GetComponent<VialController>().ResetToPurple();
+        }
+
+
     }
 	
 	// Update is called once per frame
@@ -83,7 +118,7 @@ public class BossController : MonoBehaviour {
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
-	            AggroToggle();
+	            isAggroPlayer = true;
 	        }
 	        if (isAggroPlayer == true)
 	        {
@@ -113,6 +148,42 @@ public class BossController : MonoBehaviour {
 
 	    }
 	    agent.speed = enemySpeed;
+
+	    if (currentBossPhase==BossPhases.vials)
+	    {
+	        if (backVial.GetComponent<VialController>().VialCorrectlyFilled == true)
+	        {
+	            openDoors = true;
+            }
+	        else
+	        {
+	            openDoors = false;
+	        }
+
+	        if (openDoors == true)
+            {
+                if (leftDoorHolder.transform.localRotation.y >-0.6f)
+                {
+                    leftDoorHolder.transform.Rotate(0, -rotateSpeed * Time.deltaTime, 0);
+                }
+                if (rightDoorHolder.transform.localRotation.y <0.6f)
+                {
+                    rightDoorHolder.transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
+                }
+	            
+	        }
+	        else
+	        {
+	            if (leftDoorHolder.transform.localRotation.y <0)
+	            {
+	                leftDoorHolder.transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
+                }
+	            if (rightDoorHolder.transform.localRotation.y > 0)
+	            {
+	                rightDoorHolder.transform.Rotate(0, -rotateSpeed * Time.deltaTime, 0);
+	            }
+            }
+	    }
     }
     void FindClosestPlayer()
     {
@@ -553,6 +624,7 @@ public class BossController : MonoBehaviour {
     }
     public void AggroToggle()
     {
+        /*
         if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
         {
             thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
@@ -561,6 +633,7 @@ public class BossController : MonoBehaviour {
         {
             thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
         }
+        */
 
     }
     public Vector3 RandomNavmeshLocation(float radius)
@@ -574,5 +647,9 @@ public class BossController : MonoBehaviour {
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+    public void BulletKnockback(Vector3 bulletPosition)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
     }
 }
