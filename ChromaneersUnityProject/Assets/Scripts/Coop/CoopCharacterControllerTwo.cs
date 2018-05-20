@@ -55,6 +55,8 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     private bool specialAttackOn = false;
     private float specialAttackDuration = 5f;
 
+    public Animator anim;
+
     [System.Serializable]
     private enum UseMethodType
     {
@@ -102,7 +104,12 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     }
 	
 	void Update () {
-	    dodgeSlider.value = (dodgeCooldown);
+
+        var x = Input.GetAxis("Joystick1LHorizontal");
+        var y = Input.GetAxis("Joystick1LVertical");
+        Move(x, y);
+
+        dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
             //Making a vector3 to store the characters inputs
@@ -671,5 +678,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         {
             thisPlayersReviveSpot = other.transform.position;
         }
+    }
+
+    private void Move(float x, float y)
+    {
+        anim.SetFloat("velX", x);
+        anim.SetFloat("velZ", y);
     }
 }

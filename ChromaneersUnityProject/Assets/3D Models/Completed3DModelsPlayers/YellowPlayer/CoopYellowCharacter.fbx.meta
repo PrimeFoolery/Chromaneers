@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d107b662c2d43843868945220abf5e4
+guid: e4c68584bfe6ae848a9989a0fc042f71
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -132,9 +132,13 @@ ModelImporter:
     7400000: Armature|IdleCycle
     7400002: Armature|MoveCycle
     7400004: Armature|MoveCycleBackwards
-    7400006: Armature|MovingBackwards
-    7400008: Armature|MovingBackwards.001
-    7400010: Armature|ShootCycle
+    7400006: Armature|ShootCycle
+    7400008: Armature|Strafe
+    7400010: Armature|StrafeLeft
+    7400012: Armature|StrafeRight
+    7400014: Armature|trash
+    7400016: Armature|trash2
+    7400018: Armature|Untitled
     9500000: //RootNode
     13700000: Cube
     13700002: Gun
@@ -254,7 +258,7 @@ ModelImporter:
       name: Armature|ShootCycle
       takeName: Armature|ShootCycle
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 7
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -262,6 +266,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Strafe
+      takeName: Armature|Strafe
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
