@@ -147,6 +147,9 @@ public class deathTracker : MonoBehaviour
             else if (howManyAreasComplete == 2)
             {
                 SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
+            }else if (howManyAreasComplete == 3)
+            {
+                //SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
         
         

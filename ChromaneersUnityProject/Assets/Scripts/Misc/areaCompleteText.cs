@@ -50,6 +50,10 @@ public class areaCompleteText : MonoBehaviour {
     private Vector3 velocity3;
     private Vector3 velocity4;
 
+    public GameObject blueFireworksLauncher;
+    public GameObject redFireworksLauncher;
+    public GameObject yellowFireworksLauncher;
+
     private int rainbowRotationSpeed = 20;
 
     private int blueCoinsCollected;
@@ -245,7 +249,17 @@ public class areaCompleteText : MonoBehaviour {
             coinCountDelay -= Time.deltaTime;
             if (blueCoinsCounter == blueCoinsCollected && redCoinsCounter == redCoinsCollected && yellowCoinsCounter == yellowCoinsCollected)
             {
-                
+                if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == blueCoinsCollected)
+                {
+                    Instantiate(blueFireworksLauncher, transform.position, transform.rotation);
+                }else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == redCoinsCollected)
+                {
+                    Instantiate(redFireworksLauncher, transform.position, transform.rotation);
+                }else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == yellowCoinsCollected)
+                {
+                    Instantiate(yellowFireworksLauncher, transform.position, transform.rotation);
+                }
+
                 thisCoinState = CoinStates.savour;
             }
 
@@ -259,6 +273,7 @@ public class areaCompleteText : MonoBehaviour {
                     blueRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(4.05f, 4.05f, 4.05f),ref velocity4,
                     textGrowSpeed * Time.deltaTime * 0.5f);
                 blueRainbow.gameObject.GetComponent<RectTransform>().Rotate(0,0,rainbowRotationSpeed*Time.deltaTime);
+
             }else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == redCoinsCollected)
             {
                 redRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
