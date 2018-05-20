@@ -40,6 +40,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 
     public GameObject playerModel;
 
+    public Animator anim;
+
     [Header("Script References")]
     public CharacterOneGunController coopCharacterControllerOne;
 
@@ -112,6 +114,10 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	
 	void Update ()
 	{
+
+        var x = Input.GetAxis("Joystick1LHorizontal");
+        var y = Input.GetAxis("Joystick1LVertical");
+        Move(x, y);
 
 	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
@@ -255,6 +261,8 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
 	        }
+
+            
 
             //Stops people from spam clicking to shoot faster
             timeToShoot -= Time.deltaTime;
@@ -720,5 +728,11 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         {
             thisPlayersReviveSpot = other.transform.position;
         }
+    }
+
+    private void Move(float x, float y)
+    {
+        anim.SetFloat("velX", x);
+        anim.SetFloat("velZ", y);
     }
 }
