@@ -54,6 +54,10 @@ public class blobPenController : MonoBehaviour
     public Texture2D penObeliskEmissionMap9;
     public Texture2D penObeliskEmissionMap10;
 
+    public GameObject blueFireworkLauncher;
+    public GameObject redFireworkLauncher;
+    public GameObject yellowFireworkLauncher;
+
     private bool enemySpawned = false;
 
     public Material whiteEnemyMat;
@@ -237,13 +241,16 @@ public class blobPenController : MonoBehaviour
 	        {
 	            if (colourOfThisPen== ColoursOfPen.blue)
 	            {
+	                Instantiate(blueFireworkLauncher, transform.position, Quaternion.identity);
 	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.blue);
                 }else if (colourOfThisPen == ColoursOfPen.red)
 	            {
-	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.red);
+	                Instantiate(redFireworkLauncher, transform.position, Quaternion.identity);
+                    ObjectToTrigger.GetComponent<cableController>().Trigger(Color.red);
 	            }else if (colourOfThisPen == ColoursOfPen.yellow)
 	            {
-	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.yellow);
+	                Instantiate(yellowFireworkLauncher, transform.position, Quaternion.identity);
+                    ObjectToTrigger.GetComponent<cableController>().Trigger(Color.yellow);
 	            }
 
             }
