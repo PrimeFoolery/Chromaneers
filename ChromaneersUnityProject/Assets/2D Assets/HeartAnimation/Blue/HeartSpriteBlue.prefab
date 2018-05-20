@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212435263154379014}
   - component: {fileID: 95621747972191182}
   - component: {fileID: 114570134365783162}
+  - component: {fileID: 114015509646247306}
   m_Layer: 0
   m_Name: HeartSpriteBlue
   m_TagString: Untagged
@@ -59,6 +60,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114015509646247306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966366887722724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da00a76f1e00d84ab9c36e544d66f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
 --- !u!114 &114570134365783162
 MonoBehaviour:
   m_ObjectHideFlags: 1

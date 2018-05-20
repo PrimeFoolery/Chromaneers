@@ -26,6 +26,8 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
     public Image ReviveCircle;
     public reviveCircleRotation reviveCircleScript;
     public GameObject Indicator;
+    public Transform playerEmpty;
+    public GameObject heartBreak;
 
     [Header("Materials")]
     public Material matOne;
@@ -260,6 +262,7 @@ public class CoopCharacterHealthControllerTwo : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 vibrationTimer = 0.35f;
+                Instantiate(heartBreak, playerEmpty.transform.position, Quaternion.identity);
                 GamePad.SetVibration(PlayerIndex.Two, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }
