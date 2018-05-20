@@ -19,7 +19,12 @@ public class BossController : MonoBehaviour {
     public float bodyRotationSpeed = 10f;
     public float rotateSpeed = 1000f;
 
+    public GameObject Obelisk1;
+    public GameObject Obelisk2;
+    public GameObject Obelisk3;
+
     public int enemyHealth;
+    public int triggersInStage2 = 0;
 
     public List<string> PreviousColoursList = new List<string>();
     public string colourOfWeakSpot;
@@ -54,18 +59,45 @@ public class BossController : MonoBehaviour {
 
     public string colourOfEnemy;
 
+    public Material blueParticle;
+    public Material redParticle;
+    public Material yellowParticle;
+    public Material purpleParticle;
+    public Material orangeParticle;
+    public Material greenParticle;
+    public Material greyParticle;
+
     public Material blueEnemyMat;
     public Material redEnemyMat;
     public Material yellowEnemyMat;
     public Material orangeEnemyMat;
     public Material purpleEnemyMat;
     public Material greenEnemyMat;
+    public Material greyEnemyMat;
+
+    public GameObject rainbow;
+
+    private GameObject tempRainbowBlue;
+    private GameObject tempRainbowRed;
+    private GameObject tempRainbowYellow;
+    private bool haveRainbowsSpawned = false;
+
+    public float rainbowGrowSpeed = 8f;
+    private float rainbowTimer = 1.4f;
+
+    private float panicTimer = 0.2f;
+
+    private float deathTime = 4f;
 
     public GameObject WeakSpot;
+
+    public coinController.RainbowState CurrentRainbowState = coinController.RainbowState.preStart;
 
     private GameObject mainCamera;
 
     public GameObject coin;
+
+    public GameObject doorToTrigger;
 
     // Use this for initialization
     void Start () {
@@ -88,7 +120,7 @@ public class BossController : MonoBehaviour {
             YellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
             FindClosestPlayer();
         }
-
+        agent.speed = enemySpeed;
         randomColour = Random.Range(1, 4);
         if (randomColour == 1)
         {
@@ -110,6 +142,8 @@ public class BossController : MonoBehaviour {
             backVial.GetComponent<VialController>().ResetToPurple();
             PreviousColoursList.Add(colourOfWeakSpot);
         }
+
+        gameObject.GetComponent<ParticleSystemRenderer>().material = greyParticle;
 
 
     }
@@ -149,16 +183,16 @@ public class BossController : MonoBehaviour {
 	    }
 	    //transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
 	    Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
-        Debug.Log(direction);
+        //Debug.Log(direction);
         Quaternion toRotation = Quaternion.FromToRotation(transform.position, direction);
-        Debug.Log(toRotation);
+        //Debug.Log(toRotation);
         transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(transform.rotation.eulerAngles.x, toRotation.eulerAngles.y, transform.rotation.eulerAngles.z), bodyRotationSpeed*Time.time*Time.deltaTime);
 	    if (enemyHealth <= 0)
 	    {
 
 
 	    }
-	    agent.speed = enemySpeed;
+	    
 
 	    if (currentBossPhase==BossPhases.vials)
 	    {
@@ -199,6 +233,134 @@ public class BossController : MonoBehaviour {
 	        {
                 RandomiseAndResetVials(PreviousColoursList);
 	            enemyHealth = 3;
+	        }
+	    }else if (currentBossPhase == BossPhases.pens)
+	    {
+
+	        if (backVial!=null)
+	        {
+                Destroy(rightDoorHolder);
+                Destroy(leftDoorHolder);
+                Destroy(WeakSpot);
+	            Destroy(backVial.transform.parent.gameObject);
+            }
+
+	        if (enemyHealth<=0)
+	        {
+	            if (triggersInStage2 == 2)
+	            {
+	                CurrentRainbowState = coinController.RainbowState.spawn;
+	                currentBossPhase = BossPhases.panic;
+	            }
+                if (triggersInStage2<2)
+	            {
+	                triggersInStage2 += 1;
+	                ResetToGrey();
+                }
+
+	            
+                
+	        }
+	    }else if (currentBossPhase == BossPhases.panic)
+	    {
+            if (CurrentRainbowState == coinController.RainbowState.spawn)
+            {
+                enemyHealth = 30;
+                tempRainbowBlue = Instantiate(rainbow, new Vector3(BluePlayer.transform.position.x, BluePlayer.transform.position.y + 50f, BluePlayer.transform.position.z), Quaternion.identity, BluePlayer.transform);
+                
+                tempRainbowRed = Instantiate(rainbow, new Vector3(RedPlayer.transform.position.x, RedPlayer.transform.position.y + 50f, RedPlayer.transform.position.z), Quaternion.identity, RedPlayer.transform);
+                
+                tempRainbowYellow = Instantiate(rainbow, new Vector3(YellowPlayer.transform.position.x, YellowPlayer.transform.position.y + 50f, YellowPlayer.transform.position.z), Quaternion.identity, YellowPlayer.transform);
+                
+
+                CurrentRainbowState = coinController.RainbowState.grow;
+            }
+
+            if (CurrentRainbowState == coinController.RainbowState.grow)
+            {
+                tempRainbowBlue.transform.localScale += new Vector3(0, rainbowGrowSpeed, 0);
+                tempRainbowRed.transform.localScale += new Vector3(0, rainbowGrowSpeed, 0);
+                tempRainbowYellow.transform.localScale += new Vector3(0, rainbowGrowSpeed, 0);
+                if (tempRainbowBlue.transform.localScale.y > 35.5f)
+                {
+                    CurrentRainbowState = coinController.RainbowState.savour;
+                }
+            }
+
+            if (CurrentRainbowState == coinController.RainbowState.savour)
+            {
+
+                rainbowTimer -= Time.deltaTime;
+                if (rainbowTimer <= 0)
+                {
+                    BluePlayer.GetComponentInChildren<CharacterOneGunController>().stateOfWeapon =
+                            CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    
+                    RedPlayer.GetComponentInChildren<CharacterTwoGunController>().stateOfWeapon =
+                            CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    
+                    YellowPlayer.GetComponentInChildren<CharacterThreeGunController>().stateOfWeapon =
+                            CharacterOneGunController.currentWeapon.RainbowWeapon;
+                    
+                    CurrentRainbowState = coinController.RainbowState.stop;
+                }
+            }
+
+            if (CurrentRainbowState == coinController.RainbowState.stop)
+            {
+                Destroy(tempRainbowBlue.gameObject);
+                Destroy(tempRainbowRed.gameObject);
+                Destroy(tempRainbowYellow.gameObject);
+                rainbowTimer = 1.4f;
+                CurrentRainbowState = coinController.RainbowState.preStart;
+            }
+
+	        if (enemyHealth<30&&enemyHealth>25)
+	        {
+	            agent.speed = 3.5f;
+	        }else
+	        if (enemyHealth < 25 && enemyHealth > 20)
+	        {
+	            agent.speed = 4f;
+	        }else
+	        if (enemyHealth < 20 && enemyHealth > 15)
+	        {
+	            agent.speed = 4.5f;
+	        }else
+	        if (enemyHealth < 10 && enemyHealth > 5)
+	        {
+	            agent.speed = 5f;
+	        }else
+	        if (enemyHealth < 5 && enemyHealth > 0)
+	        {
+	            agent.speed = 5.5f;
+	        }
+
+            panicTimer -= Time.deltaTime;
+            
+	        if (panicTimer< 0)
+	        {
+                RandomiseColor();
+	            panicTimer = 0.2f;
+	        }
+	        if (enemyHealth<=0)
+	        {
+	            currentBossPhase = BossPhases.death;
+	        }
+        }else if (currentBossPhase == BossPhases.death)
+	    {
+	        if (agent.speed!=0)
+	        {
+	            agent.speed = 0;
+	        }
+
+	        deathTime -= Time.deltaTime;
+	        Instantiate(coin, new Vector3(transform.position.x, transform.position.y+4f, transform.position.z), Quaternion.identity);
+
+	        if (deathTime<=0)
+	        {
+                doorToTrigger.GetComponent<doorController>().OpenSesame();
+                Destroy(this.gameObject);
 	        }
 	    }
     }
@@ -750,9 +912,94 @@ public class BossController : MonoBehaviour {
             WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
             backVial.GetComponent<VialController>().ResetToOrange();
             PreviousColoursList.Add(colourOfWeakSpot);
-        }else if (previousColours.Contains("blue") == false && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
+        }else if (previousColours.Contains("blue") == true && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
         {
+            Obelisk1.GetComponentInChildren<BossBattleObelisk>().StartPhase2();
+            Obelisk2.GetComponentInChildren<BossBattleObelisk>().StartPhase2();
+            Obelisk3.GetComponentInChildren<BossBattleObelisk>().StartPhase2();
             currentBossPhase = BossPhases.pens;
         }
+    }
+
+    public void ChangeToBlue()
+    {
+        SphereRenderer.material = blueEnemyMat;
+        gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
+        enemyHealth = 10;
+        colourOfEnemy = "blue";
+    }
+    public void ChangeToRed()
+    {
+        SphereRenderer.material = redEnemyMat;
+        gameObject.GetComponent<ParticleSystemRenderer>().material =redParticle;
+        enemyHealth = 10;
+        colourOfEnemy = "red";
+    }
+    public void ChangeToYellow()
+    {
+        gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
+        SphereRenderer.material = yellowEnemyMat;
+        enemyHealth = 10;
+        colourOfEnemy = "yellow";
+    }
+
+    public void ResetToGrey()
+    {
+        gameObject.GetComponent<ParticleSystemRenderer>().material = greyParticle;
+        SphereRenderer.material = greyEnemyMat;
+        enemyHealth = 10;
+        colourOfEnemy = "grey";
+    }
+
+    public void RandomiseColor()
+    {
+        int randomNumberForColour = Random.Range(1, 8);
+        if (randomNumberForColour == 1)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = greyParticle;
+            SphereRenderer.material = greyEnemyMat;
+        }else
+        if (randomNumberForColour == 2)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
+            SphereRenderer.material = blueEnemyMat;
+        }
+        else
+        if (randomNumberForColour == 3)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = redParticle;
+            SphereRenderer.material = redEnemyMat;
+        }
+        else
+        if (randomNumberForColour == 4)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
+            SphereRenderer.material = yellowEnemyMat;
+        }
+        else
+        if (randomNumberForColour == 5)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = purpleParticle;
+            SphereRenderer.material = purpleEnemyMat;
+        }
+        else
+        if (randomNumberForColour == 1)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = orangeParticle;
+            SphereRenderer.material = orangeEnemyMat;
+        }
+        else
+        if (randomNumberForColour == 1)
+        {
+            gameObject.GetComponent<ParticleSystemRenderer>().material = greenParticle;
+            SphereRenderer.material = greenEnemyMat;
+        }
+    }
+
+    public void SpawnCandy()
+    {
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
     }
 }

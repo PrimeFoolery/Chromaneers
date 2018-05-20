@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 95500455887715610}
   - component: {fileID: 135732463252105028}
   - component: {fileID: 54190818268523612}
+  - component: {fileID: 114897259968081890}
   m_Layer: 0
   m_Name: Boss
   m_TagString: BossEnemy
@@ -616,8 +617,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1218682762989226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.29013, y: 0.21828842, z: 698.5373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 82.2, y: 0.21828842, z: 713.5}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 4889493917170820}
@@ -1534,9 +1535,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBossPhase: 0
-  bodyRotationSpeed: 1
+  bodyRotationSpeed: 0.05
   rotateSpeed: 100
+  Obelisk1: {fileID: 0}
+  Obelisk2: {fileID: 0}
+  Obelisk3: {fileID: 0}
   enemyHealth: 3
+  triggersInStage2: 0
   PreviousColoursList: []
   colourOfWeakSpot: 
   targetPlayer: {fileID: 0}
@@ -1553,14 +1558,25 @@ MonoBehaviour:
   leftDoorHolder: {fileID: 1375932649635566}
   rightDoorHolder: {fileID: 1220438192377404}
   colourOfEnemy: grey
+  blueParticle: {fileID: 2100000, guid: 315ca3ae5c69dfb4bbac39040ea62a5b, type: 2}
+  redParticle: {fileID: 2100000, guid: 1c3e5fd1b38f8ba49ab8462e226eab11, type: 2}
+  yellowParticle: {fileID: 2100000, guid: 5622986311813744ea238c3b51ed625a, type: 2}
+  purpleParticle: {fileID: 2100000, guid: ce5c37058b464f84d95dfcabfd2ec6d0, type: 2}
+  orangeParticle: {fileID: 2100000, guid: 89133d365a275524aa2df982b9023214, type: 2}
+  greenParticle: {fileID: 2100000, guid: b80cc5aa1da8842448df9fb8d07cae57, type: 2}
+  greyParticle: {fileID: 2100000, guid: 535e4c850319eb349bff1d3340f05dbc, type: 2}
   blueEnemyMat: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
   redEnemyMat: {fileID: 2100000, guid: 7f3d0608bf3644c4ca9a8eda2a68788d, type: 2}
   yellowEnemyMat: {fileID: 2100000, guid: 5e1c7f2a371699e4f99259567a4be0db, type: 2}
   orangeEnemyMat: {fileID: 2100000, guid: a6bc52618a88c71478e0095f62a57aeb, type: 2}
   purpleEnemyMat: {fileID: 2100000, guid: 47d9c7d153d8e4e40bc57ac28e0f847e, type: 2}
   greenEnemyMat: {fileID: 2100000, guid: 565e403fcae185047a132200443e4b63, type: 2}
+  greyEnemyMat: {fileID: 2100000, guid: 0e7ba9b838f0c6a4eb8d6cef331d89a2, type: 2}
+  rainbow: {fileID: 1684674718185580, guid: 81e82d42e0fc41a45b7e8844229ce873, type: 2}
+  rainbowGrowSpeed: 8
   WeakSpot: {fileID: 1390322599514746}
-  coin: {fileID: 0}
+  CurrentRainbowState: 0
+  coin: {fileID: 1535116212090620, guid: 271a092a96e2fa9438fc48fb8d42d4f8, type: 2}
 --- !u!114 &114270090616247548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1621,6 +1637,18 @@ MonoBehaviour:
   FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
   ThisSpawnpointsEnemyList: []
   tempEnemy: {fileID: 0}
+--- !u!114 &114897259968081890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1550412716312660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5f143b943f9ab49b1a09ea4fec4c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BossMain: {fileID: 1218682762989226}
 --- !u!135 &135732463252105028
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1645,7 +1673,7 @@ NavMeshAgent:
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1714,7 +1742,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1970069779
+  randomSeed: -950661851
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2157,13 +2185,13 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 2
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: -1.35, y: 0.45, z: -0.97}
+    m_Position: {x: -1.35, y: 6.62, z: -0.97}
     m_Rotation: {x: -90, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -2179,7 +2207,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 2.97
+      value: 8.28
       mode: 0
       spread: 0
       speed:
@@ -2360,7 +2388,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5075,7 +5103,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5622986311813744ea238c3b51ed625a, type: 2}
+  - {fileID: 2100000, guid: 535e4c850319eb349bff1d3340f05dbc, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
