@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 33068305589768304}
   - component: {fileID: 65786140940475258}
   - component: {fileID: 23099071108226894}
+  - component: {fileID: 114095505574995524}
   m_Layer: 0
   m_Name: WeakSpot
   m_TagString: Untagged
@@ -560,8 +561,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1222123140934756}
   m_LocalRotation: {x: 0.040263552, y: -0.04692654, z: 0.7574783, w: 0.6499257}
-  m_LocalPosition: {x: 0.045, y: -0.103, z: 0.5753115}
-  m_LocalScale: {x: 0.3846154, y: 0.3846154, z: 0.38461536}
+  m_LocalPosition: {x: 0.045, y: -0.093, z: 0.499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4889493917170820}
   m_RootOrder: 3
@@ -962,7 +963,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: aa3c31103d5f8794f9ea3169c4cda63f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1098,7 +1099,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d87e600265be81143a2a1ff1e0e3cb7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1166,7 +1167,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d87e600265be81143a2a1ff1e0e3cb7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1494,6 +1495,18 @@ MonoBehaviour:
   VialBaseGreen: {fileID: 2100000, guid: 6f1862211ca54a440bd6a4adc696e06d, type: 2}
   VialLiquid: {fileID: 1933537444268304}
   VialCorrectlyFilled: 0
+--- !u!114 &114095505574995524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390322599514746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8c45db212c8ca40a3f0b458c6a830f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossMain: {fileID: 1218682762989226}
 --- !u!114 &114102891893447978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1521,8 +1534,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBossPhase: 0
-  rotateSpeed: 5
-  enemyHealth: 10
+  bodyRotationSpeed: 1
+  rotateSpeed: 100
+  enemyHealth: 3
+  PreviousColoursList: []
+  colourOfWeakSpot: 
   targetPlayer: {fileID: 0}
   isAggroPlayer: 0
   SphereRenderer: {fileID: 23373506607039650}
@@ -1537,15 +1553,13 @@ MonoBehaviour:
   leftDoorHolder: {fileID: 1375932649635566}
   rightDoorHolder: {fileID: 1220438192377404}
   colourOfEnemy: grey
-  blueJellyMaterial: {fileID: 0}
-  blueSplat: {fileID: 0}
-  blueParticle: {fileID: 0}
-  redJellyMaterial: {fileID: 0}
-  redSplat: {fileID: 0}
-  redParticle: {fileID: 0}
-  yellowJellyMaterial: {fileID: 0}
-  yellowSplat: {fileID: 0}
-  yellowParticle: {fileID: 0}
+  blueEnemyMat: {fileID: 2100000, guid: 32a073f597f970c40bc6ddfd99ad0839, type: 2}
+  redEnemyMat: {fileID: 2100000, guid: 7f3d0608bf3644c4ca9a8eda2a68788d, type: 2}
+  yellowEnemyMat: {fileID: 2100000, guid: 5e1c7f2a371699e4f99259567a4be0db, type: 2}
+  orangeEnemyMat: {fileID: 2100000, guid: a6bc52618a88c71478e0095f62a57aeb, type: 2}
+  purpleEnemyMat: {fileID: 2100000, guid: 47d9c7d153d8e4e40bc57ac28e0f847e, type: 2}
+  greenEnemyMat: {fileID: 2100000, guid: 565e403fcae185047a132200443e4b63, type: 2}
+  WeakSpot: {fileID: 1390322599514746}
   coin: {fileID: 0}
 --- !u!114 &114270090616247548
 MonoBehaviour:
@@ -1700,7 +1714,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 632000709
+  randomSeed: 1970069779
   InitialModule:
     serializedVersion: 3
     enabled: 1

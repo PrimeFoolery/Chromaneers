@@ -16,10 +16,12 @@ public class BossController : MonoBehaviour {
     public BossPhases currentBossPhase;
 
     private bool openDoors = false;
+    public float bodyRotationSpeed = 10f;
     public float rotateSpeed = 1000f;
 
     public int enemyHealth;
 
+    public List<string> PreviousColoursList = new List<string>();
     public string colourOfWeakSpot;
 
     public GameObject targetPlayer;
@@ -93,16 +95,20 @@ public class BossController : MonoBehaviour {
             colourOfWeakSpot = "blue";
             WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
             backVial.GetComponent<VialController>().ResetToOrange();
+            PreviousColoursList.Add(colourOfWeakSpot);
         }else if (randomColour == 2)
         {
             colourOfWeakSpot = "red";
             WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
             backVial.GetComponent<VialController>().ResetToGreen();
-        }else if (randomColour == 3)
+            PreviousColoursList.Add(colourOfWeakSpot);
+        }
+        else if (randomColour == 3)
         {
             colourOfWeakSpot = "yellow";
             WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
             backVial.GetComponent<VialController>().ResetToPurple();
+            PreviousColoursList.Add(colourOfWeakSpot);
         }
 
 
@@ -141,7 +147,12 @@ public class BossController : MonoBehaviour {
 	        readyToRetarget = true;
 	        retargetingDelay = 3f;
 	    }
-	    transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+	    //transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+	    Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
+        Debug.Log(direction);
+        Quaternion toRotation = Quaternion.FromToRotation(transform.position, direction);
+        Debug.Log(toRotation);
+        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(transform.rotation.eulerAngles.x, toRotation.eulerAngles.y, transform.rotation.eulerAngles.z), bodyRotationSpeed*Time.time*Time.deltaTime);
 	    if (enemyHealth <= 0)
 	    {
 
@@ -183,6 +194,12 @@ public class BossController : MonoBehaviour {
 	                rightDoorHolder.transform.Rotate(0, -rotateSpeed * Time.deltaTime, 0);
 	            }
             }
+
+	        if (enemyHealth<=0)
+	        {
+                RandomiseAndResetVials(PreviousColoursList);
+	            enemyHealth = 3;
+	        }
 	    }
     }
     void FindClosestPlayer()
@@ -651,5 +668,91 @@ public class BossController : MonoBehaviour {
     public void BulletKnockback(Vector3 bulletPosition)
     {
         transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
+    }
+
+    public void RandomiseAndResetVials(List<string> previousColours)
+    {
+        if (previousColours.Contains("blue")==true && previousColours.Contains("red")==false && previousColours.Contains("yellow") == false)
+        {
+            int randomColourNumber = Random.Range(1, 3);
+            if (randomColourNumber==1)
+            {
+                colourOfWeakSpot = "red";
+                WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
+                backVial.GetComponent<VialController>().ResetToGreen();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+            else 
+            {
+                colourOfWeakSpot = "yellow";
+                WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
+                backVial.GetComponent<VialController>().ResetToPurple();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+        }else
+        if (previousColours.Contains("red") == true && previousColours.Contains("blue") == false && previousColours.Contains("yellow") == false)
+        {
+            int randomColourNumber = Random.Range(1, 3);
+            if (randomColourNumber == 1)
+            {
+                colourOfWeakSpot = "blue";
+                WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
+                backVial.GetComponent<VialController>().ResetToOrange();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+            else
+            {
+                colourOfWeakSpot = "yellow";
+                WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
+                backVial.GetComponent<VialController>().ResetToPurple();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+        }
+        else
+        if (previousColours.Contains("yellow") == true && previousColours.Contains("red") == false && previousColours.Contains("blue") == false)
+        {
+            int randomColourNumber = Random.Range(1, 3);
+            if (randomColourNumber == 1)
+            {
+                colourOfWeakSpot = "blue";
+                WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
+                backVial.GetComponent<VialController>().ResetToOrange();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+            else
+            {
+                colourOfWeakSpot = "red";
+                WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
+                backVial.GetComponent<VialController>().ResetToGreen();
+                PreviousColoursList.Add(colourOfWeakSpot);
+            }
+        }
+        else
+        if (previousColours.Contains("blue") == true && previousColours.Contains("red") == true && previousColours.Contains("yellow") == false)
+        {
+            colourOfWeakSpot = "yellow";
+            WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
+            backVial.GetComponent<VialController>().ResetToPurple();
+            PreviousColoursList.Add(colourOfWeakSpot);
+        }
+        else
+        if (previousColours.Contains("blue") == true && previousColours.Contains("red") == false && previousColours.Contains("yellow") == true)
+        {
+            colourOfWeakSpot = "red";
+            WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
+            backVial.GetComponent<VialController>().ResetToGreen();
+            PreviousColoursList.Add(colourOfWeakSpot);
+        }
+        else
+        if (previousColours.Contains("blue") == false && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
+        {
+            colourOfWeakSpot = "blue";
+            WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
+            backVial.GetComponent<VialController>().ResetToOrange();
+            PreviousColoursList.Add(colourOfWeakSpot);
+        }else if (previousColours.Contains("blue") == false && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
+        {
+            currentBossPhase = BossPhases.pens;
+        }
     }
 }

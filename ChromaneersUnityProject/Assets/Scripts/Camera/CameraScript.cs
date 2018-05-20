@@ -44,7 +44,7 @@ public class CameraScript : MonoBehaviour
     private float screenEdgeBuffer = 4f;
     private float aspectRatio;
     private float zoomSpeed = 4f;
-    private float dampTime = 0.2f;
+    private float dampTime = 2f;
     private float rotationTime = 0.35f;
 
     //CAMERA SHAKE VARIABLES
@@ -294,5 +294,17 @@ public class CameraScript : MonoBehaviour
     {
         shakeDuration = 0.5f;
         shakeAmount = 0.75f;
+    }
+
+    public void ToggleToZoomedOut()
+    {
+        maximumSize = 16f;
+        minimumSize = 15f;
+    }
+
+    public void ToggleToZoomedIn()
+    {
+        maximumSize = 11f;
+        minimumSize = 10f;
     }
 }
