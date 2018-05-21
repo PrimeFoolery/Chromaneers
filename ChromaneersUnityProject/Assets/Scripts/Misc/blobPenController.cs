@@ -241,15 +241,15 @@ public class blobPenController : MonoBehaviour
 	        {
 	            if (colourOfThisPen== ColoursOfPen.blue)
 	            {
-	                Instantiate(blueFireworkLauncher, transform.position, Quaternion.identity);
+	                Instantiate(blueFireworkLauncher, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
 	                ObjectToTrigger.GetComponent<cableController>().Trigger(Color.blue);
                 }else if (colourOfThisPen == ColoursOfPen.red)
 	            {
-	                Instantiate(redFireworkLauncher, transform.position, Quaternion.identity);
+	                Instantiate(redFireworkLauncher, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
                     ObjectToTrigger.GetComponent<cableController>().Trigger(Color.red);
 	            }else if (colourOfThisPen == ColoursOfPen.yellow)
 	            {
-	                Instantiate(yellowFireworkLauncher, transform.position, Quaternion.identity);
+	                Instantiate(yellowFireworkLauncher, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
                     ObjectToTrigger.GetComponent<cableController>().Trigger(Color.yellow);
 	            }
 

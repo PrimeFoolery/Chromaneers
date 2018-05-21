@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212877012056560376}
   - component: {fileID: 95468523189375108}
   - component: {fileID: 114266328159238304}
+  - component: {fileID: 114579215862263058}
   m_Layer: 0
   m_Name: HeartSpriteRed
   m_TagString: Untagged
@@ -71,6 +72,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!114 &114579215862263058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651337545418906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da00a76f1e00d84ab9c36e544d66f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
 --- !u!212 &212877012056560376
 SpriteRenderer:
   m_ObjectHideFlags: 1
