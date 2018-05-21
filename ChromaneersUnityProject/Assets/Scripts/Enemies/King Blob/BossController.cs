@@ -181,12 +181,16 @@ public class BossController : MonoBehaviour {
 	        readyToRetarget = true;
 	        retargetingDelay = 3f;
 	    }
-	    //transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
-	    Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
-        //Debug.Log(direction);
-        Quaternion toRotation = Quaternion.FromToRotation(transform.position, direction);
-        //Debug.Log(toRotation);
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(transform.rotation.eulerAngles.x, toRotation.eulerAngles.y, transform.rotation.eulerAngles.z), bodyRotationSpeed*Time.time*Time.deltaTime);
+        //transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
+	    if (targetPlayer!=null)
+	    {
+	        Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
+	        //Debug.Log(direction);
+	        Quaternion toRotation = Quaternion.FromToRotation(transform.position, direction);
+	        //Debug.Log(toRotation);
+	        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, toRotation.eulerAngles.y, transform.rotation.eulerAngles.z), bodyRotationSpeed * Time.time * Time.deltaTime);
+        }
+	    
 	    if (enemyHealth <= 0)
 	    {
 

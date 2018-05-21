@@ -267,7 +267,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
                 currentHealth -= 1;
                 InvTimer = 2;
                 vibrationTimer = 0.35f;
-                Instantiate(heartBreak,playerEmpty.transform.position,Quaternion.identity);
+                //Instantiate(heartBreak,playerEmpty.transform.position,Quaternion.identity);
                 GamePad.SetVibration(PlayerIndex.Three, vibrationLeftOn, vibrationRightOn);
                 canBeDamaged = false;
             }

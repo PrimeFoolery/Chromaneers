@@ -85,7 +85,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	public float movingDecceleration = 0.9f;
 	public float shootingDecceleration = 0.95f;
     private float poisonTimer = 3f;
-    private Animator modelAnim;
+    //private Animator modelAnim;
 
 	public bool canPlayerMove = true;
 
@@ -109,7 +109,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
 	    brush.Color = blueColor;
         audio = GetComponent<AudioSource>();
-        modelAnim = playerModel.GetComponent<Animator>();
+        //modelAnim = playerModel.GetComponent<Animator>();
 	}
 	
 	void Update ()
@@ -196,7 +196,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 								}
 							}
 						moveVelocity = moveInput * moveSpeed;
-                        modelAnim.SetInteger("CharacterYellowState", 1);
+                        //modelAnim.SetInteger("CharacterYellowState", 1);
                     }
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
