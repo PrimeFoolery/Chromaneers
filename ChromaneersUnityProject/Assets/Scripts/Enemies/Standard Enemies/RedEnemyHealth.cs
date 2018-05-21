@@ -12,6 +12,8 @@ public class RedEnemyHealth : MonoBehaviour {
 
     public GameObject coin;
 
+    public GameObject deathSplatter;
+
     //Private variables
     private int currentHealth;
     private EnemyManager enemyManagerScript;
@@ -33,7 +35,8 @@ public class RedEnemyHealth : MonoBehaviour {
 			gameObject.GetComponent<ParticleSystem> ().Play();
 			deathTimer -= Time.deltaTime;
 			if (deathTimer >= 0) {
-				Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatter, EnemyEmpty.gameObject.transform.position, EnemyEmpty.transform.rotation);
+                Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 			    mainCamera.GetComponent<CameraScript>().SmallScreenShake();
 			    Instantiate(coin, transform.position, Quaternion.identity);
                 if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)

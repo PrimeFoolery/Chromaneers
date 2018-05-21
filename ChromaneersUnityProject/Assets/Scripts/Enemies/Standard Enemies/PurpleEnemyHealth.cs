@@ -13,6 +13,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 	public GameObject sphere;
 
     public GameObject coin;
+    public GameObject deathSplatter;
 
     public Material redJellyMaterial;
 	public Material blueJellyMaterial;
@@ -66,6 +67,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
+            Instantiate(deathSplatter, enemyEmpty.gameObject.transform.position, enemyEmpty.transform.rotation);
             Instantiate(PurpleSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
 		    Instantiate(coin, transform.position, Quaternion.identity);
             Destroy (this.gameObject);

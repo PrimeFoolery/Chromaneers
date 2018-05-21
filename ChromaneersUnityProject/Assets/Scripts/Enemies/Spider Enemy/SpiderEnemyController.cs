@@ -37,6 +37,11 @@ public class SpiderEnemyController : MonoBehaviour
     public string BodyColourHolder;
     public GameObject enemyEmpty;
 
+    [Header ("DeathSplatter")]
+    public GameObject deathSplatterRed;
+    public GameObject deathSplatterBlue;
+    public GameObject deathSplatterYellow;
+
     [Header("Player and Misc")]
     public GameObject player;
     private GameObject targetPlayer;
@@ -355,14 +360,17 @@ public class SpiderEnemyController : MonoBehaviour
             if(BodyColourHolder == "Red")
             {
                 Instantiate(redSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterRed, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
             if (BodyColourHolder == "Blue")
             {
                 Instantiate(blueSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterBlue, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
             if (BodyColourHolder == "Yellow")
             {
                 Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterYellow, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             }
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);

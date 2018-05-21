@@ -40,6 +40,11 @@ public class MotherController : MonoBehaviour
 
     public string colourOfEnemy;
 
+    [Header("DeathSplatter")]
+    public GameObject deathSplatterRed;
+    public GameObject deathSplatterBlue;
+    public GameObject deathSplatterYellow;
+
 
     public Material blueMaterial;
     public GameObject blueSplat;
