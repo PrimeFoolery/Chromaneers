@@ -40,8 +40,10 @@ public class coinController : MonoBehaviour
 	void Update () {
 	    if (CurrentRainbowState == RainbowState.spawn)
 	    {
+			Debug.Log(Mathf.Max(bluesCoins, redsCoins, yellowsCoins));
 	        if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == bluesCoins)
 	        {
+				Debug.Log ("spawn blueRainbow");
 	            tempRainbow = Instantiate(rainbow, new Vector3(bluePlayer.transform.position.x, bluePlayer.transform.position.y + 50f, bluePlayer.transform.position.z), Quaternion.identity, bluePlayer.transform);
 	        }
 	        if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == redsCoins)
@@ -50,6 +52,7 @@ public class coinController : MonoBehaviour
             }
 	        if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == yellowsCoins)
 	        {
+				Debug.Log ("spawn yellowRainbow");
 	            tempRainbow = Instantiate(rainbow, new Vector3(yellowPlayer.transform.position.x, yellowPlayer.transform.position.y + 50f, yellowPlayer.transform.position.z), Quaternion.identity, yellowPlayer.transform);
             }
 
@@ -75,12 +78,12 @@ public class coinController : MonoBehaviour
 	            {
 	                bluePlayer.GetComponentInChildren<CharacterOneGunController>().stateOfWeapon =
 	                    CharacterOneGunController.currentWeapon.RainbowWeapon;
-	            }
+	            }else
 	            if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == redsCoins)
 	            {
 	                redPlayer.GetComponentInChildren<CharacterTwoGunController>().stateOfWeapon =
 	                    CharacterOneGunController.currentWeapon.RainbowWeapon;
-	            }
+	            }else
 	            if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == yellowsCoins)
 	            {
 	                yellowPlayer.GetComponentInChildren<CharacterThreeGunController>().stateOfWeapon =
@@ -92,6 +95,9 @@ public class coinController : MonoBehaviour
 
 	    if (CurrentRainbowState == RainbowState.stop)
 	    {
+			bluesCoins = 0;
+			redsCoins = 0;
+			yellowsCoins = 0;
             Destroy(tempRainbow.gameObject);
 	        rainbowTimer = 1.4f;
 	        CurrentRainbowState = RainbowState.preStart;

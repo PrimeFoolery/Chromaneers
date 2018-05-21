@@ -283,6 +283,7 @@ public class areaCompleteText : MonoBehaviour {
             }
             else if (Mathf.Max(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected) == yellowCoinsCollected)
             {
+				Debug.Log("yellow wins rainbow");
                 yellowRainbow.gameObject.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(
                     yellowRainbow.gameObject.GetComponent<RectTransform>().localScale, new Vector3(4.05f, 4.05f, 4.05f), ref velocity4,
                     textGrowSpeed * Time.deltaTime * 0.5f);
@@ -343,9 +344,7 @@ public class areaCompleteText : MonoBehaviour {
                 blueRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
                 redRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
                 yellowRainbow.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
-                coinManager.bluesCoins = 0;
-                coinManager.redsCoins = 0;
-                coinManager.yellowsCoins = 0;
+                
                 blueCoinCounter.text = "";
                 redCoinCounter.text = "";
                 yellowCoinCounter.text = "";

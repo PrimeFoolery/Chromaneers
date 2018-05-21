@@ -44,7 +44,7 @@ public class VialController : MonoBehaviour {
     private readonly Color orangeFoamLineColor = new Color(1f, 1f, 0.5f, 1);
     private readonly Color greenFoamLineColor = new Color(0.75f, 1f, 0.75f, 1);
 
-    private Material VialLiquidMaterial;
+    public Material VialLiquidMaterial;
     public GameObject VialLiquid;
 
     private float totalFillLevel = 0;

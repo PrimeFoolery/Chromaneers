@@ -107,13 +107,15 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	
 	void Update () {
 
-        var x = Input.GetAxis("Joystick1LHorizontal");
-        var y = Input.GetAxis("Joystick1LVertical");
-        Move(x, y);
+
 
         dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
+			var x = Input.GetAxis("Joystick3LHorizontal");
+			var y = Input.GetAxis("Joystick3LVertical");
+			Move(x, y);
+
             //Making a vector3 to store the characters inputs
             if (gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
             {
@@ -385,6 +387,9 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         }
 
 		if (usingXboxController) {
+			var x = Input.GetAxis("XboxJoystick3LHorizontal");
+			var y = Input.GetAxis("XboxJoystick3LVertical");
+			Move(x, y);
             //Making a vector3 to store the characters inputs
 		    if (gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
 		    {

@@ -1195,7 +1195,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1219903126564686}
-  m_LocalRotation: {x: 0.14626254, y: 0.8887047, z: 0.3896267, w: -0.1923593}
+  m_LocalRotation: {x: 0.14626256, y: 0.88870484, z: 0.38962677, w: -0.19235933}
   m_LocalPosition: {x: -3.9115547e-10, y: 0.0049011675, z: -0.0000000017881393}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_Children:
@@ -1746,7 +1746,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285530053635316}
-  m_LocalRotation: {x: 0.83489335, y: 0.134953, z: -0.52554095, w: -0.09245205}
+  m_LocalRotation: {x: 0.83489347, y: 0.13495302, z: -0.525541, w: -0.09245206}
   m_LocalPosition: {x: 0.01298028, y: 0.013683312, z: -0.0022136723}
   m_LocalScale: {x: 0.99999934, y: 0.99999934, z: 1}
   m_Children:
@@ -1791,7 +1791,7 @@ Animator:
   m_GameObject: {fileID: 1375617295274494}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d3420117e49d51d40a971fb1a7e63562, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cff12255436d2dc44bc99f23ca5476e6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1799,7 +1799,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!137 &137167189626286294
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1809,11 +1808,9 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100002, guid: d3420117e49d51d40a971fb1a7e63562, type: 3}
   m_StaticBatchInfo:
@@ -1826,7 +1823,6 @@ SkinnedMeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1896,11 +1892,9 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: d3420117e49d51d40a971fb1a7e63562, type: 3}
   m_StaticBatchInfo:
@@ -1913,7 +1907,6 @@ SkinnedMeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

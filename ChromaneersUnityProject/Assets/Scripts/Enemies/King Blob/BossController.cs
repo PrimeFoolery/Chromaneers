@@ -77,6 +77,8 @@ public class BossController : MonoBehaviour {
 
     public GameObject rainbow;
 
+	private bool waitForUpdate = false;
+
     private GameObject tempRainbowBlue;
     private GameObject tempRainbowRed;
     private GameObject tempRainbowYellow;
@@ -121,27 +123,7 @@ public class BossController : MonoBehaviour {
             FindClosestPlayer();
         }
         agent.speed = enemySpeed;
-        randomColour = Random.Range(1, 4);
-        if (randomColour == 1)
-        {
-            colourOfWeakSpot = "blue";
-            WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
-            backVial.GetComponent<VialController>().ResetToOrange();
-            PreviousColoursList.Add(colourOfWeakSpot);
-        }else if (randomColour == 2)
-        {
-            colourOfWeakSpot = "red";
-            WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
-            backVial.GetComponent<VialController>().ResetToGreen();
-            PreviousColoursList.Add(colourOfWeakSpot);
-        }
-        else if (randomColour == 3)
-        {
-            colourOfWeakSpot = "yellow";
-            WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
-            backVial.GetComponent<VialController>().ResetToPurple();
-            PreviousColoursList.Add(colourOfWeakSpot);
-        }
+        
 
         gameObject.GetComponent<ParticleSystemRenderer>().material = greyParticle;
 
@@ -150,6 +132,30 @@ public class BossController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(waitForUpdate==false){
+			randomColour = Random.Range(1, 4);
+			if (randomColour == 1)
+			{
+				colourOfWeakSpot = "blue";
+				WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
+				backVial.GetComponent<VialController>().ResetToOrange();
+				PreviousColoursList.Add(colourOfWeakSpot);
+			}else if (randomColour == 2)
+			{
+				colourOfWeakSpot = "red";
+				WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
+				backVial.GetComponent<VialController>().ResetToGreen();
+				PreviousColoursList.Add(colourOfWeakSpot);
+			}
+			else if (randomColour == 3)
+			{
+				colourOfWeakSpot = "yellow";
+				WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
+				backVial.GetComponent<VialController>().ResetToPurple();
+				PreviousColoursList.Add(colourOfWeakSpot);
+			}
+			waitForUpdate = true;
+		}
 	    if (gameManager.isItSingleplayer == false)
 	    {
 	        isItCoop = true;
