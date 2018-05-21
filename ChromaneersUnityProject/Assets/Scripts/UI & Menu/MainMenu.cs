@@ -15,10 +15,12 @@ public class MainMenu : MonoBehaviour {
 
     public GameObject OptionsPanel;
     public GameObject MainMenuPanel;
+    public GameObject CheckpointsPanel;
     public AudioMixer audioMixer;
 
     public GameObject[] buttonList;
     public GameObject[] buttonListOpt;
+    public GameObject[] buttonListCheck;
     public bool canInteract = true;
     private float InteractTimer;
     public float maxIntTimer;
@@ -45,6 +47,11 @@ public class MainMenu : MonoBehaviour {
     public GameObject mediumText;
     public GameObject lowText;
 	public GameObject fullScreeenText;
+    public GameObject checkpointsText;
+    public GameObject checkpointOneText;
+    public GameObject checkpointTwoText;
+    public GameObject checkpointThreeText;
+    public GameObject back2;
 
 
     [Header("State")]
@@ -88,6 +95,14 @@ public class MainMenu : MonoBehaviour {
 			} else {
 				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
+            if (eventSys.currentSelectedGameObject == buttonList[4])
+            {
+                checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+            }
+            else
+            {
+                checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+            }
             if (usingXboxController == true)
             {
                 Vector3 menuInput1;
@@ -229,7 +244,95 @@ public class MainMenu : MonoBehaviour {
                 }
             }
         }
-        if(MenuState == "OptionsMenu")
+        if (MenuState == "CheckpointsMenu")
+        {
+            if (eventSys.currentSelectedGameObject == buttonListCheck[0])
+            {
+                checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+            }
+            else
+            {
+                checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListCheck[1])
+            {
+                checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+            }
+            else
+            {
+                checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListCheck[2])
+            {
+                checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+            }
+            else
+            {
+                checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+            }
+            if (eventSys.currentSelectedGameObject == buttonListCheck[3])
+            {
+                back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+            }
+            else
+            {
+                back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+            }
+            if (usingXboxController == true)
+            {
+                Vector3 menuInput1;
+                menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
+                if (menuInput1.z < 0f)
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListCheck[0]);
+                        canInteract = false;
+                    }
+                }
+                if (menuInput1.z > 0f)
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListCheck[3]);
+                        canInteract = false;
+                    }
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (eventSys.currentSelectedGameObject == null)
+                {
+                    eventSys.SetSelectedGameObject(buttonListCheck[0]);
+                    canInteract = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (eventSys.currentSelectedGameObject == null)
+                {
+                    eventSys.SetSelectedGameObject(buttonListCheck[3]);
+                    canInteract = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                if (eventSys.currentSelectedGameObject == null)
+                {
+                    eventSys.SetSelectedGameObject(buttonListCheck[0]);
+                    canInteract = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (eventSys.currentSelectedGameObject == null)
+                {
+                    eventSys.SetSelectedGameObject(buttonListCheck[3]);
+                    canInteract = false;
+                }
+            }
+        }
+            if (MenuState == "OptionsMenu")
         {
             //text alpha changes
 			if (eventSys.currentSelectedGameObject == buttonListOpt [0].gameObject) {
@@ -486,6 +589,25 @@ public class MainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("NewWorld");
     }
+    public void Checkpoints()
+    {
+        MainMenuPanel.SetActive(false);
+        CheckpointsPanel.SetActive(true);
+        MenuState = "CheckpointsMenu";
+        eventSys.SetSelectedGameObject(buttonListCheck[0]);
+    }
+    public void CheckpointOne()
+    {
+        SceneManager.LoadScene("NewWorldCheckpoint1");
+    }
+    public void CheckpointTwo()
+    {
+        SceneManager.LoadScene("NewWorldCheckpoint2");
+    }
+    public void CheckpointThree()
+    {
+        SceneManager.LoadScene("NewWorldCheckpoint3");
+    }
     public void Options()
     {
         MainMenuPanel.SetActive(false);
@@ -564,6 +686,7 @@ public class MainMenu : MonoBehaviour {
         MenuState = "MainMenu";
         MainMenuPanel.SetActive(true);
         OptionsPanel.SetActive(false);
+        CheckpointsPanel.SetActive(false);
 		eventSys.SetSelectedGameObject (buttonList [0]);
     }
 }
