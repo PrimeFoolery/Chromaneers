@@ -48,9 +48,9 @@ public class VialController : MonoBehaviour {
     public GameObject VialLiquid;
 
     private float totalFillLevel = 0;
-    private float blueFillLevel = 0;
+    public float blueFillLevel = 0;
     private float redFillLevel = 0;
-    private float yellowFillLevel = 0;
+    public float yellowFillLevel = 0;
 
     private float blueDrainTimer = 1f;
     private float redDrainTimer = 1f;
@@ -365,9 +365,9 @@ public class VialController : MonoBehaviour {
             }
             if (other.gameObject.CompareTag("RedBullet"))
             {
-                if (yellowFillLevel < 5)
+                if (redFillLevel < 5)
                 {
-                    yellowFillLevel += 1;
+                    redFillLevel += 1;
                 }
                 redDrainTimer = 1f;
                 Destroy(other.gameObject);
@@ -385,6 +385,7 @@ public class VialController : MonoBehaviour {
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
         VialCorrectlyFilled = false;
+        thisVialsColour = Colours.blue;
         gameObject.GetComponent<Renderer>().material = VialBaseBlue;
         VialLiquidMaterial.SetColor("_Tint", blueTintColor);
         VialLiquidMaterial.SetColor("_TopColor", blueTopColor);
@@ -400,6 +401,7 @@ public class VialController : MonoBehaviour {
         blueDrainTimer = 1f;
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
+        thisVialsColour = Colours.red;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseRed;
         VialLiquidMaterial.SetColor("_Tint", redTintColor);
@@ -416,6 +418,7 @@ public class VialController : MonoBehaviour {
         blueDrainTimer = 1f;
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
+        thisVialsColour = Colours.yellow;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseYellow;
         VialLiquidMaterial.SetColor("_Tint", yellowTintColor);
@@ -433,6 +436,7 @@ public class VialController : MonoBehaviour {
         blueDrainTimer = 1f;
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
+        thisVialsColour = Colours.purple;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBasePurple;
         VialLiquidMaterial.SetColor("_Tint", purpleTintColor);
@@ -451,6 +455,7 @@ public class VialController : MonoBehaviour {
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
         VialCorrectlyFilled = false;
+        thisVialsColour = Colours.orange;
         gameObject.GetComponent<Renderer>().material = VialBaseOrange;
         VialLiquidMaterial.SetColor("_Tint", orangeTintColor);
         VialLiquidMaterial.SetColor("_TopColor", orangeTopColor);
@@ -467,6 +472,7 @@ public class VialController : MonoBehaviour {
         blueDrainTimer = 1f;
         redDrainTimer = 1f;
         yellowDrainTimer = 1f;
+        thisVialsColour = Colours.green;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseGreen;
         VialLiquidMaterial.SetColor("_Tint", greenTintColor);

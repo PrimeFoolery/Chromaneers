@@ -59,6 +59,21 @@ public class BossEnemySphere : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-        
+
+        if (other.gameObject.CompareTag("BluePlayer"))
+        {
+            other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().GetHit();
+        }
+
+        if (other.gameObject.CompareTag("RedPlayer"))
+        {
+            other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().GetHit();
+        }
+
+        if (other.gameObject.CompareTag("YellowPlayer"))
+        {
+            other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().GetHit();
+        }
+
     }
 }

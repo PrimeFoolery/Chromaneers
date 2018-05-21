@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 33349506980110950}
   - component: {fileID: 65700092121565084}
   - component: {fileID: 23871545983355298}
+  - component: {fileID: 114407876165042900}
   m_Layer: 0
   m_Name: RightDoor
   m_TagString: Wall
@@ -427,6 +428,7 @@ GameObject:
   - component: {fileID: 33163690666081434}
   - component: {fileID: 65075945212930952}
   - component: {fileID: 23821202381505762}
+  - component: {fileID: 114928621566686942}
   m_Layer: 0
   m_Name: LeftDoor
   m_TagString: Wall
@@ -618,7 +620,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1218682762989226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.2, y: 0.21828842, z: 713.5}
+  m_LocalPosition: {x: 82.2, y: 0.21828842, z: 718.6}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 4889493917170820}
@@ -1494,7 +1496,10 @@ MonoBehaviour:
   VialBaseOrange: {fileID: 2100000, guid: 9595e98dfb55baf4da1e32bdf40629ed, type: 2}
   VialBasePurple: {fileID: 2100000, guid: 1fc2d559949a4524c8671a27a08fa6eb, type: 2}
   VialBaseGreen: {fileID: 2100000, guid: 6f1862211ca54a440bd6a4adc696e06d, type: 2}
+  VialLiquidMaterial: {fileID: 0}
   VialLiquid: {fileID: 1933537444268304}
+  blueFillLevel: 0
+  yellowFillLevel: 0
   VialCorrectlyFilled: 0
 --- !u!114 &114095505574995524
 MonoBehaviour:
@@ -1577,6 +1582,7 @@ MonoBehaviour:
   WeakSpot: {fileID: 1390322599514746}
   CurrentRainbowState: 0
   coin: {fileID: 1535116212090620, guid: 271a092a96e2fa9438fc48fb8d42d4f8, type: 2}
+  doorToTrigger: {fileID: 0}
 --- !u!114 &114270090616247548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1592,6 +1598,17 @@ MonoBehaviour:
   FastEnemy: {fileID: 1411536649024084, guid: c6ecf3101092ed64f94e7cbcb980d4df, type: 2}
   ThisSpawnpointsEnemyList: []
   tempEnemy: {fileID: 0}
+--- !u!114 &114407876165042900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249844570293770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e6b8c031465cc4088a2509cb9b72cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114785748647244068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1649,6 +1666,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossMain: {fileID: 1218682762989226}
+--- !u!114 &114928621566686942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980081314906716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e6b8c031465cc4088a2509cb9b72cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135732463252105028
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1742,7 +1770,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -950661851
+  randomSeed: -1411229809
   InitialModule:
     serializedVersion: 3
     enabled: 1

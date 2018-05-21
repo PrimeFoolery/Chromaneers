@@ -14,6 +14,8 @@ public class MotherController : MonoBehaviour
     public bool isAggroPlayer = false;
     NavMeshAgent agent;
 
+    public Renderer leftEyeRenderer;
+    public Renderer rightEyeRenderer;
     public Renderer SphereRenderer;
     private float enemySpeed = 0.1f;
     public float enemyRunningAwaySpeed = 3f;
@@ -190,8 +192,14 @@ public class MotherController : MonoBehaviour
 
 	        mainCamera.GetComponent<CameraScript>().BigScreenShake();
 	        gameManager.GetComponent<EnemyManager>().enemyList.Remove(gameObject);
-	        Destroy(this.gameObject);
-        }
+	        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+	        SphereRenderer.enabled = false;
+	        leftEyeRenderer.enabled = false;
+	        rightEyeRenderer.enabled = false;
+	        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+	        gameObject.GetComponent<MotherController>().enabled = false;
+	        //Destroy(this.gameObject);
+	    }
 
 	    agent.speed = enemySpeed;
 	}
