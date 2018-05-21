@@ -89,7 +89,7 @@ public class BossController : MonoBehaviour {
 
     private float panicTimer = 0.2f;
 
-    private float deathTime = 3f;
+    private float deathTime = 4f;
 
     public GameObject WeakSpot;
 
@@ -98,8 +98,6 @@ public class BossController : MonoBehaviour {
     private GameObject mainCamera;
 
     public GameObject coin;
-    private GameObject tempPing;
-    public GameObject pingPrefab;
 
     public GameObject doorToTrigger;
 
@@ -166,21 +164,17 @@ public class BossController : MonoBehaviour {
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
-	            //isAggroPlayer = true;
+	            isAggroPlayer = true;
 	        }
-	            if (retargetingDelay == 3f)
-	            {
-                    Debug.Log("ping function");
-	                PingForPlayer();
-	            }
-
 	        if (isAggroPlayer == true)
 	        {
+	            if (retargetingDelay == 3f)
+	            {
+	                FindClosestPlayer();
+	            }
 	            agent.SetDestination(targetPlayer.transform.position);
-            }
-	            
 	           
-	        
+	        }
 
 
 	    }
@@ -281,7 +275,7 @@ public class BossController : MonoBehaviour {
 	    {
             if (CurrentRainbowState == coinController.RainbowState.spawn)
             {
-                enemyHealth = 60;
+                enemyHealth = 30;
                 tempRainbowBlue = Instantiate(rainbow, new Vector3(BluePlayer.transform.position.x, BluePlayer.transform.position.y + 50f, BluePlayer.transform.position.z), Quaternion.identity, BluePlayer.transform);
                 
                 tempRainbowRed = Instantiate(rainbow, new Vector3(RedPlayer.transform.position.x, RedPlayer.transform.position.y + 50f, RedPlayer.transform.position.z), Quaternion.identity, RedPlayer.transform);
@@ -1015,13 +1009,7 @@ public class BossController : MonoBehaviour {
     public void SpawnCandy()
     {
         Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
-    }
-
-    public void PingForPlayer()
-    {
-        Debug.Log("Spawn ping");
-        tempPing = Instantiate(pingPrefab, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x-90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
-        tempPing.GetComponent<BossAggroPingScript>().boss = gameObject;
-        readyToRetarget = false;
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
     }
 }
