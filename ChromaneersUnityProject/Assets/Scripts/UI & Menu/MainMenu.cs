@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject highText;
     public GameObject mediumText;
     public GameObject lowText;
+	public GameObject fullScreeenText;
 
 
     [Header("State")]
@@ -232,121 +233,121 @@ public class MainMenu : MonoBehaviour {
         {
             //text alpha changes
 			if (eventSys.currentSelectedGameObject == buttonListOpt [0].gameObject) {
-				buttonListOpt[0].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+				fullScreeenText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
                 TickBoxImage2.color = new Color(0, 0, 0, 1f);
 			} else {
-                buttonListOpt[0].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+				fullScreeenText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
                 TickBoxImage2.color = new Color(0, 0, 0, 0.5f);
             }
             if(eventSys.currentSelectedGameObject == buttonListOpt [1])
             {
-                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+                buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
             }
 			if (eventSys.currentSelectedGameObject == buttonListOpt [2]) {
-                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 1f);
+                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
 			} else {
-                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (1, 1, 1, 0.5f);
+                buttonListOpt[2].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
 			}
             if (eventSys.currentSelectedGameObject == buttonListOpt[3])
             {
-                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
 
             if (eventSys.currentSelectedGameObject == buttonListOpt[4])
             {
-                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[5])
             {
-                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[6])
             {
-                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[7])
             {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[8])
             {
-                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[9])
             {
-                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[10])
             {
-                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[11])
             {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[12])
             {
-                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[13])
             {
-                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
             if (eventSys.currentSelectedGameObject == buttonListOpt[14])
             {
-                buttonListOpt[14].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 1f);
+                backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
             }
             else
             {
-                buttonListOpt[14].GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0.5f);
+				backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
             }
 
             //toggles
