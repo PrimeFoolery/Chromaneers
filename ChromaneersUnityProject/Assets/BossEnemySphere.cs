@@ -53,7 +53,7 @@ public class BossEnemySphere : MonoBehaviour
             if (other.gameObject.tag == "RainbowBullet" || other.gameObject.tag == "RedBullet" || other.gameObject.tag == "BlueBullet" || other.gameObject.tag == "YellowBullet")
             {
                 BossMain.GetComponent<BossController>().enemyHealth -= 1;
-                BossMain.transform.localScale -= new Vector3(0.02f, 0.02f, 0.02f);
+                BossMain.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
                 BossMain.GetComponent<BossController>().SpawnCandy();
                 BossMain.GetComponent<ParticleSystem>().Play();
                 Destroy(other.gameObject);
