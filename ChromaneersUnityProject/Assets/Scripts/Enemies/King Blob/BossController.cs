@@ -89,7 +89,7 @@ public class BossController : MonoBehaviour {
 
     private float panicTimer = 0.2f;
 
-    private float deathTime = 4f;
+    private float deathTime = 3f;
 
     public GameObject WeakSpot;
 
@@ -98,6 +98,8 @@ public class BossController : MonoBehaviour {
     private GameObject mainCamera;
 
     public GameObject coin;
+    private GameObject tempPing;
+    public GameObject pingPrefab;
 
     public GameObject doorToTrigger;
 
@@ -164,20 +166,21 @@ public class BossController : MonoBehaviour {
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
-	            isAggroPlayer = true;
+	            //isAggroPlayer = true;
 	        }
 	        if (isAggroPlayer == true)
 	        {
-	            if (retargetingDelay == 3f)
-	            {
-	                FindClosestPlayer();
-	            }
+	            
 	            agent.SetDestination(targetPlayer.transform.position);
 	           
 	        }
+	        if (retargetingDelay == 3f)
+	        {
+	            PingForPlayer();
+	        }
 
 
-	    }
+        }
 	    if (readyToRetarget == false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
 	    {
 	        retargetingDelay -= Time.deltaTime;
@@ -275,7 +278,7 @@ public class BossController : MonoBehaviour {
 	    {
             if (CurrentRainbowState == coinController.RainbowState.spawn)
             {
-                enemyHealth = 30;
+                enemyHealth = 60;
                 tempRainbowBlue = Instantiate(rainbow, new Vector3(BluePlayer.transform.position.x, BluePlayer.transform.position.y + 50f, BluePlayer.transform.position.z), Quaternion.identity, BluePlayer.transform);
                 
                 tempRainbowRed = Instantiate(rainbow, new Vector3(RedPlayer.transform.position.x, RedPlayer.transform.position.y + 50f, RedPlayer.transform.position.z), Quaternion.identity, RedPlayer.transform);
@@ -325,25 +328,35 @@ public class BossController : MonoBehaviour {
                 CurrentRainbowState = coinController.RainbowState.preStart;
             }
 
-	        if (enemyHealth<30&&enemyHealth>25)
+	        if (enemyHealth<60&&enemyHealth>50)
 	        {
 	            agent.speed = 3.5f;
 	        }else
-	        if (enemyHealth < 25 && enemyHealth > 20)
+	        if (enemyHealth < 50 && enemyHealth > 42)
 	        {
 	            agent.speed = 4f;
 	        }else
-	        if (enemyHealth < 20 && enemyHealth > 15)
+	        if (enemyHealth < 42 && enemyHealth > 34)
 	        {
 	            agent.speed = 4.5f;
 	        }else
-	        if (enemyHealth < 10 && enemyHealth > 5)
+	        if (enemyHealth < 34 && enemyHealth > 26)
 	        {
 	            agent.speed = 5f;
 	        }else
-	        if (enemyHealth < 5 && enemyHealth > 0)
+	        if (enemyHealth < 26 && enemyHealth > 18)
 	        {
 	            agent.speed = 5.5f;
+	        }
+	        else
+	        if (enemyHealth < 18 && enemyHealth > 10)
+	        {
+	            agent.speed = 6f;
+	        }
+	        else
+	        if (enemyHealth < 10 && enemyHealth > 0)
+	        {
+	            agent.speed = 6.5f;
 	        }
 
             panicTimer -= Time.deltaTime;
@@ -1009,7 +1022,12 @@ public class BossController : MonoBehaviour {
     public void SpawnCandy()
     {
         Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
-        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
-        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
+    }
+    public void PingForPlayer()
+    {
+        Debug.Log("Spawn ping");
+        tempPing = Instantiate(pingPrefab, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+        tempPing.GetComponent<BossAggroPingScript>().boss = gameObject;
+        readyToRetarget = false;
     }
 }

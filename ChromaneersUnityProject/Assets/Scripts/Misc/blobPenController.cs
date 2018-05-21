@@ -327,13 +327,13 @@ public class blobPenController : MonoBehaviour
                 {
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>()!=null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
@@ -432,13 +432,13 @@ public class blobPenController : MonoBehaviour
                 {
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
@@ -537,13 +537,13 @@ public class blobPenController : MonoBehaviour
                 {
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
                     if (other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
                     {
-                        other.GetComponent<SpiderEnemyController>().thisEnemiesSpawnPoint
+                        other.GetComponentInChildren<SpiderEnemyController>().thisEnemiesSpawnPoint
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }

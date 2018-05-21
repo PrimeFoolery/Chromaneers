@@ -39,11 +39,6 @@ public class deathTracker : MonoBehaviour
 
     void Awake()
     {
-        if (created == false)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            created = true;
-        }
     }
 	// Use this for initialization
 	void Start ()
@@ -135,7 +130,9 @@ public class deathTracker : MonoBehaviour
     void reloadScene()
     {
         currentVignetteState = VignetteState.widen;
-        
+
+        if (SceneManager.GetActiveScene().name == "NewWorld")
+        {
             if (howManyAreasComplete == 0)
             {
                 SceneManager.LoadScene("NewWorld", LoadSceneMode.Single);
@@ -147,13 +144,53 @@ public class deathTracker : MonoBehaviour
             else if (howManyAreasComplete == 2)
             {
                 SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
-            }else if (howManyAreasComplete == 3)
-            {
-                //SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
-        
-        
-        
+            else if (howManyAreasComplete == 3)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
+            }
+        }else if (SceneManager.GetActiveScene().name == "NewWorldCheckpoint1")
+        {
+            if (howManyAreasComplete==0)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint1", LoadSceneMode.Single);
+            }
+            else if (howManyAreasComplete == 1)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
+            }
+            else if (howManyAreasComplete == 2)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "NewWorldCheckpoint2")
+        {
+            if (howManyAreasComplete == 0)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
+            }
+            else if (howManyAreasComplete == 1)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "NewWorldCheckpoint3")
+        {
+            if (howManyAreasComplete == 0)
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
+            }
+            else
+            {
+                SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
+            }
+        }
+
+
+
+
+
 
     }
 }
