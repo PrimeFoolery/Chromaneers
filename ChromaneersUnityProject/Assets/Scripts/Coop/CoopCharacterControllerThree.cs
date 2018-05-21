@@ -282,7 +282,7 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        {
 		        Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("Joystick3LHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3LVertical");
 		        if (playerDirectionAlt.sqrMagnitude > 0.0f) {
-			        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+			        transform.rotation = Quaternion.LookRotation(playerDirectionAlt, Vector3.up);
 			        playerLookDirection.x = playerDirectionAlt.x;
 			        playerLookDirection.y = playerDirectionAlt.z;
 		        }

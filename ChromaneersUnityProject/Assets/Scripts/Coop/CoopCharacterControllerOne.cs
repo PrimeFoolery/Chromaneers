@@ -117,9 +117,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	}
 	
 	void Update ()
-	{
-
-        
+	{ 
 
 	    dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
@@ -274,7 +272,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	        {
 		        Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("Joystick1LHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick1LVertical");
 		        if (playerDirectionAlt.sqrMagnitude > 0.0f) {
-			        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+			        transform.rotation = Quaternion.LookRotation(playerDirectionAlt, Vector3.up);
 			        playerLookDirection.x = playerDirectionAlt.x;
 			        playerLookDirection.y = playerDirectionAlt.z;
 		        }
