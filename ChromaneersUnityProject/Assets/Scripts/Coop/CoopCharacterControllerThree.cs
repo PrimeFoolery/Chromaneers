@@ -7,6 +7,7 @@ using Es.InkPainter;
 public class CoopCharacterControllerThree : MonoBehaviour {
 
     [Header("Player Variables")]
+    public bool isCameraZoomedOut = false;
     public float moveSpeed;
     public float shootingSpeed;
     public float timeToShoot;
@@ -133,33 +134,68 @@ public class CoopCharacterControllerThree : MonoBehaviour {
                 moveVelocity = new Vector3(0, 0, 0);
                 audio.Stop();
             }
-            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+            if (isCameraZoomedOut == false)
             {
-                if (moveInput.x <= 0)
+                if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
                 {
-                    moveInput.x = 0;
+                    if (moveInput.x <= 0)
+                    {
+                        moveInput.x = 0;
+                    }
                 }
-            }
-            else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
-            {
-                if (moveInput.x >= 0)
+                else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
                 {
-                    moveInput.x = 0;
+                    if (moveInput.x >= 0)
+                    {
+                        moveInput.x = 0;
+                    }
                 }
-            }
 
-            if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
-            {
-                if (moveInput.z <= 0)
+                if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
                 {
-                    moveInput.z = 0;
+                    if (moveInput.z <= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+                else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
+                {
+                    if (moveInput.z >= 0)
+                    {
+                        moveInput.z = 0;
+                    }
                 }
             }
-            else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
+            else
             {
-                if (moveInput.z >= 0)
+                if (transform.position.x - mainCameraScript.averagePos.x <= -35f || transform.position.x - redPlayer.gameObject.transform.position.x <= -45f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -45f)
                 {
-                    moveInput.z = 0;
+                    if (moveInput.x <= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
+                else if (transform.position.x - mainCameraScript.averagePos.x >= 35f || transform.position.x - redPlayer.gameObject.transform.position.x >= 45f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 45f)
+                {
+                    if (moveInput.x >= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
+
+                if (transform.position.z - mainCameraScript.averagePos.z <= -25f || transform.position.z - redPlayer.gameObject.transform.position.z <= -35f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -35f)
+                {
+                    if (moveInput.z <= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+                else if (transform.position.z - mainCameraScript.averagePos.z >= 25f || transform.position.z - redPlayer.gameObject.transform.position.z >= 35f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 35f)
+                {
+                    if (moveInput.z >= 0)
+                    {
+                        moveInput.z = 0;
+                    }
                 }
             }
 
@@ -420,37 +456,72 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		        moveVelocity = new Vector3(0, 0, 0);
 		        audio.Stop();
             }
-            if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
-		    {
-		        if (moveInput.x <= 0)
-		        {
-		            moveInput.x = 0;
-		        }
-		    }
-		    else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
-		    {
-		        if (moveInput.x >= 0)
-		        {
-		            moveInput.x = 0;
-		        }
-		    }
+            if (isCameraZoomedOut == false)
+            {
+                if (transform.position.x - mainCameraScript.averagePos.x <= -25f || transform.position.x - redPlayer.gameObject.transform.position.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -35f)
+                {
+                    if (moveInput.x <= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
+                else if (transform.position.x - mainCameraScript.averagePos.x >= 25f || transform.position.x - redPlayer.gameObject.transform.position.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 35f)
+                {
+                    if (moveInput.x >= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
 
-		    if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
-		    {
-		        if (moveInput.z <= 0)
-		        {
-		            moveInput.z = 0;
-		        }
-		    }
-		    else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
-		    {
-		        if (moveInput.z >= 0)
-		        {
-		            moveInput.z = 0;
-		        }
-		    }
+                if (transform.position.z - mainCameraScript.averagePos.z <= -15f || transform.position.z - redPlayer.gameObject.transform.position.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -25f)
+                {
+                    if (moveInput.z <= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+                else if (transform.position.z - mainCameraScript.averagePos.z >= 15f || transform.position.z - redPlayer.gameObject.transform.position.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 25f)
+                {
+                    if (moveInput.z >= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (transform.position.x - mainCameraScript.averagePos.x <= -35f || transform.position.x - redPlayer.gameObject.transform.position.x <= -45f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -45f)
+                {
+                    if (moveInput.x <= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
+                else if (transform.position.x - mainCameraScript.averagePos.x >= 35f || transform.position.x - redPlayer.gameObject.transform.position.x >= 45f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 45f)
+                {
+                    if (moveInput.x >= 0)
+                    {
+                        moveInput.x = 0;
+                    }
+                }
 
-		    if (CanPlayerMove==true)
+                if (transform.position.z - mainCameraScript.averagePos.z <= -25f || transform.position.z - redPlayer.gameObject.transform.position.z <= -35f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -35f)
+                {
+                    if (moveInput.z <= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+                else if (transform.position.z - mainCameraScript.averagePos.z >= 25f || transform.position.z - redPlayer.gameObject.transform.position.z >= 35f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 35f)
+                {
+                    if (moveInput.z >= 0)
+                    {
+                        moveInput.z = 0;
+                    }
+                }
+            }
+
+            if (CanPlayerMove==true)
 		    {
                 if (!isShooting)
                 {
