@@ -6,14 +6,12 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="areaCompleteText.cs" t="Include" />
-        <e p="BossController.cs" t="Include" />
-        <e p="cableController.cs" t="Include" />
-        <e p="CameraZoomTrigger.cs" t="Include" />
-        <e p="coinController.cs" t="Include" />
-        <e p="coinPickupScript.cs" t="Include" />
-        <e p="deathTracker.cs" t="Include" />
-        <e p="FaceCamera.cs" t="Include" />
+        <e p="BossBattleObeliskSphere.cs" t="Include" />
+        <e p="BossEnemySphere.cs" t="Include" />
+        <e p="bossWall.cs" t="Include" />
+        <e p="checkpoint.cs" t="Include" />
+        <e p="deleteSelf.cs" t="Include" />
+        <e p="fireworksLauncher.cs" t="Include" />
         <e p="ImportedAssets" t="Include">
           <e p="InkPainter" t="Include">
             <e p="readme_en.txt" t="Include" />
@@ -343,7 +341,6 @@
             <e p="MITLicense.txt" t="Include" />
           </e>
         </e>
-        <e p="JumpingPuzzleHelper.cs" t="Include" />
         <e p="Material" t="Include">
           <e p="Coop" t="Include">
             <e p="NewPlayerShader.shader" t="Include" />
@@ -370,8 +367,7 @@
             </e>
           </e>
         </e>
-        <e p="MotherController.cs" t="Include" />
-        <e p="MotherSpawnPoint.cs" t="Include" />
+        <e p="ParticleSystemDestroy.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Editor" t="Include">
             <e p="JetBrains" t="Include">
@@ -408,6 +404,16 @@
             <e p="FastEnemy" t="Include">
               <e p="FastEnemy.cs" t="Include" />
             </e>
+            <e p="King Blob" t="Include">
+              <e p="BossBattleObelisk.cs" t="Include" />
+              <e p="BossController.cs" t="Include" />
+              <e p="BossObeliskTriggerCube.cs" t="Include" />
+              <e p="WeakSpotController.cs" t="Include" />
+            </e>
+            <e p="Mother" t="Include">
+              <e p="MotherController.cs" t="Include" />
+              <e p="MotherSpawnPoint.cs" t="Include" />
+            </e>
             <e p="Shield Enemy" t="Include">
               <e p="ShieldBehaviour.cs" t="Include" />
             </e>
@@ -430,22 +436,30 @@
             </e>
           </e>
           <e p="Misc" t="Include">
+            <e p="areaCompleteText.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
             <e p="blobPenController.cs" t="Include" />
             <e p="BlueObelisk.cs" t="Include" />
+            <e p="cableController.cs" t="Include" />
+            <e p="CameraZoomTrigger.cs" t="Include" />
             <e p="chestController.cs" t="Include" />
+            <e p="coinController.cs" t="Include" />
+            <e p="coinPickupScript.cs" t="Include" />
             <e p="ColourPicker.cs" t="Include" />
             <e p="ColourSelectManager.cs" t="Include" />
             <e p="ColourSelectorLineController.cs" t="Include" />
+            <e p="deathTracker.cs" t="Include" />
             <e p="DestructiblePropScript.cs" t="Include" />
             <e p="doorController.cs" t="Include" />
             <e p="dustExplosionController.cs" t="Include" />
             <e p="EnemyManager.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
+            <e p="FaceCamera.cs" t="Include" />
             <e p="greenObelisk.cs" t="Include" />
             <e p="heartScript.cs" t="Include" />
             <e p="infiniteSpawner.cs" t="Include" />
             <e p="InfiniteSpawnPoint.cs" t="Include" />
+            <e p="JumpingPuzzleHelper.cs" t="Include" />
             <e p="keyController.cs" t="Include" />
             <e p="keyPickup.cs" t="Include" />
             <e p="newSpawner.cs" t="Include" />
@@ -494,7 +508,7 @@
         <e p="Text" t="Include">
           <e p="secondary colour combos.txt" t="Include" />
         </e>
-        <e p="WeakSpotController.cs" t="Include" />
+        <e p="WallSpawner.cs" t="Include" />
       </e>
       <e p="ChromaneersUnityProject.sln" t="IncludeFlat" />
       <e p="Library" t="ExcludeRecursive" />

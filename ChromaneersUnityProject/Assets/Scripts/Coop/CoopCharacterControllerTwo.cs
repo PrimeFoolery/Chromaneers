@@ -11,6 +11,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
     public float shootingSpeed;
     public float timeToShoot;
     public Vector3 playerDirection;
+	private Vector2 playerLookDirection;
     [Space(10)]
     public bool usingXboxController;
     public bool isShooting;
@@ -101,6 +102,9 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
         brush.Color = redColor;
         audio = GetComponent<AudioSource>();
+	    
+	    playerLookDirection.x = 0f;
+	    playerLookDirection.y = 1f;
     }
 	
 	void Update () {
@@ -110,9 +114,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
-			var x = Input.GetAxis("Joystick2LHorizontal");
-			var y = Input.GetAxis("Joystick2LVertical");
-			Move(x, y);
+	        var xLeft = Input.GetAxis("Joystick2LHorizontal");
+	        var yLeft = Input.GetAxis("Joystick2LVertical");
+	        var xRight = Input.GetAxis("Joystick2RHorizontal");
+	        var yRight = Input.GetAxis("Joystick2RVertical");
+	        Move(xLeft, yLeft, xRight, yRight);
             //Making a vector3 to store the characters inputs
             if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
             {
@@ -239,12 +245,24 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			}
             
 
-            //Making a new vector3 to do rotations with joystick
-            playerDirection = Vector3.right * Input.GetAxisRaw("Joystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick2RVertical");
+	        //Making a new vector3 to do rotations with joystick
+	        playerDirection = Vector3.right * Input.GetAxisRaw("Joystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick2RVertical");
 	        //Checking if the vector3 has got a value inputed
 	        if (playerDirection.sqrMagnitude > 0.0f) {
-	            transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+		        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+		        playerLookDirection.x = playerDirection.x;
+		        playerLookDirection.y = playerDirection.z;
 	        }
+	        else
+	        {
+		        Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("Joystick2LHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick2LVertical");
+		        if (playerDirectionAlt.sqrMagnitude > 0.0f) {
+			        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+			        playerLookDirection.x = playerDirectionAlt.x;
+			        playerLookDirection.y = playerDirectionAlt.z;
+		        }
+	        }
+	        
             //Stops people from spam clicking to shoot faster
             timeToShoot -= Time.deltaTime;
             if (timeToShoot <= 0) {
@@ -359,9 +377,11 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         }
 
 		if (usingXboxController) {
-			var x = Input.GetAxis("XboxJoystick2LHorizontal");
-			var y = Input.GetAxis("XboxJoystick2LVertical");
-			Move(x, y);
+			var xLeft = Input.GetAxis("XboxJoystick2LHorizontal");
+			var yLeft = Input.GetAxis("XboxJoystick2LVertical");
+			var xRight = Input.GetAxis("XboxJoystick2RHorizontal");
+			var yRight = Input.GetAxis("XboxJoystick2RVertical");
+			Move(xLeft, yLeft, xRight, yRight);
             //Making a vector3 to store the characters inputs
 		    if (gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
 		    {
@@ -487,11 +507,24 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 			}
             
 
-            //Making a new vector3 to do rotations with joystick
-            playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick2RVertical");
+			//Making a new vector3 to do rotations with joystick
+			//Setting it where player can move and shoot whilst looking around
+			playerDirection = Vector3.right * Input.GetAxisRaw("XboxJoystick2RHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick2RVertical");
 			//Checking if the vector3 has got a value inputed
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+				playerLookDirection.x = playerDirection.x;
+				playerLookDirection.y = playerDirection.z;
+			}
+			//Setting it where player can rotate whilst moving but not shoot
+			else
+			{
+				Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("XboxJoystick2LHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick2LVertical");
+				if (playerDirectionAlt.sqrMagnitude > 0.0f) {
+					transform.rotation = Quaternion.LookRotation(playerDirectionAlt, Vector3.up);
+					playerLookDirection.x = playerDirectionAlt.x;
+					playerLookDirection.y = playerDirectionAlt.z;
+				}
 			}
             
             //Stops people from spam clicking to shoot faster
@@ -684,9 +717,45 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
         }
     }
 
-    private void Move(float x, float y)
+    private void Move(float xLeft, float yLeft, float xRight, float yRight)
     {
-        anim.SetFloat("velX", x);
-        anim.SetFloat("velZ", y);
+	    //Setting the float of the animation in the beginning 
+	    anim.SetFloat("velX", xLeft);
+	    anim.SetFloat("velZ", yLeft);
+
+	    //Creating two new vectors, a move and look vector
+	    Vector2 moveVector = new Vector2(xLeft, yLeft);
+	    Vector2 lookVector = new Vector2(playerDirection.x, playerDirection.z);
+
+	    //Creating a value that is based between two vectors
+	    float dotMovement = Vector2.Dot(moveVector, lookVector);
+	    
+	    float lookVelocity = Mathf.Sqrt(Vector2.SqrMagnitude(lookVector));
+	    float moveVelocity = Mathf.Sqrt(Vector2.SqrMagnitude(moveVector));
+
+	    if (lookVelocity > 0 && moveVelocity > 0)
+	    {
+		    //Both sticks are moving
+		    anim.SetFloat("dotMovement", dotMovement);
+		    anim.SetFloat("lookVelocity", lookVelocity);
+	    } else if (lookVelocity > 0f)
+	    {
+		    //Idle but shooting
+		    anim.SetFloat("dotMovement", 0f);
+		    anim.SetFloat("lookVelocity", -1f);
+	    } else if (moveVelocity > 0f)
+	    {
+		    //moving but not shooting
+		    lookVector = playerLookDirection;
+		    lookVector.Normalize();
+		    dotMovement = Vector2.Dot(moveVector, lookVector);
+		    anim.SetFloat("dotMovement", dotMovement);
+		    anim.SetFloat("lookVelocity", 1f);
+	    }
+	    else
+	    {
+		    anim.SetFloat("dotMovement", 0f);
+		    anim.SetFloat("lookVelocity", -1f);
+	    }
     }
 }
