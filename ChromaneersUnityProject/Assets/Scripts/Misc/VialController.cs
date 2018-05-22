@@ -16,6 +16,10 @@ public class VialController : MonoBehaviour {
 
     public Colours thisVialsColour = Colours.blue;
 
+    public bool isThisBossVial = false;
+    private float maxDrainTimerNonBoss = 1f;
+    private float maxDrainTimerBoss = 2f;
+
     public Material VialBaseBlue;
     public Material VialBaseRed;
     public Material VialBaseYellow;
@@ -241,7 +245,14 @@ public class VialController : MonoBehaviour {
 	            blueFillLevel -= 1;
 	        }
 
-	        blueDrainTimer = 1f;
+	        if (isThisBossVial==false)
+	        {
+	            blueDrainTimer = maxDrainTimerNonBoss;
+            }
+	        else
+	        {
+	            blueDrainTimer = maxDrainTimerBoss;
+	        }
 	    }
 	    if (redFillLevel >2 && VialCorrectlyFilled == false)
 	    {
@@ -254,8 +265,15 @@ public class VialController : MonoBehaviour {
 	            redFillLevel -= 1;
 	        }
 
-	        redDrainTimer = 1f;
-	    }
+	        if (isThisBossVial == false)
+	        {
+	            redDrainTimer = maxDrainTimerNonBoss;
+	        }
+	        else
+	        {
+	            redDrainTimer = maxDrainTimerBoss;
+	        }
+        }
 	    if (yellowFillLevel > 2 && VialCorrectlyFilled == false)
 	    {
 	        yellowDrainTimer -= Time.deltaTime;
@@ -267,8 +285,15 @@ public class VialController : MonoBehaviour {
 	            yellowFillLevel -= 1;
 	        }
 
-	        yellowDrainTimer = 1f;
-	    }
+	        if (isThisBossVial == false)
+	        {
+	            yellowDrainTimer = maxDrainTimerNonBoss;
+	        }
+	        else
+	        {
+	            yellowDrainTimer = maxDrainTimerBoss;
+	        }
+        }
 	}
 
     void OnCollisionEnter(Collision other)
@@ -282,7 +307,14 @@ public class VialController : MonoBehaviour {
                     blueFillLevel += 1;
                     
                 }
-                blueDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    blueDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    blueDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -294,7 +326,14 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 }
-                redDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    redDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    redDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -306,7 +345,14 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    yellowDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    yellowDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -318,7 +364,14 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 };
-                redDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    redDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    redDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -327,7 +380,14 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    yellowDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    yellowDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -339,7 +399,14 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
-                blueDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    blueDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    blueDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("YellowBullet"))
@@ -348,7 +415,14 @@ public class VialController : MonoBehaviour {
                 {
                     yellowFillLevel += 1;
                 }
-                yellowDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    yellowDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    yellowDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -360,7 +434,14 @@ public class VialController : MonoBehaviour {
                 {
                     blueFillLevel += 1;
                 }
-                blueDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    blueDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    blueDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
             if (other.gameObject.CompareTag("RedBullet"))
@@ -369,7 +450,14 @@ public class VialController : MonoBehaviour {
                 {
                     redFillLevel += 1;
                 }
-                redDrainTimer = 1f;
+                if (isThisBossVial == false)
+                {
+                    redDrainTimer = maxDrainTimerNonBoss;
+                }
+                else
+                {
+                    redDrainTimer = maxDrainTimerBoss;
+                }
                 Destroy(other.gameObject);
             }
         }
@@ -381,9 +469,30 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         VialCorrectlyFilled = false;
         thisVialsColour = Colours.blue;
         gameObject.GetComponent<Renderer>().material = VialBaseBlue;
@@ -398,9 +507,30 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         thisVialsColour = Colours.red;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseRed;
@@ -415,9 +545,31 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if(isThisBossVial == false)
+
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         thisVialsColour = Colours.yellow;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseYellow;
@@ -433,9 +585,30 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         thisVialsColour = Colours.purple;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBasePurple;
@@ -451,9 +624,30 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         VialCorrectlyFilled = false;
         thisVialsColour = Colours.orange;
         gameObject.GetComponent<Renderer>().material = VialBaseOrange;
@@ -469,9 +663,30 @@ public class VialController : MonoBehaviour {
         redFillLevel = 0;
         yellowFillLevel = 0;
         totalFillLevel = 0;
-        blueDrainTimer = 1f;
-        redDrainTimer = 1f;
-        yellowDrainTimer = 1f;
+        if (isThisBossVial == false)
+        {
+            blueDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            blueDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            redDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            redDrainTimer = maxDrainTimerBoss;
+        }
+        if (isThisBossVial == false)
+        {
+            yellowDrainTimer = maxDrainTimerNonBoss;
+        }
+        else
+        {
+            yellowDrainTimer = maxDrainTimerBoss;
+        }
         thisVialsColour = Colours.green;
         VialCorrectlyFilled = false;
         gameObject.GetComponent<Renderer>().material = VialBaseGreen;
