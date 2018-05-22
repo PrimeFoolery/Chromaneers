@@ -69,7 +69,8 @@ public class CharacterThreeGunController : MonoBehaviour {
     private GameObject mainCamera;
     private CameraScript mainCameraScript;
 
-    public int amountOfRainbowAmmo = 100;
+	public int amountOfRainbowAmmo = 100;
+	public float dropWeaponTimer = 5f;
 
     void Start () {
         //Calling the ColourSelectManager
@@ -139,21 +140,19 @@ public class CharacterThreeGunController : MonoBehaviour {
         if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon
             || stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon)
         {
-            if (coopCharacterControllerThree.usingXboxController ==false)
-            {
-                if ((Input.GetKey(KeyCode.Joystick3Button0)) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                }
-            } else
-            if (coopCharacterControllerThree.usingXboxController ==true)
-            {
-                if ((Input.GetButton("Pickup3")) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                }
-            }
-            
+			dropWeaponTimer -= Time.deltaTime;
+			if (dropWeaponTimer <= 5) {
+				if (coopCharacterControllerThree.usingXboxController == false) {
+					if ((Input.GetKey (KeyCode.Joystick3Button0)) && weaponPickedUp == false) {
+						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+					}
+				} else if (coopCharacterControllerThree.usingXboxController == true) {
+					if ((Input.GetButton ("Pickup3")) && weaponPickedUp == false) {
+						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+					}
+				}
+				dropWeaponTimer = 5;
+			}
         }
 
         if (coopCharacterControllerThree.usingXboxController == false)

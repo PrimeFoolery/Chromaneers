@@ -70,6 +70,7 @@ public class CharacterTwoGunController : MonoBehaviour {
     private CameraScript mainCameraScript;
 
     public int amountOfRainbowAmmo = 100;
+	public float dropWeaponTimer = 5;
 
     void Start () {
         //Calling the ColourSelectManager
@@ -140,21 +141,20 @@ public class CharacterTwoGunController : MonoBehaviour {
         if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon
             || stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon || stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon)
         {
-            if (coopCharacterControllerTwo.usingXboxController ==false)
-            {
-                if ((Input.GetKey(KeyCode.Joystick2Button0)) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                }
-            } else
-            if (coopCharacterControllerTwo.usingXboxController ==true)
-            {
-                if ((Input.GetButton("Pickup2")) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                }
-            }
-            
+			dropWeaponTimer -= Time.deltaTime;
+			if (dropWeaponTimer <= 5) {
+				if (coopCharacterControllerTwo.usingXboxController == false) {
+					if ((Input.GetKey (KeyCode.Joystick2Button0)) && weaponPickedUp == false) {
+						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+					}
+				} else if (coopCharacterControllerTwo.usingXboxController == true) {
+					if ((Input.GetButton ("Pickup2")) && weaponPickedUp == false) {
+						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+					}
+				}
+				dropWeaponTimer = 5;
+			}
+
         }
 
         if (coopCharacterControllerTwo.usingXboxController == false)

@@ -372,7 +372,7 @@ public class BossController : MonoBehaviour {
 	        }
 
 	        deathTime -= Time.deltaTime;
-	        Instantiate(coin, new Vector3(transform.position.x, transform.position.y+4f, transform.position.z), Quaternion.identity);
+	        Instantiate(coin, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity);
 
 	        if (deathTime<=0)
 	        {
@@ -1015,7 +1015,7 @@ public class BossController : MonoBehaviour {
 
     public void SpawnCandy()
     {
-        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
     }
     public void PingForPlayer()
     {

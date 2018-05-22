@@ -40,6 +40,7 @@ public class CharacterOneGunController : MonoBehaviour {
     [Range(0, 1)] public float timeBetweenShotsRainbow;
 
     public int amountOfRainbowAmmo = 100;
+	public float dropWeaponTimer = 5f;
 
 
     public enum currentWeapon { OriginalWeapon, TrishotWeapon, SniperWeapon, SMGWeapon, RainbowWeapon }
@@ -141,21 +142,20 @@ public class CharacterOneGunController : MonoBehaviour {
         if (stateOfWeapon == currentWeapon.SniperWeapon || stateOfWeapon == currentWeapon.TrishotWeapon 
             || stateOfWeapon == currentWeapon.SMGWeapon || stateOfWeapon == currentWeapon.RainbowWeapon)
         {
-            if (coopCharacterControllerOne.usingXboxController == false)
-            {
-                if ((Input.GetKey(KeyCode.Joystick1Button0)) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = currentWeapon.OriginalWeapon;
-                }
-            } else
-            if (coopCharacterControllerOne.usingXboxController == true)
-            {
-                if ((Input.GetButton("Pickup1")) && weaponPickedUp == false)
-                {
-                    stateOfWeapon = currentWeapon.OriginalWeapon;
-                }
-            }
-            
+			dropWeaponTimer -= Time.deltaTime;
+			if (dropWeaponTimer <= 5) {
+				if (coopCharacterControllerOne.usingXboxController == false) {
+					if ((Input.GetKey (KeyCode.Joystick1Button0)) && weaponPickedUp == false) {
+						stateOfWeapon = currentWeapon.OriginalWeapon;
+					}
+				} else if (coopCharacterControllerOne.usingXboxController == true) {
+					if ((Input.GetButton ("Pickup1")) && weaponPickedUp == false) {
+						stateOfWeapon = currentWeapon.OriginalWeapon;
+					}
+				}
+				dropWeaponTimer = 5f;
+			}
+
         }
 
         if (coopCharacterControllerOne.usingXboxController == false)
