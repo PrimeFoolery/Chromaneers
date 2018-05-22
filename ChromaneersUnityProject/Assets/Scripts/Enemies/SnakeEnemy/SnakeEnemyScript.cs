@@ -194,6 +194,11 @@ public class SnakeEnemyScript : MonoBehaviour
                     .enabled = false;
                 SegmentBehind.gameObject.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeHead.GetComponent<Renderer>()
                     .enabled = true;
+                if (SegmentBehind.gameObject.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail.GetComponent<Renderer>().enabled == true)
+                {
+                    SegmentBehind.gameObject.GetComponent<SnakeEnemyScript>().thisSegmentsSnakeTail
+                        .GetComponent<Renderer>().enabled = false;
+                }
                 SegmentBehind.GetComponent<SnakeEnemyScript>().agent.speed = headNormalSpeed;
                 if (isitCoop == true)
                 {
