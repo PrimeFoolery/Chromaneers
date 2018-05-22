@@ -34,7 +34,7 @@ public class BossController : MonoBehaviour {
     NavMeshAgent agent;
 
     public Renderer SphereRenderer;
-    public float enemySpeed = 3f;
+    public float enemySpeed = 2.5f;
     public bool colourOverride = false;
     public int randomColour;
 
@@ -199,12 +199,6 @@ public class BossController : MonoBehaviour {
 	        //Debug.Log(toRotation);
 	        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, toRotation.eulerAngles.y, transform.rotation.eulerAngles.z), bodyRotationSpeed * Time.time * Time.deltaTime);
         }
-	    
-	    if (enemyHealth <= 0)
-	    {
-
-
-	    }
 	    
 
 	    if (currentBossPhase==BossPhases.vials)
@@ -1021,7 +1015,7 @@ public class BossController : MonoBehaviour {
 
     public void SpawnCandy()
     {
-        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z), Quaternion.identity);
+        Instantiate(coin, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.identity);
     }
     public void PingForPlayer()
     {

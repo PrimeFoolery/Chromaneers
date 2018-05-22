@@ -168,14 +168,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             else
             {
                     
-                        if (transform.position.x - mainCameraScript.averagePos.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -45f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -45f)
+                        if (transform.position.x - mainCameraScript.averagePos.x <= -40f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -50f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -50f)
                         {
                             if (moveInput.x <= 0)
                             {
                                 moveInput.x = 0;
                             }
                         }
-                        else if (transform.position.x - mainCameraScript.averagePos.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 45f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 45f)
+                        else if (transform.position.x - mainCameraScript.averagePos.x >= 40f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 50f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 50f)
                         {
                             if (moveInput.x >= 0)
                             {
@@ -183,14 +183,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                             }
                         }
 
-                    if (transform.position.z - mainCameraScript.averagePos.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -35f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -35f)
+                    if (transform.position.z - mainCameraScript.averagePos.z <= -30f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -40f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -40f)
                     {
                         if (moveInput.z <= 0)
                         {
                             moveInput.z = 0;
                         }
                     }
-                    else if (transform.position.z - mainCameraScript.averagePos.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 35f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 35f)
+                    else if (transform.position.z - mainCameraScript.averagePos.z >= 30f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 40f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 40f)
                     {
                         if (moveInput.z >= 0)
                         {
@@ -468,14 +468,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
             else
             {
 
-                if (transform.position.x - mainCameraScript.averagePos.x <= -35f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -45f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -45f)
+                if (transform.position.x - mainCameraScript.averagePos.x <= -40f || transform.position.x - bluePlayer.gameObject.transform.position.x <= -50f || transform.position.x - yellowPlayer.gameObject.transform.position.x <= -50f)
                 {
                     if (moveInput.x <= 0)
                     {
                         moveInput.x = 0;
                     }
                 }
-                else if (transform.position.x - mainCameraScript.averagePos.x >= 35f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 45f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 45f)
+                else if (transform.position.x - mainCameraScript.averagePos.x >= 40f || transform.position.x - bluePlayer.gameObject.transform.position.x >= 50f || transform.position.x - yellowPlayer.gameObject.transform.position.x >= 50f)
                 {
                     if (moveInput.x >= 0)
                     {
@@ -483,14 +483,14 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     }
                 }
 
-                if (transform.position.z - mainCameraScript.averagePos.z <= -25f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -35f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -35f)
+                if (transform.position.z - mainCameraScript.averagePos.z <= -30f || transform.position.z - bluePlayer.gameObject.transform.position.z <= -40f || transform.position.z - yellowPlayer.gameObject.transform.position.z <= -40f)
                 {
                     if (moveInput.z <= 0)
                     {
                         moveInput.z = 0;
                     }
                 }
-                else if (transform.position.z - mainCameraScript.averagePos.z >= 25f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 35f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 35f)
+                else if (transform.position.z - mainCameraScript.averagePos.z >= 30f || transform.position.z - bluePlayer.gameObject.transform.position.z >= 40f || transform.position.z - yellowPlayer.gameObject.transform.position.z >= 40f)
                 {
                     if (moveInput.z >= 0)
                     {

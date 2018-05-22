@@ -19,7 +19,7 @@ public class BossBattleObeliskSphere : MonoBehaviour
 		
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name == "Boss")
         {

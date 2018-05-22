@@ -30236,7 +30236,7 @@ Prefab:
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
       propertyPath: RandomExtraEnemiesPool.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4363484484727466, guid: 3b2039882f4fd314f81465953995201b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -30350,7 +30350,22 @@ Prefab:
     - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
         type: 2}
       propertyPath: spawnRateIncrease
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
+        type: 2}
+      propertyPath: RandomExtraEnemiesPool.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
+        type: 2}
+      propertyPath: RandomExtraEnemiesPool.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936004063334610, guid: 3b2039882f4fd314f81465953995201b,
+        type: 2}
+      propertyPath: RandomExtraEnemiesPool.Array.data[5]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b2039882f4fd314f81465953995201b, type: 2}
@@ -31525,7 +31540,7 @@ Prefab:
     - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
         type: 2}
       propertyPath: usingXboxController
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114879534976830574, guid: 308643343fd891648ab475618f2bf2f6,
         type: 2}

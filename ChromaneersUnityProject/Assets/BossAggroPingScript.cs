@@ -29,6 +29,10 @@ public class BossAggroPingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (boss != null)
+        {
+            transform.position = boss.transform.position;
+        }
         if (currentPingState == PingState.grow)
         {
             transform.localScale += new Vector3(5f, 5f, 0) * Time.deltaTime;
@@ -62,25 +66,34 @@ public class BossAggroPingScript : MonoBehaviour
     {
         if (currentPingState == PingState.grow)
         {
-            if (other.CompareTag("BluePlayer") || other.CompareTag("RedPlayer") || other.CompareTag("YellowPlayer"))
-            {
-                playerThatGotPinged = other.gameObject;
-                if (playerThatGotPinged.tag == "BluePlayer")
-                {
-                    gameObject.GetComponent<SpriteRenderer>().color = bluePingColor;
-                }
-                else
-                if (playerThatGotPinged.tag == "RedPlayer")
-                {
-                    gameObject.GetComponent<SpriteRenderer>().color = redPingColor;
-                }
-                else
-                if (playerThatGotPinged.tag == "YellowPlayer")
-                {
-                    gameObject.GetComponent<SpriteRenderer>().color = yellowPingColor;
-                }
+            
 
-                currentPingState = PingState.shrink;
+            if (other.CompareTag("BluePlayer"))
+            {
+                if (other.gameObject.GetComponent<CoopCharacterHealthControllerOne>().PlayerState=="Alive")
+                {
+                    playerThatGotPinged = other.gameObject;
+                    gameObject.GetComponent<SpriteRenderer>().color = bluePingColor;
+                    currentPingState = PingState.shrink;
+                }
+            }
+            if (other.CompareTag("RedPlayer"))
+            {
+                if (other.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
+                {
+                    playerThatGotPinged = other.gameObject;
+                    gameObject.GetComponent<SpriteRenderer>().color = redPingColor;
+                    currentPingState = PingState.shrink;
+                }
+            }
+            if (other.CompareTag("YellowPlayer"))
+            {
+                if (other.gameObject.GetComponent<CoopCharacterHealthControllerThree>().PlayerState == "Alive")
+                {
+                    playerThatGotPinged = other.gameObject;
+                    gameObject.GetComponent<SpriteRenderer>().color = yellowPingColor;
+                    currentPingState = PingState.shrink;
+                }
             }
         }
     }
