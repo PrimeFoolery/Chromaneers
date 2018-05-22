@@ -71,6 +71,7 @@ public class CharacterThreeGunController : MonoBehaviour {
 
 	public int amountOfRainbowAmmo = 100;
 	public float dropWeaponTimer = 5f;
+    public Animator anim;
 
     void Start () {
         //Calling the ColourSelectManager
@@ -202,6 +203,7 @@ public class CharacterThreeGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
                     bullet.GetComponent<YellowBulletController>().speedOriginal = bulletSpeedOriginal;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
@@ -218,20 +220,24 @@ public class CharacterThreeGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     bullet.GetComponent<YellowBulletController>().speedSniper = bulletSpeedSniper;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSMG.position, fireFromSMG.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
                     bullet.GetComponent<YellowBulletController>().speedSMG = bulletSpeedSMG;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
                     GameObject rainbowBulletToShoot = colourSelectManager.GetBulletRainbowYellowToShoot();
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
                     amountOfRainbowAmmo -= 1;
+                    anim.SetInteger("whatStateAmI", 2);
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);
@@ -256,6 +262,7 @@ public class CharacterThreeGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromOriginal.position, fireFromOriginal.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
                     bullet.GetComponent<YellowBulletController>().speedOriginal = bulletSpeedOriginal;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.TrishotWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromL.position, fireFromL.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
@@ -272,20 +279,24 @@ public class CharacterThreeGunController : MonoBehaviour {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromR.position, fireFromR.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     bullet.GetComponent<YellowBulletController>().speedTri = Random.Range(10f, 20f);
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SniperWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSniper.position, fireFromSniper.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     bullet.GetComponent<YellowBulletController>().speedSniper = bulletSpeedSniper;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.SMGWeapon) {
                     bullet = (GameObject)Instantiate(bulletToShoot, fireFromSMG.position, fireFromSMG.rotation);
                     bullet.GetComponent<YellowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
                     bullet.GetComponent<YellowBulletController>().speedSMG = bulletSpeedSMG;
+                    anim.SetInteger("whatStateAmI", 2);
                 } else if (stateOfWeapon == CharacterOneGunController.currentWeapon.RainbowWeapon) {
                     GameObject rainbowBulletToShoot = colourSelectManager.GetBulletRainbowYellowToShoot();
                     bullet = (GameObject)Instantiate(rainbowBulletToShoot, fireFromRainbow.position, fireFromRainbow.rotation);
                     bullet.GetComponent<RainbowBulletController>().currentWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     bullet.GetComponent<RainbowBulletController>().speedRainbow = bulletSpeedRainbow;
                     amountOfRainbowAmmo -= 1;
+                    anim.SetInteger("whatStateAmI", 2);
                 }
                 //mainCameraScript.SmallScreenShake();
                 bullet.transform.Rotate(0f, bulletSpreadWidth, 0f);

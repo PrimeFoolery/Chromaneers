@@ -828,11 +828,13 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 		    dotMovement = Vector2.Dot(moveVector, lookVector);
 		    anim.SetFloat("dotMovement", dotMovement);
 		    anim.SetFloat("lookVelocity", 1f);
-	    }
+            anim.SetInteger("whatStateAmI", 1);
+        }
 	    else
 	    {
 		    anim.SetFloat("dotMovement", 0f);
 		    anim.SetFloat("lookVelocity", -1f);
-	    }
+            anim.SetInteger("whatStateAmI", 0);
+        }
     }
 }
