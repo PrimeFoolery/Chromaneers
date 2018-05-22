@@ -165,6 +165,7 @@ public class areaCompleteText : MonoBehaviour {
             if (textField.gameObject.GetComponent<RectTransform>().localScale.x <= 0f)
             {
                 textField.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0,0,0);
+                textField2.gameObject.GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
                 thisTriggersState = TextStates.complete;
             }
         }
