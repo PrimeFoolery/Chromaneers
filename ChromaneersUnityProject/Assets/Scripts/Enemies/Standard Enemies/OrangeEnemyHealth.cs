@@ -17,6 +17,10 @@ public class OrangeEnemyHealth : MonoBehaviour {
 	public Material yellowJellyMaterial;
 	public Material orangeJellyMaterial;
 
+    public Material yellowSplatParticle;
+    public Material redSplatParticle;
+    public Material orangeSplatParticle;
+
     private GameObject mainCamera;
     private EnemyManager enemyManagerScript;
 
@@ -40,7 +44,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		//If the enemy reaches 0 HP, destroy the enemy
 		if(redHealth<=0&&yellowHealth>0 && isWhite == false)
         {
-			GetComponent<Renderer> ().material = yellowJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = yellowSplatParticle;
 			sphere.GetComponent<Renderer> ().material = yellowJellyMaterial;
 		}
 		if(redHealth<0){
@@ -48,7 +52,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		}
 		if(yellowHealth<=0&&redHealth>0 && isWhite == false)
         {
-			GetComponent<Renderer> ().material = redJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = redSplatParticle;
 			sphere.GetComponent<Renderer> ().material = redJellyMaterial;
 		}
 		if(yellowHealth<0){
@@ -75,7 +79,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
         {
 			redHealth = 3;
 			yellowHealth = 3;
-			GetComponent<Renderer> ().material = orangeJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = orangeSplatParticle;
 			sphere.GetComponent<Renderer> ().material = orangeJellyMaterial;
 		}
 	}

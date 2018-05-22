@@ -151,9 +151,9 @@ public class VialController : MonoBehaviour {
         {
             if (totalFillLevel!=0)
             {
-                VialLiquidMaterial.SetColor("_Tint", ((redTintColor * (redFillLevel / totalFillLevel)) + (yellowTintColor * (yellowFillLevel / totalFillLevel))) / 2);
-                VialLiquidMaterial.SetColor("_TopColor", ((redTopColor * (redFillLevel / totalFillLevel)) + (yellowTopColor * (yellowFillLevel / totalFillLevel))) / 2);
-                VialLiquidMaterial.SetColor("_FoamColor", ((redFoamLineColor * (redFillLevel / totalFillLevel)) + (yellowFoamLineColor * (yellowFillLevel / totalFillLevel))) / 2);
+                VialLiquidMaterial.SetColor("_Tint", ((redTintColor * (redFillLevel / totalFillLevel)) + (yellowTintColor * (yellowFillLevel / totalFillLevel))));
+                VialLiquidMaterial.SetColor("_TopColor", ((redTopColor * (redFillLevel / totalFillLevel)) + (yellowTopColor * (yellowFillLevel / totalFillLevel))));
+                VialLiquidMaterial.SetColor("_FoamColor", ((redFoamLineColor * (redFillLevel / totalFillLevel)) + (yellowFoamLineColor * (yellowFillLevel / totalFillLevel))));
             }
             VialLiquidMaterial.SetFloat("_FillAmount", (-totalFillLevel / 1.25f) + 4.5f);
             if (redFillLevel==5&&yellowFillLevel<5)
@@ -179,9 +179,9 @@ public class VialController : MonoBehaviour {
 	    {
 	        if (totalFillLevel!=0)
 	        {
-	            VialLiquidMaterial.SetColor("_Tint", ((redTintColor * (redFillLevel / totalFillLevel)) + (blueTintColor * (blueFillLevel / totalFillLevel))) / 2);
-	            VialLiquidMaterial.SetColor("_TopColor", ((redTopColor * (redFillLevel / totalFillLevel)) + (blueTopColor * (blueFillLevel / totalFillLevel))) / 2);
-	            VialLiquidMaterial.SetColor("_FoamColor", ((redFoamLineColor * (redFillLevel / totalFillLevel)) + (blueFoamLineColor * (blueFillLevel / totalFillLevel))) / 2);
+	            VialLiquidMaterial.SetColor("_Tint", ((redTintColor * (redFillLevel / totalFillLevel)) + (blueTintColor * (blueFillLevel / totalFillLevel))));
+	            VialLiquidMaterial.SetColor("_TopColor", ((redTopColor * (redFillLevel / totalFillLevel)) + (blueTopColor * (blueFillLevel / totalFillLevel))));
+	            VialLiquidMaterial.SetColor("_FoamColor", ((redFoamLineColor * (redFillLevel / totalFillLevel)) + (blueFoamLineColor * (blueFillLevel / totalFillLevel))));
 	        }
             VialLiquidMaterial.SetFloat("_FillAmount", (-totalFillLevel / 1.25f) + 4.5f);
 	        if (redFillLevel == 5 && blueFillLevel < 5)
@@ -208,9 +208,9 @@ public class VialController : MonoBehaviour {
 	    {
 	        if (totalFillLevel!=0)
 	        {
-	            VialLiquidMaterial.SetColor("_Tint", ((blueTintColor * (blueFillLevel / totalFillLevel)) + (yellowTintColor * (yellowFillLevel / totalFillLevel))) / 2);
-	            VialLiquidMaterial.SetColor("_TopColor", ((blueTopColor * (blueFillLevel / totalFillLevel)) + (yellowTopColor * (yellowFillLevel / totalFillLevel))) / 2);
-	            VialLiquidMaterial.SetColor("_FoamColor", ((blueFoamLineColor * (blueFillLevel / totalFillLevel)) + (yellowFoamLineColor * (yellowFillLevel / totalFillLevel))) / 2);
+	            VialLiquidMaterial.SetColor("_Tint", ((blueTintColor * (blueFillLevel / totalFillLevel)) + (yellowTintColor * (yellowFillLevel / totalFillLevel))) );
+	            VialLiquidMaterial.SetColor("_TopColor", ((blueTopColor * (blueFillLevel / totalFillLevel)) + (yellowTopColor * (yellowFillLevel / totalFillLevel))));
+	            VialLiquidMaterial.SetColor("_FoamColor", ((blueFoamLineColor * (blueFillLevel / totalFillLevel)) + (yellowFoamLineColor * (yellowFillLevel / totalFillLevel))));
             }
             VialLiquidMaterial.SetFloat("_FillAmount", (-totalFillLevel / 1.25f) + 4.5f);
 	        if (blueFillLevel == 5 && yellowFillLevel < 5)

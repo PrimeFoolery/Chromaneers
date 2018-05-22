@@ -19,6 +19,10 @@ public class PurpleEnemyHealth : MonoBehaviour {
 	public Material blueJellyMaterial;
 	public Material purpleJellyMaterial;
 
+    public Material redSplatParticle;
+    public Material blueSplatParticle;
+    public Material purpleSplatParticle;
+
     private GameObject mainCamera;
     private EnemyManager enemyManagerScript;
 
@@ -42,7 +46,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
         //If the enemy reaches 0 HP, destroy the enemy
 		if(redHealth<=0&&blueHealth>0 && isWhite == false)
         {
-			GetComponent<Renderer> ().material = blueJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = blueSplatParticle;
 			sphere.GetComponent<Renderer> ().material = blueJellyMaterial;
 		}
 		if(redHealth<0){
@@ -50,7 +54,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		}
 		if(blueHealth<=0&&redHealth>0 && isWhite == false)
         {
-			GetComponent<Renderer> ().material = redJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = redSplatParticle;
 			sphere.GetComponent<Renderer> ().material = redJellyMaterial;
 		}
 		if(blueHealth<0){
@@ -76,7 +80,7 @@ public class PurpleEnemyHealth : MonoBehaviour {
 		if(recoveryTimer<=0&&isWhite==false){
 			redHealth = 3;
 			blueHealth = 3;
-			GetComponent<Renderer> ().material = purpleJellyMaterial;
+			GetComponent<ParticleSystemRenderer> ().material = purpleSplatParticle;
 			sphere.GetComponent<Renderer> ().material = purpleJellyMaterial;
 		}
     }
