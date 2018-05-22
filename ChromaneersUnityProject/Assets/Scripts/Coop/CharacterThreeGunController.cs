@@ -11,6 +11,7 @@ public class CharacterThreeGunController : MonoBehaviour {
     [Range(0, 50)] public float bulletSpeedOriginal;
     [Range(0, 10)] public float bulletSpread;
     [Range(0, 1)] public float timeBetweenShots;
+    public Image imgOriginal;
     [Space(5)]
     [Header("Trishot Weapon")]
     public Transform fireFromL;
@@ -21,23 +22,28 @@ public class CharacterThreeGunController : MonoBehaviour {
     [Range(0, 50)] public float bulletSpeedTrishot;
     [Range(0, 10)] public float bulletSpreadTri;
     [Range(0, 1)] public float timeBetweenShotsTri;
+    public Image imgTrishot;
     [Space(5)]
     [Header("Sniper Weapon")]
     public Transform fireFromSniper;
     [Range(0, 50)] public float bulletSpeedSniper;
     [Range(0, 10)] public float bulletSpreadSniper;
     [Range(0, 1)] public float timeBetweenShotsSniper;
+    public Image imgSniper;
     [Space(5)]
     [Header("SMG Weapon")]
     public Transform fireFromSMG;
     [Range(0, 50)] public float bulletSpeedSMG;
     [Range(10, 20)] public float bulletSpreadSMG;
     [Range(0, 1)] public float timeBetweenShotsSMG;
+    public Image imgSMG;
     [Header("Rainbow Weapon")]
     public Transform fireFromRainbow;
     [Range(0, 50)] public float bulletSpeedRainbow;
     [Range(0, 10)] public float bulletSpreadRainbow;
     [Range(0, 1)] public float timeBetweenShotsRainbow;
+    public Image imgRainbow;
+    [Space(10)]
 
     public CharacterOneGunController.currentWeapon stateOfWeapon;
     private bool weaponPickedUp = false;
@@ -82,6 +88,11 @@ public class CharacterThreeGunController : MonoBehaviour {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
         controllerPrompt.enabled = false;
+        imgOriginal.enabled = true;
+        imgRainbow.enabled = false;
+        imgSMG.enabled = false;
+        imgSniper.enabled = false;
+        imgTrishot.enabled = false;
     }
 
     void Update () {
@@ -146,11 +157,21 @@ public class CharacterThreeGunController : MonoBehaviour {
 				if (coopCharacterControllerThree.usingXboxController == false) {
 					if ((Input.GetKey (KeyCode.Joystick3Button0)) && weaponPickedUp == false) {
 						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-					}
+                        imgOriginal.enabled = true;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
 				} else if (coopCharacterControllerThree.usingXboxController == true) {
 					if ((Input.GetButton ("Pickup3")) && weaponPickedUp == false) {
 						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-					}
+                        imgOriginal.enabled = true;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
 				}
 				dropWeaponTimer = 5;
 			}
@@ -179,6 +200,11 @@ public class CharacterThreeGunController : MonoBehaviour {
         {
             stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
             amountOfRainbowAmmo = 100;
+            imgOriginal.enabled = true;
+            imgRainbow.enabled = false;
+            imgSMG.enabled = false;
+            imgSniper.enabled = false;
+            imgTrishot.enabled = false;
         }
     }
 
@@ -317,6 +343,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = true;
                 }
             } else 
             if (coopCharacterControllerThree.usingXboxController==true)
@@ -326,6 +357,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = true;
                 }
             }
         }
@@ -340,6 +376,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = true;
+                    imgTrishot.enabled = false;
                 }
             } else 
             if (coopCharacterControllerThree.usingXboxController==true)
@@ -349,6 +390,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = true;
+                    imgTrishot.enabled = false;
                 }
             }
         } 
@@ -360,6 +406,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = true;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = false;
                 }
             } else
             if (coopCharacterControllerThree.usingXboxController == true) {
@@ -367,6 +418,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = false;
+                    imgSMG.enabled = true;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = false;
                 }
             }
         } 
@@ -378,6 +434,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = true;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = false;
                 }
             } else
             if (coopCharacterControllerThree.usingXboxController == true) {
@@ -385,6 +446,11 @@ public class CharacterThreeGunController : MonoBehaviour {
                     stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
+                    imgOriginal.enabled = false;
+                    imgRainbow.enabled = true;
+                    imgSMG.enabled = false;
+                    imgSniper.enabled = false;
+                    imgTrishot.enabled = false;
                 }
             }
         }

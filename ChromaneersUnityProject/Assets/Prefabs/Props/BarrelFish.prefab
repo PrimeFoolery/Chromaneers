@@ -343,7 +343,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713744351981306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -802.93, y: 0.23994288, z: -231.82}
+  m_LocalPosition: {x: 9.134952, y: 0.2549858, z: -29.761528}
   m_LocalScale: {x: 4.7, y: 4.7, z: 4.7}
   m_Children:
   - {fileID: 4233979058046440}
@@ -937,6 +937,14 @@ MonoBehaviour:
     type: 2}
   glassExplosion: {fileID: 1396531981736376, guid: b389097a0f952cb469fae9434a69d2ab,
     type: 2}
+  Candy: {fileID: 0}
+  Heart: {fileID: 0}
+  newSpawnPoint: {fileID: 0}
+  spawnEnemy: 
+  blueEnemy: 
+  redEnemy: 
+  yellowEnemy: 
+  fastEnemy: 
 --- !u!136 &136286865411418688
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -949,4 +957,4 @@ CapsuleCollider:
   m_Radius: 0.29
   m_Height: 2.22
   m_Direction: 1
-  m_Center: {x: -0.15, y: 0, z: -0.14}
+  m_Center: {x: 0, y: 0, z: 0.01}
