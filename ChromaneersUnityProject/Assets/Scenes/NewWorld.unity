@@ -34758,6 +34758,16 @@ Prefab:
       propertyPath: dodgeSlider
       value: 
       objectReference: {fileID: 5881760}
+    - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: usingXboxController
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54031898343618478, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -41201,6 +41211,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 81349841169192758, guid: bb201dfa08cd3b9468015ed8ad43b144,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb201dfa08cd3b9468015ed8ad43b144, type: 2}
   m_IsPrefabParent: 0
@@ -44638,6 +44653,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1938205138733558, guid: 7fd1d64f2588fa341ace7f78cf900600,
         type: 2}
+    - target: {fileID: 82347442415917328, guid: 97a0c0879334eee468ffca584e17e832,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82948308344511786, guid: 97a0c0879334eee468ffca584e17e832,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114699277792676758, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 97a0c0879334eee468ffca584e17e832, type: 2}
@@ -54647,6 +54672,16 @@ Prefab:
       propertyPath: Indicator
       value: 
       objectReference: {fileID: 2113734155}
+    - target: {fileID: 54031898343618478, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114889375755103684, guid: 91e46474f1e38d2429c7de4a09526859,
+        type: 2}
+      propertyPath: usingXboxController
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e46474f1e38d2429c7de4a09526859, type: 2}
   m_IsPrefabParent: 0
@@ -76905,6 +76940,16 @@ Prefab:
       propertyPath: dodgeSlider
       value: 
       objectReference: {fileID: 1690099228}
+    - target: {fileID: 54031898343618478, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488731105616336, guid: cc9082562e65e2140bac760c1e57fcc1,
+        type: 2}
+      propertyPath: usingXboxController
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc9082562e65e2140bac760c1e57fcc1, type: 2}
   m_IsPrefabParent: 0
@@ -81277,7 +81322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1958219015
 RectTransform:
   m_ObjectHideFlags: 0

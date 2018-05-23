@@ -275,7 +275,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                         if (moveSpeed<=4f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
-						if(moveSpeed>=4f&&moveSpeed<=2.5f){
+						if(moveSpeed>=4f&&moveSpeed<=4.5f){
 							moveSpeed = 4f;
 						}
 						if(moveSpeed>=2.5f){
@@ -548,11 +548,11 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 					if(moveInput== new Vector3(0,0,0)){
 					    walkingPuff.Stop();
                         audio.Stop();
-                        if (moveSpeed>=2f){
+                        if (moveSpeed>=4f){
 							moveSpeed = moveSpeed * movingDecceleration;
 						}
-						if(moveSpeed<=2f){
-							moveSpeed = 2f;
+						if(moveSpeed<=4f){
+							moveSpeed = 4f;
 						}
 						moveVelocity = moveVelocity * movingDecceleration;
 					}
@@ -581,7 +581,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
                         if (moveSpeed<=4f){
 							moveSpeed = moveSpeed * movingAcceleration;
 						}
-						if(moveSpeed>=4f&&moveSpeed<=2.5f){
+						if(moveSpeed>=4f&&moveSpeed<=4.5f){
 							moveSpeed = 4f;
 						}
 						if(moveSpeed>=2.5f){
@@ -792,6 +792,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
         //Set the Rigidbody to retreieve the moveVelocity;
 		//Debug.Log("Velocity before applying: "+moveVelocity);
         myRB.velocity = moveVelocity;
+        
 	    if (moveVelocity.x <= 0.01f && moveVelocity.x >= -0.01f)
 	    {
 		    moveVelocity.x = 0f;
@@ -804,6 +805,7 @@ public class CoopCharacterControllerOne : MonoBehaviour {
 	    {
 		    moveVelocity.z = 0f;
 	    }
+        
     }
 
     public void Knockback(Vector3 bulletPosition)
