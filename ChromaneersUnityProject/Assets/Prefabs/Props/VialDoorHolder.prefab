@@ -484,15 +484,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1075683406347862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.47908, y: 0.58, z: -119.16}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 87.74, y: 41.797867, z: 168.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4626296483450982}
   - {fileID: 4673094034033926}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 16.616001, z: 0}
 --- !u!4 &4579842102366338
 Transform:
   m_ObjectHideFlags: 1
@@ -672,7 +672,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -688,7 +687,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -706,12 +704,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 19f46b6e86cbed0449e2f6fcf7f40120, type: 3}
+  - {fileID: 2100000, guid: 373d03dd47ba0495bb81cf4cb9f00abb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -722,7 +719,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -740,12 +736,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 19f46b6e86cbed0449e2f6fcf7f40120, type: 3}
+  - {fileID: 2100000, guid: 373d03dd47ba0495bb81cf4cb9f00abb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -756,7 +751,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -774,7 +768,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -790,7 +783,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -808,7 +800,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -824,7 +815,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -842,7 +832,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -858,7 +847,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -876,7 +864,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -892,7 +879,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -910,7 +896,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -926,7 +911,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -944,7 +928,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -960,7 +943,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -978,7 +960,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -994,7 +975,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1012,12 +992,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 19f46b6e86cbed0449e2f6fcf7f40120, type: 3}
+  - {fileID: 2100000, guid: 373d03dd47ba0495bb81cf4cb9f00abb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1028,7 +1007,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1046,7 +1024,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1062,7 +1039,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1080,7 +1056,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1096,7 +1071,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1275,7 +1249,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.5755744, y: 0.89623326, z: 3.5195029}
+  m_Size: {x: 4.5755744, y: 1.36, z: 3.5195029}
   m_Center: {x: 0, y: -0.00000028269636, z: 1.7597513}
 --- !u!65 &65429413915312512
 BoxCollider:
@@ -1390,13 +1364,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisVialsColour: 0
+  isThisBossVial: 0
   VialBaseBlue: {fileID: 2100000, guid: f689deb6e3a447e4c9dedb4e7c60ed8d, type: 2}
   VialBaseRed: {fileID: 2100000, guid: 65313f22c00f50b45968a04b43b5dfc2, type: 2}
   VialBaseYellow: {fileID: 2100000, guid: 471300220350bfe41ab63b04bbdee2e1, type: 2}
   VialBaseOrange: {fileID: 2100000, guid: 9595e98dfb55baf4da1e32bdf40629ed, type: 2}
   VialBasePurple: {fileID: 2100000, guid: 1fc2d559949a4524c8671a27a08fa6eb, type: 2}
   VialBaseGreen: {fileID: 2100000, guid: 6f1862211ca54a440bd6a4adc696e06d, type: 2}
+  VialLiquidMaterial: {fileID: 0}
   VialLiquid: {fileID: 1003767679993172}
+  blueFillLevel: 0
+  yellowFillLevel: 0
   VialCorrectlyFilled: 0
 --- !u!114 &114454260941851880
 MonoBehaviour:
@@ -1409,14 +1387,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed7e8dd83c8a424593801140420b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisVialsColour: 0
+  thisVialsColour: 1
+  isThisBossVial: 0
   VialBaseBlue: {fileID: 2100000, guid: f689deb6e3a447e4c9dedb4e7c60ed8d, type: 2}
   VialBaseRed: {fileID: 2100000, guid: 65313f22c00f50b45968a04b43b5dfc2, type: 2}
   VialBaseYellow: {fileID: 2100000, guid: 471300220350bfe41ab63b04bbdee2e1, type: 2}
   VialBaseOrange: {fileID: 2100000, guid: 9595e98dfb55baf4da1e32bdf40629ed, type: 2}
   VialBasePurple: {fileID: 2100000, guid: 1fc2d559949a4524c8671a27a08fa6eb, type: 2}
   VialBaseGreen: {fileID: 2100000, guid: 6f1862211ca54a440bd6a4adc696e06d, type: 2}
+  VialLiquidMaterial: {fileID: 0}
   VialLiquid: {fileID: 1157586531120820}
+  blueFillLevel: 0
+  yellowFillLevel: 0
   VialCorrectlyFilled: 0
 --- !u!114 &114584073349025940
 MonoBehaviour:
@@ -1450,12 +1432,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed7e8dd83c8a424593801140420b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisVialsColour: 0
+  thisVialsColour: 2
+  isThisBossVial: 0
   VialBaseBlue: {fileID: 2100000, guid: f689deb6e3a447e4c9dedb4e7c60ed8d, type: 2}
   VialBaseRed: {fileID: 2100000, guid: 65313f22c00f50b45968a04b43b5dfc2, type: 2}
   VialBaseYellow: {fileID: 2100000, guid: 471300220350bfe41ab63b04bbdee2e1, type: 2}
   VialBaseOrange: {fileID: 2100000, guid: 9595e98dfb55baf4da1e32bdf40629ed, type: 2}
   VialBasePurple: {fileID: 2100000, guid: 1fc2d559949a4524c8671a27a08fa6eb, type: 2}
   VialBaseGreen: {fileID: 2100000, guid: 6f1862211ca54a440bd6a4adc696e06d, type: 2}
+  VialLiquidMaterial: {fileID: 0}
   VialLiquid: {fileID: 1689247194913148}
+  blueFillLevel: 0
+  yellowFillLevel: 0
   VialCorrectlyFilled: 0

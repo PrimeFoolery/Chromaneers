@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class coinController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class coinController : MonoBehaviour
 
     public GameObject rainbow;
     private GameObject tempRainbow;
+
+	public CharacterOneGunController oneGunController;
+	public CharacterTwoGunController twoGunController;
+	public CharacterThreeGunController threeGunController;
 
     public enum RainbowState
     {
@@ -32,8 +37,11 @@ public class coinController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		bluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
+
 	    redPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
+
 	    yellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
+
     }
 	
 	// Update is called once per frame
@@ -78,16 +86,31 @@ public class coinController : MonoBehaviour
 	            {
 	                bluePlayer.GetComponentInChildren<CharacterOneGunController>().stateOfWeapon =
 	                    CharacterOneGunController.currentWeapon.RainbowWeapon;
+					oneGunController.imgOriginal.enabled = false;
+					oneGunController.imgRainbow.enabled = true;
+					oneGunController.imgSMG.enabled = false;
+					oneGunController.imgSniper.enabled = false;
+					oneGunController.imgTrishot.enabled = false;
 	            }else
 	            if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == redsCoins)
 	            {
 	                redPlayer.GetComponentInChildren<CharacterTwoGunController>().stateOfWeapon =
 	                    CharacterOneGunController.currentWeapon.RainbowWeapon;
+						twoGunController.imgOriginal.enabled = false;
+						twoGunController.imgRainbow.enabled = true;
+						twoGunController.imgSMG.enabled = false;
+						twoGunController.imgSniper.enabled = false;
+						twoGunController.imgTrishot.enabled = false;
 	            }else
 	            if (Mathf.Max(bluesCoins, redsCoins, yellowsCoins) == yellowsCoins)
 	            {
 	                yellowPlayer.GetComponentInChildren<CharacterThreeGunController>().stateOfWeapon =
 	                    CharacterOneGunController.currentWeapon.RainbowWeapon;
+							threeGunController.imgOriginal.enabled = false;
+							threeGunController.imgRainbow.enabled = true;
+							threeGunController.imgSMG.enabled = false;
+							threeGunController.imgSniper.enabled = false;
+							threeGunController.imgTrishot.enabled = false;
 	            }
                 CurrentRainbowState = RainbowState.stop;
 	        }
