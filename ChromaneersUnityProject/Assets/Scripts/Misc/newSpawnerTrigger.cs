@@ -16,9 +16,14 @@ public class newSpawnerTrigger : MonoBehaviour
 
     private int amountOfPlayersInTrigger = 0;
 
+    private GameObject Arrow;
+    public arrowPingPong.PositionState positionForArrow;
+    public float arrowTimer = 90f;
+    private bool hasArrowBeenTriggered = false;
+
     // Use this for initialization
     void Start () {
-		
+		Arrow = GameObject.FindGameObjectWithTag("Arrow");
 	}
 	
 	// Update is called once per frame
@@ -57,14 +62,30 @@ public class newSpawnerTrigger : MonoBehaviour
 	        }
 	    }
 
+	    if (amountOfPlayersInTrigger>0)
+	    {
+	        arrowTimer -= Time.deltaTime;
+	    }
+
+	    if (arrowTimer<0&&hasArrowBeenTriggered==false)
+	    {
+            Arrow.GetComponent<arrowPingPong>().ChangePosition(positionForArrow);
+            Arrow.GetComponent<arrowPingPong>().ArrowFadeIn();
+	        hasArrowBeenTriggered = true;
+	    }
 	    if (amountOfPlayersInTrigger==0)
 	    {
+	        arrowTimer = 90f;
+            //Debug.Log("thisis happening");
+            
 	        for (int spawnPointNumber = 0;spawnPointNumber<thisTriggersSpawners.Count; spawnPointNumber++)
 	        {
                 thisTriggersSpawners[spawnPointNumber].GetComponent<newSpawner>().PurgeEnemies();
 	        }
 	        HasSpawnerBeenTriggered = false;
-	    }
+	        hasArrowBeenTriggered = false;
+	        //Arrow.GetComponent<arrowPingPong>().ArrowFadeOut();
+        }
 	}
 
     void OnTriggerEnter(Collider other)
@@ -90,6 +111,10 @@ public class newSpawnerTrigger : MonoBehaviour
             other.CompareTag("BluePlayer") == true || other.CompareTag("YellowPlayer"))
         {
             amountOfPlayersInTrigger -= 1;
+            if (amountOfPlayersInTrigger<=0)
+            {
+                Arrow.GetComponent<arrowPingPong>().ArrowFadeOut();
+            }
         }
     }
 }
