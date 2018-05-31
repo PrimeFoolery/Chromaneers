@@ -42,6 +42,11 @@ public class blobPenController : MonoBehaviour
     public Material redPenFloor;
     public Material yellowPenFloor;
 
+    public Transform penTip1;
+    public Transform penTip2;
+    public Transform penTip3;
+    public Transform penTip4;
+
     public Texture2D penObeliskEmissionMap0;
     public Texture2D penObeliskEmissionMap1;
     public Texture2D penObeliskEmissionMap2;
@@ -59,6 +64,9 @@ public class blobPenController : MonoBehaviour
     public GameObject yellowFireworkLauncher;
 
     private bool enemySpawned = false;
+
+    public GameObject linePulser;
+    private GameObject tempLinePulser;
 
     public Material whiteEnemyMat;
     // Use this for initialization
@@ -275,6 +283,33 @@ public class blobPenController : MonoBehaviour
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
 
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if ( closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+                tempLinePulser = null;
+
                 other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
@@ -294,6 +329,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<PurpleEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -315,6 +377,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<GreenEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -337,7 +426,33 @@ public class blobPenController : MonoBehaviour
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
-
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+                    tempLinePulser = null;
                     other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
@@ -357,6 +472,33 @@ public class blobPenController : MonoBehaviour
                    other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                     .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+                tempLinePulser = null;
                 other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
@@ -378,6 +520,33 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                tempLinePulser = null;
                 other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
@@ -398,6 +567,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<PurpleEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -419,6 +615,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<OrangeEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -442,7 +665,33 @@ public class blobPenController : MonoBehaviour
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
-
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                    tempLinePulser = null;
                     other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
@@ -462,6 +711,33 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                tempLinePulser = null;
                 other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
@@ -482,6 +758,33 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "yellow";
+                tempLinePulser = null;
                 other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;
@@ -502,7 +805,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
-
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "yellow";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<GreenEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -524,6 +853,33 @@ public class blobPenController : MonoBehaviour
                         other.GetComponent<StandardEnemyBehaviour>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                             .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                     }
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "yellow";
+                    tempLinePulser = null;
                     other.gameObject.GetComponent<OrangeEnemyHealth>().isWhite = true;
                     other.gameObject.GetComponent<StandardEnemyBehaviour>().SphereRenderer.material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
@@ -547,7 +903,33 @@ public class blobPenController : MonoBehaviour
                             .GetComponent<newSpawner>().ThisSpawnpointsEnemyList
                             .Remove(other.gameObject.transform.parent.gameObject);
                     }
-
+                    float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                        (other.transform.position - penTip1.position).sqrMagnitude,
+                        (other.transform.position - penTip2.position).sqrMagnitude,
+                        (other.transform.position - penTip3.position).sqrMagnitude,
+                        (other.transform.position - penTip4.position).sqrMagnitude);
+                    if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                    {
+                        tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                        tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                    }
+                    tempLinePulser.GetComponent<linePulser>().colourOfLine = "yellow";
+                    tempLinePulser = null;
                     other.gameObject.GetComponentInChildren<Renderer>().material = whiteEnemyMat;
                     CorrectEnemiesInPen.Add(other.gameObject);
                     other.gameObject.layer = 10;
@@ -567,6 +949,33 @@ public class blobPenController : MonoBehaviour
                     other.GetComponent<FastEnemy>().thisEnemiesSpawnPoint.GetComponent<newSpawner>()
                         .ThisSpawnpointsEnemyList.Remove(other.gameObject);
                 }
+                float closestDistanceFromEnemyToPenTip = Mathf.Min(
+                    (other.transform.position - penTip1.position).sqrMagnitude,
+                    (other.transform.position - penTip2.position).sqrMagnitude,
+                    (other.transform.position - penTip3.position).sqrMagnitude,
+                    (other.transform.position - penTip4.position).sqrMagnitude);
+                if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip1.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip1.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip2.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip2.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip3.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip3.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                else if (closestDistanceFromEnemyToPenTip == (other.transform.position - penTip4.position).sqrMagnitude)
+                {
+                    tempLinePulser = Instantiate(linePulser, penTip4.position, Quaternion.identity);
+                    tempLinePulser.GetComponent<linePulser>().targetGameObject = other.gameObject;
+                }
+                tempLinePulser.GetComponent<linePulser>().colourOfLine = "yellow";
+                tempLinePulser = null;
                 other.gameObject.GetComponent<FastEnemy>().SphereRenderer.material = whiteEnemyMat;
                 CorrectEnemiesInPen.Add(other.gameObject);
                 other.gameObject.layer = 10;

@@ -1019,7 +1019,7 @@ public class BossController : MonoBehaviour {
     }
     public void PingForPlayer()
     {
-        Debug.Log("Spawn ping");
+        //Debug.Log("Spawn ping");
         tempPing = Instantiate(pingPrefab, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
         tempPing.GetComponent<BossAggroPingScript>().boss = gameObject;
         readyToRetarget = false;

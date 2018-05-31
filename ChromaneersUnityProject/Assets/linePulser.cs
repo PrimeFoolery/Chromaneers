@@ -11,6 +11,21 @@ public class linePulser : MonoBehaviour
     private Color yellowColor = Color.yellow;
     public int lengthOfLineRenderer = 20;
 
+    public GameObject targetGameObject;
+    private Vector3 directionOfTargetGameObject;
+    public float scalingLengthBetweenPositions = 0;
+
+    public enum StateOfLine
+    {
+        growing,
+        waiting,
+        shrinking
+    }
+
+    private float lineTimer = 2f;
+
+    public StateOfLine currentLineState = StateOfLine.growing;
+
     private LineRenderer lineRenderer;
 
 	// Use this for initialization
@@ -31,11 +46,44 @@ public class linePulser : MonoBehaviour
 	    AnimationCurve widthCurve = new AnimationCurve();
 	    Gradient colorGradient = new Gradient();
         int i = 0;
-	    while (i< lengthOfLineRenderer)
+	    directionOfTargetGameObject = (targetGameObject.transform.position - transform.position).normalized;
+	    float distanceBetweenTargetAndLastPos = Vector3.Distance(
+	        transform.position + lineRenderer.GetPosition(lengthOfLineRenderer - 1),
+	        targetGameObject.transform.position);
+
+	    Vector3 directionFromLastPosToTarget = (targetGameObject.transform.position -
+	                                            (transform.position +
+	                                             lineRenderer.GetPosition(lengthOfLineRenderer - 1))).normalized;
+	    if (currentLineState == StateOfLine.growing ||currentLineState == StateOfLine.waiting)
 	    {
-	        Vector3 pos = new Vector3(lineRenderer.GetPosition(0).x + i * 0.5f, (Mathf.Sin(i+Time.time))/100, lineRenderer.GetPosition(0).y);
+	        if (distanceBetweenTargetAndLastPos < 1f)
+	        {
+	            //Debug.Log("shrinkingline");
+	            currentLineState = StateOfLine.waiting;
+	        }
+	        if (distanceBetweenTargetAndLastPos > 0.1f)
+	        {
+
+	            scalingLengthBetweenPositions += 0.5f * Time.deltaTime;
+	        }
+        }
+	    if (currentLineState == StateOfLine.shrinking)
+	    {
+	        scalingLengthBetweenPositions -= 0.6f * Time.deltaTime;
+	        if (scalingLengthBetweenPositions <= 0)
+	        {
+	            Destroy(this.gameObject);
+	        }
+	    }
+        while (i< lengthOfLineRenderer)
+	    {
+	        
+	        
+
+	        
+            Vector3 pos = new Vector3(lineRenderer.GetPosition(0).x + (i * scalingLengthBetweenPositions * directionOfTargetGameObject.x), lineRenderer.GetPosition(0).y + (i* scalingLengthBetweenPositions * directionOfTargetGameObject.y), lineRenderer.GetPosition(0).z + (i* scalingLengthBetweenPositions * directionOfTargetGameObject.z));
             lineRenderer.SetPosition(i, pos);
-	        float width = ((((Mathf.Sin(i+ Time.time)+1) / 2)+0.5f)/2);
+	        float width = ((((Mathf.Sin(i+ -Time.time*Time.deltaTime*2)+1) / 2)+0.5f)/2);
 	        widthCurve.AddKey((i / 20f), width);
 	        if (colourOfLine == "blue")
 	        {
@@ -60,8 +108,23 @@ public class linePulser : MonoBehaviour
 	            );
 	        }
 
+	        
+
+            lineRenderer.widthCurve = widthCurve;
+            //Debug.Log("End of line position: "+ transform.position + lineRenderer.GetPosition(lengthOfLineRenderer - 1));
+            // Debug.Log("target Position: "+targetGameObject.transform.position);
+            //Debug.Log("Distance Difference:" + Vector3.Distance(transform.position + lineRenderer.GetPosition(lengthOfLineRenderer - 1), targetGameObject.transform.position));
             lineRenderer.colorGradient = colorGradient;
             i++;
+	    }
+
+	    if (currentLineState == StateOfLine.waiting)
+	    {
+	        lineTimer -= Time.deltaTime;
+	        if (lineTimer<=0)
+	        {
+	            currentLineState = StateOfLine.shrinking;
+	        }
 	    }
 
 	    

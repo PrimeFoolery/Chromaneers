@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934635630444380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.863609, y: 30.952946, z: -15.604964}
+  m_LocalPosition: {x: 20, y: 11.3, z: 89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,6 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colourOfLine: blue
   lengthOfLineRenderer: 20
+  targetGameObject: {fileID: 0}
+  scalingLengthBetweenPositions: 0
+  currentLineState: 0
 --- !u!120 &120641649988370494
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -68,7 +71,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 95e408eded8ae034d96aafcd2d0b83e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +96,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 8.18}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.4
     widthCurve:
       serializedVersion: 2
       m_Curve:
