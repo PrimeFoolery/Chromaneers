@@ -64,13 +64,17 @@ public class blobPenController : MonoBehaviour
     public GameObject yellowFireworkLauncher;
 
     private bool enemySpawned = false;
+    private float rimPower;
+
 
     public GameObject linePulser;
     private GameObject tempLinePulser;
 
     public Material whiteEnemyMat;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        rimPower = obelisk1.GetComponent<Renderer>().material.GetFloat("_RimPower");
 	    if (colourOfThisPen == ColoursOfPen.blue)
 	    {
 	        penLeftWall.GetComponent<Renderer>().material = bluePenWall;
@@ -82,7 +86,11 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.blue);
-            
+	        obelisk1.GetComponent<Renderer>().material.SetColor("_RimColor", Color.blue);
+	        obelisk2.GetComponent<Renderer>().material.SetColor("_RimColor", Color.blue);
+	        obelisk3.GetComponent<Renderer>().material.SetColor("_RimColor", Color.blue);
+	        obelisk4.GetComponent<Renderer>().material.SetColor("_RimColor", Color.blue);
+
         }
 	    else if (colourOfThisPen == ColoursOfPen.red)
 	    {
@@ -95,9 +103,13 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
-	        //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardRed);
-	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
-	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        obelisk1.GetComponent<Renderer>().material.SetColor("_RimColor", Color.red);
+	        obelisk2.GetComponent<Renderer>().material.SetColor("_RimColor", Color.red);
+	        obelisk3.GetComponent<Renderer>().material.SetColor("_RimColor", Color.red);
+	        obelisk4.GetComponent<Renderer>().material.SetColor("_RimColor", Color.red);
+            //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardRed);
+            //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+            //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
         }
 	    else if (colourOfThisPen == ColoursOfPen.yellow)
 	    {
@@ -110,9 +122,13 @@ public class blobPenController : MonoBehaviour
 	        obelisk2.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 	        obelisk3.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 	        obelisk4.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
-	        //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardYellow);
-	       // pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
-	        //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+	        obelisk1.GetComponent<Renderer>().material.SetColor("_RimColor", Color.yellow);
+	        obelisk2.GetComponent<Renderer>().material.SetColor("_RimColor", Color.yellow);
+	        obelisk3.GetComponent<Renderer>().material.SetColor("_RimColor", Color.yellow);
+	        obelisk4.GetComponent<Renderer>().material.SetColor("_RimColor", Color.yellow);
+            //enemyToSpawn.Add(InfiniteSpawnPoint.enemyTypes.StandardYellow);
+            // pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().SpawnEnemies(enemyToSpawn);
+            //pensSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
         }
     }
 	
@@ -263,6 +279,18 @@ public class blobPenController : MonoBehaviour
 
             }
 	        doorOpened = true;
+	    }
+
+	    if (doorOpened == true)
+	    {
+	        if (obelisk1.GetComponent<Renderer>().material.GetFloat("_RimPower")>1)
+	        {
+	            rimPower -= 0.2f;
+                obelisk1.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+	            obelisk2.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+	            obelisk3.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+	            obelisk4.GetComponent<Renderer>().material.SetFloat("_RimPower", rimPower);
+            }
 	    }
 	}
 
