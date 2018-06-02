@@ -7,7 +7,8 @@ public class RedEnemyHealth : MonoBehaviour {
 
 	public GameObject splat;
 	public GameObject EnemyEmpty;
-	public int health;
+    public GameObject TopEmpty;
+    public int health;
 	public float deathTimer = 1;
 
     public GameObject coin;
@@ -35,7 +36,7 @@ public class RedEnemyHealth : MonoBehaviour {
 			gameObject.GetComponent<ParticleSystem> ().Play();
 			deathTimer -= Time.deltaTime;
 			if (deathTimer >= 0) {
-                Instantiate(deathSplatter, EnemyEmpty.gameObject.transform.position, EnemyEmpty.transform.rotation);
+                Instantiate(deathSplatter, TopEmpty.gameObject.transform.position, TopEmpty.transform.rotation);
                 Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 			    mainCamera.GetComponent<CameraScript>().SmallScreenShake();
 			    Instantiate(coin, transform.position, Quaternion.identity);

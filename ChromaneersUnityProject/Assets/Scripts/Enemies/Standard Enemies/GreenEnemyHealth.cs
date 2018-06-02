@@ -31,6 +31,7 @@ public class GreenEnemyHealth : MonoBehaviour {
     [Header("Splat")]
     public GameObject GreenSplat;
     public GameObject enemyEmpty;
+    public GameObject TopEmpty;
 
     public bool isWhite = false;
 
@@ -70,7 +71,7 @@ public class GreenEnemyHealth : MonoBehaviour {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
 		    Instantiate(coin, transform.position, Quaternion.identity);
-            Instantiate(deathSplatter, enemyEmpty.gameObject.transform.position, enemyEmpty.transform.rotation);
+            Instantiate(deathSplatter, TopEmpty.gameObject.transform.position, TopEmpty.transform.rotation);
             Instantiate(GreenSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
             mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             Destroy (this.gameObject);

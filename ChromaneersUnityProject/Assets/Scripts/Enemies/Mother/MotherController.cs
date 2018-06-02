@@ -46,6 +46,8 @@ public class MotherController : MonoBehaviour
     public GameObject deathSplatterRed;
     public GameObject deathSplatterBlue;
     public GameObject deathSplatterYellow;
+    public GameObject TopEmpty;
+    public GameObject enemyEmpty;
 
 
     public Material blueMaterial;
@@ -174,6 +176,22 @@ public class MotherController : MonoBehaviour
 	        Instantiate(coin, transform.position, Quaternion.identity);
 	        Instantiate(coin, transform.position, Quaternion.identity);
             Instantiate(coin, transform.position, Quaternion.identity);
+
+            if(colourOfEnemy == "red")
+            {
+                Instantiate(redSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterRed, TopEmpty.gameObject.transform.position, TopEmpty.gameObject.transform.rotation);
+            }
+            if (colourOfEnemy == "blue")
+            {
+                Instantiate(blueSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterBlue, TopEmpty.gameObject.transform.position, TopEmpty.gameObject.transform.rotation);
+            }
+            if (colourOfEnemy == "yellow")
+            {
+                Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+                Instantiate(deathSplatterYellow, TopEmpty.gameObject.transform.position, TopEmpty.gameObject.transform.rotation);
+            }
             foreach (MotherSpawnPoint spawnPoint in spawnPointList)
 	        {
 	            if (spawnPoint.isSpawnerAboveGround == true)
