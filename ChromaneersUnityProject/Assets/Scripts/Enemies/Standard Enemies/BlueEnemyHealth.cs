@@ -7,6 +7,7 @@ public class BlueEnemyHealth : MonoBehaviour {
 
 	public GameObject splat;
 	public GameObject EnemyEmpty;
+    public GameObject TopEmpty;
     public int health;
 	public float deathTimer = 1;
 
@@ -36,7 +37,7 @@ public class BlueEnemyHealth : MonoBehaviour {
 			deathTimer -= Time.deltaTime;
             
             if (deathTimer >= 0) {
-                Instantiate(deathSplatter, EnemyEmpty.gameObject.transform.position, EnemyEmpty.transform.rotation);
+                Instantiate(deathSplatter, TopEmpty.gameObject.transform.position, TopEmpty.transform.rotation);
                 Instantiate (splat, EnemyEmpty.gameObject.transform.position, EnemyEmpty.gameObject.transform.rotation);
 			    Instantiate(coin, transform.position, Quaternion.identity);
                 mainCamera.GetComponent<CameraScript>().SmallScreenShake();

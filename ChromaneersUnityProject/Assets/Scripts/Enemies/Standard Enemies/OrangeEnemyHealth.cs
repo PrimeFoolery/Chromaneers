@@ -29,6 +29,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
     [Header("Splat")]
     public GameObject OrangeSplat;
     public GameObject enemyEmpty;
+    public GameObject TopEmpty;
 
     public bool isWhite = false;
 
@@ -69,7 +70,7 @@ public class OrangeEnemyHealth : MonoBehaviour {
 		    {
 		        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
 		    }
-            Instantiate(deathSplatter, enemyEmpty.gameObject.transform.position, enemyEmpty.transform.rotation);
+            Instantiate(deathSplatter, TopEmpty.gameObject.transform.position, TopEmpty.transform.rotation);
             Instantiate(OrangeSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
 		    Instantiate(coin, transform.position, Quaternion.identity);
             Destroy (this.gameObject);
