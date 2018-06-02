@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class orangeObelisk : MonoBehaviour {
 
-    private float yellowHealthTimer = 0f;
-    private float redHealthTimer = 0f;
+    public float yellowHealthTimer = 0f;
+    public float redHealthTimer = 0f;
     private bool heartSpawned = false;
     public GameObject heart;
+    public bool opened = false;
+
+    private Color color = new Color(1, 0.5f, 0,1);
+    public float obeliskDissolveValue = 0;
 
     // Use this for initialization
     void Start () {
@@ -26,24 +30,30 @@ public class orangeObelisk : MonoBehaviour {
 	    }
 	    if (redHealthTimer >= 0f && yellowHealthTimer >= 0f)
 	    {
-	        if (transform.localScale.z > -0.1f)
+	        opened = true;
+	    }
+
+	    if (opened)
+	    {
+	        obeliskDissolveValue += 0.2f * Time.deltaTime;
+	        gameObject.GetComponent<Renderer>().material.SetFloat("_SliceAmount", obeliskDissolveValue);
+	        color.a -= 0.3f * Time.deltaTime;
+
+	        gameObject.GetComponent<Renderer>().material.SetColor("_OutlineColor", color);
+	        if (heartSpawned == false)
 	        {
-	            transform.localScale += new Vector3(0, 0, -0.2f);
-	            gameObject.GetComponent<ParticleSystem>().Play();
+	            Instantiate(heart, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z),
+	                Quaternion.identity);
+	            gameObject.GetComponent<BoxCollider>().enabled = false;
+	            heartSpawned = true;
+	        }
+
+	        if (gameObject.GetComponent<Renderer>().material.GetFloat("_SliceAmount") > 0.9f)
+	        {
+	            Destroy(this.gameObject);
 
 	        }
-	        else if (transform.localScale.z <= -0.1f)
-	        {
-	            if (heartSpawned == false)
-	            {
-	                Instantiate(heart, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
-	                gameObject.GetComponent<BoxCollider>().enabled = false;
-	                gameObject.GetComponent<ParticleSystem>().Play();
-	                heartSpawned = true;
-	            }
-	            transform.localScale = new Vector3(3f, 3f, -0.1f);
-	        }
-	    }
+        }
     }
     void OnCollisionEnter(Collision other)
     {

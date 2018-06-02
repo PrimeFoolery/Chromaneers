@@ -40,13 +40,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1200750582317278}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.5718107, y: 0.35715824, z: -8.097016}
-  m_LocalScale: {x: 3, y: 3, z: 3.9}
+  m_LocalRotation: {x: -0.15154566, y: 0.6906765, z: 0.69067633, w: 0.15154564}
+  m_LocalPosition: {x: 150.73932, y: 42.291096, z: 557.4495}
+  m_LocalScale: {x: 3, y: 3, z: 3.8999999}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 155.24901}
 --- !u!23 &23423386154589074
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: be264a46a2bc5a64a8560155f0827c8c, type: 2}
+  - {fileID: 2100000, guid: 3257787af43a5b743958a1f49c4ca2e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -204,7 +204,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1853049622
+  randomSeed: -104339502
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3578,7 +3578,7 @@ ParticleSystemRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

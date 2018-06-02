@@ -9,30 +9,36 @@ public class doorController : MonoBehaviour
 
     public bool doorOpen = false;
 
+    public List<GameObject> gameObjectsToDissolve = new List<GameObject>();
+
     [Range(0.0f, 10.0f)] public float doorSpeed = 5f;
 
+    public Color doorColor;
+
     public int amountOfInputsBeforeOpening = 1;
+    private float dissolveValue = 0;
 
     public bool doorOnScreen = false;
 
 	// Use this for initialization
 	void Start () {
 		targetMovement =new Vector3(transform.localPosition.x,transform.localPosition.y, transform.localPosition.z+20);
+	    foreach (GameObject gameObjectToDissolve in gameObjectsToDissolve)
+	    {
+	        gameObjectToDissolve.GetComponent<Renderer>().material.SetColor("_BurnColor", doorColor);
+	    }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if (doorOpen == true && Vector3.Distance(transform.position, targetMovement)>0.5f && doorOnScreen == true)
+	    if (doorOpen == true )
 	    {
-	        if (transform.localScale.z > -0.1f)
+            Debug.Log("dissolvingDoor");
+	        dissolveValue += 0.1f*Time.deltaTime;
+	        gameObject.GetComponent<BoxCollider>().enabled = false;
+	        foreach (GameObject gameObjectToDissolve in gameObjectsToDissolve)
 	        {
-	            transform.localScale += new Vector3(-0f, -0f, -1f);
-	            gameObject.GetComponent<ParticleSystem>().Play();
-
-	        }
-	        else if (transform.localScale.z <= -0.1f)
-	        {
-	            Destroy(this.gameObject);
+	            gameObjectToDissolve.GetComponent<Renderer>().material.SetFloat("_SliceAmount", dissolveValue);
 	        }
         }
 	}

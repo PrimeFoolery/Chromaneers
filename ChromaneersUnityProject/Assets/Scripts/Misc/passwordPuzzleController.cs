@@ -6,6 +6,7 @@ public class passwordPuzzleController : MonoBehaviour
 {
 
     public List<GameObject> passwordCubes = new List<GameObject>();
+    public List<GameObject> extraObjectsToDestroy = new List<GameObject>();
     public int correctCubes = 0;
 
     public bool isPasswordCorrectlyInputted = false;
@@ -13,6 +14,7 @@ public class passwordPuzzleController : MonoBehaviour
 
     public GameObject keySpawnPoint;
 
+    public GameObject door;
     public bool hasKeySpawned = false;
 
     public GameObject dustExplosion;
@@ -26,13 +28,17 @@ public class passwordPuzzleController : MonoBehaviour
 	void Update ()
 	{
 	    correctCubes = 0;
-	    foreach (GameObject passwordCube in passwordCubes)
+	    if (isPasswordCorrectlyInputted==false)
 	    {
-	        if (passwordCube.GetComponent<passwordEntry>().isCorrectColourSelected==true)
+	        foreach (GameObject passwordCube in passwordCubes)
 	        {
-	            correctCubes += 1;
+	            if (passwordCube.GetComponent<passwordEntry>().isCorrectColourSelected == true)
+	            {
+	                correctCubes += 1;
+	            }
 	        }
-	    }
+        }
+	    
 
 	    if (correctCubes == passwordCubes.Count)
 	    {
@@ -42,18 +48,20 @@ public class passwordPuzzleController : MonoBehaviour
         {
             if (hasKeySpawned==false)
             {
+                door.GetComponent<doorController>().OpenSesame();
+                foreach (GameObject passwordCube in passwordCubes)
+                {
+                    Destroy(passwordCube.gameObject);
+                }
+                foreach (GameObject objectToDestroy in extraObjectsToDestroy)
+                {
+                    Destroy(objectToDestroy.gameObject);
+                }
+
+                gameObject.GetComponent<BoxCollider>().enabled = false;
                 //Instantiate(dustExplosion, transform.position, Quaternion.identity);
                 //Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
-                if (transform.localScale.z > -0.1f)
-                {
-                    transform.localScale += new Vector3(-0f, -0f, -3f);
-                    gameObject.GetComponent<ParticleSystem>().Play();
 
-                }
-                else if (transform.localScale.z <= -0.1f)
-                {
-                    Destroy(this.gameObject);
-                }
                 //hasKeySpawned = true;
             }
         }
