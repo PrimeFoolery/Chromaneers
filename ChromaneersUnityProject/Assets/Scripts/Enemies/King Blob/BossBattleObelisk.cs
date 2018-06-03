@@ -54,6 +54,13 @@ public class BossBattleObelisk : MonoBehaviour
 
     public float drainTimer = 4f;
 
+    public GameObject boss;
+
+    public GameObject obeliskTip;
+    private bool lineSpawned;
+    public GameObject linePulser;
+    private GameObject tempLinePulser;
+
     private bool triggerCubesSpawned = false;
 
     // Use this for initialization
@@ -104,6 +111,24 @@ public class BossBattleObelisk : MonoBehaviour
 	    if (CurrentObeliskState == ObeliskState.draining)
 	    {
 	        drainTimer -= Time.deltaTime;
+	        if (lineSpawned==false)
+	        {
+	            tempLinePulser = Instantiate(linePulser, obeliskTip.transform.position, Quaternion.identity);
+	            tempLinePulser.GetComponent<linePulser>().targetGameObject = boss;
+	            if (colourOfThisObelisk == ColoursOfObelisk.blue)
+	            {
+	                tempLinePulser.GetComponent<linePulser>().colourOfLine = "blue";
+	            }else if (colourOfThisObelisk == ColoursOfObelisk.red)
+	            {
+	                tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+                }
+	            else if (colourOfThisObelisk == ColoursOfObelisk.yellow)
+	            {
+	                tempLinePulser.GetComponent<linePulser>().colourOfLine = "red";
+	            }
+
+	            lineSpawned = true;
+	        }
 	        if (drainTimer >= 3.6f && drainTimer<4f)
 	        {
 	            gameObject.GetComponent<Renderer>().material.SetTexture("_EmissionMap", penObeliskEmissionMap9);
