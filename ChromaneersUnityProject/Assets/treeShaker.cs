@@ -2,15 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class treeShaker : MonoBehaviour {
+public class treeShaker : MonoBehaviour
+{
+    private Vector3 originalPos;
+    private float shakeTimer = 0f;
+    private float speed = 1.0f; 
+    private float amount = 1.0f;
+    private float randomX;
+    private float randomY;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start ()
+    {
+        originalPos = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+	    if (shakeTimer>0)
+	    {
+	        randomX = Random.Range(-1f, 1f);
+	        randomY = Random.Range(-1f, 1f);
+	        transform.position = new Vector3(transform.position.x + ((randomX * speed) * amount * Time.deltaTime), transform.position.y, transform.position.z+((randomY * speed) * amount * Time.deltaTime));
+	        shakeTimer -= Time.deltaTime;
+	    }
+	    else
+	    {
+	        transform.position = originalPos;
+	    }
 	}
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag ==("BlueBullet") || other.gameObject.tag == ("RedBullet")|| other.gameObject.tag == ("YellowBullet")||other.gameObject.tag == ("RainbowBullet"))
+        {
+            shakeTimer = 0.09f;
+        }
+    }
 }

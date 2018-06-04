@@ -30240,6 +30240,11 @@ Prefab:
       propertyPath: randomSeed
       value: -696025964
       objectReference: {fileID: 0}
+    - target: {fileID: 114543723125740802, guid: 308643343fd891648ab475618f2bf2f6,
+        type: 2}
+      propertyPath: usingXboxController
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308643343fd891648ab475618f2bf2f6, type: 2}
   m_IsPrefabParent: 0
@@ -40197,7 +40202,7 @@ Prefab:
     - target: {fileID: 81349841169192758, guid: bb201dfa08cd3b9468015ed8ad43b144,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb201dfa08cd3b9468015ed8ad43b144, type: 2}
