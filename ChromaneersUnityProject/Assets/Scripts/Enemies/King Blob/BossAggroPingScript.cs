@@ -15,6 +15,7 @@ public class BossAggroPingScript : MonoBehaviour
     public PingState currentPingState = PingState.grow;
     private GameObject playerThatGotPinged;
     private float pingTime = 1.5f;
+    private float RotateSpeed = 100f;
 
     private Color redPingColor = new Color(1, 0, 0, 0.5f);
     private Color bluePingColor = new Color(0, 0, 1, 0.5f);
@@ -29,6 +30,7 @@ public class BossAggroPingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(0,0,RotateSpeed*Time.deltaTime);
         if (boss != null)
         {
             transform.position = boss.transform.position;
