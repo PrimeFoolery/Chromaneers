@@ -11,6 +11,8 @@ public class treeShaker : MonoBehaviour
     private float randomX;
     private float randomY;
 
+	public ParticleSystem[] leavesParticle;
+
     // Use this for initialization
     void Start ()
     {
@@ -25,6 +27,11 @@ public class treeShaker : MonoBehaviour
 	        randomY = Random.Range(-1f, 1f);
 	        transform.position = new Vector3(transform.position.x + ((randomX * speed) * amount * Time.deltaTime), transform.position.y, transform.position.z+((randomY * speed) * amount * Time.deltaTime));
 	        shakeTimer -= Time.deltaTime;
+			leavesParticle [0].Play ();
+			leavesParticle [1].Play ();
+			leavesParticle [2].Play ();
+			leavesParticle [3].Play ();
+			leavesParticle [4].Play ();
 	    }
 	    else
 	    {
