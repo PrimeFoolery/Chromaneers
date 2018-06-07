@@ -17,12 +17,27 @@ public class passwordPuzzleController : MonoBehaviour
     public GameObject door;
     public bool hasKeySpawned = false;
 
+    public Transform doorTargetTransform;
+
     public GameObject dustExplosion;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private ParticleSystem thisDoorsParticleSystem;
+    private bool doorMoved = false;
+    private float doorMoveSpeed = 0.01f;
+    private GameObject camera;
+
+    private float min;
+    private float max;
+
+    // Use this for initialization
+    void Start ()
+    {
+        thisDoorsParticleSystem = gameObject.GetComponent<ParticleSystem>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        min = door.transform.position.x - 0.2f;
+        max = door.transform.position.x + 0.2f;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -46,24 +61,48 @@ public class passwordPuzzleController : MonoBehaviour
 	    }
         if(isPasswordCorrectlyInputted==true)
         {
-            if (hasKeySpawned==false)
+            if (hasKeySpawned==false && doorMoved == false)
             {
-                door.GetComponent<doorController>().OpenSesame();
-                foreach (GameObject passwordCube in passwordCubes)
+                door.transform.position = new Vector3(Mathf.PingPong(Time.time * 2, max - min) + min, door.transform.position.y, door.transform.position.z);
+                camera.GetComponent<CameraScript>().SmallScreenShake();
+                door.transform.Translate(0,-doorMoveSpeed*Time.deltaTime, 0);
+                if(doorMoveSpeed<3)
                 {
-                    Destroy(passwordCube.gameObject);
+                    doorMoveSpeed *= 1.1f;
                 }
-                foreach (GameObject objectToDestroy in extraObjectsToDestroy)
+                if (thisDoorsParticleSystem != null)
                 {
-                    Destroy(objectToDestroy.gameObject);
+                    thisDoorsParticleSystem.Play();
                 }
 
-                gameObject.GetComponent<BoxCollider>().enabled = false;
-                //Instantiate(dustExplosion, transform.position, Quaternion.identity);
-                //Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
-
-                //hasKeySpawned = true;
+                if (Vector3.Distance(door.transform.localPosition, doorTargetTransform.localPosition) < 0.5f)
+                {
+                    doorMoved = true;
+                }
             }
+
+            if (doorMoved == true && thisDoorsParticleSystem != null)
+            {
+                thisDoorsParticleSystem.Stop();
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+
+            //door.GetComponent<doorController>().OpenSesame();
+            foreach (GameObject passwordCube in passwordCubes)
+            {
+                Destroy(passwordCube.gameObject);
+            }
+            foreach (GameObject objectToDestroy in extraObjectsToDestroy)
+            {
+                Destroy(objectToDestroy.gameObject);
+            }
+
+            
+            //Instantiate(dustExplosion, transform.position, Quaternion.identity);
+            //Instantiate(keyPrefab, keySpawnPoint.transform.position, Quaternion.identity);
+
+            //hasKeySpawned = true;
+        
         }
 	}
 }

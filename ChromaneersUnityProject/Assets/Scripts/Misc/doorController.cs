@@ -20,27 +20,58 @@ public class doorController : MonoBehaviour
 
     public bool doorOnScreen = false;
 
-	// Use this for initialization
-	void Start () {
+    private ParticleSystem thisDoorsParticleSystem;
+    private bool doorMoved = false;
+    private float doorMoveSpeed = 0.01f;
+    private GameObject camera;
+
+    public Transform doorTargetTransform;
+
+    private float min;
+    private float max;
+
+    // Use this for initialization
+    void Start () {
 		targetMovement =new Vector3(transform.localPosition.x,transform.localPosition.y, transform.localPosition.z+20);
 	    foreach (GameObject gameObjectToDissolve in gameObjectsToDissolve)
 	    {
 	        gameObjectToDissolve.GetComponent<Renderer>().material.SetColor("_BurnColor", doorColor);
 	    }
-	}
+        thisDoorsParticleSystem = gameObject.GetComponent<ParticleSystem>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        min = transform.position.x - 0.2f;
+        max = transform.position.x + 0.2f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (doorOpen == true )
+	    if (doorOpen == true && doorMoved == false && doorOnScreen == true)
 	    {
-            Debug.Log("dissolvingDoor");
-	        dissolveValue += 0.1f*Time.deltaTime;
-	        gameObject.GetComponent<BoxCollider>().enabled = false;
-	        foreach (GameObject gameObjectToDissolve in gameObjectsToDissolve)
+	        transform.position = new Vector3(Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.y, transform.position.z);
+	        camera.GetComponent<CameraScript>().SmallScreenShake();
+	        transform.Translate(0, -doorMoveSpeed * Time.deltaTime, 0);
+	        if (doorMoveSpeed < 3)
 	        {
-	            gameObjectToDissolve.GetComponent<Renderer>().material.SetFloat("_SliceAmount", dissolveValue);
+	            doorMoveSpeed *= 1.1f;
 	        }
-        }
+	        if (thisDoorsParticleSystem != null)
+	        {
+	            thisDoorsParticleSystem.Play();
+	        }
+
+	        if (Vector3.Distance(transform.localPosition, doorTargetTransform.localPosition) < 0.5f)
+	        {
+	            doorMoved = true;
+	        }
+	    }
+
+	    if (doorMoved == true && thisDoorsParticleSystem != null)
+	    {
+	        thisDoorsParticleSystem.Stop();
+	        gameObject.GetComponent<BoxCollider>().enabled = false;
+	    }
+    
 	}
 
     public void OpenSesame()
@@ -55,11 +86,13 @@ public class doorController : MonoBehaviour
 
     public void OnBecameInvisible()
     {
+        Debug.Log("goingOffScreen");
         doorOnScreen = false;
     }
 
     public void OnBecameVisible()
     {
+        Debug.Log("goingOnScreen");
         doorOnScreen = true;
     }
 }

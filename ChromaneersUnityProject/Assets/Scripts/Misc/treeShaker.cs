@@ -43,7 +43,11 @@ public class treeShaker : MonoBehaviour
     {
         if (other.gameObject.tag ==("BlueBullet") || other.gameObject.tag == ("RedBullet")|| other.gameObject.tag == ("YellowBullet")||other.gameObject.tag == ("RainbowBullet"))
         {
-            shakeTimer = 0.09f;
+            if (shakeTimer<=0)
+            {
+                shakeTimer = 0.09f;
+            }
+            
         }
     }
 }
