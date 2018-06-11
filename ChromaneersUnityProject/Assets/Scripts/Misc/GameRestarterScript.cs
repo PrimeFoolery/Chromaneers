@@ -10,6 +10,9 @@ public class GameRestarterScript : MonoBehaviour {
     public bool shouldGameRestart = true;
     private float gameRestartTimer = 90f;
 
+    private bool forcedRestartDown = false;
+    private float forcedRestartTimer = 4f;
+
     private GameObject bluePlayer;
     private GameObject redPlayer;
     private GameObject yellowPlayer;
@@ -41,6 +44,29 @@ public class GameRestarterScript : MonoBehaviour {
 	    if (gameRestartTimer < 0)
 	    {
             SceneManager.LoadScene("MenuTest");
+	    }
+
+	    if (Input.GetKey(KeyCode.Joystick1Button9)|| Input.GetKey(KeyCode.Joystick2Button9)|| Input.GetKey(KeyCode.Joystick3Button9)|| Input.GetButton("Pause1") || Input.GetButton("Pause2") || Input.GetButton("Pause3"))
+	    {
+	        forcedRestartDown = true;
+	    }
+	    else
+	    {
+	        forcedRestartDown = false;
+	    }
+
+	    if (forcedRestartDown == true)
+	    {
+	        forcedRestartTimer -= Time.deltaTime;
+	        if (forcedRestartTimer<0)
+	        {
+                SceneManager.LoadScene("MenuTest");
+	        }
+
+	    }
+	    else
+	    {
+	        forcedRestartTimer = 4f;
 	    }
 	}
 }
