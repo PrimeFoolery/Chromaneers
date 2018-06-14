@@ -57,8 +57,8 @@ Material:
     - _FoamSpread: 1.36
     - _FresPower: 1.5
     - _HQFoam: 1
-    - _Height: 0.5
-    - _Height_: 3
+    - _Height: 0.01
+    - _Height_: 0.06
     - _Length: 4
     - _LightAbs: 0
     - _NormalOffset: 1
@@ -79,7 +79,7 @@ Material:
     - _Specular: 70
     - _Speed: 0.5
     - _Speed_: 3
-    - _Steepness: 0.2
+    - _Steepness: 0.085
     - _Stretch: 10
     - _TexSize_: 384
     - _Time_: 0
@@ -89,7 +89,7 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0.5, b: 0.7, a: 1}
     - _DeepColor: {r: 0, g: 0.09999997, b: 0.19999996, a: 1}
-    - _Direction_: {r: -1, g: -0.00000008742278, b: -4.8, a: -0.00000041962934}
+    - _Direction_: {r: -1, g: -0.00000008742278, b: -2.04, a: -0.00000017834246}
     - _FresColor: {r: 0.30499998, g: 0.37099996, b: 0.39499998, a: 1}
     - _ShoreColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.70299995, g: 0.676, b: 0.43799996, a: 1}
