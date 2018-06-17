@@ -20,6 +20,8 @@ public class deleteSelf : MonoBehaviour {
         {
             StartCoroutine("Fade");
         }
+        transform.Translate(Vector3.up * Time.deltaTime);
+        
     }
     IEnumerator Fade()
     {
