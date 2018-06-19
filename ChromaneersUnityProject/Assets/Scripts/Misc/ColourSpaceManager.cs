@@ -8,7 +8,7 @@ public class ColourSpaceManager : MonoBehaviour {
 	void Update () {
 		if (SceneManager.GetActiveScene().name == "IdleTrailer")
         {
-            UnityEditor.PlayerSettings.colorSpace = ColorSpace.Gamma;
+            //UnityEditor.PlayerSettings.colorSpace = ColorSpace.Gamma;
         }
 
         if (SceneManager.GetActiveScene().name == "MenuTest" || SceneManager.GetActiveScene().name == "NewWorld" 
@@ -16,7 +16,7 @@ public class ColourSpaceManager : MonoBehaviour {
             || SceneManager.GetActiveScene().name == "NewWorldCheckpoint2"
             || SceneManager.GetActiveScene().name == "NewWorldCheckpoint3")
         {
-            UnityEditor.PlayerSettings.colorSpace = ColorSpace.Linear;
+            //UnityEditor.PlayerSettings.colorSpace = ColorSpace.Linear;
         }
 	}
 }
