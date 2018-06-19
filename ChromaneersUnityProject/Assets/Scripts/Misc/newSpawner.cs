@@ -534,6 +534,10 @@ public class newSpawner : MonoBehaviour
             if (enemy.GetComponent<MotherController>() != null)
             {
                 enemyManagerScript.enemyList.Remove(enemy);
+                foreach (MotherSpawnPoint spawnPoint in enemy.GetComponent<MotherController>().spawnPointList)
+                {
+                    spawnPoint.PurgeEnemies();
+                }
                 ThisSpawnpointsEnemyList.Remove(enemy);
                 Destroy(enemy);
             }

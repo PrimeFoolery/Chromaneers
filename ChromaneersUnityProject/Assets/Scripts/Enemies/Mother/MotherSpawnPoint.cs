@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MotherSpawnPoint : MonoBehaviour
 {
@@ -175,6 +176,19 @@ public class MotherSpawnPoint : MonoBehaviour
                 }
                 tempEnemy = null;
                 tempFastEnemyScript = null;
+            }
+        }
+    }
+
+    public void PurgeEnemies()
+    {
+        foreach (GameObject enemy in ThisSpawnpointsEnemyList.ToList())
+        {
+            if (enemy.GetComponent<FastEnemy>() != null)
+            {
+                enemyManagerScript.enemyList.Remove(enemy);
+                ThisSpawnpointsEnemyList.Remove(enemy);
+                Destroy(enemy);
             }
         }
     }
