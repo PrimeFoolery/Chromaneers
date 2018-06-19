@@ -46,7 +46,11 @@ public class linePulser : MonoBehaviour
 	    AnimationCurve widthCurve = new AnimationCurve();
 	    Gradient colorGradient = new Gradient();
         int i = 0;
-	    directionOfTargetGameObject = (targetGameObject.transform.position - transform.position).normalized;
+	    if (targetGameObject!=null)
+	    {
+	        directionOfTargetGameObject = (targetGameObject.transform.position - transform.position).normalized;
+        }
+	    
 	    float distanceBetweenTargetAndLastPos = Vector3.Distance(
 	        transform.position + lineRenderer.GetPosition(lengthOfLineRenderer - 1),
 	        targetGameObject.transform.position);
