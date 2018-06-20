@@ -46,7 +46,7 @@ public class GameRestarterScript : MonoBehaviour {
             SceneManager.LoadScene("MenuTest");
 	    }
 
-	    if (Input.GetKey(KeyCode.Joystick1Button9)|| Input.GetKey(KeyCode.Joystick2Button9)|| Input.GetKey(KeyCode.Joystick3Button9)|| Input.GetButton("Pause1") || Input.GetButton("Pause2") || Input.GetButton("Pause3"))
+	    if (/*Input.GetKey(KeyCode.Joystick1Button9)|| Input.GetKey(KeyCode.Joystick2Button9)|| Input.GetKey(KeyCode.Joystick3Button9)|| Input.GetButton("Pause1") || Input.GetButton("Pause2") || Input.GetButton("Pause3")*/Input.GetKey(KeyCode.Escape))
 	    {
 	        forcedRestartDown = true;
 	    }
