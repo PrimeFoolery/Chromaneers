@@ -55,21 +55,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+                
             }
             if (menuInput1.z > 0f)
             {
@@ -78,21 +64,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+                
             }
                 Vector3 menuInput2;
             menuInput2 = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick2LVertical"));
@@ -103,21 +75,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+                
             }
             if (menuInput2.z > 0f)
             {
@@ -126,21 +84,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+               
             }
             Vector3 menuInput3;
             menuInput3 = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
@@ -151,21 +95,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+                
             }
             if (menuInput3.z > 0f)
             {
@@ -174,21 +104,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+                
             }
             if (Input.GetButtonDown("Pause1"))
             {
@@ -237,21 +153,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+                
             }
             if (menuInput1.z > 0f)
             {
@@ -260,21 +162,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+                
             }
             Vector3 menuInput2;
             menuInput2 = new Vector3(Input.GetAxisRaw("Joystick2LHorizontal"), 0f, Input.GetAxisRaw("Joystick2LVertical"));
@@ -285,21 +173,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+               
             }
             if (menuInput2.z > 0f)
             {
@@ -308,21 +182,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+                
             }
             Vector3 menuInput3;
             menuInput3 = new Vector3(Input.GetAxisRaw("Joystick3LHorizontal"), 0f, Input.GetAxisRaw("Joystick3LVertical"));
@@ -333,21 +193,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[0]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
+                
             }
             if (menuInput3.z > 0f)
             {
@@ -356,21 +202,7 @@ public class PauseMenu : MonoBehaviour {
                     eventSys.SetSelectedGameObject(buttonList[2]);
                     canInteract = false;
                 }
-                if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[1]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-                if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
+                
             }
             if (Input.GetKeyDown(KeyCode.Joystick1Button9))
             {
