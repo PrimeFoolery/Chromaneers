@@ -18,6 +18,8 @@ public class ColourSelectManager : MonoBehaviour {
     [Header("Manager Variables")]
     public bool isItSingleplayer;
 
+    public bool colourBlindMode = false;
+
     [Header("Bullet Prefabs")]
     public GameObject blueBulletPrefab;
     public GameObject redBulletPrefab;
@@ -48,6 +50,21 @@ public class ColourSelectManager : MonoBehaviour {
             rainbowBulletYellowToShoot = rainbowBulletYellowPrefab;
         }
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            if (colourBlindMode==false)
+            {
+                colourBlindMode = true;
+            }
+            else
+            {
+                colourBlindMode = false;
+            }
+        }
+    }
 
     //Variable to set current bullet to shoot
     private GameObject bulletToShoot;

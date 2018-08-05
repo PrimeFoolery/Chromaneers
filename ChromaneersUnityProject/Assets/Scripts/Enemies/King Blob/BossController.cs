@@ -75,6 +75,17 @@ public class BossController : MonoBehaviour {
     public Material greenEnemyMat;
     public Material greyEnemyMat;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    public GameObject cbPurpleIndicator;
+    public GameObject cbGreenIndicator;
+    public GameObject cbOrangeIndicator;
+    private GameObject cbCurrentWeakSpotIndicator;
+    private GameObject cbCurrentVialIndicator;
+    private GameObject cbCurrentBodyIndicator;
+
     public GameObject rainbow;
 
 	private bool waitForUpdate = false;
@@ -129,12 +140,45 @@ public class BossController : MonoBehaviour {
 
         gameObject.GetComponent<ParticleSystemRenderer>().material = greyParticle;
 
-
+        if (gameManager.colourBlindMode == true)
+        {
+            
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(waitForUpdate==false){
+	    if (Input.GetKeyUp(KeyCode.F1))
+	    {
+	        if (colourBlindModeActive == false)
+	        {
+	            SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+	        }
+	        else
+	        {
+	            if (currentBossPhase == BossPhases.vials)
+	            {
+                    Destroy(cbCurrentWeakSpotIndicator);
+                    Destroy(cbCurrentVialIndicator);
+	            }
+
+	            if (currentBossPhase == BossPhases.pens)
+	            {
+	                if (cbCurrentBodyIndicator!=null)
+	                {
+                        Destroy(cbCurrentBodyIndicator);
+	                }
+	            }
+	            colourBlindModeActive = false;
+	        }
+	    }
+        if (waitForUpdate==false){
 			randomColour = Random.Range(1, 4);
 			if (randomColour == 1)
 			{
@@ -142,20 +186,32 @@ public class BossController : MonoBehaviour {
 				WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
 				backVial.GetComponent<VialController>().ResetToOrange();
 				PreviousColoursList.Add(colourOfWeakSpot);
+			    if (colourBlindModeActive==true)
+			    {
+			        SpawnColourBlindIndicator();
+			    }
 			}else if (randomColour == 2)
 			{
 				colourOfWeakSpot = "red";
 				WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
 				backVial.GetComponent<VialController>().ResetToGreen();
 				PreviousColoursList.Add(colourOfWeakSpot);
-			}
+			    if (colourBlindModeActive == true)
+			    {
+			        SpawnColourBlindIndicator();
+			    }
+            }
 			else if (randomColour == 3)
 			{
 				colourOfWeakSpot = "yellow";
 				WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
 				backVial.GetComponent<VialController>().ResetToPurple();
 				PreviousColoursList.Add(colourOfWeakSpot);
-			}
+			    if (colourBlindModeActive == true)
+			    {
+			        SpawnColourBlindIndicator();
+			    }
+            }
 			waitForUpdate = true;
 		}
 	    if (gameManager.isItSingleplayer == false)
@@ -384,7 +440,8 @@ public class BossController : MonoBehaviour {
     void FindClosestPlayer()
     {
 
-        /*if (colourOfEnemy == "blue")
+        /*if (colourOfEnem
+         y == "blue")
         {
             readyToRetarget = false;
             float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
@@ -851,6 +908,8 @@ public class BossController : MonoBehaviour {
 
     public void RandomiseAndResetVials(List<string> previousColours)
     {
+        Destroy(cbCurrentWeakSpotIndicator);
+        Destroy(cbCurrentVialIndicator);
         if (previousColours.Contains("blue")==true && previousColours.Contains("red")==false && previousColours.Contains("yellow") == false)
         {
             int randomColourNumber = Random.Range(1, 3);
@@ -860,6 +919,11 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
                 backVial.GetComponent<VialController>().ResetToGreen();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive==true)
+                {
+                    SpawnColourBlindIndicator();
+                }
+                
             }
             else 
             {
@@ -867,6 +931,10 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
                 backVial.GetComponent<VialController>().ResetToPurple();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive == true)
+                {
+                    SpawnColourBlindIndicator();
+                }
             }
         }else
         if (previousColours.Contains("red") == true && previousColours.Contains("blue") == false && previousColours.Contains("yellow") == false)
@@ -878,6 +946,10 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
                 backVial.GetComponent<VialController>().ResetToOrange();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive == true)
+                {
+                    SpawnColourBlindIndicator();
+                }
             }
             else
             {
@@ -885,6 +957,10 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
                 backVial.GetComponent<VialController>().ResetToPurple();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive == true)
+                {
+                    SpawnColourBlindIndicator();
+                }
             }
         }
         else
@@ -897,6 +973,10 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
                 backVial.GetComponent<VialController>().ResetToOrange();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive == true)
+                {
+                    SpawnColourBlindIndicator();
+                }
             }
             else
             {
@@ -904,6 +984,10 @@ public class BossController : MonoBehaviour {
                 WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
                 backVial.GetComponent<VialController>().ResetToGreen();
                 PreviousColoursList.Add(colourOfWeakSpot);
+                if (colourBlindModeActive == true)
+                {
+                    SpawnColourBlindIndicator();
+                }
             }
         }
         else
@@ -913,6 +997,10 @@ public class BossController : MonoBehaviour {
             WeakSpot.GetComponent<Renderer>().material = yellowEnemyMat;
             backVial.GetComponent<VialController>().ResetToPurple();
             PreviousColoursList.Add(colourOfWeakSpot);
+            if (colourBlindModeActive == true)
+            {
+                SpawnColourBlindIndicator();
+            }
         }
         else
         if (previousColours.Contains("blue") == true && previousColours.Contains("red") == false && previousColours.Contains("yellow") == true)
@@ -921,6 +1009,10 @@ public class BossController : MonoBehaviour {
             WeakSpot.GetComponent<Renderer>().material = redEnemyMat;
             backVial.GetComponent<VialController>().ResetToGreen();
             PreviousColoursList.Add(colourOfWeakSpot);
+            if (colourBlindModeActive == true)
+            {
+                SpawnColourBlindIndicator();
+            }
         }
         else
         if (previousColours.Contains("blue") == false && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
@@ -929,7 +1021,12 @@ public class BossController : MonoBehaviour {
             WeakSpot.GetComponent<Renderer>().material = blueEnemyMat;
             backVial.GetComponent<VialController>().ResetToOrange();
             PreviousColoursList.Add(colourOfWeakSpot);
-        }else if (previousColours.Contains("blue") == true && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
+            if (colourBlindModeActive == true)
+            {
+                SpawnColourBlindIndicator();
+            }
+        }
+        else if (previousColours.Contains("blue") == true && previousColours.Contains("red") == true && previousColours.Contains("yellow") == true)
         {
             Obelisk1.GetComponentInChildren<BossBattleObelisk>().StartPhase2();
             Obelisk2.GetComponentInChildren<BossBattleObelisk>().StartPhase2();
@@ -944,6 +1041,10 @@ public class BossController : MonoBehaviour {
         gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
         enemyHealth = 10;
         colourOfEnemy = "blue";
+        if (colourBlindModeActive == true)
+        {
+            SpawnColourBlindIndicator();
+        }
     }
     public void ChangeToRed()
     {
@@ -951,6 +1052,10 @@ public class BossController : MonoBehaviour {
         gameObject.GetComponent<ParticleSystemRenderer>().material =redParticle;
         enemyHealth = 10;
         colourOfEnemy = "red";
+        if (colourBlindModeActive == true)
+        {
+            SpawnColourBlindIndicator();
+        }
     }
     public void ChangeToYellow()
     {
@@ -958,6 +1063,10 @@ public class BossController : MonoBehaviour {
         SphereRenderer.material = yellowEnemyMat;
         enemyHealth = 10;
         colourOfEnemy = "yellow";
+        if (colourBlindModeActive == true)
+        {
+            SpawnColourBlindIndicator();
+        }
     }
 
     public void ResetToGrey()
@@ -966,6 +1075,10 @@ public class BossController : MonoBehaviour {
         SphereRenderer.material = greyEnemyMat;
         enemyHealth = 10;
         colourOfEnemy = "grey";
+        if (colourBlindModeActive == true)
+        {
+            Destroy(cbCurrentBodyIndicator);
+        }
     }
 
     public void RandomiseColor()
@@ -1023,5 +1136,69 @@ public class BossController : MonoBehaviour {
         tempPing = Instantiate(pingPrefab, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
         tempPing.GetComponent<BossAggroPingScript>().boss = gameObject;
         readyToRetarget = false;
+    }
+    public void SpawnColourBlindIndicator()
+    {
+        if (currentBossPhase == BossPhases.vials)
+        {
+            if (colourOfWeakSpot == "blue")
+            {
+                cbCurrentWeakSpotIndicator = Instantiate(cbBlueIndicator,
+                    new Vector3(WeakSpot.transform.position.x, WeakSpot.transform.position.y + 6.5f, WeakSpot.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentWeakSpotIndicator.transform.SetParent(WeakSpot.transform);
+                cbCurrentVialIndicator = Instantiate(cbOrangeIndicator,
+                    new Vector3(backVial.transform.position.x, backVial.transform.position.y + 6.5f, backVial.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentVialIndicator.transform.SetParent(backVial.transform);
+            }
+            else if (colourOfWeakSpot == "red")
+            {
+                cbCurrentWeakSpotIndicator = Instantiate(cbRedIndicator,
+                    new Vector3(WeakSpot.transform.position.x, WeakSpot.transform.position.y + 6.5f, WeakSpot.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentWeakSpotIndicator.transform.SetParent(WeakSpot.transform);
+                cbCurrentVialIndicator = Instantiate(cbGreenIndicator,
+                    new Vector3(backVial.transform.position.x, backVial.transform.position.y + 6.5f, backVial.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentVialIndicator.transform.SetParent(backVial.transform);
+            }
+            else if (colourOfWeakSpot == "yellow")
+            {
+                cbCurrentWeakSpotIndicator = Instantiate(cbYellowIndicator,
+                    new Vector3(WeakSpot.transform.position.x, WeakSpot.transform.position.y + 6.5f, WeakSpot.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentWeakSpotIndicator.transform.SetParent(WeakSpot.transform);
+                cbCurrentVialIndicator = Instantiate(cbPurpleIndicator,
+                    new Vector3(backVial.transform.position.x, backVial.transform.position.y + 6.5f, backVial.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentVialIndicator.transform.SetParent(backVial.transform);
+            }
+        }else if(currentBossPhase==BossPhases.pens)
+
+        {
+            if (colourOfEnemy=="blue")
+            {
+                cbCurrentBodyIndicator = Instantiate(cbBlueIndicator,
+                    new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 10.5f, SphereRenderer.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentBodyIndicator.transform.SetParent(transform);
+            }
+            else if (colourOfEnemy == "red")
+            {
+                cbCurrentBodyIndicator = Instantiate(cbRedIndicator,
+                    new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 10.5f, SphereRenderer.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentBodyIndicator.transform.SetParent(transform);
+            }
+            else if (colourOfEnemy =="yellow")
+            {
+                cbCurrentBodyIndicator = Instantiate(cbYellowIndicator,
+                    new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 10.5f, SphereRenderer.transform.position.z),
+                    Quaternion.Euler(90, 0, 0));
+                cbCurrentBodyIndicator.transform.SetParent(transform);
+            }
+        }
+        
     }
 }

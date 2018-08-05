@@ -68,6 +68,16 @@ public class SpiderEnemyController : MonoBehaviour
 
     public GameObject coin;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    private GameObject cbBodyCurrentIndicator;
+    private GameObject cbLeg1CurrentIndicator;
+    private GameObject cbLeg2CurrentIndicator;
+    private GameObject cbLeg3CurrentIndicator;
+    private GameObject cbLeg4CurrentIndicator;
+
     // Use this for initialization
     void Start ()
     {
@@ -192,6 +202,15 @@ public class SpiderEnemyController : MonoBehaviour
 	            leg4.GetComponent<SpiderLegScript>().legColour = "red";
             }
         }
+        if (gameManager.colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
         //Debug.Log("leg colour:  "+legColour+"  body colour:  "+bodyColour);
         gameObject.GetComponent<Renderer>().material = bodyMaterial;
 	}
@@ -228,7 +247,24 @@ public class SpiderEnemyController : MonoBehaviour
 	        }
 
         }
-	    if (isItCoop)
+	    if (Input.GetKeyUp(KeyCode.F1))
+	    {
+	        if (colourBlindModeActive == false)
+	        {
+	            SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+	        }
+	        else
+	        {
+	            Destroy(cbBodyCurrentIndicator);
+                Destroy(cbLeg1CurrentIndicator);
+                Destroy(cbLeg2CurrentIndicator);
+                Destroy(cbLeg3CurrentIndicator);
+                Destroy(cbLeg4CurrentIndicator);
+	            colourBlindModeActive = false;
+	        }
+	    }
+        if (isItCoop)
 	    {
 	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
 	        {
@@ -611,5 +647,74 @@ public class SpiderEnemyController : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+    public void SpawnColourBlindIndicator()
+    {
+        if (bodyColour == 2)
+        {
+            cbBodyCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbBodyCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (bodyColour == 1)
+        {
+            cbBodyCurrentIndicator= Instantiate(cbRedIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbBodyCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (bodyColour == 3)
+        {
+            cbBodyCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbBodyCurrentIndicator.transform.SetParent(transform);
+        }
+
+        if (leg1.GetComponent<SpiderLegScript>().legColour=="blue")
+        {
+            cbLeg1CurrentIndicator = Instantiate(cbBlueIndicator, new Vector3(leg1.transform.position.x, leg1.transform.position.y + 1.5f, leg1.transform.position.z),
+            Quaternion.Euler(90, 0, 0));
+            cbLeg1CurrentIndicator.transform.SetParent(leg1.transform);
+            cbLeg2CurrentIndicator = Instantiate(cbBlueIndicator, new Vector3(leg2.transform.position.x, leg2.transform.position.y + 1.5f, leg2.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg2CurrentIndicator.transform.SetParent(leg2.transform);
+            cbLeg3CurrentIndicator = Instantiate(cbBlueIndicator, new Vector3(leg3.transform.position.x, leg3.transform.position.y + 1.5f, leg3.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg3CurrentIndicator.transform.SetParent(leg3.transform);
+            cbLeg4CurrentIndicator = Instantiate(cbBlueIndicator, new Vector3(leg4.transform.position.x, leg4.transform.position.y + 1.5f, leg4.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg4CurrentIndicator.transform.SetParent(leg4.transform);
+        }else if (leg1.GetComponent<SpiderLegScript>().legColour == "red")
+        {
+            cbLeg1CurrentIndicator = Instantiate(cbRedIndicator, new Vector3(leg1.transform.position.x, leg1.transform.position.y + 1.5f, leg1.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg1CurrentIndicator.transform.SetParent(leg1.transform);
+            cbLeg2CurrentIndicator = Instantiate(cbRedIndicator, new Vector3(leg2.transform.position.x, leg2.transform.position.y + 1.5f, leg2.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg2CurrentIndicator.transform.SetParent(leg2.transform);
+            cbLeg3CurrentIndicator = Instantiate(cbRedIndicator, new Vector3(leg3.transform.position.x, leg3.transform.position.y + 1.5f, leg3.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg3CurrentIndicator.transform.SetParent(leg3.transform);
+            cbLeg4CurrentIndicator = Instantiate(cbRedIndicator, new Vector3(leg4.transform.position.x, leg4.transform.position.y + 1.5f, leg4.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg4CurrentIndicator.transform.SetParent(leg4.transform);
+        }
+        else if (leg1.GetComponent<SpiderLegScript>().legColour == "yellow")
+        {
+            cbLeg1CurrentIndicator = Instantiate(cbYellowIndicator, new Vector3(leg1.transform.position.x, leg1.transform.position.y + 1.5f, leg1.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg1CurrentIndicator.transform.SetParent(leg1.transform);
+            cbLeg2CurrentIndicator = Instantiate(cbYellowIndicator, new Vector3(leg2.transform.position.x, leg2.transform.position.y + 1.5f, leg2.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg2CurrentIndicator.transform.SetParent(leg2.transform);
+            cbLeg3CurrentIndicator = Instantiate(cbYellowIndicator, new Vector3(leg3.transform.position.x, leg3.transform.position.y + 1.5f, leg3.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg3CurrentIndicator.transform.SetParent(leg3.transform);
+            cbLeg4CurrentIndicator = Instantiate(cbYellowIndicator, new Vector3(leg4.transform.position.x, leg4.transform.position.y + 1.5f, leg4.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbLeg4CurrentIndicator.transform.SetParent(leg4.transform);
+        }
     }
 }

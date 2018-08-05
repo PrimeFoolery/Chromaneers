@@ -32,6 +32,15 @@ public class StandardEnemyBehaviour : MonoBehaviour {
     [Header("Enemy Animators")]
     public Animator anim;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    public GameObject cbPurpleIndicator;
+    public GameObject cbGreenIndicator;
+    public GameObject cbOrangeIndicator;
+    private GameObject cbCurrentIndicator;
+
     [Header("Misc")]
     public bool isItCoop;
     private ColourSelectManager gameManager;
@@ -51,6 +60,16 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         if (gameManager.isItSingleplayer == false) {
             isItCoop = true;
         }
+
+        if (gameManager.colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
         if (!isItCoop) {
 			player = GameObject.FindGameObjectWithTag ("Player");
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -64,6 +83,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             FindClosestPlayer();
         }
 
+        
         blueHealth = gameObject.GetComponent<BlueEnemyHealth>();
         purpleHealth = gameObject.GetComponent<PurpleEnemyHealth>();
         redHealth = gameObject.GetComponent<RedEnemyHealth>();
@@ -80,6 +100,7 @@ public class StandardEnemyBehaviour : MonoBehaviour {
         if (gameManager.isItSingleplayer == false) {
             isItCoop = true;
         }
+               
         if (!isItCoop) {
             if (player==null) {
                 player = GameObject.FindGameObjectWithTag("Player");
@@ -116,6 +137,20 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             
 
 		}
+
+	    if (Input.GetKeyUp(KeyCode.F1))
+	    {
+	        if (colourBlindModeActive == false) 
+	        {
+                SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+            }
+	        else
+	        {
+                Destroy(cbCurrentIndicator);
+	            colourBlindModeActive = false;
+	        }
+	    }
         if (readyToRetarget==false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
         {
             retargetingDelay -= Time.deltaTime;
@@ -634,5 +669,50 @@ public class StandardEnemyBehaviour : MonoBehaviour {
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+
+    public void SpawnColourBlindIndicator()
+    {
+        if (colourOfEnemy == "blue")
+        {
+            cbCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else
+        if (colourOfEnemy == "red")
+        {
+            cbCurrentIndicator = Instantiate(cbRedIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else
+        if (colourOfEnemy == "yellow")
+        {
+            cbCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else
+        if (colourOfEnemy == "purple")
+        {
+            cbCurrentIndicator = Instantiate(cbPurpleIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else
+        if (colourOfEnemy == "orange")
+        {
+            cbCurrentIndicator = Instantiate(cbOrangeIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else
+        if (colourOfEnemy == "green")
+        {
+            cbCurrentIndicator = Instantiate(cbGreenIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
     }
 }

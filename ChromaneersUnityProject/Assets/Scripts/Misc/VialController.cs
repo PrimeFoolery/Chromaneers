@@ -62,6 +62,16 @@ public class VialController : MonoBehaviour {
 
     public bool VialCorrectlyFilled = false;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    public GameObject cbPurpleIndicator;
+    public GameObject cbOrangeIndicator;
+    public GameObject cbGreenIndicator;
+    private GameObject cbCurrentIndicator;
+    
+
     // Use this for initialization
     void Start ()
 	{
@@ -117,12 +127,34 @@ public class VialController : MonoBehaviour {
 	        redFillLevel = 1;
 	        blueFillLevel = 1;
         }
+	    if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>().colourBlindMode == true)
+	    {
+	        SpawnColourBlindIndicator();
+	        colourBlindModeActive = true;
+	    }
+	    else
+	    {
+	        colourBlindModeActive = false;
+	    }
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    totalFillLevel = blueFillLevel + yellowFillLevel + redFillLevel;
+	    if (Input.GetKeyUp(KeyCode.F1)&&isThisBossVial==false)
+	    {
+	        if (colourBlindModeActive == false)
+	        {
+	            SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+	        }
+	        else
+	        {
+	            Destroy(cbCurrentIndicator);
+	            colourBlindModeActive = false;
+	        }
+	    }
+        totalFillLevel = blueFillLevel + yellowFillLevel + redFillLevel;
 	    if (thisVialsColour == Colours.blue)
 	    {
 	        VialLiquidMaterial.SetFloat("_FillAmount", (-blueFillLevel / 1.25f) + 4.5f);
@@ -695,5 +727,51 @@ public class VialController : MonoBehaviour {
         VialLiquidMaterial.SetColor("_FoamColor", greenFoamLineColor);
         yellowFillLevel = 1;
         blueFillLevel = 1;
+    }
+    public void SpawnColourBlindIndicator()
+    {
+        if (thisVialsColour == Colours.blue)
+        {
+            cbCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (thisVialsColour == Colours.red)
+        {
+            cbCurrentIndicator = Instantiate(cbRedIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (thisVialsColour == Colours.yellow)
+        {
+            cbCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        if (thisVialsColour == Colours.purple)
+        {
+            cbCurrentIndicator = Instantiate(cbPurpleIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (thisVialsColour == Colours.green)
+        {
+            cbCurrentIndicator = Instantiate(cbGreenIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (thisVialsColour == Colours.orange)
+        {
+            cbCurrentIndicator = Instantiate(cbOrangeIndicator,
+                new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+
     }
 }

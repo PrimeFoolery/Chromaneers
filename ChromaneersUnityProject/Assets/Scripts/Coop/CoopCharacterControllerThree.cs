@@ -94,6 +94,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 
     public Vector3 thisPlayersReviveSpot;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbIndicator;
+    private GameObject cbCurrentIndicator;
+
     void Start () {
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
@@ -106,15 +110,37 @@ public class CoopCharacterControllerThree : MonoBehaviour {
         mainCameraScript = mainCamera.GetComponent<CameraScript>();
         brush.Color = yellowColor;
         audio = GetComponent<AudioSource>();
-	    
-	    playerLookDirection.x = 0f;
+
+        if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>().colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
+
+        playerLookDirection.x = 0f;
 	    playerLookDirection.y = 1f;
     }
 	
 	void Update () {
 
 
-
+	    if (Input.GetKeyUp(KeyCode.F1))
+	    {
+	        if (colourBlindModeActive == false)
+	        {
+	            SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+	        }
+	        else
+	        {
+	            Destroy(cbCurrentIndicator);
+	            colourBlindModeActive = false;
+	        }
+	    }
         dodgeSlider.value = (dodgeCooldown);
         //Checking whether an Xbox or Playstation controller is being used
         if (!usingXboxController) {
@@ -890,4 +916,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
             anim.SetInteger("whatStateAmI", 0);
         }
 	}
+    private void SpawnColourBlindIndicator()
+    {
+        cbCurrentIndicator = Instantiate(cbIndicator,
+            new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), Quaternion.Euler(90, 0, 0));
+        cbCurrentIndicator.transform.SetParent(transform);
+    }
 }

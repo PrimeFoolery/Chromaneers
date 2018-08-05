@@ -64,6 +64,12 @@ public class MotherController : MonoBehaviour
 
     public GameObject coin;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    private GameObject cbCurrentIndicator;
+
     // Use this for initialization
     void Start () {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
@@ -110,11 +116,33 @@ public class MotherController : MonoBehaviour
             SphereRenderer.material = yellowMaterial;
             gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
         }
+        if (gameManager.colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (gameManager.isItSingleplayer == false)
+	    if (Input.GetKeyUp(KeyCode.F1))
+	    {
+	        if (colourBlindModeActive == false)
+	        {
+	            SpawnColourBlindIndicator();
+	            colourBlindModeActive = true;
+	        }
+	        else
+	        {
+	            Destroy(cbCurrentIndicator);
+	            colourBlindModeActive = false;
+	        }
+	    }
+        if (gameManager.isItSingleplayer == false)
 	    {
 	        isItCoop = true;
 	    }
@@ -679,5 +707,29 @@ public class MotherController : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+    public void SpawnColourBlindIndicator()
+    {
+        if (colourOfEnemy == "blue")
+        {
+            cbCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 2.5f, SphereRenderer.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfEnemy == "red")
+        {
+            cbCurrentIndicator = Instantiate(cbRedIndicator,
+                new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 2.5f, SphereRenderer.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfEnemy == "yellow")
+        {
+            cbCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(SphereRenderer.transform.position.x, SphereRenderer.transform.position.y + 2.5f, SphereRenderer.transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
     }
 }

@@ -89,9 +89,12 @@ public class BossBattleObelisk : MonoBehaviour
 	    {
 	        if (triggerCubesSpawned == false)
 	        {
+
                 triggerCube.transform.localScale+= new Vector3(0, triggerCubeGrowSpeed* Time.deltaTime, 0);
 	            if (triggerCube.transform.localScale.y>1)
 	            {
+                    triggerCube.GetComponentInChildren<BossObeliskTriggerCube>().SpawnColourBlindIndicator();
+	                triggerCube.GetComponentInChildren<BossObeliskTriggerCube>().isTriggerable = true;
 	                triggerCubesSpawned = true;
 	            }
 	        }

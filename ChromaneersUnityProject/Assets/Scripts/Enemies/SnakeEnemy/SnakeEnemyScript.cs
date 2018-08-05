@@ -65,6 +65,11 @@ public class SnakeEnemyScript : MonoBehaviour
 
     public GameObject coin;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    private GameObject cbCurrentIndicator;
 
     // Use this for initialization
     void Start()
@@ -100,6 +105,16 @@ public class SnakeEnemyScript : MonoBehaviour
             }
             CalculateClosestPlayer();
         }
+
+        if (gameManager.colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
     }
 
     // Update is called once per frame
@@ -107,7 +122,7 @@ public class SnakeEnemyScript : MonoBehaviour
     {
         if (name == "SnakeHead")
         {
-            Debug.Log(agent.destination);
+            //Debug.Log(agent.destination);
         }
         
         if (isAggroPlayer == true&& Target_Or_SegmentAhead!=null)
@@ -157,7 +172,19 @@ public class SnakeEnemyScript : MonoBehaviour
             }
             //
         }
-
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            if (colourBlindModeActive == false)
+            {
+                SpawnColourBlindIndicator();
+                colourBlindModeActive = true;
+            }
+            else
+            {
+                Destroy(cbCurrentIndicator);
+                colourBlindModeActive = false;
+            }
+        }
         if (segmentHealth <= 0)
         {
             if (colourOfSnake == "blue")
@@ -827,5 +854,29 @@ public class SnakeEnemyScript : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+    public void SpawnColourBlindIndicator()
+    {
+        if (colourOfSnake == "blue")
+        {
+            cbCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfSnake == "red")
+        {
+            cbCurrentIndicator = Instantiate(cbRedIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfSnake == "yellow")
+        {
+            cbCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
     }
 }

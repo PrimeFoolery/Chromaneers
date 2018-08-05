@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FastEnemy : MonoBehaviour {
+public class FastEnemy : MonoBehaviour
+{
 
-    [Header("Singleplayer Variables")]
-    public GameObject player;
+    [Header("Singleplayer Variables")] public GameObject player;
     public GameObject targetPlayer;
     public bool isAggroPlayer = false;
     NavMeshAgent agent;
@@ -30,28 +30,33 @@ public class FastEnemy : MonoBehaviour {
     public GameObject enemyEmpty;
 
     //COOP PLAYER VARIABLES
-    [Header("Coop Variables")]
-    public GameObject RedPlayer;
+    [Header("Coop Variables")] public GameObject RedPlayer;
     public GameObject BluePlayer;
     public GameObject YellowPlayer;
     private float retargetingDelay = 3f;
     private bool readyToRetarget = true;
     bool redPaintLock = false;
 
-    [Header("Misc")]
-    public bool isItCoop;
+    [Header("Misc")] public bool isItCoop;
     private ColourSelectManager gameManager;
     private EnemySpawner spawner;
     private EnemyManager enemyManagerScript;
     public GameObject thisEnemiesSpawnPoint;
     public int enemyDamage;
 
+    private bool colourBlindModeActive = false;
+    public GameObject cbRedIndicator;
+    public GameObject cbYellowIndicator;
+    public GameObject cbBlueIndicator;
+    private GameObject cbCurrentIndicator;
+
     private GameObject mainCamera;
 
 
     // Use this for initialization
-    void Start () {
-        
+    void Start()
+    {
+
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ColourSelectManager>();
         spawner = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemySpawner>();
         enemyManagerScript = gameManager.gameObject.GetComponent<EnemyManager>();
@@ -60,16 +65,21 @@ public class FastEnemy : MonoBehaviour {
         {
             isItCoop = false;
         }
+
         if (gameManager.isItSingleplayer == false)
         {
             isItCoop = true;
         }
+
+        
+
         if (!isItCoop)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             agent = gameObject.GetComponent<NavMeshAgent>();
             targetPlayer = player;
         }
+
         if (isItCoop)
         {
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -79,174 +89,215 @@ public class FastEnemy : MonoBehaviour {
             FindClosestPlayer();
         }
 
-        if (colourOverride==false)
+        if (colourOverride == false)
         {
             randomColour = Random.Range(1, 4);
         }
-        
-        if (randomColour==1)
+
+        if (randomColour == 1)
         {
             colourOfEnemy = "blue";
             SphereRenderer.material = blueMaterial;
             gameObject.GetComponent<ParticleSystemRenderer>().material = blueParticle;
 
-        } else if (randomColour == 2)
+        }
+        else if (randomColour == 2)
         {
             colourOfEnemy = "red";
             SphereRenderer.material = redMaterial;
             gameObject.GetComponent<ParticleSystemRenderer>().material = redParticle;
-        } else if (randomColour == 3)
+        }
+        else if (randomColour == 3)
         {
             colourOfEnemy = "yellow";
             SphereRenderer.material = yellowMaterial;
-            gameObject.GetComponent<ParticleSystemRenderer>().material =yellowParticle;
+            gameObject.GetComponent<ParticleSystemRenderer>().material = yellowParticle;
         }
-        
+        if (gameManager.colourBlindMode == true)
+        {
+            SpawnColourBlindIndicator();
+            colourBlindModeActive = true;
+        }
+        else
+        {
+            colourBlindModeActive = false;
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    if (gameManager.isItSingleplayer == true)
-	    {
-	        isItCoop = false;
-	    }
-	    if (gameManager.isItSingleplayer == false)
-	    {
-	        isItCoop = true;
-	    }
-	    if (!isItCoop)
-	    {
-	        if (player == null)
-	        {
-	            player = GameObject.FindGameObjectWithTag("Player");
-	        }
-	        else if (player != null)
-	        {
-	            if (Vector3.Distance(transform.position, player.transform.position) < 25f && isAggroPlayer == false)
-	            {
-	                if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
-	                {
-	                    thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
-	                }
-	                else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
-	                {
-	                    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
-	                }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (gameManager.isItSingleplayer == true)
+        {
+            isItCoop = false;
+        }
+
+        if (gameManager.isItSingleplayer == false)
+        {
+            isItCoop = true;
+        }
+
+        if (!isItCoop)
+        {
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+            else if (player != null)
+            {
+                if (Vector3.Distance(transform.position, player.transform.position) < 25f && isAggroPlayer == false)
+                {
+                    if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                    {
+                        thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+                    }
+                    else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                    {
+                        thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+                    }
                 }
 
-	            if (isAggroPlayer == true)
-	            {
-	                agent.SetDestination(targetPlayer.transform.position);
-	            }
+                if (isAggroPlayer == true)
+                {
+                    agent.SetDestination(targetPlayer.transform.position);
+                }
 
-	        }
-
-	    }
-	    if (isItCoop)
-	    {
-	        if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f || Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f || Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
-	        {
-	            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
-	            {
-	                thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
-	            }
-	            else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
-	            {
-	                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
-	            }
             }
-	        if (isAggroPlayer == true)
-	        {
-	            if (retargetingDelay == 3f)
-	            {
-	                FindClosestPlayer();
-	            }
-	            agent.SetDestination(targetPlayer.transform.position);
-	        }
 
-
-	    }
-	    if (readyToRetarget == false)//DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
-	    {
-	        retargetingDelay -= Time.deltaTime;
-	    }
-	    if (retargetingDelay <= 0f)
-	    {
-	        readyToRetarget = true;
-	        retargetingDelay = 3f;
-	    }
-
-	    if (isAggroPlayer==true)
-	    {
-	        transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y, targetPlayer.transform.position.z));
-	        agent.SetDestination(targetPlayer.transform.position);
         }
-	    
-	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "yellow")
-	    {
-	        agent.speed = 5;
-	    }
-	    else
-	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "blue")
-	    {
-	        agent.speed = 1.5f;
-	    }
-	    else
-	    {
-	        agent.speed = 4;
-	    }
-	    if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "red")
-	    {
-	        poisonTimer -= Time.deltaTime;
-	        if (poisonTimer <= 0)
-	        {
-	            thisEnemiesHealth -= 1;
+
+        if (isItCoop)
+        {
+            if (isAggroPlayer == false && (Vector3.Distance(transform.position, RedPlayer.transform.position) < 25f ||
+                                           Vector3.Distance(transform.position, BluePlayer.transform.position) < 25f ||
+                                           Vector3.Distance(transform.position, YellowPlayer.transform.position) < 25f))
+            {
+                if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+                {
+                    thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ToggleAggro();
+                }
+                else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+                {
+                    thisEnemiesSpawnPoint.GetComponent<newSpawner>().ToggleAggro();
+                }
+            }
+
+            if (isAggroPlayer == true)
+            {
+                if (retargetingDelay == 3f)
+                {
+                    FindClosestPlayer();
+                }
+
+                agent.SetDestination(targetPlayer.transform.position);
+            }
+
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            if (colourBlindModeActive == false)
+            {
+                SpawnColourBlindIndicator();
+                colourBlindModeActive = true;
+            }
+            else
+            {
+                Destroy(cbCurrentIndicator);
+                colourBlindModeActive = false;
+            }
+        }
+
+        if (readyToRetarget == false) //DELAYS THE RETARGETING TO STOP PLAYER TARGET SWAPPING
+        {
+            retargetingDelay -= Time.deltaTime;
+        }
+
+        if (retargetingDelay <= 0f)
+        {
+            readyToRetarget = true;
+            retargetingDelay = 3f;
+        }
+
+        if (isAggroPlayer == true)
+        {
+            transform.LookAt(new Vector3(targetPlayer.transform.position.x, transform.position.y,
+                targetPlayer.transform.position.z));
+            agent.SetDestination(targetPlayer.transform.position);
+        }
+
+        if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "yellow")
+        {
+            agent.speed = 5;
+        }
+        else if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "blue")
+        {
+            agent.speed = 1.5f;
+        }
+        else
+        {
+            agent.speed = 4;
+        }
+
+        if (gameObject.GetComponent<PaintDetectionScript>().colourOfPaint == "red")
+        {
+            poisonTimer -= Time.deltaTime;
+            if (poisonTimer <= 0)
+            {
+                thisEnemiesHealth -= 1;
                 gameObject.GetComponent<ParticleSystem>().Play();
-	            poisonTimer = 4f;
-	        }
-	    }
-	    else
-	    {
-	        poisonTimer = 4f;
-	    }
+                poisonTimer = 4f;
+            }
+        }
+        else
+        {
+            poisonTimer = 4f;
+        }
 
-	    if (thisEnemiesHealth<=0)
-	    {
-	        if (colourOfEnemy=="blue")
-	        {
-	            Instantiate(blueSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+        if (thisEnemiesHealth <= 0)
+        {
+            if (colourOfEnemy == "blue")
+            {
+                Instantiate(blueSplat, enemyEmpty.gameObject.transform.position,
+                    enemyEmpty.gameObject.transform.rotation);
             }
-            else if (colourOfEnemy=="red")
-	        {
-	            Instantiate(redSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+            else if (colourOfEnemy == "red")
+            {
+                Instantiate(redSplat, enemyEmpty.gameObject.transform.position,
+                    enemyEmpty.gameObject.transform.rotation);
             }
-            else if (colourOfEnemy=="yellow")
-	        {
-	            Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position, enemyEmpty.gameObject.transform.rotation);
+            else if (colourOfEnemy == "yellow")
+            {
+                Instantiate(yellowSplat, enemyEmpty.gameObject.transform.position,
+                    enemyEmpty.gameObject.transform.rotation);
             }
 
-	        if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
-	        {
-	            thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
-	        }
-	        else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
-	        {
-	            thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
-	        }
+            if (thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>() != null)
+            {
+                thisEnemiesSpawnPoint.GetComponent<InfiniteSpawnPoint>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            }
+            else if (thisEnemiesSpawnPoint.GetComponent<newSpawner>() != null)
+            {
+                thisEnemiesSpawnPoint.GetComponent<newSpawner>().ThisSpawnpointsEnemyList.Remove(gameObject);
+            }
 
             mainCamera.GetComponent<CameraScript>().SmallScreenShake();
             enemyManagerScript.enemyList.Remove(gameObject);
             Destroy(this.gameObject);
-	    }
+        }
     }
+
     void FindClosestPlayer()
     {
         if (colourOfEnemy == "blue")
         {
             readyToRetarget = false;
             float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, RedPlayer.transform.position);
-            float distanceBetweenEnemyAndYellowPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
-            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndRedPlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+            float distanceBetweenEnemyAndYellowPlayer =
+                Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndRedPlayer),
+                Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
             if (closestDistance == distanceBetweenEnemyAndRedPlayer)
             {
                 if (RedPlayer.GetComponent<CoopCharacterHealthControllerTwo>().PlayerState == "Alive")
@@ -289,9 +340,12 @@ public class FastEnemy : MonoBehaviour {
         else if (colourOfEnemy == "red")
         {
             readyToRetarget = false;
-            float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
-            float distanceBetweenEnemyAndYellowPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
-            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer), Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
+            float distanceBetweenEnemyAndBluePlayer =
+                Vector3.Distance(transform.position, BluePlayer.transform.position);
+            float distanceBetweenEnemyAndYellowPlayer =
+                Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer),
+                Mathf.Abs(distanceBetweenEnemyAndYellowPlayer));
             if (closestDistance == distanceBetweenEnemyAndBluePlayer)
             {
                 if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
@@ -334,9 +388,12 @@ public class FastEnemy : MonoBehaviour {
         else if (colourOfEnemy == "yellow")
         {
             readyToRetarget = false;
-            float distanceBetweenEnemyAndBluePlayer = Vector3.Distance(transform.position, BluePlayer.transform.position);
-            float distanceBetweenEnemyAndRedPlayer = Vector3.Distance(transform.position, YellowPlayer.transform.position);
-            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer), Mathf.Abs(distanceBetweenEnemyAndRedPlayer));
+            float distanceBetweenEnemyAndBluePlayer =
+                Vector3.Distance(transform.position, BluePlayer.transform.position);
+            float distanceBetweenEnemyAndRedPlayer =
+                Vector3.Distance(transform.position, YellowPlayer.transform.position);
+            float closestDistance = Mathf.Min(Mathf.Abs(distanceBetweenEnemyAndBluePlayer),
+                Mathf.Abs(distanceBetweenEnemyAndRedPlayer));
             if (closestDistance == distanceBetweenEnemyAndBluePlayer)
             {
                 if (BluePlayer.GetComponent<CoopCharacterHealthControllerOne>().PlayerState == "Alive")
@@ -482,6 +539,7 @@ public class FastEnemy : MonoBehaviour {
         */
 
     }
+
     void OnCollisionEnter(Collision theCol)
     {
         //Check if it collides with the player
@@ -492,6 +550,7 @@ public class FastEnemy : MonoBehaviour {
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<SingleplayerHealthController>().invincibility = 1f;
         }
+
         //Check if it collides with coop player one
         if (theCol.gameObject.CompareTag("BluePlayer"))
         {
@@ -500,6 +559,7 @@ public class FastEnemy : MonoBehaviour {
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerOne>().invincibility = 1f;
         }
+
         //Check if it collides with coop player two
         if (theCol.gameObject.CompareTag("RedPlayer"))
         {
@@ -508,6 +568,7 @@ public class FastEnemy : MonoBehaviour {
             //Resseting the timer for the player to take damage
             //theCol.gameObject.GetComponent<CoopCharacterHealthControllerTwo>().invincibility = 1f;
         }
+
         //Check if it collides with coop player three
         if (theCol.gameObject.CompareTag("YellowPlayer"))
         {
@@ -519,13 +580,14 @@ public class FastEnemy : MonoBehaviour {
 
         if (colourOfEnemy == "blue")
         {
-            if (theCol.gameObject.CompareTag("BlueBullet")|| theCol.gameObject.CompareTag("RainbowBullet"))
+            if (theCol.gameObject.CompareTag("BlueBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
             {
                 gameObject.GetComponent<ParticleSystem>().Play();
                 thisEnemiesHealth -= 1;
                 Destroy(theCol.gameObject);
             }
         }
+
         if (colourOfEnemy == "red")
         {
             if (theCol.gameObject.CompareTag("RedBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
@@ -535,6 +597,7 @@ public class FastEnemy : MonoBehaviour {
                 Destroy(theCol.gameObject);
             }
         }
+
         if (colourOfEnemy == "yellow")
         {
             if (theCol.gameObject.CompareTag("YellowBullet") || theCol.gameObject.CompareTag("RainbowBullet"))
@@ -545,6 +608,7 @@ public class FastEnemy : MonoBehaviour {
             }
         }
     }
+
     public Vector3 RandomNavmeshLocation(float radius)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius;
@@ -555,10 +619,37 @@ public class FastEnemy : MonoBehaviour {
         {
             finalPosition = hit.position;
         }
+
         return finalPosition;
     }
-	public void BulletKnockback(Vector3 bulletPosition)
-	{
-		transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
-	}
+
+    public void BulletKnockback(Vector3 bulletPosition)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, bulletPosition, -0.5f);
+    }
+
+    public void SpawnColourBlindIndicator()
+    {
+        if (colourOfEnemy == "blue")
+        {
+            cbCurrentIndicator = Instantiate(cbBlueIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfEnemy == "red")
+        {
+            cbCurrentIndicator = Instantiate(cbRedIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+        else if (colourOfEnemy == "yellow")
+        {
+            cbCurrentIndicator = Instantiate(cbYellowIndicator,
+                new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z),
+                Quaternion.Euler(90, 0, 0));
+            cbCurrentIndicator.transform.SetParent(transform);
+        }
+    }
 }
