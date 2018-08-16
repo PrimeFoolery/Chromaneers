@@ -46,7 +46,7 @@ public class CharacterOneGunController : MonoBehaviour {
     [Space(10)]
 
     public int amountOfRainbowAmmo = 100;
-	public float dropWeaponTimer = 5f;
+	public float dropWeaponTimer = 3f;
     public Animator anim;
 
     public enum currentWeapon { OriginalWeapon, TrishotWeapon, SniperWeapon, SMGWeapon, RainbowWeapon }
@@ -154,7 +154,7 @@ public class CharacterOneGunController : MonoBehaviour {
             || stateOfWeapon == currentWeapon.SMGWeapon || stateOfWeapon == currentWeapon.RainbowWeapon)
         {
 			dropWeaponTimer -= Time.deltaTime;
-			if (dropWeaponTimer <= 5) {
+			if (dropWeaponTimer <= 0) {
 				if (coopCharacterControllerOne.usingXboxController == false) {
 					if ((Input.GetKey (KeyCode.Joystick1Button0)) && weaponPickedUp == false) {
 						stateOfWeapon = currentWeapon.OriginalWeapon;
@@ -174,7 +174,7 @@ public class CharacterOneGunController : MonoBehaviour {
                         imgTrishot.enabled = false;
                     }
 				}
-				dropWeaponTimer = 5f;
+				//dropWeaponTimer = 5f;
 			}
 
         }
@@ -342,6 +342,7 @@ public class CharacterOneGunController : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.Joystick1Button0))
                 {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -350,12 +351,14 @@ public class CharacterOneGunController : MonoBehaviour {
                     imgSMG.enabled = false;
                     imgSniper.enabled = false;
                     imgTrishot.enabled = true;
+                    
                 }
             } else 
             if (coopCharacterControllerOne.usingXboxController==true)
             {
                 if (Input.GetButton("Pickup1"))
                 {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.TrishotWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -375,6 +378,7 @@ public class CharacterOneGunController : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.Joystick1Button0))
                 {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -389,6 +393,7 @@ public class CharacterOneGunController : MonoBehaviour {
             {
                 if (Input.GetButton("Pickup1"))
                 {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.SniperWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -405,6 +410,7 @@ public class CharacterOneGunController : MonoBehaviour {
             controlState = "Blue";
             if (coopCharacterControllerOne.usingXboxController == false) {
                 if (Input.GetKey(KeyCode.Joystick1Button0)) {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -416,6 +422,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 }
             } else if (coopCharacterControllerOne.usingXboxController == true) {
                 if (Input.GetButton("Pickup1")) {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.SMGWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -432,6 +439,7 @@ public class CharacterOneGunController : MonoBehaviour {
             controlState = "Blue";
             if (coopCharacterControllerOne.usingXboxController == false) {
                 if (Input.GetKey(KeyCode.Joystick1Button0)) {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
@@ -443,6 +451,7 @@ public class CharacterOneGunController : MonoBehaviour {
                 }
             } else if (coopCharacterControllerOne.usingXboxController == true) {
                 if (Input.GetButton("Pickup1")) {
+                    dropWeaponTimer = 3f;
                     stateOfWeapon = currentWeapon.RainbowWeapon;
                     weaponPickedUp = true;
                     Destroy(theCol.gameObject);
