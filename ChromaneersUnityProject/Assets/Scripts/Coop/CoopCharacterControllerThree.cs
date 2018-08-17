@@ -342,7 +342,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 	        //Checking if the vector3 has got a value inputed
 	        if (playerDirection.sqrMagnitude > 0.0f) {
 		        transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-		        playerLookDirection.x = playerDirection.x;
+	            Vector3 tempRotationValue = transform.rotation.eulerAngles;
+	            tempRotationValue.y = tempRotationValue.y + 17;
+	            transform.rotation = Quaternion.Euler(tempRotationValue);
+                playerLookDirection.x = playerDirection.x;
 		        playerLookDirection.y = playerDirection.z;
 	        }
 	        else
@@ -350,7 +353,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 		        Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("Joystick3LHorizontal") + Vector3.forward * Input.GetAxisRaw("Joystick3LVertical");
 		        if (playerDirectionAlt.sqrMagnitude > 0.0f) {
 			        transform.rotation = Quaternion.LookRotation(playerDirectionAlt, Vector3.up);
-			        playerLookDirection.x = playerDirectionAlt.x;
+		            Vector3 tempRotationValue = transform.rotation.eulerAngles;
+		            tempRotationValue.y = tempRotationValue.y + 17;
+		            transform.rotation = Quaternion.Euler(tempRotationValue);
+                    playerLookDirection.x = playerDirectionAlt.x;
 			        playerLookDirection.y = playerDirectionAlt.z;
 		        }
 	        }
@@ -668,7 +674,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 			//Checking if the vector3 has got a value inputed
 			if (playerDirection.sqrMagnitude > 0.0f) {
 				transform.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-				playerLookDirection.x = playerDirection.x;
+			    Vector3 tempRotationValue = transform.rotation.eulerAngles;
+			    tempRotationValue.y = tempRotationValue.y + 17;
+			    transform.rotation = Quaternion.Euler(tempRotationValue);
+                playerLookDirection.x = playerDirection.x;
 				playerLookDirection.y = playerDirection.z;
 			}
 			//Setting it where player can rotate whilst moving but not shoot
@@ -677,7 +686,10 @@ public class CoopCharacterControllerThree : MonoBehaviour {
 				Vector3 playerDirectionAlt = Vector3.right * Input.GetAxisRaw("XboxJoystick3LHorizontal") + Vector3.forward * Input.GetAxisRaw("XboxJoystick3LVertical");
 				if (playerDirectionAlt.sqrMagnitude > 0.0f) {
 					transform.rotation = Quaternion.LookRotation(playerDirectionAlt, Vector3.up);
-					playerLookDirection.x = playerDirectionAlt.x;
+				    Vector3 tempRotationValue = transform.rotation.eulerAngles;
+				    tempRotationValue.y = tempRotationValue.y + 17;
+				    transform.rotation = Quaternion.Euler(tempRotationValue);
+                    playerLookDirection.x = playerDirectionAlt.x;
 					playerLookDirection.y = playerDirectionAlt.z;
 				}
 			}
