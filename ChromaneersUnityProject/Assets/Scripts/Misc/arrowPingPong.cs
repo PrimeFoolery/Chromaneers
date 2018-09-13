@@ -12,7 +12,8 @@ public class arrowPingPong : MonoBehaviour
         topMiddleRight,
         topMiddleLeft,
         topRight,
-        topLeft
+        topLeft,
+        bottomLeft
     }
 
     private PositionState currentPosition = PositionState.topMiddleRight;
@@ -195,6 +196,29 @@ public class arrowPingPong : MonoBehaviour
 	            }
 	        }
 	    }
+	    else if
+	        (currentPosition == PositionState.bottomLeft)
+	    {
+	        if (currentPingPongState == PingPongState.toFirstPos)
+	        {
+	            GetComponent<RectTransform>().anchoredPosition =
+	                Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, new Vector3(startPos.x - 20, startPos.y +-20, startPos.z), pingPongSpeed * Time.deltaTime);
+	            if (GetComponent<RectTransform>().anchoredPosition.y == startPos.y - 20)
+	            {
+	                currentPingPongState = PingPongState.toSecondPos;
+	            }
+	        }
+	        else
+	        if (currentPingPongState == PingPongState.toSecondPos)
+	        {
+	            GetComponent<RectTransform>().anchoredPosition =
+	                Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, new Vector3(startPos.x + 20, startPos.y + 20, startPos.z), pingPongSpeed * Time.deltaTime);
+	            if (GetComponent<RectTransform>().anchoredPosition.y == startPos.y + 20)
+	            {
+	                currentPingPongState = PingPongState.toFirstPos;
+	            }
+	        }
+	    }
     }
 
     public void ArrowFadeIn()
@@ -253,6 +277,14 @@ public class arrowPingPong : MonoBehaviour
             GetComponent<RectTransform>().anchoredPosition = new Vector2(752, 381.85f);
 
             TempVector3 = new Vector3(57.73f, 0, -52.1f);
+            GetComponent<RectTransform>().SetPositionAndRotation(GetComponent<RectTransform>().transform.position, Quaternion.Euler(TempVector3));
+        }
+        else if (inputPosition == PositionState.bottomLeft)
+        {
+            currentPosition = PositionState.bottomLeft;
+            GetComponent<RectTransform>().anchoredPosition = new Vector2(-735, -361.85f);
+
+            TempVector3 = new Vector3(57.73f, 0, 120f);
             GetComponent<RectTransform>().SetPositionAndRotation(GetComponent<RectTransform>().transform.position, Quaternion.Euler(TempVector3));
         }
         startPos = GetComponent<RectTransform>().anchoredPosition;
