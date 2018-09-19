@@ -13,10 +13,24 @@ public class MainMenu : MonoBehaviour {
     private GameObject storedSelected;
     public bool usingXboxController = true;
 
+    public enum loadingPhase
+    {
+        BluePlayerControllerSelect,
+        RedPlayerControllerSelect,
+        YellowPlayerControllerSelect,
+        load
+    }
+
+    public loadingPhase currentLoadingPhase = loadingPhase.BluePlayerControllerSelect;
+
+    private string scenetoLoad;
+    private bool startLoading;
+
     public GameObject OptionsPanel;
     public GameObject MainMenuPanel;
     public GameObject CheckpointsPanel;
     public AudioMixer audioMixer;
+    public DoNotDestroy settingsKeeper;
 
     public GameObject[] buttonList;
     public GameObject[] buttonListOpt;
@@ -63,51 +77,195 @@ public class MainMenu : MonoBehaviour {
     }
     void Update()
     {
-        if (canInteract == false)
+        if (startLoading == false)
         {
-            InteractTimer -= Time.deltaTime;
-            if (InteractTimer <= 0)
+
+
+            if (canInteract == false)
             {
-                canInteract = true;
-                InteractTimer = maxIntTimer;
+                InteractTimer -= Time.deltaTime;
+                if (InteractTimer <= 0)
+                {
+                    canInteract = true;
+                    InteractTimer = maxIntTimer;
+                }
             }
-        }
-        print(eventSys.currentSelectedGameObject);
-        if (MenuState == "MainMenu")
-        {
-			if (eventSys.currentSelectedGameObject == buttonList [0]) {
-				playText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
-			} else {
-				playText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
-			}
-			if (eventSys.currentSelectedGameObject == buttonList [1]) {
-				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
-			} else {
-				optionsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
-			}
-			if (eventSys.currentSelectedGameObject == buttonList [2]) {
-				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
-			} else {
-				creditsText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
-			}
-			if (eventSys.currentSelectedGameObject == buttonList [3]) {
-				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
-			} else {
-				exitText.GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
-			}
-            if (eventSys.currentSelectedGameObject == buttonList[4])
+
+            print(eventSys.currentSelectedGameObject);
+            if (MenuState == "MainMenu")
             {
-                checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (usingXboxController == true)
-            {
-                Vector3 menuInput1;
-                menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
-                if (menuInput1.z < 0f)
+                if (eventSys.currentSelectedGameObject == buttonList[0])
+                {
+                    playText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    playText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonList[1])
+                {
+                    optionsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    optionsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonList[2])
+                {
+                    creditsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    creditsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonList[3])
+                {
+                    exitText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    exitText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonList[4])
+                {
+                    checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    checkpointsText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (usingXboxController == true)
+                {
+                    Vector3 menuInput1;
+                    menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f,
+                        Input.GetAxisRaw("XboxJoystick1LVertical"));
+                    if (menuInput1.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput1.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+                    }
+
+                    Vector3 menuInput2;
+                    menuInput2 = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f,
+                        Input.GetAxisRaw("XboxJoystick2LVertical"));
+                    if (menuInput2.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput2.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+                    }
+
+                    Vector3 menuInput3;
+                    menuInput3 = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f,
+                        Input.GetAxisRaw("XboxJoystick3LVertical"));
+                    if (menuInput3.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput3.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+                    }
+                }
+
+                if (usingXboxController == false)
+                {
+                    Vector3 menuInput1;
+                    menuInput1 = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f,
+                        Input.GetAxisRaw("Joystick1LVertical"));
+                    if (menuInput1.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[1]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput1.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[2]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[0]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonList[1]);
+                            canInteract = false;
+                        }
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -115,7 +273,8 @@ public class MainMenu : MonoBehaviour {
                         canInteract = false;
                     }
                 }
-                if (menuInput1.z > 0f)
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -123,9 +282,8 @@ public class MainMenu : MonoBehaviour {
                         canInteract = false;
                     }
                 }
-                Vector3 menuInput2;
-                menuInput2 = new Vector3(Input.GetAxisRaw("XboxJoystick2LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick2LVertical"));
-                if (menuInput2.z < 0f)
+
+                if (Input.GetKeyDown(KeyCode.S))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -133,25 +291,8 @@ public class MainMenu : MonoBehaviour {
                         canInteract = false;
                     }
                 }
-                if (menuInput2.z > 0f)
-                {
-                    if (eventSys.currentSelectedGameObject == null)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[2]);
-                        canInteract = false;
-                    }
-                }
-                Vector3 menuInput3;
-                menuInput3 = new Vector3(Input.GetAxisRaw("XboxJoystick3LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick3LVertical"));
-                if (menuInput3.z < 0f)
-                {
-                    if (eventSys.currentSelectedGameObject == null)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[0]);
-                        canInteract = false;
-                    }
-                }
-                if (menuInput3.z > 0f)
+
+                if (Input.GetKeyDown(KeyCode.W))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -160,129 +301,70 @@ public class MainMenu : MonoBehaviour {
                     }
                 }
             }
-            if (usingXboxController == false)
+
+            if (MenuState == "CheckpointsMenu")
             {
-                Vector3 menuInput1;
-                menuInput1 = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
-                if (menuInput1.z < 0f)
+                if (eventSys.currentSelectedGameObject == buttonListCheck[0])
                 {
-                    if (eventSys.currentSelectedGameObject == null)
+                    checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListCheck[1])
+                {
+                    checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListCheck[2])
+                {
+                    checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListCheck[3])
+                {
+                    back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (usingXboxController == true)
+                {
+                    Vector3 menuInput1;
+                    menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f,
+                        Input.GetAxisRaw("XboxJoystick1LVertical"));
+                    if (menuInput1.z < 0f)
                     {
-                        eventSys.SetSelectedGameObject(buttonList[0]);
-                        canInteract = false;
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListCheck[0]);
+                            canInteract = false;
+                        }
                     }
-                    if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
+
+                    if (menuInput1.z > 0f)
                     {
-                        eventSys.SetSelectedGameObject(buttonList[1]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[2]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[0]);
-                        canInteract = false;
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListCheck[3]);
+                            canInteract = false;
+                        }
                     }
                 }
-                if (menuInput1.z > 0f)
-                {
-                    if (eventSys.currentSelectedGameObject == null)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[2]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonList[0] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[2]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonList[1] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[0]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonList[2] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonList[1]);
-                        canInteract = false;
-                    }
-                }
-	        }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                if (eventSys.currentSelectedGameObject == null)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (eventSys.currentSelectedGameObject == null)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                if (eventSys.currentSelectedGameObject == null)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[0]);
-                    canInteract = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                if (eventSys.currentSelectedGameObject == null)
-                {
-                    eventSys.SetSelectedGameObject(buttonList[2]);
-                    canInteract = false;
-                }
-            }
-        }
-        if (MenuState == "CheckpointsMenu")
-        {
-            if (eventSys.currentSelectedGameObject == buttonListCheck[0])
-            {
-                checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                checkpointOneText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListCheck[1])
-            {
-                checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                checkpointTwoText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListCheck[2])
-            {
-                checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                checkpointThreeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListCheck[3])
-            {
-                back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                back2.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (usingXboxController == true)
-            {
-                Vector3 menuInput1;
-                menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
-                if (menuInput1.z < 0f)
+
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -290,7 +372,26 @@ public class MainMenu : MonoBehaviour {
                         canInteract = false;
                     }
                 }
-                if (menuInput1.z > 0f)
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListCheck[3]);
+                        canInteract = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListCheck[0]);
+                        canInteract = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
                 {
                     if (eventSys.currentSelectedGameObject == null)
                     {
@@ -299,310 +400,578 @@ public class MainMenu : MonoBehaviour {
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+
+            if (MenuState == "OptionsMenu")
             {
-                if (eventSys.currentSelectedGameObject == null)
+                //text alpha changes
+                if (eventSys.currentSelectedGameObject == buttonListOpt[0].gameObject)
                 {
-                    eventSys.SetSelectedGameObject(buttonListCheck[0]);
-                    canInteract = false;
+                    fullScreeenText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                    TickBoxImage2.color = new Color(0, 0, 0, 1f);
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (eventSys.currentSelectedGameObject == null)
+                else
                 {
-                    eventSys.SetSelectedGameObject(buttonListCheck[3]);
-                    canInteract = false;
+                    fullScreeenText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                    TickBoxImage2.color = new Color(0, 0, 0, 0.5f);
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                if (eventSys.currentSelectedGameObject == null)
+
+                /* if(eventSys.currentSelectedGameObject == buttonListOpt [1])
+                 {
+                     buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
+                 }
+                 else
+                 {
+                     buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
+                 }*/
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[3] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[4] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[5])
                 {
-                    eventSys.SetSelectedGameObject(buttonListCheck[0]);
-                    canInteract = false;
+                    buttonListOpt[1].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                if (eventSys.currentSelectedGameObject == null)
+                else
                 {
-                    eventSys.SetSelectedGameObject(buttonListCheck[3]);
-                    canInteract = false;
+                    buttonListOpt[1].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[2])
+                {
+                    buttonListOpt[2].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[2].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[3])
+                {
+                    buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[4])
+                {
+                    buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[5])
+                {
+                    buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[6])
+                {
+                    volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                /*if (eventSys.currentSelectedGameObject == buttonListOpt[7])
+                {
+                    buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }*/
+                if (eventSys.currentSelectedGameObject == buttonListOpt[8] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[9] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[10])
+                {
+                    buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[8])
+                {
+                    buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[9])
+                {
+                    buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[10])
+                {
+                    buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                /*if (eventSys.currentSelectedGameObject == buttonListOpt[11])
+                {
+                    buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }*/
+                if (eventSys.currentSelectedGameObject == buttonListOpt[12] ||
+                    eventSys.currentSelectedGameObject == buttonListOpt[13])
+                {
+                    buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[12])
+                {
+                    buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[13])
+                {
+                    buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                if (eventSys.currentSelectedGameObject == buttonListOpt[14])
+                {
+                    backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
+                }
+                else
+                {
+                    backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
+                }
+
+                //toggles
+                if (isFullScreen == true)
+                {
+                    Screen.fullScreen = true;
+                    TickBoxImage2.sprite = TickBoxSprites[0];
+                }
+
+                if (isFullScreen == false)
+                {
+                    Screen.fullScreen = false;
+                    TickBoxImage2.sprite = TickBoxSprites[1];
+                }
+
+
+                if (usingXboxController == true)
+                {
+                    Vector3 menuInput1;
+                    menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f,
+                        Input.GetAxisRaw("XboxJoystick1LVertical"));
+//
+                    if (menuInput1.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput1.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                            canInteract = false;
+                        }
+                    }
+                }
+
+                if (usingXboxController == false)
+                {
+                    Vector3 menuInput1;
+                    menuInput1 = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f,
+                        Input.GetAxisRaw("Joystick1LVertical"));
+                    if (menuInput1.z < 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[1]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[2]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                            canInteract = false;
+                        }
+                    }
+
+                    if (menuInput1.z > 0f)
+                    {
+                        if (eventSys.currentSelectedGameObject == null)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[2]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[1]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                            canInteract = false;
+                        }
+
+                        if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
+                        {
+                            eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                            canInteract = false;
+                        }
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                        canInteract = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                        canInteract = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
+                        canInteract = false;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    if (eventSys.currentSelectedGameObject == null)
+                    {
+                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
+                        canInteract = false;
+                    }
                 }
             }
         }
-        if (MenuState == "OptionsMenu")
+
+        if (startLoading==true)
         {
-            //text alpha changes
-            if (eventSys.currentSelectedGameObject == buttonListOpt[0].gameObject) {
-                fullScreeenText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-                TickBoxImage2.color = new Color(0, 0, 0, 1f);
-            } else {
-                fullScreeenText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-                TickBoxImage2.color = new Color(0, 0, 0, 0.5f);
-            }
-            /* if(eventSys.currentSelectedGameObject == buttonListOpt [1])
-             {
-                 buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 1f);
-             }
-             else
-             {
-                 buttonListOpt[1].GetComponent<TextMeshProUGUI> ().color = new Color (0, 0, 0, 0.5f);
-             }*/
-            if (eventSys.currentSelectedGameObject == buttonListOpt[2] || eventSys.currentSelectedGameObject == buttonListOpt[3] || eventSys.currentSelectedGameObject == buttonListOpt[4] || eventSys.currentSelectedGameObject == buttonListOpt[5])
+            if (currentLoadingPhase == loadingPhase.BluePlayerControllerSelect)
             {
-                buttonListOpt[1].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[1].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[2]) {
-                buttonListOpt[2].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            } else {
-                buttonListOpt[2].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[3])
-            {
-                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[3].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-
-            if (eventSys.currentSelectedGameObject == buttonListOpt[4])
-            {
-                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[4].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[5])
-            {
-                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[5].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[6])
-            {
-                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                volumeText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            /*if (eventSys.currentSelectedGameObject == buttonListOpt[7])
-            {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }*/
-            if (eventSys.currentSelectedGameObject == buttonListOpt[8] || eventSys.currentSelectedGameObject == buttonListOpt[9] || eventSys.currentSelectedGameObject == buttonListOpt[10])
-            {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[7].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[8])
-            {
-                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[8].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[9])
-            {
-                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[9].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[10])
-            {
-                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[10].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            /*if (eventSys.currentSelectedGameObject == buttonListOpt[11])
-            {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }*/
-            if (eventSys.currentSelectedGameObject == buttonListOpt[12] || eventSys.currentSelectedGameObject == buttonListOpt[13])
-            {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[11].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[12])
-            {
-                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[12].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[13])
-            {
-                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-                buttonListOpt[13].GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-            if (eventSys.currentSelectedGameObject == buttonListOpt[14])
-            {
-                backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 1f);
-            }
-            else
-            {
-				backText.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, 0.5f);
-            }
-
-            //toggles
-            if (isFullScreen == true)
-            {
-                Screen.fullScreen = true;
-                TickBoxImage2.sprite = TickBoxSprites[0];
-            }
-            if(isFullScreen == false)
-            {
-                Screen.fullScreen = false;
-                TickBoxImage2.sprite = TickBoxSprites[1];
-            }
-           
-			
-            if (usingXboxController == true)
-            {
-                Vector3 menuInput1;
-                menuInput1 = new Vector3(Input.GetAxisRaw("XboxJoystick1LHorizontal"), 0f, Input.GetAxisRaw("XboxJoystick1LVertical"));
-//
-                if (menuInput1.z < 0f)
+                if (Input.GetKey(KeyCode.Joystick1Button1))
                 {
-                    if (eventSys.currentSelectedGameObject == null)
+                    Debug.Log("Blue-1P");
+                    settingsKeeper.BluePlayerControllerIndex = 1;
+                    settingsKeeper.BluePlayerControllerType = "ps4";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }else if (Input.GetKey(KeyCode.Joystick1Button0))
+                {
+                    Debug.Log("Blue-1X");
+                    settingsKeeper.BluePlayerControllerIndex = 1;
+                    settingsKeeper.BluePlayerControllerType = "xbox";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }
+                else if(Input.GetKey(KeyCode.Joystick2Button1))
+                {
+                    Debug.Log("Blue-2P");
+                    settingsKeeper.BluePlayerControllerIndex = 2;
+                    settingsKeeper.BluePlayerControllerType = "ps4";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }
+                else if (Input.GetKey(KeyCode.Joystick2Button0))
+                {
+                    Debug.Log("Blue-2X");
+                    settingsKeeper.BluePlayerControllerIndex = 2;
+                    settingsKeeper.BluePlayerControllerType = "xbox";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }
+                else if (Input.GetKey(KeyCode.Joystick3Button1))
+                {
+                    Debug.Log("Blue-3P");
+                    settingsKeeper.BluePlayerControllerIndex = 3;
+                    settingsKeeper.BluePlayerControllerType = "ps4";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }
+                else if (Input.GetKey(KeyCode.Joystick3Button0))
+                {
+                    Debug.Log("Blue-3X");
+                    settingsKeeper.BluePlayerControllerIndex = 3;
+                    settingsKeeper.BluePlayerControllerType = "xbox";
+                    currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
+                }
+            }else if (currentLoadingPhase == loadingPhase.RedPlayerControllerSelect)
+            {
+                if (settingsKeeper.BluePlayerControllerIndex==1)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button1))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                        canInteract = false;
+                        Debug.Log("Red - 2P");
+                        settingsKeeper.RedPlayerControllerIndex = 2;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        Debug.Log("Red - 2X");
+                        settingsKeeper.RedPlayerControllerIndex = 2;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick3Button1))
+                    {
+                        Debug.Log("Red - 3P");
+                        settingsKeeper.RedPlayerControllerIndex = 3;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        Debug.Log("Red - 3X");
+                        settingsKeeper.RedPlayerControllerIndex = 3;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                 }
-                if (menuInput1.z > 0f)
+                else if (settingsKeeper.BluePlayerControllerIndex==2)
                 {
-                    if (eventSys.currentSelectedGameObject == null)
+                    if (Input.GetKey(KeyCode.Joystick1Button1))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                        canInteract = false;
+                        Debug.Log("Red - 1P");
+                        settingsKeeper.RedPlayerControllerIndex = 1;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        Debug.Log("Red - 1X");
+                        settingsKeeper.RedPlayerControllerIndex = 1;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }else if (Input.GetKey(KeyCode.Joystick3Button1))
+                    {
+                        Debug.Log("Red - 3P");
+                        settingsKeeper.RedPlayerControllerIndex = 3;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        Debug.Log("Red - 3X");
+                        settingsKeeper.RedPlayerControllerIndex = 3;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                 }
-            }
-            if (usingXboxController == false)
+                else if (settingsKeeper.BluePlayerControllerIndex==3)
+                {
+                    if (Input.GetKey(KeyCode.Joystick1Button1))
+                    {
+                        Debug.Log("Red - 1P");
+                        settingsKeeper.RedPlayerControllerIndex = 1;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        Debug.Log("Red - 1X");
+                        settingsKeeper.RedPlayerControllerIndex = 1;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick2Button1))
+                    {
+                        Debug.Log("Red - 2P");
+                        settingsKeeper.RedPlayerControllerIndex = 2;
+                        settingsKeeper.RedPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        Debug.Log("Red - 2X");
+                        settingsKeeper.RedPlayerControllerIndex = 2;
+                        settingsKeeper.RedPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
+                    }
+                }
+            }else if (currentLoadingPhase == loadingPhase.YellowPlayerControllerSelect)
             {
-                Vector3 menuInput1;
-                menuInput1 = new Vector3(Input.GetAxisRaw("Joystick1LHorizontal"), 0f, Input.GetAxisRaw("Joystick1LVertical"));
-                if (menuInput1.z < 0f)
+                if (settingsKeeper.BluePlayerControllerIndex== 1&& settingsKeeper.RedPlayerControllerIndex==2)
                 {
-                    if (eventSys.currentSelectedGameObject == null)
+                    if (Input.GetKey(KeyCode.Joystick3Button1))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                        canInteract = false;
+                        settingsKeeper.YellowPlayerControllerIndex = 3;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
                     }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
+                    else if (Input.GetKey(KeyCode.Joystick3Button0))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[1]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[2]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                        canInteract = false;
+                        settingsKeeper.YellowPlayerControllerIndex = 3;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
                     }
                 }
-                if (menuInput1.z > 0f)
+                else
+                if (settingsKeeper.BluePlayerControllerIndex == 1 && settingsKeeper.RedPlayerControllerIndex == 3)
                 {
-                    if (eventSys.currentSelectedGameObject == null)
+                    if (Input.GetKey(KeyCode.Joystick2Button1))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                        canInteract = false;
+                        settingsKeeper.YellowPlayerControllerIndex = 2;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
                     }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[3] && canInteract == true)
+                    else if (Input.GetKey(KeyCode.Joystick2Button0))
                     {
-                        eventSys.SetSelectedGameObject(buttonListOpt[2]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[2] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[1]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[1] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                        canInteract = false;
-                    }
-                    if (eventSys.currentSelectedGameObject == buttonListOpt[0] && canInteract == true)
-                    {
-                        eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                        canInteract = false;
+                        settingsKeeper.YellowPlayerControllerIndex = 2;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
                     }
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+                else
+                if (settingsKeeper.BluePlayerControllerIndex == 2 && settingsKeeper.RedPlayerControllerIndex == 1)
+                {
+                    if (Input.GetKey(KeyCode.Joystick3Button1))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 3;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 3;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                }
+                else
+                if (settingsKeeper.BluePlayerControllerIndex == 2 && settingsKeeper.RedPlayerControllerIndex == 3)
+                {
+                    if (Input.GetKey(KeyCode.Joystick1Button1))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 1;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 1;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                }
+                else
+                if (settingsKeeper.BluePlayerControllerIndex == 3 && settingsKeeper.RedPlayerControllerIndex == 1)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button1))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 2;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 2;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                }
+                else
+                if (settingsKeeper.BluePlayerControllerIndex == 3 && settingsKeeper.RedPlayerControllerIndex == 2)
+                {
+                    if (Input.GetKey(KeyCode.Joystick1Button1))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 1;
+                        settingsKeeper.YellowPlayerControllerType = "ps4";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                    else if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        settingsKeeper.YellowPlayerControllerIndex = 1;
+                        settingsKeeper.YellowPlayerControllerType = "xbox";
+                        currentLoadingPhase = loadingPhase.load;
+                    }
+                }
+            }else if (currentLoadingPhase == loadingPhase.load)
             {
-                if (eventSys.currentSelectedGameObject == null)
+                if (scenetoLoad == "main")
                 {
-                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                    canInteract = false;
+                    SceneManager.LoadScene("NewWorld");
+                }else if (scenetoLoad == "checkOne")
+                {
+                    SceneManager.LoadScene("NewWorldCheckpoint1");
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                if (eventSys.currentSelectedGameObject == null)
+                else if (scenetoLoad == "checkTwo")
                 {
-                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                    canInteract = false;
+                    SceneManager.LoadScene("NewWorldCheckpoint2");
                 }
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                if (eventSys.currentSelectedGameObject == null)
+                else if (scenetoLoad == "checkThree")
                 {
-                    eventSys.SetSelectedGameObject(buttonListOpt[0]);
-                    canInteract = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                if (eventSys.currentSelectedGameObject == null)
-                {
-                    eventSys.SetSelectedGameObject(buttonListOpt[3]);
-                    canInteract = false;
+                    SceneManager.LoadScene("NewWorldCheckpoint3");
                 }
             }
         }
@@ -611,7 +980,15 @@ public class MainMenu : MonoBehaviour {
     //main menu stuff
     public void Play()
     {
-        SceneManager.LoadScene("NewWorld");
+        if (startLoading==false)
+        {
+            settingsKeeper.BluePlayerControllerIndex = 0;
+            settingsKeeper.RedPlayerControllerIndex = 0;
+            settingsKeeper.YellowPlayerControllerIndex = 0;
+            scenetoLoad = "main";
+            startLoading = true;
+        }
+        
     }
     public void Checkpoints()
     {
@@ -622,15 +999,39 @@ public class MainMenu : MonoBehaviour {
     }
     public void CheckpointOne()
     {
-        SceneManager.LoadScene("NewWorldCheckpoint1");
+        if (startLoading==false)
+        {
+            settingsKeeper.BluePlayerControllerIndex = 0;
+            settingsKeeper.RedPlayerControllerIndex = 0;
+            settingsKeeper.YellowPlayerControllerIndex = 0;
+            scenetoLoad = "checkOne";
+            startLoading = true;
+        }
+        
     }
     public void CheckpointTwo()
     {
-        SceneManager.LoadScene("NewWorldCheckpoint2");
+        if (startLoading==false)
+        {
+            settingsKeeper.BluePlayerControllerIndex = 0;
+            settingsKeeper.RedPlayerControllerIndex = 0;
+            settingsKeeper.YellowPlayerControllerIndex = 0;
+            scenetoLoad = "checkTwo";
+            startLoading = true;
+        }
+        
     }
     public void CheckpointThree()
     {
-        SceneManager.LoadScene("NewWorldCheckpoint3");
+        if (startLoading == false) 
+        {
+            settingsKeeper.BluePlayerControllerIndex = 0;
+            settingsKeeper.RedPlayerControllerIndex = 0;
+            settingsKeeper.YellowPlayerControllerIndex = 0;
+            scenetoLoad = "checkThree";
+            startLoading = true;
+        }
+        
     }
     public void Options()
     {

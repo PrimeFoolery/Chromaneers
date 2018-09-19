@@ -12,6 +12,13 @@ public class DoNotDestroy : MonoBehaviour {
     public GameObject volumeSliderHolder;
     Scene currentScene;
 
+    public int BluePlayerControllerIndex;
+    public string BluePlayerControllerType;
+    public int RedPlayerControllerIndex;
+    public string RedPlayerControllerType;
+    public int YellowPlayerControllerIndex;
+    public string YellowPlayerControllerType;
+
     public static DoNotDestroy Instance;
 
     private void Awake()

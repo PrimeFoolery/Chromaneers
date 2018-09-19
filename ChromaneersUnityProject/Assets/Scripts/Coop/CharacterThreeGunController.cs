@@ -154,47 +154,158 @@ public class CharacterThreeGunController : MonoBehaviour {
         {
 			dropWeaponTimer -= Time.deltaTime;
 			if (dropWeaponTimer <= 0) {
-				if (coopCharacterControllerThree.usingXboxController == false) {
-					if ((Input.GetKey (KeyCode.Joystick3Button0)) && weaponPickedUp == false) {
-						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                        imgOriginal.enabled = true;
-                        imgRainbow.enabled = false;
-                        imgSMG.enabled = false;
-                        imgSniper.enabled = false;
-                        imgTrishot.enabled = false;
-                    }
-				} else if (coopCharacterControllerThree.usingXboxController == true) {
-					if ((Input.GetButton ("Pickup3")) && weaponPickedUp == false) {
-						stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
-                        imgOriginal.enabled = true;
-                        imgRainbow.enabled = false;
-                        imgSMG.enabled = false;
-                        imgSniper.enabled = false;
-                        imgTrishot.enabled = false;
-                    }
-				}
+			    if (coopCharacterControllerThree.thisPlayersControllerIndex==1)
+			    {
+			        if (coopCharacterControllerThree.usingXboxController == false)
+			        {
+			            if ((Input.GetKey(KeyCode.Joystick1Button0)) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+			        else if (coopCharacterControllerThree.usingXboxController == true)
+			        {
+			            if ((Input.GetButton("Pickup1")) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+                }
+                else if (coopCharacterControllerThree.thisPlayersControllerIndex==2)
+			    {
+			        if (coopCharacterControllerThree.usingXboxController == false)
+			        {
+			            if ((Input.GetKey(KeyCode.Joystick2Button0)) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+			        else if (coopCharacterControllerThree.usingXboxController == true)
+			        {
+			            if ((Input.GetButton("Pickup2")) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+                }
+                else if (coopCharacterControllerThree.thisPlayersControllerIndex==3)
+			    {
+			        if (coopCharacterControllerThree.usingXboxController == false)
+			        {
+			            if ((Input.GetKey(KeyCode.Joystick3Button0)) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+			        else if (coopCharacterControllerThree.usingXboxController == true)
+			        {
+			            if ((Input.GetButton("Pickup3")) && weaponPickedUp == false)
+			            {
+			                stateOfWeapon = CharacterOneGunController.currentWeapon.OriginalWeapon;
+			                imgOriginal.enabled = true;
+			                imgRainbow.enabled = false;
+			                imgSMG.enabled = false;
+			                imgSniper.enabled = false;
+			                imgTrishot.enabled = false;
+			            }
+			        }
+                }
+				
 				//dropWeaponTimer = 5;
 			}
         }
-
-        if (coopCharacterControllerThree.usingXboxController == false)
+        if(coopCharacterControllerThree.thisPlayersControllerIndex==1)
         {
-            if (Input.GetKeyUp(KeyCode.Joystick3Button0))
+            if (coopCharacterControllerThree.usingXboxController == false)
             {
-                weaponPickedUp = false;
-                controllerPrompt.enabled = false;
-                controlState = "Idle";
+                if (Input.GetKeyUp(KeyCode.Joystick1Button0))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
             }
-        } else
-        if (coopCharacterControllerThree.usingXboxController == true)
-        {
-            if (Input.GetButtonUp("Pickup3"))
+            else
+            if (coopCharacterControllerThree.usingXboxController == true)
             {
-                weaponPickedUp = false;
-                controllerPrompt.enabled = false;
-                controlState = "Idle";
+                if (Input.GetButtonUp("Pickup1"))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
             }
         }
+        else if (coopCharacterControllerThree.thisPlayersControllerIndex==2)
+        {
+            if (coopCharacterControllerThree.usingXboxController == false)
+            {
+                if (Input.GetKeyUp(KeyCode.Joystick2Button0))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
+            }
+            else
+            if (coopCharacterControllerThree.usingXboxController == true)
+            {
+                if (Input.GetButtonUp("Pickup2"))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
+            }
+        }
+        else if (coopCharacterControllerThree.thisPlayersControllerIndex==3)
+        {
+            if (coopCharacterControllerThree.usingXboxController == false)
+            {
+                if (Input.GetKeyUp(KeyCode.Joystick3Button0))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
+            }
+            else
+            if (coopCharacterControllerThree.usingXboxController == true)
+            {
+                if (Input.GetButtonUp("Pickup3"))
+                {
+                    weaponPickedUp = false;
+                    controllerPrompt.enabled = false;
+                    controlState = "Idle";
+                }
+            }
+        }
+        
 
         if (amountOfRainbowAmmo <= 0)
         {
@@ -336,131 +447,431 @@ public class CharacterThreeGunController : MonoBehaviour {
         {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (coopCharacterControllerThree.usingXboxController==false)
+            if (coopCharacterControllerThree.thisPlayersControllerIndex == 1)
             {
-                if (Input.GetKey(KeyCode.Joystick3Button0))
+                if (coopCharacterControllerThree.usingXboxController == false)
                 {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = true;
+                    if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
                 }
-            } else 
-            if (coopCharacterControllerThree.usingXboxController==true)
-            {
-                if (Input.GetButton("Pickup3"))
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
                 {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = true;
+                    if (Input.GetButton("Pickup1"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
                 }
             }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 2)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup2"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
+                }
+            }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 3)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup3"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.TrishotWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = true;
+                    }
+                }
+            }
+            
         }
         else if (theCol.gameObject.CompareTag("SniperWeapon"))
         {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (coopCharacterControllerThree.usingXboxController==false)
+            if (coopCharacterControllerThree.thisPlayersControllerIndex == 1)
             {
-                if (Input.GetKey(KeyCode.Joystick3Button0))
+                if (coopCharacterControllerThree.usingXboxController == false)
                 {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = true;
-                    imgTrishot.enabled = false;
+                    if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
                 }
-            } else 
-            if (coopCharacterControllerThree.usingXboxController==true)
-            {
-                if (Input.GetButton("Pickup3"))
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
                 {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = true;
-                    imgTrishot.enabled = false;
+                    if (Input.GetButton("Pickup1"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
                 }
             }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 2)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup2"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 3)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup3"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SniperWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = true;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            
         } 
         else if (theCol.gameObject.CompareTag("SMGWeapon")) {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (coopCharacterControllerThree.usingXboxController == false) {
-                if (Input.GetKey(KeyCode.Joystick3Button0)) {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = true;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = false;
+            if (coopCharacterControllerThree.thisPlayersControllerIndex == 1)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
                 }
-            } else
-            if (coopCharacterControllerThree.usingXboxController == true) {
-                if (Input.GetButton("Pickup3")) {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = false;
-                    imgSMG.enabled = true;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = false;
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup1"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
                 }
             }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 2)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup2"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 3)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup3"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.SMGWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = false;
+                        imgSMG.enabled = true;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            
         } 
         else if (theCol.gameObject.CompareTag("RainbowWeapon")) {
             controllerPrompt.enabled = true;
             controlState = "Blue";
-            if (coopCharacterControllerThree.usingXboxController == false) {
-                if (Input.GetKey(KeyCode.Joystick3Button0)) {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = true;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = false;
+            if (coopCharacterControllerThree.thisPlayersControllerIndex == 1)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
                 }
-            } else
-            if (coopCharacterControllerThree.usingXboxController == true) {
-                if (Input.GetButton("Pickup3")) {
-                    dropWeaponTimer = 3f;
-                    stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
-                    weaponPickedUp = true;
-                    Destroy(theCol.gameObject);
-                    imgOriginal.enabled = false;
-                    imgRainbow.enabled = true;
-                    imgSMG.enabled = false;
-                    imgSniper.enabled = false;
-                    imgTrishot.enabled = false;
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup1"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
                 }
             }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 2)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick2Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup2"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            else if (coopCharacterControllerThree.thisPlayersControllerIndex == 3)
+            {
+                if (coopCharacterControllerThree.usingXboxController == false)
+                {
+                    if (Input.GetKey(KeyCode.Joystick3Button0))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+                else
+                if (coopCharacterControllerThree.usingXboxController == true)
+                {
+                    if (Input.GetButton("Pickup3"))
+                    {
+                        dropWeaponTimer = 3f;
+                        stateOfWeapon = CharacterOneGunController.currentWeapon.RainbowWeapon;
+                        weaponPickedUp = true;
+                        Destroy(theCol.gameObject);
+                        imgOriginal.enabled = false;
+                        imgRainbow.enabled = true;
+                        imgSMG.enabled = false;
+                        imgSniper.enabled = false;
+                        imgTrishot.enabled = false;
+                    }
+                }
+            }
+            
         }
     }
     private void OnTriggerExit(Collider theCol)
