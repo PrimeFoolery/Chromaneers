@@ -330,7 +330,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98389226, y: 0.9838925, z: 2.2338753}
+  m_Size: {x: 0.98389226, y: 0.9838925, z: 93.39}
   m_Center: {x: -0.1370326, y: 0.003663511, z: 1.575553}
 --- !u!65 &65468595226453402
 BoxCollider:
@@ -391,6 +391,10 @@ MonoBehaviour:
   CurrentObeliskState: 0
   obeliskGrowSpeed: 1
   triggerCubeGrowSpeed: 0.5
+  drainTimer: 4
+  boss: {fileID: 0}
+  obeliskTip: {fileID: 0}
+  linePulser: {fileID: 0}
 --- !u!114 &114850776573674840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -405,6 +409,10 @@ MonoBehaviour:
   obelisk: {fileID: 1383103783767288}
   health1: 1
   health2: 1
+  cbPurpleIndicator: {fileID: 0}
+  cbOrangeIndicator: {fileID: 0}
+  cbGreenIndicator: {fileID: 0}
+  isTriggerable: 0
 --- !u!114 &114920041395061350
 MonoBehaviour:
   m_ObjectHideFlags: 1

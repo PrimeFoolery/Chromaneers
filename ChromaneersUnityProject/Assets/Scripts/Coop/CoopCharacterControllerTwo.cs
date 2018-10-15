@@ -25,7 +25,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 
     public bool currentlyDodging = false;
     private Vector3 dodgeDirection;
-    private float dodgeDuration = 0.325f;
+    private float dodgeDuration = 0.2f;
     public float RollSpeed;
     private float dodgeCooldown = 0f;
     public Slider dodgeSlider;
@@ -101,15 +101,20 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
 
     void Start () {
         settingsKeeper = GameObject.FindGameObjectWithTag("Settings");
-        if (settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerType == "xbox")
+        if (settingsKeeper!=null)
         {
-            usingXboxController = true;
+            if (settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerType == "xbox")
+            {
+                usingXboxController = true;
+            }
+            else if (settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerType == "ps4")
+            {
+                usingXboxController = false;
+            }
+            thisPlayersControllerIndex = settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerIndex;
         }
-        else if (settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerType == "ps4")
-        {
-            usingXboxController = false;
-        }
-        thisPlayersControllerIndex = settingsKeeper.GetComponent<DoNotDestroy>().RedPlayerControllerIndex;
+        
+        
         //Getting the Rigidbody from the object attached to this script
         myRB = GetComponent<Rigidbody>();
         yellowPlayer = GameObject.FindGameObjectWithTag("YellowPlayer").GetComponent<CoopCharacterControllerThree>();
@@ -416,7 +421,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
 
                 if (currentlyDodging == false)
@@ -751,7 +756,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
                 if (currentlyDodging == false)
                 {
@@ -1089,7 +1094,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
 
                 if (currentlyDodging == false)
@@ -1424,7 +1429,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
                 if (currentlyDodging == false)
                 {
@@ -1762,7 +1767,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
 
                 if (currentlyDodging == false)
@@ -2097,7 +2102,7 @@ public class CoopCharacterControllerTwo : MonoBehaviour {
                     canPlayerMove = true;
                     canPlayerShoot = true;
                     dodgeDuration = 0.325f;
-                    dodgeCooldown = 1f;
+                   dodgeCooldown = 0.75f;
                 }
                 if (currentlyDodging == false)
                 {

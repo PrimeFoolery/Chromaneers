@@ -33,7 +33,7 @@ public class BossAggroPingScript : MonoBehaviour
         transform.Rotate(0,0,RotateSpeed*Time.deltaTime);
         if (boss != null)
         {
-            transform.position = boss.transform.position;
+            transform.position = new Vector3(boss.transform.position.x, boss.transform.position.y+0.4f, boss.transform.position.z);
         }
         if (currentPingState == PingState.grow)
         {

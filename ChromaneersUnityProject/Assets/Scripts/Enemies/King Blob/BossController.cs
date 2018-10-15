@@ -230,7 +230,7 @@ public class BossController : MonoBehaviour {
 	            agent.SetDestination(targetPlayer.transform.position);
 	           
 	        }
-	        if (retargetingDelay == 3f)
+	        if (retargetingDelay == 3f&&currentBossPhase!=BossPhases.death)
 	        {
 	            PingForPlayer();
 	        }
@@ -418,6 +418,11 @@ public class BossController : MonoBehaviour {
 	        }
 	        if (enemyHealth<=0)
 	        {
+	            if (tempPing!=null)
+	            {
+	                Destroy(tempPing);
+                }
+                
 	            currentBossPhase = BossPhases.death;
 	        }
         }else if (currentBossPhase == BossPhases.death)
@@ -1133,7 +1138,7 @@ public class BossController : MonoBehaviour {
     public void PingForPlayer()
     {
         //Debug.Log("Spawn ping");
-        tempPing = Instantiate(pingPrefab, transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+        tempPing = Instantiate(pingPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler(transform.rotation.eulerAngles.x - 90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
         tempPing.GetComponent<BossAggroPingScript>().boss = gameObject;
         readyToRetarget = false;
     }

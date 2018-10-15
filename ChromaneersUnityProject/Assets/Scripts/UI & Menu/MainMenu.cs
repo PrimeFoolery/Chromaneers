@@ -15,13 +15,14 @@ public class MainMenu : MonoBehaviour {
 
     public enum loadingPhase
     {
+        notReady,
         BluePlayerControllerSelect,
         RedPlayerControllerSelect,
         YellowPlayerControllerSelect,
         load
     }
 
-    public loadingPhase currentLoadingPhase = loadingPhase.BluePlayerControllerSelect;
+    public loadingPhase currentLoadingPhase = loadingPhase.notReady;
 
     private string scenetoLoad;
     private bool startLoading;
@@ -67,6 +68,10 @@ public class MainMenu : MonoBehaviour {
     public GameObject checkpointThreeText;
     public GameObject back2;
 
+    public GameObject controllerSelect;
+    public GameObject blueSelect;
+    public GameObject redSelect;
+    public GameObject yellowSelect;
 
     [Header("State")]
     public string MenuState;
@@ -722,6 +727,14 @@ public class MainMenu : MonoBehaviour {
 
         if (startLoading==true)
         {
+            if (currentLoadingPhase == loadingPhase.notReady)
+            {
+                if (Input.GetKeyUp(KeyCode.Joystick1Button1)||Input.GetKeyUp(KeyCode.Joystick1Button0))
+                {
+                    currentLoadingPhase = loadingPhase.BluePlayerControllerSelect;
+                }
+            }
+            else
             if (currentLoadingPhase == loadingPhase.BluePlayerControllerSelect)
             {
                 if (Input.GetKey(KeyCode.Joystick1Button1))
@@ -729,12 +742,16 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("Blue-1P");
                     settingsKeeper.BluePlayerControllerIndex = 1;
                     settingsKeeper.BluePlayerControllerType = "ps4";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }else if (Input.GetKey(KeyCode.Joystick1Button0))
                 {
                     Debug.Log("Blue-1X");
                     settingsKeeper.BluePlayerControllerIndex = 1;
                     settingsKeeper.BluePlayerControllerType = "xbox";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }
                 else if(Input.GetKey(KeyCode.Joystick2Button1))
@@ -742,6 +759,8 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("Blue-2P");
                     settingsKeeper.BluePlayerControllerIndex = 2;
                     settingsKeeper.BluePlayerControllerType = "ps4";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }
                 else if (Input.GetKey(KeyCode.Joystick2Button0))
@@ -749,6 +768,8 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("Blue-2X");
                     settingsKeeper.BluePlayerControllerIndex = 2;
                     settingsKeeper.BluePlayerControllerType = "xbox";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }
                 else if (Input.GetKey(KeyCode.Joystick3Button1))
@@ -756,6 +777,8 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("Blue-3P");
                     settingsKeeper.BluePlayerControllerIndex = 3;
                     settingsKeeper.BluePlayerControllerType = "ps4";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }
                 else if (Input.GetKey(KeyCode.Joystick3Button0))
@@ -763,6 +786,8 @@ public class MainMenu : MonoBehaviour {
                     Debug.Log("Blue-3X");
                     settingsKeeper.BluePlayerControllerIndex = 3;
                     settingsKeeper.BluePlayerControllerType = "xbox";
+                    blueSelect.SetActive(false);
+                    redSelect.SetActive(true);
                     currentLoadingPhase = loadingPhase.RedPlayerControllerSelect;
                 }
             }else if (currentLoadingPhase == loadingPhase.RedPlayerControllerSelect)
@@ -774,6 +799,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 2P");
                         settingsKeeper.RedPlayerControllerIndex = 2;
                         settingsKeeper.RedPlayerControllerType = "ps4";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                     else if (Input.GetKey(KeyCode.Joystick2Button0))
@@ -781,6 +808,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 2X");
                         settingsKeeper.RedPlayerControllerIndex = 2;
                         settingsKeeper.RedPlayerControllerType = "xbox";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                     else if (Input.GetKey(KeyCode.Joystick3Button1))
@@ -788,6 +817,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 3P");
                         settingsKeeper.RedPlayerControllerIndex = 3;
                         settingsKeeper.RedPlayerControllerType = "ps4";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                     else if (Input.GetKey(KeyCode.Joystick3Button0))
@@ -795,6 +826,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 3X");
                         settingsKeeper.RedPlayerControllerIndex = 3;
                         settingsKeeper.RedPlayerControllerType = "xbox";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                 }
@@ -805,6 +838,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 1P");
                         settingsKeeper.RedPlayerControllerIndex = 1;
                         settingsKeeper.RedPlayerControllerType = "ps4";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                     else if (Input.GetKey(KeyCode.Joystick1Button0))
@@ -812,12 +847,16 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 1X");
                         settingsKeeper.RedPlayerControllerIndex = 1;
                         settingsKeeper.RedPlayerControllerType = "xbox";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }else if (Input.GetKey(KeyCode.Joystick3Button1))
                     {
                         Debug.Log("Red - 3P");
                         settingsKeeper.RedPlayerControllerIndex = 3;
                         settingsKeeper.RedPlayerControllerType = "ps4";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                     else if (Input.GetKey(KeyCode.Joystick3Button0))
@@ -825,6 +864,8 @@ public class MainMenu : MonoBehaviour {
                         Debug.Log("Red - 3X");
                         settingsKeeper.RedPlayerControllerIndex = 3;
                         settingsKeeper.RedPlayerControllerType = "xbox";
+                        redSelect.SetActive(false);
+                        yellowSelect.SetActive(true);
                         currentLoadingPhase = loadingPhase.YellowPlayerControllerSelect;
                     }
                 }
@@ -982,6 +1023,9 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            MainMenuPanel.SetActive(false);
+            controllerSelect.SetActive(true);
+            blueSelect.SetActive(true);
             settingsKeeper.BluePlayerControllerIndex = 0;
             settingsKeeper.RedPlayerControllerIndex = 0;
             settingsKeeper.YellowPlayerControllerIndex = 0;
@@ -1001,6 +1045,9 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            controllerSelect.SetActive(true);
+            CheckpointsPanel.SetActive(false);
+            blueSelect.SetActive(true);
             settingsKeeper.BluePlayerControllerIndex = 0;
             settingsKeeper.RedPlayerControllerIndex = 0;
             settingsKeeper.YellowPlayerControllerIndex = 0;
@@ -1013,6 +1060,9 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            controllerSelect.SetActive(true);
+            CheckpointsPanel.SetActive(false);
+            blueSelect.SetActive(true);
             settingsKeeper.BluePlayerControllerIndex = 0;
             settingsKeeper.RedPlayerControllerIndex = 0;
             settingsKeeper.YellowPlayerControllerIndex = 0;
@@ -1025,6 +1075,8 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading == false) 
         {
+            controllerSelect.SetActive(true);
+            CheckpointsPanel.SetActive(false);
             settingsKeeper.BluePlayerControllerIndex = 0;
             settingsKeeper.RedPlayerControllerIndex = 0;
             settingsKeeper.YellowPlayerControllerIndex = 0;

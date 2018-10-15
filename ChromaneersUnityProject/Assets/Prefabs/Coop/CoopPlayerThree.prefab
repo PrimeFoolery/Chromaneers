@@ -1611,7 +1611,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1084169148306996}
-  m_LocalRotation: {x: 0.14626256, y: 0.88870484, z: 0.38962677, w: -0.19235933}
+  m_LocalRotation: {x: 0.14626254, y: 0.8887047, z: 0.3896267, w: -0.1923593}
   m_LocalPosition: {x: -3.9115547e-10, y: 0.0049011675, z: -0.0000000017881393}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
   m_Children:
@@ -1755,7 +1755,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1390684379200542}
-  m_LocalRotation: {x: 0.83489347, y: 0.13495302, z: -0.525541, w: -0.09245206}
+  m_LocalRotation: {x: 0.83489335, y: 0.134953, z: -0.52554095, w: -0.09245205}
   m_LocalPosition: {x: 0.01298028, y: 0.013683312, z: -0.0022136723}
   m_LocalScale: {x: 0.99999934, y: 0.99999934, z: 1}
   m_Children:
@@ -2696,7 +2696,7 @@ MonoBehaviour:
   colourPicker: {fileID: 0}
   walkingPuff: {fileID: 198682624788113728}
   currentlyDodging: 0
-  RollSpeed: 15
+  RollSpeed: 18
   dodgeSlider: {fileID: 0}
   coopCharacterControllerThree: {fileID: 114688111762235096}
   redColor: {r: 1, g: 0, b: 0, a: 1}
@@ -2731,6 +2731,7 @@ MonoBehaviour:
   thisPlayersReviveSpot: {x: 0, y: 0, z: 0}
   cbIndicator: {fileID: 1382878602563456, guid: 413f7f02787363043ac30843ca2a15c9,
     type: 2}
+  thisPlayersControllerIndex: 0
 --- !u!136 &136126592081602496
 CapsuleCollider:
   m_ObjectHideFlags: 1
