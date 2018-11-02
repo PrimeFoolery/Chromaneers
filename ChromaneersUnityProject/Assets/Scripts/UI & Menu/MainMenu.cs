@@ -1023,6 +1023,7 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            settingsKeeper.gameObject.GetComponent<scoreTracker>().stageIn = 1;
             MainMenuPanel.SetActive(false);
             controllerSelect.SetActive(true);
             blueSelect.SetActive(true);
@@ -1045,6 +1046,7 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            settingsKeeper.gameObject.GetComponent<scoreTracker>().stageIn = 2;
             controllerSelect.SetActive(true);
             CheckpointsPanel.SetActive(false);
             blueSelect.SetActive(true);
@@ -1060,6 +1062,7 @@ public class MainMenu : MonoBehaviour {
     {
         if (startLoading==false)
         {
+            settingsKeeper.gameObject.GetComponent<scoreTracker>().stageIn = 3;
             controllerSelect.SetActive(true);
             CheckpointsPanel.SetActive(false);
             blueSelect.SetActive(true);
@@ -1073,8 +1076,9 @@ public class MainMenu : MonoBehaviour {
     }
     public void CheckpointThree()
     {
-        if (startLoading == false) 
+        if (startLoading == false)
         {
+            settingsKeeper.gameObject.GetComponent<scoreTracker>().stageIn = 4;
             controllerSelect.SetActive(true);
             CheckpointsPanel.SetActive(false);
             settingsKeeper.BluePlayerControllerIndex = 0;

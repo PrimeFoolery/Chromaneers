@@ -17,6 +17,7 @@ public class areaCompleteText : MonoBehaviour {
 
 
     public string textToType;
+    public int areaNumber;
 
     public enum CoinStates
     {
@@ -77,9 +78,14 @@ public class areaCompleteText : MonoBehaviour {
     public coinController coinManager;
     private deathTracker deathTrackerScript;
 
+    public GameObject endScoreScreen;
+
+    public scoreTracker scoreTracker;
+
     // Use this for initialization
     void Start()
     {
+        scoreTracker = GameObject.FindGameObjectWithTag("Settings").GetComponent<scoreTracker>();
         coinManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<coinController>();
         deathTrackerScript = GameObject.FindGameObjectWithTag("DeathTracker").GetComponent<deathTracker>();
     }
@@ -349,6 +355,29 @@ public class areaCompleteText : MonoBehaviour {
                 blueCoinCounter.text = "";
                 redCoinCounter.text = "";
                 yellowCoinCounter.text = "";
+                if (areaNumber==1)
+                {
+                    scoreTracker.UpdateArea1(blueCoinsCollected,redCoinsCollected,yellowCoinsCollected);
+                    scoreTracker.stageIn = 2;
+                }else if (areaNumber==2)
+                {
+                    scoreTracker.UpdateArea2(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected);
+                    scoreTracker.stageIn = 3;
+                }
+                else if (areaNumber==3)
+                {
+                    scoreTracker.UpdateArea3(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected);
+                    scoreTracker.stageIn = 4;
+                }
+                else if (areaNumber==4)
+                {
+                    scoreTracker.UpdateArea4(blueCoinsCollected, redCoinsCollected, yellowCoinsCollected);
+                }
+                if (endScoreScreen!=null)
+                {
+                    endScoreScreen.GetComponent<endScoreScreen>().Trigger();
+                }
+
                 thisCoinState = CoinStates.complete;
             }
         }

@@ -42081,6 +42081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1871003191}
   - component: {fileID: 1871003190}
+  - component: {fileID: 1871003192}
   m_Layer: 0
   m_Name: DoNotDestroySettings
   m_TagString: Settings
@@ -42122,6 +42123,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1871003192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1871003189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd2229afca6da142abada570c4fdb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RedCandiesCollected: 0
+  YellowCandiesCollected: 0
+  BlueCandiesCollected: 0
+  totalCandiesCollected: 0
+  stageIn: 0
+  Area1Seconds: 0
+  Area2Seconds: 0
+  Area3Seconds: 0
+  Area4Seconds: 0
+  totalTime: 0
+  gem1Collected: 0
+  gem2Collected: 0
+  gem3Collected: 0
 --- !u!1001 &1873226778
 Prefab:
   m_ObjectHideFlags: 0

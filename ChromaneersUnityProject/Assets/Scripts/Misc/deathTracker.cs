@@ -33,7 +33,7 @@ public class deathTracker : MonoBehaviour
 
     private Vector3 velocity;
 
-
+    private scoreTracker scoreTracker;
 
     private float startTime;
 
@@ -43,6 +43,7 @@ public class deathTracker : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+	    scoreTracker = GameObject.FindGameObjectWithTag("Settings").GetComponent<scoreTracker>();
 	    startTime = Time.time;
 	    blueHealth = GameObject.FindGameObjectWithTag("BluePlayer").GetComponent<CoopCharacterHealthControllerOne>();
 	    redHealth = GameObject.FindGameObjectWithTag("RedPlayer").GetComponent<CoopCharacterHealthControllerTwo>();
@@ -135,32 +136,39 @@ public class deathTracker : MonoBehaviour
         {
             if (howManyAreasComplete == 0)
             {
+                scoreTracker.Area1Seconds = 0;
                 SceneManager.LoadScene("NewWorld", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 1)
             {
+                scoreTracker.Area2Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint1", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 2)
             {
+                scoreTracker.Area3Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 3)
             {
+                scoreTracker.Area4Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
         }else if (SceneManager.GetActiveScene().name == "NewWorldCheckpoint1")
         {
             if (howManyAreasComplete==0)
             {
+                scoreTracker.Area2Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint1", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 1)
             {
+                scoreTracker.Area3Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 2)
             {
+                scoreTracker.Area4Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
         }
@@ -168,10 +176,12 @@ public class deathTracker : MonoBehaviour
         {
             if (howManyAreasComplete == 0)
             {
+                scoreTracker.Area3Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint2", LoadSceneMode.Single);
             }
             else if (howManyAreasComplete == 1)
             {
+                scoreTracker.Area4Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
         }
@@ -179,10 +189,12 @@ public class deathTracker : MonoBehaviour
         {
             if (howManyAreasComplete == 0)
             {
+                scoreTracker.Area4Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
             else
             {
+                scoreTracker.Area4Seconds = 0;
                 SceneManager.LoadScene("NewWorldCheckpoint3", LoadSceneMode.Single);
             }
         }
