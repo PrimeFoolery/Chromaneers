@@ -94,7 +94,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         indPos.x = indPos.x - (Screen.width / 2);
         indPos.y = indPos.y - (Screen.height*0.37963f);
         Indicator.transform.localPosition = indPos;
-        if (IndicatorFadedOut==false)
+        if (IndicatorFadedOut==false) //Sets the direction assist indicator
         {
             IndicatorTimer -= Time.deltaTime;
             if (IndicatorTimer < 0)
@@ -122,7 +122,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             //ReviveSlider.gameObject.SetActive(false);
             ReviveCircle.gameObject.SetActive(false);
 
-            if (canBeDamaged == false)
+            if (canBeDamaged == false)//Makes the player invunerable while dead
             {
                 //print("Getting HIT");
 
@@ -144,9 +144,8 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         }
         if (PlayerState == "Dead")
         {
-            //ReviveSlider.gameObject.SetActive(true);
-            //ReviveSlider.value = CalculateRevive();
-            if (HasCoinSpawned==false)
+            
+            if (HasCoinSpawned==false)// Makes Coins explode out of the player
             {
                 Vector2 tempVector;
                 if (coinManager.bluesCoins>4)
@@ -212,31 +211,31 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
             coopCharacterControllerOne.coopCharacterControllerOne.isFiring = false;
             reviveTimer -= Time.deltaTime/3;
 			ReviveParticle.SetActive (true);
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f) //If RedPlayer is within the circle increase revive healing
             {
                 reviveTimer -= Time.deltaTime*2.25f;
             }
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f)
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f)//If YellowPlayer is within the circle increase revive healing
             {
 				reviveTimer -= Time.deltaTime*2.25f;
             }
 
             if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f&& Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) > 4f)
-            {
+            { // if YellowPlayer is within the circle and RedPlayer is out the circle, increase revive healing moderately
                 reviveCircleScript.peopleInCircle = 2;
             }else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) > 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
-            {
+            { // if YellowPlayer is out the circle and RedPlayer is within the circle, increase revive healing moderately
                 reviveCircleScript.peopleInCircle = 2;
             }else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("YellowPlayer").transform.position) < 4f && Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) < 4f)
-            {
+            { //if both YellowPlayer and RedPlayer are within the circle increase revive healing greatly
                 reviveCircleScript.peopleInCircle = 3;
             }
             else
-            {
+            {// if none of these revive healing is standard
                 reviveCircleScript.peopleInCircle = 1;
             }
         }
-        if (reviveTimer <= 0)
+        if (reviveTimer <= 0) //Revives the player back to half health upon the revive circle being full
         {
             coopCharacterControllerOne.canPlayerShoot = true;
             coopCharacterControllerOne.canPlayerMove = true;
@@ -258,7 +257,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         return (1-reviveTimer / maxRevive);
     }
 
-    public void GetHit()
+    public void GetHit() //Does one instance of damage, shakes the controller and makes the player invunerable
     {
         if (PlayerState == "Alive")
         {
@@ -280,7 +279,7 @@ public class CoopCharacterHealthControllerOne : MonoBehaviour
         GamePad.SetVibration(PlayerIndex.Three, vibrationLeftOn, vibrationRightOn);
     }
 
-    public void GetHeart()
+    public void GetHeart() //Heals the player for 2 half hearts
     {
         if (currentHealth<=3)
         {
