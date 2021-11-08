@@ -37,6 +37,57 @@ ModelImporter:
     100062: Upper_Leg_L
     100064: Upper_Leg_R
     100066: Weapon
+    100068: Fingers01.L
+    100070: Fingers01.R
+    100072: Fingers02.L
+    100074: Fingers02.L_end
+    100076: Fingers02.R
+    100078: Fingers02.R_end
+    100080: Foot roll.L
+    100082: Foot roll.R
+    100084: Foot.L
+    100086: Foot.R.001
+    100088: Hand.L
+    100090: Hand.R.001
+    100092: Head_end
+    100094: Leg Control.L
+    100096: Leg Control.R
+    100098: Leg ik.L
+    100100: Leg ik.L_end
+    100102: Leg ik.R.001
+    100104: Leg ik.R.001_end
+    100106: Leg Pole Target.L
+    100108: Leg Pole Target.L_end
+    100110: Leg Pole Target.R
+    100112: Leg Pole Target.R_end
+    100114: Lower Arm.L
+    100116: Lower Arm.R
+    100118: Lower Leg.L
+    100120: Lower Leg.L_end
+    100122: Lower Leg.R
+    100124: Lower Leg.R_end
+    100126: Thumb01.L
+    100128: Thumb01.R
+    100130: Thumb02.L
+    100132: Thumb02.L_end
+    100134: Thumb02.R
+    100136: Thumb02.R_end
+    100138: Toe Control.L
+    100140: Toe Control.L_end
+    100142: Toe Control.R
+    100144: Toe Control.R_end
+    100146: Toes.L
+    100148: Toes.L_end
+    100150: Toes.R.001
+    100152: Toes.R.001_end
+    100154: Upper Arm.L
+    100156: Upper Arm.R
+    100158: Upper Leg.L
+    100160: Upper Leg.R
+    100162: WeaponHandle1
+    100164: WeaponHandle1_end
+    100166: WeaponHandle2
+    100168: WeaponHandle2_end
     400000: Armature
     400002: Chest
     400004: //RootNode
@@ -71,8 +122,60 @@ ModelImporter:
     400062: Upper_Leg_L
     400064: Upper_Leg_R
     400066: Weapon
+    400068: Fingers01.L
+    400070: Fingers01.R
+    400072: Fingers02.L
+    400074: Fingers02.L_end
+    400076: Fingers02.R
+    400078: Fingers02.R_end
+    400080: Foot roll.L
+    400082: Foot roll.R
+    400084: Foot.L
+    400086: Foot.R.001
+    400088: Hand.L
+    400090: Hand.R.001
+    400092: Head_end
+    400094: Leg Control.L
+    400096: Leg Control.R
+    400098: Leg ik.L
+    400100: Leg ik.L_end
+    400102: Leg ik.R.001
+    400104: Leg ik.R.001_end
+    400106: Leg Pole Target.L
+    400108: Leg Pole Target.L_end
+    400110: Leg Pole Target.R
+    400112: Leg Pole Target.R_end
+    400114: Lower Arm.L
+    400116: Lower Arm.R
+    400118: Lower Leg.L
+    400120: Lower Leg.L_end
+    400122: Lower Leg.R
+    400124: Lower Leg.R_end
+    400126: Thumb01.L
+    400128: Thumb01.R
+    400130: Thumb02.L
+    400132: Thumb02.L_end
+    400134: Thumb02.R
+    400136: Thumb02.R_end
+    400138: Toe Control.L
+    400140: Toe Control.L_end
+    400142: Toe Control.R
+    400144: Toe Control.R_end
+    400146: Toes.L
+    400148: Toes.L_end
+    400150: Toes.R.001
+    400152: Toes.R.001_end
+    400154: Upper Arm.L
+    400156: Upper Arm.R
+    400158: Upper Leg.L
+    400160: Upper Leg.R
+    400162: WeaponHandle1
+    400164: WeaponHandle1_end
+    400166: WeaponHandle2
+    400168: WeaponHandle2_end
     2100000: None__CoopYellowCharacterTexture_psd
     2100002: Material
+    2100004: No Name
     4300000: Cube
     4300002: Gun
     7400000: Default Take
@@ -81,6 +184,15 @@ ModelImporter:
     7400006: MoveCycleBackwards
     7400008: ShootCycle
     7400010: StrafeRight
+    7400012: Armature|IdleCycle
+    7400014: Armature|MoveCycle
+    7400016: Armature|MoveCycleBackwards
+    7400018: Armature|ShootCycle
+    7400020: Armature|StrafeLeft
+    7400022: Armature|StrafeRight
+    7400024: Armature|trash
+    7400026: Armature|trash2
+    7400028: Armature|Untitled
     9500000: //RootNode
     13700000: Cube
     13700002: Gun
@@ -119,6 +231,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -137,12 +250,15 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -157,7 +273,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

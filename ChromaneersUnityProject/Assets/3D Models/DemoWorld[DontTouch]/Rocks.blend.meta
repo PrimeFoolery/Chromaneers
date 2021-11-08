@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 74f633adbd0d67d4a87ed8c88b8037d6
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Icosphere
     100002: Icosphere_001
@@ -10,6 +10,11 @@ ModelImporter:
     100008: Icosphere_004
     100010: Icosphere_005
     100012: //RootNode
+    100014: Icosphere.001
+    100016: Icosphere.002
+    100018: Icosphere.003
+    100020: Icosphere.004
+    100022: Icosphere.005
     400000: Icosphere
     400002: Icosphere_001
     400004: Icosphere_002
@@ -17,28 +22,58 @@ ModelImporter:
     400008: Icosphere_004
     400010: Icosphere_005
     400012: //RootNode
+    400014: Icosphere.001
+    400016: Icosphere.002
+    400018: Icosphere.003
+    400020: Icosphere.004
+    400022: Icosphere.005
     2300000: Icosphere
     2300002: Icosphere_001
     2300004: Icosphere_002
     2300006: Icosphere_003
     2300008: Icosphere_004
     2300010: Icosphere_005
+    2300012: Icosphere.001
+    2300014: Icosphere.002
+    2300016: Icosphere.003
+    2300018: Icosphere.004
+    2300020: Icosphere.005
     3300000: Icosphere
     3300002: Icosphere_001
     3300004: Icosphere_002
     3300006: Icosphere_003
     3300008: Icosphere_004
     3300010: Icosphere_005
+    3300012: Icosphere.001
+    3300014: Icosphere.002
+    3300016: Icosphere.003
+    3300018: Icosphere.004
+    3300020: Icosphere.005
     4300000: Icosphere_005
     4300002: Icosphere_004
     4300004: Icosphere_003
     4300006: Icosphere_002
     4300008: Icosphere_001
     4300010: Icosphere
+    4300012: Icosphere.005
+    4300014: Icosphere.004
+    4300016: Icosphere.003
+    4300018: Icosphere.002
+    4300020: Icosphere.001
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rock
+    second: {fileID: 2100000, guid: 3e17d0e411bad3b4ea4cb05602f9ffdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Snow1
+    second: {fileID: 2100000, guid: cd4793413f773e44da31ebb8c628f190, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,6 +107,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -89,11 +125,16 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -108,7 +149,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
